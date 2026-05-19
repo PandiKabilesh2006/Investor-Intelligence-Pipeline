@@ -13,8 +13,6 @@ st.set_page_config(
 
     page_title="Investor Intelligence Platform",
 
-    page_icon="🚀",
-
     layout="wide"
 )
 
@@ -143,19 +141,57 @@ if search_button:
 
 
         # =========================================
-        # SECTOR MATCH
+        # EXACT SECTOR MATCH
         # =========================================
 
-        if sector.lower() in " ".join(sectors).lower():
+        sector_match = False
+
+
+        for investor_sector in sectors:
+
+            if (
+
+                sector.strip().lower()
+
+                ==
+
+                investor_sector.strip().lower()
+            ):
+
+                sector_match = True
+
+                break
+
+
+        if sector_match:
 
             score += 5
 
 
         # =========================================
-        # STAGE MATCH
+        # EXACT STAGE MATCH
         # =========================================
 
-        if stage.lower() in " ".join(stages).lower():
+        stage_match = False
+
+
+        for investor_stage in stages:
+
+            if (
+
+                stage.strip().lower()
+
+                ==
+
+                investor_stage.strip().lower()
+            ):
+
+                stage_match = True
+
+                break
+
+
+        if stage_match:
 
             score += 5
 
@@ -164,16 +200,42 @@ if search_button:
         # GEOGRAPHY MATCH
         # =========================================
 
-        if geography.lower() in " ".join(geographies).lower():
+        geography_match = False
+
+
+        for investor_geography in geographies:
+
+            if (
+
+                geography.strip().lower()
+
+                in
+
+                investor_geography.strip().lower()
+            ):
+
+                geography_match = True
+
+                break
+
+
+        if geography_match:
 
             score += 3
 
 
         # =========================================
-        # FILTER MATCHES
+        # STRICT FILTERING
         # =========================================
 
-        if score >= minimum_score:
+        if (
+
+            geography_match
+
+            and
+
+            score >= minimum_score
+        ):
 
             ranked_investors.append(
 
@@ -208,7 +270,7 @@ if search_button:
 
 
     # =========================================
-    # DASHBOARD METRICS
+    # ANALYTICS
     # =========================================
 
     st.subheader("Investor Match Analytics")
@@ -257,7 +319,7 @@ if search_button:
 
 
     # =========================================
-    # RESULTS TABLE
+    # RESULTS
     # =========================================
 
     st.subheader("Top Matching Investors")
@@ -292,5 +354,5 @@ st.markdown("---")
 
 st.caption(
 
-    "Investor Intelligence Pipeline • AI-Powered VC Discovery Platform"
+    "Investor Intelligence Pipeline"
 )

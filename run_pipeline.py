@@ -3,22 +3,42 @@ import time
 import re
 import os
 import json
+import logging
+import asyncio
 
 warnings.filterwarnings("ignore")
 
 from app.search.tavily_search import search_investors
-from app.extraction.firecrawl_extract import extract_website
+from app.query.query_generator import generate_queries
+from app.extraction.async_extract import extract_urls_async
 
 
 # =========================================
-# CONFIGURATION
+# LOGGING
 # =========================================
 
-MAX_RESULTS_PER_QUERY = 5
+logging.basicConfig(
+
+    filename="pipeline.log",
+
+    level=logging.INFO,
+
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+
+# =========================================
+# RAW DATA FOLDER
+# =========================================
 
 RAW_DATA_FOLDER = "raw_markdown"
 
 os.makedirs(RAW_DATA_FOLDER, exist_ok=True)
+
+
+# =========================================
+# CLEAN OLD RAW FILES
+# =========================================
 
 for file in os.listdir(RAW_DATA_FOLDER):
 
@@ -36,81 +56,114 @@ for file in os.listdir(RAW_DATA_FOLDER):
 print("\nInvestor Intelligence Pipeline\n")
 
 sector = input("Enter startup sector: ")
+
 stage = input("Enter investment stage: ")
+
 geography = input("Enter geography: ")
+
 theme = input("Enter investment theme: ")
 
 
 # =========================================
-# SINGLE INTELLIGENT QUERY
+# QUERY GENERATION
 # =========================================
 
-query=(
-    f"top {sector} {stage} "
-    f"venture capital firms "
-    f"{theme} investors "
-    f"in {geography}"
+queries = generate_queries(
+
+    sector,
+    stage,
+    geography,
+    theme
 )
 
-print("\nGenerated Query:\n")
-
-print(query)
+print(f"\nGenerated {len(queries)} search queries\n")
 
 
 # =========================================
-# FILTERING CONFIGURATION
+# BLOCKED DOMAINS
 # =========================================
 
 blocked_domains = [
+
     "linkedin.com",
     "youtube.com",
-    "twitter.com",
     "facebook.com",
     "instagram.com",
+    "twitter.com",
     "reddit.com",
-    "tiktok.com"
+    "tiktok.com",
+    "crunchbase.com",
+    "wikipedia.org"
 ]
 
 
 # =========================================
-# DOMAIN SIGNALS
+# HIGH QUALITY VC DOMAIN SIGNALS
 # =========================================
 
-preferred_domains = [
+preferred_domain_keywords = [
+
     ".vc",
     "ventures",
     "capital",
     "fund",
     "partners",
     "invest",
-    "seed"
+    "seed",
+    "equity",
+    "portfolio",
+    "management",
+    "holdings",
+    "accelerator",
+    "thesis"
 ]
 
 
 # =========================================
-# POSITIVE SIGNALS
+# HIGH SIGNAL URL PATHS
 # =========================================
 
 high_signal_paths = [
+
     "/team",
-    "/portfolio",
-    "/about",
-    "/thesis",
-    "/investments",
     "/people",
     "/partners",
+    "/portfolio",
     "/companies",
+    "/investments",
+    "/thesis",
     "/focus",
-    "/sectors"
+    "/about",
+    "/strategy",
+    "/platform",
+    "/who-we-are",
+    "/what-we-do"
 ]
 
+
+# =========================================
+# STRONG VC KEYWORDS
+# =========================================
+
 high_signal_keywords = [
-    "ventures",
+
+    "venture",
     "capital",
-    "fund",
     "vc",
-    "invest",
-    "partners"
+    "fund",
+    "investor",
+    "investment",
+    "portfolio",
+    "seed",
+    "series-a",
+    "series-b",
+    "growth-equity",
+    "private-equity",
+    "startup",
+    "founders",
+    "backing",
+    "thesis",
+    "innovation"
 ]
 
 
@@ -119,22 +172,34 @@ high_signal_keywords = [
 # =========================================
 
 negative_keywords = [
+
     "blog",
     "news",
     "article",
     "latest",
-    "realtime",
-    "list",
-    "2025",
-    "2026",
-    "media",
     "press",
-    ".pdf",
-    "rankings",
+    "media",
+    "realtime",
     "top-10",
     "top-20",
-    "best"
+    "top-50",
+    "rankings",
+    "best",
+    "jobs",
+    "careers",
+    "events",
+    ".pdf",
+    "podcast",
+    "webinar",
+    "newsletter"
 ]
+
+
+# =========================================
+# GLOBAL URL DEDUPLICATION
+# =========================================
+
+seen_urls = set()
 
 
 # =========================================
@@ -143,202 +208,371 @@ negative_keywords = [
 
 print("\nSearching investor websites...\n")
 
-seen_urls = set()
-
-try:
-
-    search_results = search_investors(query)
-
-    if "results" not in search_results:
-
-        print("Search API error")
-        print(search_results)
-
-        exit()
-
-    results = search_results["results"]
-
-    if len(results) == 0:
-
-        print("No search results found")
-        exit()
+total_processed = 0
 
 
-    # =========================================
-    # PROCESS TOP SEARCH RESULTS
-    # =========================================
+for query in queries:
 
-    for result in results[:MAX_RESULTS_PER_QUERY]:
+    print("=" * 80)
 
-        url = result.get("url", "")
+    print(f"\nSearching Query: {query}\n")
 
-        if not url:
+    logging.info(f"Searching query: {query}")
+
+
+    try:
+
+        # =========================================
+        # DYNAMIC PAGINATED SEARCH
+        # =========================================
+
+        search_results = search_investors(
+
+            query=query,
+
+            max_pages=10
+        )
+
+
+        if "results" not in search_results:
+
+            logging.error(
+
+                f"Search API error: "
+                f"{search_results}"
+            )
+
+            continue
+
+
+        results = search_results["results"]
+
+
+        if len(results) == 0:
+
+            logging.warning(
+
+                f"No results found for query: "
+                f"{query}"
+            )
+
             continue
 
 
         # =========================================
-        # BLOCK BAD DOMAINS
+        # PROCESS RESULTS
         # =========================================
 
-        blocked = False
-
-        for domain in blocked_domains:
-
-            if domain in url:
-
-                blocked = True
-                break
-
-        if blocked:
-
-            print(f"Skipping blocked domain: {url}")
-            continue
+        candidate_urls = []
 
 
-        # =========================================
-        # URL DEDUPLICATION
-        # =========================================
+        for result in results:
 
-        if url in seen_urls:
-            continue
+            url = result.get("url", "")
 
-        seen_urls.add(url)
+            if not url:
 
-
-        # =========================================
-        # SIGNAL SCORING
-        # =========================================
-
-        url_lower = url.lower()
-
-        score = 0
+                continue
 
 
-        # =========================================
-        # DOMAIN SIGNALS
-        # =========================================
+            url_lower = url.lower()
 
-        for keyword in preferred_domains:
-
-            if keyword in url_lower:
-                score += 4
-
-
-        # =========================================
-        # POSITIVE SIGNALS
-        # =========================================
-
-        for keyword in high_signal_keywords:
-
-            if keyword in url_lower:
-                score += 2
-
-
-        for path in high_signal_paths:
-
-            if path in url_lower:
-                score += 3
-
-
-        # =========================================
-        # NEGATIVE SIGNALS
-        # =========================================
-
-        for keyword in negative_keywords:
-
-            if keyword in url_lower:
-                score -= 5
-
-
-        # =========================================
-        # PRECISION FILTERING
-        # =========================================
-
-        if score < 3:
-
-            print(f"Skipping low-signal URL: {url}")
-            continue
-
-
-        print("=" * 80)
-
-        print(f"\nProcessing URL: {url}")
-        print(f"Signal Score: {score}\n")
-
-
-        try:
 
             # =========================================
-            # EXTRACTION
+            # BLOCK BAD DOMAINS
             # =========================================
 
-            website_data = extract_website(url)
+            blocked = False
 
-            markdown_content = website_data.markdown
+            for domain in blocked_domains:
 
-            if not markdown_content:
+                if domain in url_lower:
 
-                print("Empty markdown content")
+                    blocked = True
+                    break
+
+
+            if blocked:
+
+                print(f"Skipping blocked domain: {url}")
+
                 continue
 
 
             # =========================================
-            # SAVE RAW MARKDOWN
+            # URL DEDUPLICATION
             # =========================================
 
-            safe_filename = re.sub(
-                r'[^a-zA-Z0-9]',
-                '_',
-                url
+            if url in seen_urls:
+
+                continue
+
+
+            seen_urls.add(url)
+
+
+            # =========================================
+            # SIGNAL SCORING
+            # =========================================
+
+            score = 0
+
+
+            # =========================================
+            # DOMAIN SIGNALS
+            # =========================================
+
+            for keyword in preferred_domain_keywords:
+
+                if keyword in url_lower:
+
+                    score += 5
+
+
+            # =========================================
+            # HIGH SIGNAL KEYWORDS
+            # =========================================
+
+            for keyword in high_signal_keywords:
+
+                if keyword in url_lower:
+
+                    score += 3
+
+
+            # =========================================
+            # HIGH SIGNAL PATHS
+            # =========================================
+
+            for path in high_signal_paths:
+
+                if path in url_lower:
+
+                    score += 4
+
+
+            # =========================================
+            # NEGATIVE SIGNALS
+            # =========================================
+
+            for keyword in negative_keywords:
+
+                if keyword in url_lower:
+
+                    score -= 8
+
+
+            # =========================================
+            # QUERY TERM MATCHING
+            # =========================================
+
+            query_terms = query.lower().split()
+
+            for term in query_terms:
+
+                if term in url_lower:
+
+                    score += 2
+
+
+            # =========================================
+            # PRECISION FILTERING
+            # =========================================
+
+            if score < 5:
+
+                print(f"Skipping low-signal URL: {url}")
+
+                continue
+
+
+            print("=" * 80)
+
+            print(f"\nQueued URL: {url}")
+
+            print(f"Signal Score: {score}\n")
+
+
+            logging.info(
+
+                f"Queued URL: "
+                f"{url} | score={score}"
             )
 
-            filename = (
-                f"{RAW_DATA_FOLDER}/"
-                f"{safe_filename[:80]}.md"
+
+            candidate_urls.append(url)
+
+
+        # =========================================
+        # RUN ASYNC EXTRACTION
+        # =========================================
+
+        print(
+
+            f"\nRunning async extraction "
+            f"for {len(candidate_urls)} URLs\n"
+        )
+
+
+        extraction_results = asyncio.run(
+
+            extract_urls_async(candidate_urls)
+        )
+
+
+        # =========================================
+        # PROCESS EXTRACTION RESULTS
+        # =========================================
+
+        for extraction_result in extraction_results:
+
+            url = extraction_result["url"]
+
+            markdown_content = (
+
+                extraction_result["markdown"]
             )
 
-            with open(filename, "w", encoding="utf-8") as file:
-
-                file.write(markdown_content)
+            success = extraction_result["success"]
 
 
-            # =========================================
-            # SAVE METADATA
-            # =========================================
+            if not success:
 
-            metadata = {
-                "query": query,
-                "url": url,
-                "score": score
-            }
-
-            metadata_filename = filename.replace(".md", ".json")
-
-            with open(metadata_filename, "w", encoding="utf-8") as meta_file:
-
-                json.dump(metadata, meta_file, indent=4)
+                continue
 
 
-            print(f"Saved markdown: {filename}")
-            print(f"Saved metadata: {metadata_filename}\n")
+            if not markdown_content:
+
+                continue
 
 
-            # =========================================
-            # RATE LIMIT PROTECTION
-            # =========================================
+            if len(markdown_content) < 500:
 
-            time.sleep(2)
+                print(
 
-        except Exception as extraction_error:
+                    f"Insufficient content: "
+                    f"{url}"
+                )
 
-            print(f"Extraction failed: {extraction_error}")
-
-except Exception as search_error:
-
-    print(f"Search failed: {search_error}")
+                continue
 
 
-print("\nPipeline execution completed.\n")
+            try:
+
+                # =========================================
+                # SAVE MARKDOWN
+                # =========================================
+
+                safe_filename = re.sub(
+
+                    r"[^a-zA-Z0-9]",
+
+                    "_",
+
+                    url
+                )
+
+
+                filename = (
+
+                    f"{RAW_DATA_FOLDER}/"
+                    f"{safe_filename[:120]}.md"
+                )
+
+
+                with open(
+
+                    filename,
+
+                    "w",
+
+                    encoding="utf-8"
+                ) as file:
+
+                    file.write(markdown_content)
+
+
+                # =========================================
+                # SAVE METADATA
+                # =========================================
+
+                metadata = {
+
+                    "query": query,
+
+                    "url": url
+                }
+
+
+                metadata_filename = (
+
+                    filename.replace(".md", ".json")
+                )
+
+
+                with open(
+
+                    metadata_filename,
+
+                    "w",
+
+                    encoding="utf-8"
+                ) as meta_file:
+
+                    json.dump(
+
+                        metadata,
+
+                        meta_file,
+
+                        indent=4
+                    )
+
+
+                print(f"Saved markdown: {filename}")
+
+                total_processed += 1
+
+
+            except Exception as save_error:
+
+                logging.error(
+
+                    f"Save failed: "
+                    f"{save_error}"
+                )
+
+
+                print(
+
+                    f"Save failed: "
+                    f"{save_error}"
+                )
+
+
+    except Exception as search_error:
+
+        logging.error(
+
+            f"Search failed: {search_error}"
+        )
+
+        print(f"Search failed: {search_error}")
+
+
+# =========================================
+# FINAL SUMMARY
+# =========================================
+
+print("=" * 80)
+
+print(
+
+    f"\nTotal investor pages collected: "
+    f"{total_processed}\n"
+)
+
+print("Pipeline execution completed.\n")
 # search_results = search_investors(query)
 # # print(search_results)
 
