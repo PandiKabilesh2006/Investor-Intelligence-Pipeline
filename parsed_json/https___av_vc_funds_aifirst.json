@@ -1,0 +1,27 @@
+{
+    "firm": "Alumni Ventures",
+    "website": "https://www.av.vc/",
+    "partners": [],
+    "focus_sectors": [
+        "Women’s Founders",
+        "Medicine 3.0",
+        "Strategic Tech",
+        "Artificial Intelligence"
+    ],
+    "investment_stage": [
+        "Seed",
+        "Series C",
+        "Series A",
+        "Series B",
+        "Pre-Seed",
+        "Growth Stage"
+    ],
+    "portfolio_companies": [],
+    "geography": [
+        "United States"
+    ],
+    "contact_links": [
+        "https://www.av.vc/funds/aifirst#easyvest",
+        "http://av.vc/AiFirstFund"
+    ]
+}

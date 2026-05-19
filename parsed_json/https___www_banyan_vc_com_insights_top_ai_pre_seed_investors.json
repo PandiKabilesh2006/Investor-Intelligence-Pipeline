@@ -1,0 +1,15 @@
+{
+    "firm": "Banyan Ventures",
+    "website": "https://www.banyan-vc.com",
+    "focus_sectors": [
+        "AI infrastructure",
+        "AI applications"
+    ],
+    "investment_stage": [
+        "Seed",
+        "Pre-Seed"
+    ],
+    "partners": [
+        "Sam Awrabi"
+    ]
+}

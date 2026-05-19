@@ -1,0 +1,33 @@
+{
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com/",
+    "partners": [
+        {
+            "name": "Matt Murphy"
+        },
+        {
+            "name": "Steve Sloane"
+        }
+    ],
+    "focus_sectors": [],
+    "investment_stage": [
+        "Series B",
+        "Seed",
+        "Series A"
+    ],
+    "portfolio_companies": [
+        "Clarifai",
+        "Edge Delta"
+    ],
+    "geography": [],
+    "contact_links": [
+        {
+            "type": "linkedin",
+            "url": "https://www.linkedin.com/company/clarifai/"
+        },
+        {
+            "type": "x-twitter",
+            "url": "https://twitter.com/clarifai"
+        }
+    ]
+}

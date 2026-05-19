@@ -1,0 +1,61 @@
+{
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com/",
+    "partners": [
+        {
+            "name": "Matt Murphy"
+        },
+        {
+            "name": "Edo Liberty"
+        }
+    ],
+    "focus_sectors": [],
+    "investment_stage": [],
+    "portfolio_companies": [
+        {
+            "name": "Anthropic",
+            "details": {
+                "type": "AI safety and research company",
+                "founders": [
+                    "Dario Amodei",
+                    "Daniela Amodei"
+                ],
+                "milestones": {
+                    "2021": "Founded",
+                    "2023": "Partnered, Series C"
+                },
+                "leadership": [
+                    {
+                        "name": "Dario Amodei",
+                        "role": "Co-Founder & CEO"
+                    },
+                    {
+                        "name": "Daniela Amodei",
+                        "role": "Co-Founder & President"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Pinecone",
+            "details": {
+                "type": "Managed, cloud-native vector database and simple API for building high-performance AI applications",
+                "founders": [
+                    "Edo Liberty"
+                ],
+                "milestones": {
+                    "2019": "Founded",
+                    "2022": "Partnered, Series A"
+                },
+                "leadership": [
+                    {
+                        "name": "Edo Liberty",
+                        "role": "Founder & CEO"
+                    }
+                ]
+            }
+        }
+    ],
+    "geography": [],
+    "contact_links": []
+}

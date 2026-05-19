@@ -1,0 +1,36 @@
+{
+    "firm": "Gilion",
+    "website": "https://www.gilion.com/",
+    "partners": [],
+    "focus_sectors": [
+        "Software",
+        "Apps",
+        "Fintech",
+        "Artificial Intelligence",
+        "Legaltech",
+        "E-commerce",
+        "Martech",
+        "SaaS",
+        "Biotech"
+    ],
+    "investment_stage": [
+        "Pre-Seed",
+        "Series A",
+        "Series B",
+        "Seed"
+    ],
+    "portfolio_companies": [],
+    "geography": [
+        "Denmark",
+        "Finland",
+        "France",
+        "Germany",
+        "Sweden",
+        "United Kingdom",
+        "United States"
+    ],
+    "contact_links": [
+        "https://www.linkedin.com/in/carllager/",
+        "https://vc-mapping.gilion.com/"
+    ]
+}
