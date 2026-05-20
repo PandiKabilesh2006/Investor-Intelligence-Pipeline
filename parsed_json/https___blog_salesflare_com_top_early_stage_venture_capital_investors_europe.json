@@ -1,0 +1,17 @@
+{
+    "firm": "AWS Gründerfonds",
+    "website": "http://www.gruenderfonds.at/en/",
+    "focus_sectors": [
+        "Artificial Intelligence",
+        "Enterprise AI"
+    ],
+    "investment_stage": [
+        "Series A",
+        "Seed",
+        "Growth Stage"
+    ],
+    "geography": [
+        "Europe"
+    ],
+    "partners": []
+}

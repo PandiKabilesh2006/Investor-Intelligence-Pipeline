@@ -1,0 +1,18 @@
+{
+    "firm": "Accel Partners",
+    "website": "http://www.accel.com/",
+    "focus_sectors": [
+        "B2B SaaS"
+    ],
+    "investment_stage": [
+        "Series B",
+        "Pre-Seed",
+        "Series A",
+        "Growth Stage",
+        "Seed"
+    ],
+    "geography": [
+        "Global"
+    ],
+    "partners": []
+}

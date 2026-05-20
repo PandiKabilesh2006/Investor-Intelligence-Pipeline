@@ -1206,5 +1206,3 @@ investors\\
 February 20, 2026 \\
 \\
 **The New Standard for Trusting Your Portfolio Data**](https://visible.vc/blog/metric-approvals)
-
-![](https://downloads.intercomcdn.com/i/o/be6a921d4eef18cb744d2fbfc9952d8e9e64213b/834412/13b13eb96012f09529839ea3e56a/ed536525430054d54e979421e41edbb0.png)

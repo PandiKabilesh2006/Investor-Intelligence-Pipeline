@@ -1,0 +1,18 @@
+{
+    "firm": "Point Nine",
+    "website": "https://www.pointnine.com/",
+    "focus_sectors": [
+        "B2B SaaS",
+        "B2B marketplaces"
+    ],
+    "investment_stage": [
+        "Seed",
+        "Pre-Seed"
+    ],
+    "geography": [
+        "United States",
+        "Europe",
+        "Canada"
+    ],
+    "partners": []
+}

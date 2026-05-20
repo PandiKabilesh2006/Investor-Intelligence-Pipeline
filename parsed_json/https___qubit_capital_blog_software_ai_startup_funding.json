@@ -1,0 +1,21 @@
+{
+    "firm": "Qubit Capital",
+    "website": "https://qubit.capital/",
+    "focus_sectors": [
+        "Artificial Intelligence",
+        "Enterprise AI",
+        "B2B SaaS"
+    ],
+    "investment_stage": [
+        "Series B",
+        "Pre-Seed",
+        "Series A",
+        "Growth Stage",
+        "Seed"
+    ],
+    "geography": [
+        "United States",
+        "Global"
+    ],
+    "partners": []
+}

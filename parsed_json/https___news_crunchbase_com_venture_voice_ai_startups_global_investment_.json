@@ -1,0 +1,25 @@
+{
+    "firm": "25Shares",
+    "website": "https://news.crunchbase.com/venture/voice-ai-startups-global-investment/#",
+    "focus_sectors": [
+        "Voice AI"
+    ],
+    "investment_stage": [
+        "Growth Stage",
+        "Seed",
+        "Series C",
+        "Pre-Seed"
+    ],
+    "geography": [
+        "Global"
+    ],
+    "partners": [
+        "A16Z",
+        "Iconiq Capital",
+        "Andreessen Horowitz",
+        "Sequoia Capital",
+        "Valor Equity Partners",
+        "New Enterprise Associates",
+        "Endeavor Catalyst"
+    ]
+}

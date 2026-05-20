@@ -8,12 +8,38 @@ import asyncio
 warnings.filterwarnings("ignore")
 
 from app.search.tavily_search import search_investors
-from app.query.query_generator import generate_queries
-from app.extraction.async_extract import extract_urls_async
+
+from app.query.query_generator import (
+    generate_queries
+)
+
+from app.extraction.async_extract import (
+    extract_urls_async
+)
 
 from app.relevance.relevance_classifier import (
     classify_investor_relevance
 )
+
+from app.config.ingestion_universe import (
+
+    SECTORS,
+
+    STAGES,
+
+    GEOGRAPHIES
+)
+
+
+# =========================================
+# TEST MODE
+# =========================================
+
+TEST_MODE = True
+
+TEST_QUERY_LIMIT = 10
+
+TEST_URL_LIMIT = 5
 
 
 # =========================================
@@ -36,50 +62,79 @@ logging.basicConfig(
 
 RAW_DATA_FOLDER = "raw_markdown"
 
-os.makedirs(RAW_DATA_FOLDER, exist_ok=True)
+os.makedirs(
 
+    RAW_DATA_FOLDER,
 
-# =========================================
-# CLEAN OLD RAW FILES
-# =========================================
-
-for file in os.listdir(RAW_DATA_FOLDER):
-
-    file_path = f"{RAW_DATA_FOLDER}/{file}"
-
-    if os.path.isfile(file_path):
-
-        os.remove(file_path)
-
-
-# =========================================
-# USER INPUTS
-# =========================================
-
-print("\nInvestor Intelligence Pipeline\n")
-
-sector = input("Enter startup sector: ")
-
-stage = input("Enter investment stage: ")
-
-geography = input("Enter geography: ")
-
-theme = input("Enter investment theme: ")
-
-
-# =========================================
-# QUERY GENERATION
-# =========================================
-
-queries = generate_queries(
-
-    sector,
-    stage,
-    geography,
-    theme
+    exist_ok=True
 )
 
-print(f"\nGenerated {len(queries)} search queries\n")
+
+# =========================================
+# PIPELINE START
+# =========================================
+
+print(
+
+    "\nInvestor Intelligence Pipeline\n"
+)
+
+
+# =========================================
+# GLOBAL QUERY GENERATION
+# =========================================
+
+queries = []
+
+
+for sector in SECTORS:
+
+    for stage in STAGES:
+
+        for geography in GEOGRAPHIES:
+
+            generated_queries = (
+
+                generate_queries(
+
+                    sector=sector,
+
+                    stage=stage,
+
+                    geography=geography,
+
+                    theme=sector
+                )
+            )
+
+
+            queries.extend(
+
+                generated_queries
+            )
+
+
+# =========================================
+# GLOBAL QUERY DEDUPLICATION
+# =========================================
+
+queries = list(set(queries))
+
+
+# =========================================
+# TEST MODE LIMITING
+# =========================================
+
+if TEST_MODE:
+
+    queries = queries[:TEST_QUERY_LIMIT]
+
+
+print(
+
+    f"\nGenerated "
+    f"{len(queries)} search queries\n"
+)
 
 
 # =========================================
@@ -89,12 +144,19 @@ print(f"\nGenerated {len(queries)} search queries\n")
 blocked_domains = [
 
     "linkedin.com",
+
     "youtube.com",
+
     "facebook.com",
+
     "instagram.com",
+
     "twitter.com",
+
     "reddit.com",
+
     "tiktok.com",
+
     "wikipedia.org"
 ]
 
@@ -110,7 +172,10 @@ seen_urls = set()
 # SEARCH PIPELINE
 # =========================================
 
-print("\nSearching investor websites...\n")
+print(
+
+    "\nSearching investor websites...\n"
+)
 
 total_processed = 0
 
@@ -119,15 +184,22 @@ for query in queries:
 
     print("=" * 80)
 
-    print(f"\nSearching Query: {query}\n")
+    print(
 
-    logging.info(f"Searching query: {query}")
+        f"\nSearching Query: "
+        f"{query}\n"
+    )
+
+    logging.info(
+
+        f"Searching query: {query}"
+    )
 
 
     try:
 
         # =========================================
-        # DYNAMIC PAGINATED SEARCH
+        # SEARCH INVESTORS
         # =========================================
 
         search_results = search_investors(
@@ -176,11 +248,23 @@ for query in queries:
 
         for result in results:
 
-            url = result.get("url", "")
+            url = result.get(
 
-            title = result.get("title", "")
+                "url",
+                ""
+            )
 
-            snippet = result.get("content", "")
+            title = result.get(
+
+                "title",
+                ""
+            )
+
+            snippet = result.get(
+
+                "content",
+                ""
+            )
 
 
             if not url:
@@ -197,23 +281,29 @@ for query in queries:
 
             blocked = False
 
+
             for domain in blocked_domains:
 
                 if domain in url_lower:
 
                     blocked = True
+
                     break
 
 
             if blocked:
 
-                print(f"Skipping blocked domain: {url}")
+                print(
+
+                    f"Skipping blocked domain: "
+                    f"{url}"
+                )
 
                 continue
 
 
             # =========================================
-            # URL DEDUPLICATION
+            # GLOBAL URL DEDUPLICATION
             # =========================================
 
             if url in seen_urls:
@@ -273,7 +363,10 @@ for query in queries:
 
             if not is_relevant:
 
-                print(f"Rejected URL: {url}")
+                print(
+
+                    f"Rejected URL: {url}"
+                )
 
                 continue
 
@@ -291,7 +384,10 @@ for query in queries:
 
             print("=" * 80)
 
-            print(f"\nQueued URL: {url}")
+            print(
+
+                f"\nQueued URL: {url}"
+            )
 
             print(
 
@@ -316,6 +412,24 @@ for query in queries:
             candidate_urls.append(url)
 
 
+            # =========================================
+            # TEST MODE URL LIMIT
+            # =========================================
+
+            if (
+
+                TEST_MODE
+
+                and
+
+                len(candidate_urls)
+
+                >= TEST_URL_LIMIT
+            ):
+
+                break
+
+
         # =========================================
         # RUN ASYNC EXTRACTION
         # =========================================
@@ -329,7 +443,10 @@ for query in queries:
 
         extraction_results = asyncio.run(
 
-            extract_urls_async(candidate_urls)
+            extract_urls_async(
+
+                candidate_urls
+            )
         )
 
 
@@ -373,7 +490,7 @@ for query in queries:
             try:
 
                 # =========================================
-                # SAVE MARKDOWN
+                # SAFE FILE NAME
                 # =========================================
 
                 safe_filename = re.sub(
@@ -393,6 +510,10 @@ for query in queries:
                 )
 
 
+                # =========================================
+                # SAVE MARKDOWN
+                # =========================================
+
                 with open(
 
                     filename,
@@ -402,7 +523,10 @@ for query in queries:
                     encoding="utf-8"
                 ) as file:
 
-                    file.write(markdown_content)
+                    file.write(
+
+                        markdown_content
+                    )
 
 
                 # =========================================
@@ -419,7 +543,11 @@ for query in queries:
 
                 metadata_filename = (
 
-                    filename.replace(".md", ".json")
+                    filename.replace(
+
+                        ".md",
+                        ".json"
+                    )
                 )
 
 
@@ -442,7 +570,11 @@ for query in queries:
                     )
 
 
-                print(f"Saved markdown: {filename}")
+                print(
+
+                    f"Saved markdown: "
+                    f"{filename}"
+                )
 
                 total_processed += 1
 
@@ -467,10 +599,15 @@ for query in queries:
 
         logging.error(
 
-            f"Search failed: {search_error}"
+            f"Search failed: "
+            f"{search_error}"
         )
 
-        print(f"Search failed: {search_error}")
+        print(
+
+            f"Search failed: "
+            f"{search_error}"
+        )
 
 
 # =========================================
@@ -485,7 +622,10 @@ print(
     f"{total_processed}\n"
 )
 
-print("Pipeline execution completed.\n")
+print(
+
+    "Pipeline execution completed.\n"
+)
 # search_results = search_investors(query)
 # # print(search_results)
 

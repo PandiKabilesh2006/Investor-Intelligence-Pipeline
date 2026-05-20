@@ -2,7 +2,12 @@ import json
 import streamlit as st
 
 from app.database.db import SessionLocal
+
 from app.database.models import Investor
+
+from app.search.semantic_search import (
+    semantic_investor_search
+)
 
 
 # =========================================
@@ -21,177 +26,473 @@ st.set_page_config(
 # HEADER
 # =========================================
 
-st.title("Investor Intelligence Platform")
+st.title(
+
+    "Investor Intelligence Platform"
+)
 
 st.markdown(
 
     """
-AI-powered investor discovery, ranking, and intelligence platform.
+AI-powered semantic investor discovery and intelligence platform.
 """
 )
 
 
 # =========================================
-# SIDEBAR INPUTS
+# DATABASE SESSION
 # =========================================
 
-st.sidebar.header("Startup Requirements")
+session = SessionLocal()
 
 
-sector = st.sidebar.selectbox(
+# =========================================
+# SIDEBAR
+# =========================================
 
-    "Startup Sector",
+st.sidebar.header(
 
-    [
-        "Artificial Intelligence",
-        "B2B SaaS",
-        "Voice AI",
-        "Enterprise AI",
-        "Fintech",
-        "Healthcare",
-        "Developer Tools",
-        "AI Infrastructure"
-    ]
-)
-
-
-stage = st.sidebar.selectbox(
-
-    "Investment Stage",
-
-    [
-        "Pre-Seed",
-        "Seed",
-        "Series A",
-        "Series B",
-        "Series C",
-        "Growth Stage",
-        "IPO Stage"
-    ]
-)
-
-
-geography = st.sidebar.selectbox(
-
-    "Geography",
-
-    [
-        "United States",
-        "India",
-        "Europe",
-        "Southeast Asia"
-    ]
-)
-
-
-minimum_score = st.sidebar.slider(
-
-    "Minimum Match Score",
-
-    min_value=1,
-
-    max_value=13,
-
-    value=5
-)
-
-
-search_button = st.sidebar.button(
-
-    "Find Investors"
+    "Investor Discovery"
 )
 
 
 # =========================================
-# DATABASE SEARCH
+# SEARCH MODE
 # =========================================
 
-if search_button:
+search_mode = st.sidebar.radio(
 
-    session = SessionLocal()
+    "Search Mode",
 
-    investors = session.query(Investor).all()
+    [
+        "Semantic AI Search",
+        "Structured Filtering"
+    ]
+)
+
+
+# =========================================
+# SEMANTIC SEARCH MODE
+# =========================================
+
+if search_mode == "Semantic AI Search":
+
+    semantic_query = st.sidebar.text_area(
+
+        "Describe Your Startup",
+
+        placeholder="""
+Example:
+Enterprise AI workflow automation startup
+raising Series A in India
+"""
+    )
+
+
+    semantic_limit = st.sidebar.slider(
+
+        "Maximum Results",
+
+        min_value=5,
+
+        max_value=100,
+
+        value=20
+    )
+
+
+    semantic_search_button = (
+
+        st.sidebar.button(
+
+            "Run Semantic Search"
+        )
+    )
+
+
+# =========================================
+# STRUCTURED FILTERING MODE
+# =========================================
+
+else:
+
+    sector = st.sidebar.selectbox(
+
+        "Startup Sector",
+
+        [
+            "Artificial Intelligence",
+            "B2B SaaS",
+            "Voice AI",
+            "Enterprise AI",
+            "Fintech",
+            "Healthcare",
+            "Developer Tools",
+            "AI Infrastructure"
+        ]
+    )
+
+
+    stage = st.sidebar.selectbox(
+
+        "Investment Stage",
+
+        [
+            "Pre-Seed",
+            "Seed",
+            "Series A",
+            "Series B",
+            "Series C",
+            "Growth Stage",
+            "IPO Stage"
+        ]
+    )
+
+
+    geography = st.sidebar.selectbox(
+
+        "Geography",
+
+        [
+            "United States",
+            "India",
+            "Europe",
+            "Southeast Asia"
+        ]
+    )
+
+
+    minimum_score = st.sidebar.slider(
+
+        "Minimum Match Score",
+
+        min_value=1,
+
+        max_value=13,
+
+        value=5
+    )
+
+
+    structured_search_button = (
+
+        st.sidebar.button(
+
+            "Find Investors"
+        )
+    )
+
+
+# =========================================
+# LOAD ALL INVESTORS
+# =========================================
+
+all_investors = (
+
+    session.query(Investor).all()
+)
+
+
+# =========================================
+# ANALYTICS
+# =========================================
+
+st.subheader(
+
+    "Platform Analytics"
+)
+
+
+col1, col2, col3 = st.columns(3)
+
+
+with col1:
+
+    st.metric(
+
+        "Total Investors",
+
+        len(all_investors)
+    )
+
+
+with col2:
+
+    st.metric(
+
+        "Search Engine",
+
+        "Semantic AI"
+    )
+
+
+with col3:
+
+    st.metric(
+
+        "Database",
+
+        "PostgreSQL + pgvector"
+    )
+
+
+st.markdown("---")
+
+
+# =========================================
+# SEMANTIC SEARCH EXECUTION
+# =========================================
+
+if (
+
+    search_mode == "Semantic AI Search"
+
+    and
+
+    semantic_search_button
+):
+
+    if not semantic_query.strip():
+
+        st.warning(
+
+            "Please enter a search query."
+        )
+
+    else:
+
+        with st.spinner(
+
+            "Running semantic investor retrieval..."
+        ):
+
+            results = semantic_investor_search(
+
+                query=semantic_query,
+
+                limit=semantic_limit
+            )
+
+
+        st.subheader(
+
+            "Semantic Investor Matches"
+        )
+
+
+        st.write(
+
+            f"Found {len(results)} semantic matches"
+        )
+
+
+        if len(results) == 0:
+
+            st.warning(
+
+                "No semantic matches found."
+            )
+
+
+        else:
+
+            for investor in results:
+
+                st.markdown("---")
+
+
+                st.subheader(
+
+                    investor["firm_name"]
+                )
+
+
+                st.write(
+
+                    f"Website: "
+                    f"{investor['website']}"
+                )
+
+
+                try:
+
+                    sectors = json.loads(
+
+                        investor[
+                            "focus_sectors"
+                        ]
+                        or
+                        "[]"
+                    )
+
+                except:
+
+                    sectors = []
+
+
+                try:
+
+                    stages = json.loads(
+
+                        investor[
+                            "investment_stage"
+                        ]
+                        or
+                        "[]"
+                    )
+
+                except:
+
+                    stages = []
+
+
+                try:
+
+                    geographies = json.loads(
+
+                        investor[
+                            "geography"
+                        ]
+                        or
+                        "[]"
+                    )
+
+                except:
+
+                    geographies = []
+
+
+                similarity_score = round(
+
+                    1 - investor["distance"],
+
+                    4
+                )
+
+
+                st.write(
+
+                    f"Semantic Similarity: "
+                    f"{similarity_score}"
+                )
+
+
+                st.write(
+
+                    f"Sectors: "
+                    f"{', '.join(sectors)}"
+                )
+
+
+                st.write(
+
+                    f"Stages: "
+                    f"{', '.join(stages)}"
+                )
+
+
+                st.write(
+
+                    f"Geography: "
+                    f"{', '.join(geographies)}"
+                )
+
+
+# =========================================
+# STRUCTURED FILTERING EXECUTION
+# =========================================
+
+if (
+
+    search_mode == "Structured Filtering"
+
+    and
+
+    structured_search_button
+):
 
     ranked_investors = []
 
 
     # =========================================
-    # RANK INVESTORS
+    # INVESTOR RANKING
     # =========================================
 
-    for investor in investors:
+    for investor in all_investors:
 
         score = 0
 
 
-        sectors = json.loads(
+        try:
 
-            investor.focus_sectors or "[]"
-        )
+            sectors = json.loads(
 
-        stages = json.loads(
+                investor.focus_sectors
+                or
+                "[]"
+            )
 
-            investor.investment_stage or "[]"
-        )
+        except:
 
-        geographies = json.loads(
+            sectors = []
 
-            investor.geography or "[]"
-        )
+
+        try:
+
+            stages = json.loads(
+
+                investor.investment_stage
+                or
+                "[]"
+            )
+
+        except:
+
+            stages = []
+
+
+        try:
+
+            geographies = json.loads(
+
+                investor.geography
+                or
+                "[]"
+            )
+
+        except:
+
+            geographies = []
 
 
         # =========================================
-        # EXACT SECTOR MATCH
+        # SECTOR MATCH
         # =========================================
 
-        sector_match = False
+        if any(
 
+            sector.lower()
+            in
+            s.lower()
 
-        for investor_sector in sectors:
-
-            if (
-
-                sector.strip().lower()
-
-                ==
-
-                investor_sector.strip().lower()
-            ):
-
-                sector_match = True
-
-                break
-
-
-        if sector_match:
+            for s in sectors
+        ):
 
             score += 5
 
 
         # =========================================
-        # EXACT STAGE MATCH
+        # STAGE MATCH
         # =========================================
 
-        stage_match = False
+        if any(
 
+            stage.lower()
+            in
+            s.lower()
 
-        for investor_stage in stages:
-
-            if (
-
-                stage.strip().lower()
-
-                ==
-
-                investor_stage.strip().lower()
-            ):
-
-                stage_match = True
-
-                break
-
-
-        if stage_match:
+            for s in stages
+        ):
 
             score += 5
 
@@ -200,57 +501,51 @@ if search_button:
         # GEOGRAPHY MATCH
         # =========================================
 
-        geography_match = False
+        if any(
 
+            geography.lower()
+            in
+            g.lower()
 
-        for investor_geography in geographies:
-
-            if (
-
-                geography.strip().lower()
-
-                in
-
-                investor_geography.strip().lower()
-            ):
-
-                geography_match = True
-
-                break
-
-
-        if geography_match:
+            for g in geographies
+        ):
 
             score += 3
 
 
         # =========================================
-        # STRICT FILTERING
+        # SCORE FILTER
         # =========================================
 
-        if (
-
-            geography_match
-
-            and
-
-            score >= minimum_score
-        ):
+        if score >= minimum_score:
 
             ranked_investors.append(
 
                 {
-                    "Investor Firm": investor.firm_name,
 
-                    "Website": investor.website,
+                    "firm_name":
 
-                    "Match Score": score,
+                    investor.firm_name,
 
-                    "Focus Sectors": ", ".join(sectors),
+                    "website":
 
-                    "Investment Stages": ", ".join(stages),
+                    investor.website,
 
-                    "Geography": ", ".join(geographies)
+                    "score":
+
+                    score,
+
+                    "sectors":
+
+                    ", ".join(sectors),
+
+                    "stages":
+
+                    ", ".join(stages),
+
+                    "geography":
+
+                    ", ".join(geographies)
                 }
             )
 
@@ -263,66 +558,24 @@ if search_button:
 
         ranked_investors,
 
-        key=lambda x: x["Match Score"],
+        key=lambda x: x["score"],
 
         reverse=True
     )
 
 
-    # =========================================
-    # ANALYTICS
-    # =========================================
+    st.subheader(
 
-    st.subheader("Investor Match Analytics")
-
-
-    col1, col2, col3 = st.columns(3)
+        "Structured Investor Matches"
+    )
 
 
-    with col1:
+    st.write(
 
-        st.metric(
-
-            "Total Investors",
-
-            len(ranked_investors)
-        )
-
-
-    with col2:
-
-        top_score = (
-
-            ranked_investors[0]["Match Score"]
-
-            if ranked_investors
-
-            else 0
-        )
-
-        st.metric(
-
-            "Highest Match Score",
-
-            top_score
-        )
-
-
-    with col3:
-
-        st.metric(
-
-            "Selected Stage",
-
-            stage
-        )
-
-
-    # =========================================
-    # RESULTS
-    # =========================================
-
-    st.subheader("Top Matching Investors")
+        f"Found "
+        f"{len(ranked_investors)} "
+        f"matching investors"
+    )
 
 
     if len(ranked_investors) == 0:
@@ -335,15 +588,50 @@ if search_button:
 
     else:
 
-        st.dataframe(
+        for investor in ranked_investors:
 
-            ranked_investors,
-
-            use_container_width=True
-        )
+            st.markdown("---")
 
 
-    session.close()
+            st.subheader(
+
+                investor["firm_name"]
+            )
+
+
+            st.write(
+
+                f"Website: "
+                f"{investor['website']}"
+            )
+
+
+            st.write(
+
+                f"Match Score: "
+                f"{investor['score']}"
+            )
+
+
+            st.write(
+
+                f"Sectors: "
+                f"{investor['sectors']}"
+            )
+
+
+            st.write(
+
+                f"Stages: "
+                f"{investor['stages']}"
+            )
+
+
+            st.write(
+
+                f"Geography: "
+                f"{investor['geography']}"
+            )
 
 
 # =========================================
@@ -354,5 +642,12 @@ st.markdown("---")
 
 st.caption(
 
-    "Investor Intelligence Pipeline"
+    "AI-Native Investor Intelligence Platform"
 )
+
+
+# =========================================
+# CLOSE DATABASE SESSION
+# =========================================
+
+session.close()

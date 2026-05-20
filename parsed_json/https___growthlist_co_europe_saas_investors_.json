@@ -1,0 +1,21 @@
+{
+    "firm": "Northcap",
+    "website": "http://northcap.vc/",
+    "focus_sectors": [
+        "B2B",
+        "B2B2C"
+    ],
+    "investment_stage": [
+        "Early Growth",
+        "Seed"
+    ],
+    "geography": [
+        "Europe"
+    ],
+    "partners": [
+        "Human Resources",
+        "Company Structure",
+        "End-to-End Sales Process",
+        "Scaling Up"
+    ]
+}
