@@ -1,0 +1,23 @@
+{
+    "firm": "Bain Capital Ventures",
+    "website": "https://baincapitalventures.com",
+    "focus_sectors": [
+        "AI Infrastructure",
+        "Healthcare",
+        "Fintech",
+        "Security",
+        "AI Apps"
+    ],
+    "investment_stage": [
+        "Growth Stage",
+        "Early-stage"
+    ],
+    "partners": [
+        "Enrique Salem",
+        "Saanya Ojha",
+        "Aaref Hilaly",
+        "Slater Stich",
+        "Amanda Huang",
+        "Rak Garg"
+    ]
+}

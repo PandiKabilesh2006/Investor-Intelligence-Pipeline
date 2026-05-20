@@ -3,6 +3,19 @@ from app.database.db import engine
 from app.database.models import Base
 
 
-Base.metadata.create_all(bind=engine)
+print(
 
-print("\nDatabase tables created successfully.\n")
+    "\nCreating PostgreSQL tables...\n"
+)
+
+
+Base.metadata.create_all(
+
+    bind=engine
+)
+
+
+print(
+
+    "\nPostgreSQL tables created successfully.\n"
+)

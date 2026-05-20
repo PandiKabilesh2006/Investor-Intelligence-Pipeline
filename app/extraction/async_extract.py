@@ -1,7 +1,9 @@
 import asyncio
 import logging
 
-from app.extraction.firecrawl_extract import extract_website
+from app.extraction.firecrawl_extract import (
+    extract_website
+)
 
 
 # =========================================
@@ -12,20 +14,15 @@ MAX_CONCURRENT_EXTRACTIONS = 5
 
 
 # =========================================
-# SEMAPHORE
-# =========================================
-
-semaphore = asyncio.Semaphore(
-
-    MAX_CONCURRENT_EXTRACTIONS
-)
-
-
-# =========================================
 # SINGLE URL EXTRACTION
 # =========================================
 
-async def extract_single_url(url):
+async def extract_single_url(
+
+    url,
+
+    semaphore
+):
 
     async with semaphore:
 
@@ -49,11 +46,21 @@ async def extract_single_url(url):
             )
 
 
+            markdown = getattr(
+
+                result,
+
+                "markdown",
+
+                ""
+            )
+
+
             return {
 
                 "url": url,
 
-                "markdown": result.markdown,
+                "markdown": markdown,
 
                 "success": True
             }
@@ -84,9 +91,24 @@ async def extract_single_url(url):
 
 async def extract_urls_async(urls):
 
+    # =========================================
+    # CREATE LOOP-SAFE SEMAPHORE
+    # =========================================
+
+    semaphore = asyncio.Semaphore(
+
+        MAX_CONCURRENT_EXTRACTIONS
+    )
+
+
     tasks = [
 
-        extract_single_url(url)
+        extract_single_url(
+
+            url,
+
+            semaphore
+        )
 
         for url in urls
     ]
@@ -94,7 +116,9 @@ async def extract_urls_async(urls):
 
     results = await asyncio.gather(
 
-        *tasks
+        *tasks,
+
+        return_exceptions=False
     )
 
 

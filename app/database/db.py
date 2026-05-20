@@ -1,7 +1,52 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL="sqlite:///investor_intelligence.db"
-engine=create_engine(DATABASE_URL, echo=True)
-SessionLocal=sessionmaker(autocommit=False,autoflush=False,bind=engine)
-Base=declarative_base()
+
+# =========================================
+# POSTGRESQL DATABASE URL
+# =========================================
+
+DATABASE_URL = (
+
+    "postgresql+psycopg2://"
+
+    "postgres:LiveClass2270157"
+
+    "@localhost:5432/"
+
+    "investor_intelligence"
+)
+
+
+# =========================================
+# SQLALCHEMY ENGINE
+# =========================================
+
+engine = create_engine(
+
+    DATABASE_URL,
+
+    pool_pre_ping=True
+)
+
+
+# =========================================
+# SESSION
+# =========================================
+
+SessionLocal = sessionmaker(
+
+    autocommit=False,
+
+    autoflush=False,
+
+    bind=engine
+)
+
+
+# =========================================
+# BASE MODEL
+# =========================================
+
+Base = declarative_base()

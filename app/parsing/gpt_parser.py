@@ -1,18 +1,21 @@
 import json
 import time
-
-from groq import Groq
-
-from app.config.settings import GROQ_API_KEY
+import ollama
 
 
-client = Groq(
+# =========================================
+# OLLAMA MODEL
+# =========================================
 
-    api_key=GROQ_API_KEY
-)
+MODEL_NAME = "qwen2.5:7b"
 
+
+# =========================================
+# INVESTOR PARSER
+# =========================================
 
 def parse_investor(markdown_content):
+
     prompt = f"""
 You are a venture capital intelligence
 extraction system.
@@ -76,45 +79,32 @@ Allowed focus_sectors:
 SECTOR MAPPING RULES
 ----------------------------------------
 
-Map concepts carefully.
-
-Examples:
-
 Voice AI:
 - voice agents
 - conversational AI
 - speech AI
-- voice automation
 - call center AI
-- AI voice platforms
 
 → Voice AI
 
 Enterprise AI:
-- enterprise automation
 - workflow automation
 - enterprise software
 - enterprise copilots
-- AI productivity
 
 → Enterprise AI
 
 B2B SaaS:
 - SaaS
-- enterprise SaaS
 - cloud software
-- software platform
-- recurring software products
+- recurring software
 
 → B2B SaaS
 
 AI Infrastructure:
 - LLM infrastructure
-- AI infrastructure
-- inference systems
 - vector databases
-- AI tooling
-- foundation models
+- inference systems
 
 → AI Infrastructure
 
@@ -122,7 +112,6 @@ Developer Tools:
 - API platforms
 - developer infrastructure
 - coding tools
-- software tooling
 
 → Developer Tools
 
@@ -141,10 +130,6 @@ Allowed investment_stage values:
 - IPO Stage
 
 Normalize stages into ONLY these values.
-
-Examples:
-- early-stage → Seed
-- expansion stage → Growth Stage
 
 ----------------------------------------
 PARTNER EXTRACTION
@@ -177,11 +162,9 @@ WEBSITE CONTENT
 
         try:
 
-            response = client.chat.completions.create(
+            response = ollama.chat(
 
-                model="llama-3.3-70b-versatile",
-
-                temperature=0,
+                model=MODEL_NAME,
 
                 messages=[
 
@@ -189,16 +172,20 @@ WEBSITE CONTENT
                         "role": "user",
                         "content": prompt
                     }
-                ]
+                ],
+
+                options={
+
+                    "temperature": 0
+                }
             )
+
 
             output = (
 
-                response
-                .choices[0]
-                .message
-                .content
+                response["message"]["content"]
             )
+
 
             cleaned = (
 
@@ -208,13 +195,15 @@ WEBSITE CONTENT
                 .strip()
             )
 
+
             return json.loads(cleaned)
+
 
         except Exception as error:
 
             print(
 
-                f"Groq parsing attempt failed: "
+                f"Ollama parsing failed: "
                 f"{error}"
             )
 
@@ -222,7 +211,7 @@ WEBSITE CONTENT
 
 
     # =========================================
-    # FALLBACK RESPONSE
+    # FALLBACK
     # =========================================
 
     return {

@@ -9,6 +9,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import relationship
 
 from app.database.db import Base
+from pgvector.sqlalchemy import Vector
 
 
 class Investor(Base):
@@ -26,6 +27,8 @@ class Investor(Base):
     investment_stage = Column(Text)
 
     geography = Column(Text)
+
+    embedding=Column(Vector(384))
 
 
 class Partner(Base):
@@ -47,4 +50,4 @@ class PortfolioCompany(Base):
 
     investor_id = Column(Integer, ForeignKey("investors.id"))
 
-    company_name = Column(String)
+    company_name = Column(String)

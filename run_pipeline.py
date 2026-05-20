@@ -1,5 +1,4 @@
 import warnings
-import time
 import re
 import os
 import json
@@ -11,6 +10,10 @@ warnings.filterwarnings("ignore")
 from app.search.tavily_search import search_investors
 from app.query.query_generator import generate_queries
 from app.extraction.async_extract import extract_urls_async
+
+from app.relevance.relevance_classifier import (
+    classify_investor_relevance
+)
 
 
 # =========================================
@@ -92,106 +95,7 @@ blocked_domains = [
     "twitter.com",
     "reddit.com",
     "tiktok.com",
-    "crunchbase.com",
     "wikipedia.org"
-]
-
-
-# =========================================
-# HIGH QUALITY VC DOMAIN SIGNALS
-# =========================================
-
-preferred_domain_keywords = [
-
-    ".vc",
-    "ventures",
-    "capital",
-    "fund",
-    "partners",
-    "invest",
-    "seed",
-    "equity",
-    "portfolio",
-    "management",
-    "holdings",
-    "accelerator",
-    "thesis"
-]
-
-
-# =========================================
-# HIGH SIGNAL URL PATHS
-# =========================================
-
-high_signal_paths = [
-
-    "/team",
-    "/people",
-    "/partners",
-    "/portfolio",
-    "/companies",
-    "/investments",
-    "/thesis",
-    "/focus",
-    "/about",
-    "/strategy",
-    "/platform",
-    "/who-we-are",
-    "/what-we-do"
-]
-
-
-# =========================================
-# STRONG VC KEYWORDS
-# =========================================
-
-high_signal_keywords = [
-
-    "venture",
-    "capital",
-    "vc",
-    "fund",
-    "investor",
-    "investment",
-    "portfolio",
-    "seed",
-    "series-a",
-    "series-b",
-    "growth-equity",
-    "private-equity",
-    "startup",
-    "founders",
-    "backing",
-    "thesis",
-    "innovation"
-]
-
-
-# =========================================
-# NEGATIVE SIGNALS
-# =========================================
-
-negative_keywords = [
-
-    "blog",
-    "news",
-    "article",
-    "latest",
-    "press",
-    "media",
-    "realtime",
-    "top-10",
-    "top-20",
-    "top-50",
-    "rankings",
-    "best",
-    "jobs",
-    "careers",
-    "events",
-    ".pdf",
-    "podcast",
-    "webinar",
-    "newsletter"
 ]
 
 
@@ -260,15 +164,24 @@ for query in queries:
 
 
         # =========================================
-        # PROCESS RESULTS
+        # CANDIDATE URL QUEUE
         # =========================================
 
         candidate_urls = []
 
 
+        # =========================================
+        # SEMANTIC RELEVANCE FILTERING
+        # =========================================
+
         for result in results:
 
             url = result.get("url", "")
+
+            title = result.get("title", "")
+
+            snippet = result.get("content", "")
+
 
             if not url:
 
@@ -312,76 +225,66 @@ for query in queries:
 
 
             # =========================================
-            # SIGNAL SCORING
+            # SEMANTIC RELEVANCE CLASSIFICATION
             # =========================================
 
-            score = 0
+            classification = (
+
+                classify_investor_relevance(
+
+                    query=query,
+
+                    title=title,
+
+                    url=url,
+
+                    snippet=snippet
+                )
+            )
 
 
-            # =========================================
-            # DOMAIN SIGNALS
-            # =========================================
+            is_relevant = classification.get(
 
-            for keyword in preferred_domain_keywords:
+                "is_relevant",
 
-                if keyword in url_lower:
-
-                    score += 5
+                False
+            )
 
 
-            # =========================================
-            # HIGH SIGNAL KEYWORDS
-            # =========================================
+            confidence = classification.get(
 
-            for keyword in high_signal_keywords:
+                "confidence",
 
-                if keyword in url_lower:
-
-                    score += 3
+                0.0
+            )
 
 
-            # =========================================
-            # HIGH SIGNAL PATHS
-            # =========================================
+            reason = classification.get(
 
-            for path in high_signal_paths:
+                "reason",
 
-                if path in url_lower:
-
-                    score += 4
-
-
-            # =========================================
-            # NEGATIVE SIGNALS
-            # =========================================
-
-            for keyword in negative_keywords:
-
-                if keyword in url_lower:
-
-                    score -= 8
+                ""
+            )
 
 
             # =========================================
-            # QUERY TERM MATCHING
+            # CONFIDENCE FILTER
             # =========================================
 
-            query_terms = query.lower().split()
+            if not is_relevant:
 
-            for term in query_terms:
+                print(f"Rejected URL: {url}")
 
-                if term in url_lower:
-
-                    score += 2
+                continue
 
 
-            # =========================================
-            # PRECISION FILTERING
-            # =========================================
+            if confidence < 0.75:
 
-            if score < 5:
+                print(
 
-                print(f"Skipping low-signal URL: {url}")
+                    f"Low confidence URL: "
+                    f"{url}"
+                )
 
                 continue
 
@@ -390,13 +293,23 @@ for query in queries:
 
             print(f"\nQueued URL: {url}")
 
-            print(f"Signal Score: {score}\n")
+            print(
+
+                f"Relevance Confidence: "
+                f"{confidence}"
+            )
+
+            print(
+
+                f"Reason: "
+                f"{reason}\n"
+            )
 
 
             logging.info(
 
                 f"Queued URL: "
-                f"{url} | score={score}"
+                f"{url} | confidence={confidence}"
             )
 
 
