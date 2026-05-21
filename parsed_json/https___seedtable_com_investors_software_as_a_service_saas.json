@@ -1,0 +1,38 @@
+{
+    "firm": "Bpifrance",
+    "website": "https://bpifrance.fr",
+    "partners": [],
+    "focus_sectors": [
+        "Climate Tech & Green Tech",
+        "FinTech",
+        "Health Tech"
+    ],
+    "investment_stage": [
+        "Debt Financing",
+        "Series C",
+        "Series H",
+        "Series F",
+        "Seed",
+        "Series D",
+        "Series I",
+        "Series G",
+        "Series B",
+        "Pre-Seed",
+        "Series A",
+        "Series E",
+        "Unknown"
+    ],
+    "portfolio_companies": [
+        "Mistral AI",
+        "YesWeHack",
+        "Scalinx"
+    ],
+    "geography": [
+        "Europe"
+    ],
+    "contact_links": [
+        "https://bpifrance.fr",
+        "https://seedtable.com/investors/bpifrance"
+    ],
+    "source_url": "https://seedtable.com/investors-software-as-a-service-saas"
+}

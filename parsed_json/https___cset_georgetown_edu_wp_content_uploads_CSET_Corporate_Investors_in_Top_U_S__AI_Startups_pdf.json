@@ -1,17 +1,17 @@
 {
-    "firm": "GV (formerly Google Ventures)",
-    "website": "https://www.gv.com/",
+    "firm": "GV",
+    "website": "",
+    "partners": [],
     "focus_sectors": [
         "Artificial Intelligence"
     ],
     "investment_stage": [
-        "Growth Stage",
-        "Seed",
-        "Series A",
-        "Series B"
+        "Seed"
     ],
+    "portfolio_companies": [],
     "geography": [
-        "Global"
+        "United States"
     ],
-    "partners": []
+    "contact_links": [],
+    "source_url": "https://cset.georgetown.edu/wp-content/uploads/CSET-Corporate-Investors-in-Top-U.S.-AI-Startups.pdf"
 }

@@ -36,6 +36,7 @@ def semantic_investor_search(
         query_embedding = (
 
             embedding_model.encode(
+
                 query
             ).tolist()
         )
@@ -142,6 +143,10 @@ def semantic_investor_search(
 
                 website,
 
+                source_url,
+
+                updated_at,
+
                 focus_sectors,
 
                 investment_stage,
@@ -184,9 +189,13 @@ def semantic_investor_search(
 
                 "id": row.id,
 
-                "firm_name": row.firm,
+                "firm": row.firm,
 
                 "website": row.website,
+
+                "source_url": row.source_url,
+
+                "updated_at": row.updated_at,
 
                 "focus_sectors": row.focus_sectors,
 

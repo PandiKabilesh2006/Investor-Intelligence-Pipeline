@@ -1,17 +1,19 @@
 {
     "firm": "TinySeed",
     "website": "https://tinyseed.com/",
+    "partners": [],
     "focus_sectors": [
         "B2B SaaS"
     ],
     "investment_stage": [
-        "Growth Stage"
+        "Seed"
     ],
+    "portfolio_companies": [],
     "geography": [
         "Global"
     ],
-    "partners": [
-        "Rob Walling",
-        "Einar Vollset"
-    ]
+    "contact_links": [
+        "https://tinyseed.com/community"
+    ],
+    "source_url": "https://investing.io/indie-saas-investors/"
 }

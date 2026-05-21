@@ -1,13 +1,31 @@
 {
     "firm": "Edison Partners",
     "website": "https://www.edisonpartners.com/",
+    "partners": [],
     "focus_sectors": [
-        "B2B Marketing Technology",
-        "Sales Technology"
+        "B2B SaaS"
     ],
     "investment_stage": [
         "Growth Stage"
     ],
-    "geography": [],
-    "partners": []
+    "portfolio_companies": [
+        "Zoom",
+        "Affinity",
+        "Influitive",
+        "Sendoso",
+        "Trustpilot",
+        "LeanData",
+        "6sense",
+        "Outreach",
+        "Blueshift"
+    ],
+    "geography": [
+        "United States"
+    ],
+    "contact_links": [
+        "https://www.edisonpartners.com/contact/",
+        "https://www.linkedin.com/company/edison-partners/",
+        "https://twitter.com/EdisonPartners"
+    ],
+    "source_url": "https://www.demandgenreport.com/industry-news/surge-in-b2b-tech-funding-as-investors-focus-on-data-and-revenue-growth-areas/5782/"
 }

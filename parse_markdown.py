@@ -8,7 +8,9 @@ from app.parsing.normalize import (
     normalize_sectors
 )
 
-from app.utils.deduplicate import is_duplicate_firm
+from app.utils.deduplicate import (
+    is_duplicate_firm
+)
 
 
 # =========================================
@@ -16,9 +18,15 @@ from app.utils.deduplicate import is_duplicate_firm
 # =========================================
 
 RAW_DATA_FOLDER = "raw_markdown"
+
 PARSED_DATA_FOLDER = "parsed_json"
 
-os.makedirs(PARSED_DATA_FOLDER, exist_ok=True)
+os.makedirs(
+
+    PARSED_DATA_FOLDER,
+
+    exist_ok=True
+)
 
 
 # =========================================
@@ -34,7 +42,11 @@ markdown_files = [
     if file.endswith(".md")
 ]
 
-print(f"\nFound {len(markdown_files)} markdown files\n")
+
+print(
+
+    f"\nFound {len(markdown_files)} markdown files\n"
+)
 
 
 # =========================================
@@ -50,121 +62,296 @@ parsed_count = 0
 
 for markdown_file in markdown_files:
 
-    filepath = f"{RAW_DATA_FOLDER}/{markdown_file}"
+    filepath = (
+
+        f"{RAW_DATA_FOLDER}/{markdown_file}"
+    )
+
 
     print("=" * 80)
-    print(f"\nParsing: {markdown_file}\n")
+
+    print(
+
+        f"\nParsing: {markdown_file}\n"
+    )
+
 
     try:
 
-        # =========================================
+        # =====================================
         # READ MARKDOWN FILE
-        # =========================================
+        # =====================================
 
-        with open(filepath, "r", encoding="utf-8") as file:
+        with open(
+
+            filepath,
+
+            "r",
+
+            encoding="utf-8"
+        ) as file:
 
             markdown_content = file.read()
 
 
-        # =========================================
+        # =====================================
+        # LOAD METADATA
+        # =====================================
+
+        metadata_filepath = (
+
+            filepath.replace(
+
+                ".md",
+
+                ".json"
+            )
+        )
+
+
+        metadata = {}
+
+
+        if os.path.exists(metadata_filepath):
+
+            try:
+
+                with open(
+
+                    metadata_filepath,
+
+                    "r",
+
+                    encoding="utf-8"
+                ) as metadata_file:
+
+                    metadata = json.load(
+
+                        metadata_file
+                    )
+
+            except Exception as metadata_error:
+
+                print(
+
+                    f"Metadata load failed: "
+                    f"{metadata_error}"
+                )
+
+
+        # =====================================
         # AI STRUCTURED PARSING
-        # =========================================
+        # =====================================
 
-        parsed_data = parse_investor(markdown_content)
+        parsed_data = parse_investor(
+
+            markdown_content
+        )
 
 
-        # =========================================
+        # =====================================
         # NORMALIZATION
-        # =========================================
+        # =====================================
 
         parsed_data["investment_stage"] = (
 
             normalize_investment_stages(
 
-                parsed_data.get("investment_stage", [])
+                parsed_data.get(
+
+                    "investment_stage",
+
+                    []
+                )
             )
         )
+
 
         parsed_data["focus_sectors"] = (
 
             normalize_sectors(
 
-                parsed_data.get("focus_sectors", [])
+                parsed_data.get(
+
+                    "focus_sectors",
+
+                    []
+                )
             )
         )
 
 
-        # =========================================
-        # VALIDATE FIRM NAME
-        # =========================================
+        # =====================================
+        # SOURCE URL TRACEABILITY
+        # =====================================
 
-        firm_name = parsed_data.get("firm", "")
-        # Handle list responses from LLM
-        if isinstance(firm_name, list):
-            if len(firm_name) > 0:
-                firm_name = str(firm_name[0])
-            else:
-                firm_name = ""
-        # Convert everything safely to string
-        firm_name = str(firm_name).strip()
-        if not firm_name:
-            print("Missing firm name")
-            continue
-            
-        # =========================================
-        # INVESTOR DEDUPLICATION
-        # =========================================
+        parsed_data["source_url"] = metadata.get(
 
-        if is_duplicate_firm(firm_name):
+            "url",
 
-            print(f"Duplicate investor skipped: {firm_name}")
-
-            continue
-
-
-        # =========================================
-        # SAVE PARSED JSON
-        # =========================================
-
-        json_filename = markdown_file.replace(".md", ".json")
-
-        json_filepath = (
-
-            f"{PARSED_DATA_FOLDER}/{json_filename}"
+            ""
         )
 
 
-        with open(json_filepath, "w", encoding="utf-8") as json_file:
+        # =====================================
+        # VALIDATE FIRM NAME
+        # =====================================
+
+        firm_name = parsed_data.get(
+
+            "firm",
+
+            ""
+        )
+
+
+        # =====================================
+        # HANDLE LIST RESPONSES
+        # =====================================
+
+        if isinstance(firm_name, list):
+
+            if len(firm_name) > 0:
+
+                firm_name = str(
+
+                    firm_name[0]
+                )
+
+            else:
+
+                firm_name = ""
+
+
+        # =====================================
+        # SAFE STRING CLEANUP
+        # =====================================
+
+        firm_name = str(
+
+            firm_name
+        ).strip()
+
+
+        # =====================================
+        # MISSING FIRM NAME
+        # =====================================
+
+        if not firm_name:
+
+            print(
+
+                "Missing firm name"
+            )
+
+            continue
+
+
+        parsed_data["firm"] = firm_name
+
+
+        # =====================================
+        # INVESTOR DEDUPLICATION
+        # =====================================
+
+        if is_duplicate_firm(
+
+            firm_name
+        ):
+
+            print(
+
+                f"Duplicate investor skipped: "
+                f"{firm_name}"
+            )
+
+            continue
+
+
+        # =====================================
+        # SAVE PARSED JSON
+        # =====================================
+
+        json_filename = markdown_file.replace(
+
+            ".md",
+
+            ".json"
+        )
+
+
+        json_filepath = (
+
+            f"{PARSED_DATA_FOLDER}/"
+            f"{json_filename}"
+        )
+
+
+        with open(
+
+            json_filepath,
+
+            "w",
+
+            encoding="utf-8"
+        ) as json_file:
 
             json.dump(
+
                 parsed_data,
+
                 json_file,
+
                 indent=4,
+
                 ensure_ascii=False
             )
 
 
-        # =========================================
+        # =====================================
         # SUCCESS COUNTER
-        # =========================================
+        # =====================================
 
         parsed_count += 1
 
 
-        # =========================================
+        # =====================================
         # PRINT STRUCTURED OUTPUT
-        # =========================================
+        # =====================================
 
-        print("Structured Investor Data:\n")
+        print(
 
-        print(json.dumps(parsed_data, indent=4))
+            "Structured Investor Data:\n"
+        )
 
-        print(f"\nSaved JSON: {json_filepath}\n")
+
+        print(
+
+            json.dumps(
+
+                parsed_data,
+
+                indent=4,
+
+                ensure_ascii=False
+            )
+        )
+
+
+        print(
+
+            f"\nSaved JSON: "
+            f"{json_filepath}\n"
+        )
 
 
     except Exception as parsing_error:
 
-        print(f"Parsing failed: {parsing_error}")
+        print(
+
+            f"Parsing failed: "
+            f"{parsing_error}"
+        )
 
 
 # =========================================
@@ -173,6 +360,13 @@ for markdown_file in markdown_files:
 
 print("=" * 80)
 
-print(f"\nSuccessfully parsed {parsed_count} investors\n")
+print(
 
-print("Parsing pipeline completed.\n")
+    f"\nSuccessfully parsed "
+    f"{parsed_count} investors\n"
+)
+
+print(
+
+    "Parsing pipeline completed.\n"
+)

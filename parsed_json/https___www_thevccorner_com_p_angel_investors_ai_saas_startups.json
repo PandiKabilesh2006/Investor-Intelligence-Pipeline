@@ -1,6 +1,7 @@
 {
     "firm": "The VC Corner",
     "website": "https://www.thevccorner.com/",
+    "partners": [],
     "focus_sectors": [
         "Artificial Intelligence",
         "B2B SaaS"
@@ -8,11 +9,13 @@
     "investment_stage": [
         "Seed"
     ],
+    "portfolio_companies": [],
     "geography": [
-        "United States",
-        "LatAm",
-        "Asia",
-        "Europe"
+        "Global"
     ],
-    "partners": []
+    "contact_links": [
+        "https://www.thevccorner.com/",
+        "https://substack.com/@rubendominguez"
+    ],
+    "source_url": "https://www.thevccorner.com/p/angel-investors-ai-saas-startups"
 }

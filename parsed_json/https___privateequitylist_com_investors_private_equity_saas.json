@@ -1,18 +1,24 @@
 {
-    "firm": "SaaS Private Equity Firms512",
-    "website": "",
+    "firm": "Private Equity List",
+    "website": "https://privateequitylist.com",
+    "partners": [],
     "focus_sectors": [
         "Artificial Intelligence",
         "B2B SaaS"
     ],
     "investment_stage": [
         "Series A",
-        "Seed",
-        "Growth Stage"
+        "Seed"
     ],
+    "portfolio_companies": [],
     "geography": [
-        "United States",
         "Global"
     ],
-    "partners": []
+    "contact_links": [
+        "https://privateequitylist.com/search",
+        "https://privateequitylist.com/investors-crud/create",
+        "https://privateequitylist.com/aisearch",
+        "https://privateequitylist.com/resources/stats"
+    ],
+    "source_url": "https://privateequitylist.com/investors/private-equity/saas"
 }

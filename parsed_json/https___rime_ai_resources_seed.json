@@ -1,30 +1,24 @@
 {
-    "firm": "Rime",
-    "website": "",
+    "firm": "Unusual Ventures",
+    "website": "https://unusual.ventures/",
+    "partners": [],
     "focus_sectors": [
         "Voice AI"
     ],
     "investment_stage": [
         "Seed"
     ],
-    "geography": [
-        "United States"
+    "portfolio_companies": [
+        "Rime"
     ],
-    "partners": [
-        "Unusual Ventures",
-        "Zhenya Loginov",
-        "Molly Mielke",
-        "Sarah Veit Wallis",
-        "Rebecca Greene",
-        "Coyne Lloyd",
-        "Nick Arner",
-        "Mike Heller",
-        "Monica Black",
-        "Michael Akilian",
-        "Alex Levin",
-        "Aaron King",
-        "Maran Nelson",
-        "Arnaud Schenk",
-        "Founders You Should Know"
-    ]
+    "geography": [
+        "Global"
+    ],
+    "contact_links": [
+        "https://www.linkedin.com/company/unusual-ventures/",
+        "https://twitter.com/unusualvc",
+        "https://www.crunchbase.com/organization/unusual-ventures",
+        "https://www.forbes.com/sites/forbestechcouncil/author/aaron-king/?sh=5f4f5c6d6d5d"
+    ],
+    "source_url": "https://rime.ai/resources/seed"
 }

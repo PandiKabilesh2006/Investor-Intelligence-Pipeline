@@ -1,0 +1,27 @@
+{
+    "firm": "Windrose Capital",
+    "website": "https://www.windrose.capital/",
+    "partners": [],
+    "focus_sectors": [
+        "Artificial Intelligence",
+        "B2B SaaS"
+    ],
+    "investment_stage": [
+        "Series B",
+        "Series A",
+        "Growth Stage",
+        "Seed"
+    ],
+    "portfolio_companies": [
+        "SaaS startups"
+    ],
+    "geography": [
+        "India",
+        "Global"
+    ],
+    "contact_links": [
+        "https://www.linkedin.com/in/rohit-goyal/",
+        "https://www.windrose.capital/"
+    ],
+    "source_url": "https://windrose.capital/blog/post/indias-saas-ecosystem-is-growing-deeper-with"
+}

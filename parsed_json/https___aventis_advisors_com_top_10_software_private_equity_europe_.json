@@ -1,22 +1,18 @@
 {
     "firm": "Hg",
     "website": "https://hgcapital.com/",
+    "partners": [],
     "focus_sectors": [
-        "B2B SaaS",
-        "telecom",
-        "healthcare",
-        "industrials",
-        "media"
+        "B2B SaaS"
     ],
     "investment_stage": [
         "Growth Stage"
     ],
+    "portfolio_companies": [],
     "geography": [
-        "United States",
         "Europe",
-        "Germany",
-        "North America",
-        "Nordic region"
+        "North America"
     ],
-    "partners": []
+    "contact_links": [],
+    "source_url": "https://aventis-advisors.com/top-10-software-private-equity-europe/"
 }

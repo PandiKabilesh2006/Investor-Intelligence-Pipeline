@@ -1,17 +1,25 @@
 {
     "firm": "Qubit Capital",
     "website": "https://qubit.capital/",
+    "partners": [],
     "focus_sectors": [
         "Artificial Intelligence",
         "B2B SaaS"
     ],
     "investment_stage": [
-        "Growth Stage",
         "Series A",
-        "Series B"
+        "Seed"
+    ],
+    "portfolio_companies": [
+        "Swiipr Technologies",
+        "Ap Tack"
     ],
     "geography": [
-        "United States"
+        "Global"
     ],
-    "partners": []
+    "contact_links": [
+        "https://qubit.capital/",
+        "https://qubit.capital/blog/"
+    ],
+    "source_url": "https://qubit.capital/blog/software-ai-startup-funding"
 }

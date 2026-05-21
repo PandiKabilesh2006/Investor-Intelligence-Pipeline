@@ -1,14 +1,15 @@
 {
     "firm": "RevTek Capital",
     "website": "https://revtekcapital.com",
+    "partners": [],
     "focus_sectors": [
         "B2B SaaS"
     ],
     "investment_stage": [
         "Growth Stage"
     ],
-    "geography": [
-        "Global"
-    ],
-    "partners": []
+    "portfolio_companies": [],
+    "geography": [],
+    "contact_links": [],
+    "source_url": "https://revtekcapital.com/private-equity-in-the-saas-industry/"
 }

@@ -1,0 +1,27 @@
+{
+    "firm": "Uncork Capital",
+    "website": "https://www.uncorkcapital.com/",
+    "partners": [],
+    "focus_sectors": [
+        "B2B SaaS"
+    ],
+    "investment_stage": [
+        "Series B",
+        "Pre-Seed",
+        "Series A",
+        "Seed"
+    ],
+    "portfolio_companies": [
+        "Optimizely",
+        "UserTesting",
+        "Survata"
+    ],
+    "geography": [
+        "United States"
+    ],
+    "contact_links": [
+        "https://www.uncorkcapital.com/team",
+        "https://www.uncorkcapital.com/contact"
+    ],
+    "source_url": "https://rho.co/blog/vcs-in-saas"
+}

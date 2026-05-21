@@ -1,18 +1,20 @@
 {
     "firm": "Look AI Ventures",
-    "website": "https://lookai.vc/",
+    "website": "https://lookai.vc",
+    "partners": [],
     "focus_sectors": [
         "Artificial Intelligence"
     ],
     "investment_stage": [
-        "Growth Stage",
-        "Seed",
-        "Series A",
-        "Series B"
+        "Pre-Seed",
+        "Seed"
     ],
+    "portfolio_companies": [],
     "geography": [
-        "Global",
-        "Europe"
+        "Global"
     ],
-    "partners": []
+    "contact_links": [
+        "https://suincubator.ai/"
+    ],
+    "source_url": "https://lookai.vc/"
 }

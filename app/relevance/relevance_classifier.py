@@ -1,5 +1,7 @@
 import json
 import time
+import re
+import ollama
 
 from groq import Groq
 
@@ -14,22 +16,76 @@ from app.config.settings import (
 
 client = Groq(
 
-    api_key=GROQ_API_KEY
+    api_key=GROQ_API_KEY,
+
+    max_retries=0,
+
+    timeout=30.0
 )
 
 
 # =========================================
-# MODEL
+# MODELS
 # =========================================
 
-MODEL_NAME = "llama-3.1-8b-instant"
+GROQ_PRIMARY_MODEL = "llama-3.3-70b-versatile"
+
+GROQ_FALLBACK_MODEL = "llama-3.1-8b-instant"
+
+OLLAMA_MODEL = "qwen2.5:3b"
 
 
 # =========================================
-# INVESTOR RELEVANCE CLASSIFIER
+# RECOVERABLE GROQ ERRORS
 # =========================================
 
-def classify_investor_relevance(
+RECOVERABLE_GROQ_ERRORS = [
+
+    "rate limit",
+
+    "429",
+
+    "too many requests",
+
+    "rate_limit_exceeded",
+
+    "tokens per minute",
+
+    "requests per minute",
+
+    "request too large",
+
+    "model_decommissioned",
+
+    "service unavailable",
+
+    "overloaded",
+
+    "internal server error"
+]
+
+
+# =========================================
+# FALLBACK RESPONSE
+# =========================================
+
+FALLBACK_RESPONSE = {
+
+    "relevance_tier": "reject",
+
+    "is_relevant": False,
+
+    "confidence": 0.0,
+
+    "reason": "classification_failed"
+}
+
+
+# =========================================
+# PROMPT BUILDER
+# =========================================
+
+def build_prompt(
 
     query,
 
@@ -40,7 +96,7 @@ def classify_investor_relevance(
     snippet
 ):
 
-    prompt = f"""
+    return f"""
 You are an investor intelligence retrieval system.
 
 Your task is to determine whether
@@ -181,147 +237,418 @@ Return ONLY valid JSON:
 """
 
 
-    # =========================================
-    # RETRY LOGIC
-    # =========================================
+# =========================================
+# OUTPUT NORMALIZATION
+# =========================================
 
-    for attempt in range(3):
+def normalize_output(parsed):
 
-        try:
+    if not isinstance(parsed, dict):
 
-            response = client.chat.completions.create(
-
-                model=MODEL_NAME,
-
-                temperature=0,
-
-                response_format={
-
-                    "type": "json_object"
-                },
-
-                messages=[
-
-                    {
-                        "role": "user",
-                        "content": prompt
-                    }
-                ]
-            )
+        return FALLBACK_RESPONSE
 
 
-            output = (
+    parsed.setdefault(
+        "relevance_tier",
+        "reject"
+    )
 
-                response
-                .choices[0]
-                .message
-                .content
-            )
+    parsed.setdefault(
+        "is_relevant",
+        False
+    )
+
+    parsed.setdefault(
+        "confidence",
+        0.0
+    )
+
+    parsed.setdefault(
+        "reason",
+        ""
+    )
 
 
-            parsed = json.loads(output)
+    try:
 
-
-            # =========================================
-            # SAFE DEFAULTS
-            # =========================================
-
-            parsed.setdefault(
-
-                "relevance_tier",
-                "low"
-            )
-
-            parsed.setdefault(
-
+        confidence = float(
+            parsed.get(
                 "confidence",
                 0.0
             )
+        )
 
-            parsed.setdefault(
+    except Exception:
 
-                "reason",
-                ""
-            )
-
-
-            confidence = float(
-
-                parsed.get(
-                    "confidence",
-                    0.0
-                )
-            )
+        confidence = 0.0
 
 
-            # =========================================
-            # SOFT RECALL-FIRST FILTERING
-            # =========================================
-
-            parsed["is_relevant"] = (
-
-                confidence >= 0.40
-            )
+    parsed["confidence"] = confidence
 
 
-            # =========================================
-            # AUTO-TIER NORMALIZATION
-            # =========================================
+    parsed["is_relevant"] = (
 
-            if confidence >= 0.90:
-
-                parsed["relevance_tier"] = (
-
-                    "high"
-                )
-
-            elif confidence >= 0.70:
-
-                parsed["relevance_tier"] = (
-
-                    "medium"
-                )
-
-            elif confidence >= 0.40:
-
-                parsed["relevance_tier"] = (
-
-                    "low"
-                )
-
-            else:
-
-                parsed["relevance_tier"] = (
-
-                    "reject"
-                )
+        confidence >= 0.40
+    )
 
 
-            return parsed
+    if confidence >= 0.90:
+
+        parsed["relevance_tier"] = (
+            "high"
+        )
+
+    elif confidence >= 0.70:
+
+        parsed["relevance_tier"] = (
+            "medium"
+        )
+
+    elif confidence >= 0.40:
+
+        parsed["relevance_tier"] = (
+            "low"
+        )
+
+    else:
+
+        parsed["relevance_tier"] = (
+            "reject"
+        )
 
 
-        except Exception as error:
+    parsed["reason"] = str(
+        parsed.get(
+            "reason",
+            ""
+        )
+    ).strip()
+
+
+    return parsed
+
+
+# =========================================
+# JSON EXTRACTION
+# =========================================
+
+def extract_json(text):
+
+    cleaned = (
+
+        text
+        .replace("```json", "")
+        .replace("```", "")
+        .strip()
+    )
+
+
+    start = cleaned.find("{")
+
+    end = cleaned.rfind("}")
+
+
+    if start == -1 or end == -1:
+
+        raise ValueError(
+            "No JSON object found"
+        )
+
+
+    json_text = cleaned[start:end + 1]
+
+
+    return json.loads(json_text)
+
+
+# =========================================
+# RETRY WAIT EXTRACTION
+# =========================================
+
+def extract_retry_wait(error_message):
+
+    match = re.search(
+
+        r"try again in ([0-9.]+)s",
+
+        error_message.lower()
+    )
+
+    if match:
+
+        return float(match.group(1)) + 2
+
+    return 15
+
+
+# =========================================
+# OLLAMA CLASSIFIER
+# =========================================
+
+def classify_with_ollama(prompt):
+
+    response = ollama.chat(
+
+        model=OLLAMA_MODEL,
+
+        messages=[
+
+            {
+                "role": "user",
+
+                "content": prompt
+            }
+        ],
+
+        options={
+
+            "temperature": 0
+        }
+    )
+
+
+    output = (
+
+        response["message"]["content"]
+    )
+
+
+    parsed = extract_json(output)
+
+
+    return normalize_output(parsed)
+
+
+# =========================================
+# GROQ CLASSIFIER
+# =========================================
+
+def classify_with_groq(
+
+    prompt,
+
+    model_name
+):
+
+    response = client.chat.completions.create(
+
+        model=model_name,
+
+        temperature=0,
+
+        response_format={
+
+            "type": "json_object"
+        },
+
+        messages=[
+
+            {
+                "role": "user",
+
+                "content": prompt
+            }
+        ]
+    )
+
+
+    output = (
+
+        response
+        .choices[0]
+        .message
+        .content
+    )
+
+
+    parsed = extract_json(output)
+
+
+    return normalize_output(parsed)
+
+
+# =========================================
+# INVESTOR RELEVANCE CLASSIFIER
+# =========================================
+
+def classify_investor_relevance(
+
+    query,
+
+    title,
+
+    url,
+
+    snippet
+):
+
+    prompt = build_prompt(
+
+        query,
+
+        title,
+
+        url,
+
+        snippet
+    )
+
+
+    # =====================================
+    # PRIMARY: GROQ 70B
+    # =====================================
+
+    try:
+
+        parsed = classify_with_groq(
+
+            prompt,
+
+            GROQ_PRIMARY_MODEL
+        )
+
+        print(
+
+            "Classification using Groq 70B"
+        )
+
+        time.sleep(8)
+
+        return parsed
+
+
+    except Exception as groq_70b_error:
+
+        error_message = str(
+
+            groq_70b_error
+
+        ).lower()
+
+
+        print(
+
+            f"Groq 70B failed: "
+            f"{groq_70b_error}"
+        )
+
+
+        wait_time = extract_retry_wait(
+
+            error_message
+        )
+
+        print(
+
+            f"Waiting {wait_time}s "
+            f"before fallback..."
+        )
+
+        time.sleep(wait_time)
+
+
+        if any(
+
+            error in error_message
+
+            for error in RECOVERABLE_GROQ_ERRORS
+        ):
 
             print(
 
-                f"Classification failed: "
-                f"{error}"
+                "Switching to Groq 8B..."
             )
 
-            time.sleep(2)
+
+            try:
+
+                parsed = classify_with_groq(
+
+                    prompt,
+
+                    GROQ_FALLBACK_MODEL
+                )
+
+                print(
+
+                    "Classification using Groq 8B"
+                )
+
+                time.sleep(8)
+
+                return parsed
 
 
-    # =========================================
-    # FALLBACK RESPONSE
-    # =========================================
+            except Exception as groq_8b_error:
 
-    return {
+                groq_8b_message = str(
 
-        "relevance_tier": "reject",
+                    groq_8b_error
 
-        "is_relevant": False,
+                ).lower()
 
-        "confidence": 0.0,
 
-        "reason": "classification_failed"
-    }
+                print(
+
+                    f"Groq 8B failed: "
+                    f"{groq_8b_error}"
+                )
+
+
+                wait_time = extract_retry_wait(
+
+                    groq_8b_message
+                )
+
+                print(
+
+                    f"Waiting {wait_time}s "
+                    f"before Ollama fallback..."
+                )
+
+                time.sleep(wait_time)
+
+
+                if any(
+
+                    error in groq_8b_message
+
+                    for error in RECOVERABLE_GROQ_ERRORS
+                ):
+
+                    print(
+
+                        "Switching to Ollama..."
+                    )
+
+
+                    try:
+
+                        parsed = classify_with_ollama(
+
+                            prompt
+                        )
+
+                        print(
+
+                            "Classification using Ollama"
+                        )
+
+                        return parsed
+
+
+                    except Exception as ollama_error:
+
+                        print(
+
+                            f"Ollama failed: "
+                            f"{ollama_error}"
+                        )
+
+                        return FALLBACK_RESPONSE
+
+
+                return FALLBACK_RESPONSE
+
+
+        return FALLBACK_RESPONSE

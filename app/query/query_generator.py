@@ -1,44 +1,84 @@
 from app.config.ingestion_universe import (
-    QUERY_PATTERNS
+
+    generate_ingestion_queries
 )
 
 
+# =========================================
+# QUERY GENERATOR
+# =========================================
+
 def generate_queries(
 
-    sector,
+    sector=None,
 
-    stage,
+    stage=None,
 
-    geography,
+    geography=None,
 
     theme=None
 ):
 
-    queries = set()
+    """
+    Production-grade query generator.
+
+    Returns dynamically generated
+    investor discovery queries.
+    """
+
+    queries = generate_ingestion_queries()
 
 
-    for pattern in QUERY_PATTERNS:
+    # =====================================
+    # OPTIONAL FILTERING
+    # =====================================
 
-        try:
-
-            query = pattern.format(
-
-                sector=sector,
-
-                stage=stage,
-
-                geography=geography
-            )
+    filtered_queries = []
 
 
-            queries.add(
+    for query in queries:
 
-                query.lower().strip()
-            )
-
-        except Exception:
-
-            continue
+        query_lower = query.lower()
 
 
-    return list(queries)
+        if sector:
+
+            if sector.lower() not in query_lower:
+
+                continue
+
+
+        if stage:
+
+            if stage.lower() not in query_lower:
+
+                continue
+
+
+        if geography:
+
+            if geography.lower() not in query_lower:
+
+                continue
+
+
+        if theme:
+
+            if theme.lower() not in query_lower:
+
+                continue
+
+
+        filtered_queries.append(query)
+
+
+    # =====================================
+    # FALLBACK
+    # =====================================
+
+    if len(filtered_queries) == 0:
+
+        return queries
+
+
+    return filtered_queries

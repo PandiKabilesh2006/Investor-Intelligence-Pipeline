@@ -16,7 +16,11 @@ from app.config.settings import (
 
 groq_client = Groq(
 
-    api_key=GROQ_API_KEY
+    api_key=GROQ_API_KEY,
+
+    max_retries=0,
+
+    timeout=30.0
 )
 
 
@@ -26,7 +30,46 @@ groq_client = Groq(
 
 OLLAMA_MODEL = "qwen2.5:3b"
 
-GROQ_MODEL = "llama-3.1-8b-instant"
+GROQ_PRIMARY_MODEL = "llama-3.3-70b-versatile"
+
+GROQ_FALLBACK_MODEL = "llama-3.1-8b-instant"
+
+
+# =========================================
+# MAX CONTENT LENGTH
+# =========================================
+
+MAX_CONTENT_LENGTH = 4000
+
+
+# =========================================
+# RECOVERABLE GROQ ERRORS
+# =========================================
+
+RECOVERABLE_GROQ_ERRORS = [
+
+    "rate limit",
+
+    "429",
+
+    "too many requests",
+
+    "rate_limit_exceeded",
+
+    "tokens per minute",
+
+    "requests per minute",
+
+    "request too large",
+
+    "model_decommissioned",
+
+    "service unavailable",
+
+    "overloaded",
+
+    "internal server error"
+]
 
 
 # =========================================
@@ -59,14 +102,23 @@ EMPTY_RESPONSE = {
 
 def build_prompt(markdown_content):
 
+    markdown_content = re.sub(
+
+        r"\n{3,}",
+
+        "\n\n",
+
+        markdown_content
+    )
+
+
     return f"""
 You are a venture capital intelligence
 extraction system.
 
 Your task is to extract structured
-investor information from venture capital,
-investment firm, accelerator, or startup
-investment ecosystem pages.
+investor information from ONE SINGLE
+venture capital firm or investment entity.
 
 Return ONLY valid JSON.
 
@@ -89,13 +141,44 @@ SCHEMA
 CRITICAL RULES
 ----------------------------------------
 
-- Extract ONLY investor/VC information
+- Extract ONLY ONE investor firm
+- NEVER return multiple firms
+- NEVER return arrays for "firm"
+- "firm" must ALWAYS be a string
+- Return ONLY valid JSON
 - Do NOT hallucinate
 - Do NOT explain anything
-- Return ONLY valid JSON
-- If information is unavailable,
-  return empty arrays
-- Normalize information carefully
+- Prefer extraction from explicit evidence
+- Infer conservatively from context
+  when highly confident
+- Never invent unsupported facts
+- Prefer high-confidence retrieval
+  over unnecessary empty outputs
+- Avoid unnecessary empty arrays
+
+----------------------------------------
+FIRM EXTRACTION RULES
+----------------------------------------
+
+Extract ONLY the PRIMARY investment
+organization represented in the page.
+
+If multiple firms appear:
+- choose the main organization
+- ignore partner firms
+- ignore portfolio investors
+- ignore ecosystem mentions
+- ignore co-investors
+
+Examples:
+- Correct:
+  "firm": "Accel"
+
+- WRONG:
+  "firm": [
+      "Accel",
+      "Bessemer"
+  ]
 
 ----------------------------------------
 FOCUS SECTOR TAXONOMY
@@ -116,6 +199,8 @@ Examples:
 - enterprise software → B2B SaaS
 - SaaS → B2B SaaS
 - generative AI → Artificial Intelligence
+- AI infrastructure → Artificial Intelligence
+- workflow automation → B2B SaaS
 
 ----------------------------------------
 INVESTMENT STAGE TAXONOMY
@@ -134,6 +219,8 @@ Examples:
 - growth equity → Growth Stage
 - expansion stage → Growth Stage
 
+Infer conservatively.
+
 ----------------------------------------
 GEOGRAPHY TAXONOMY
 ----------------------------------------
@@ -151,63 +238,40 @@ Allowed values:
 PARTNER EXTRACTION RULES
 ----------------------------------------
 
-Extract ONLY individuals who are explicitly
+Extract ONLY individuals explicitly
 part of the investment firm's internal
 investment team.
 
-The individual should hold an
-investment-related role inside the
-organization.
-
-Possible roles include:
+Possible roles:
 - Partner
 - Managing Partner
 - General Partner
 - Venture Partner
 - Principal
 - Investment Director
-- Investor
-
-The extracted value must represent
-a REAL PERSON.
-
-Only include names when the content
-clearly indicates the person belongs
-to the investment organization itself.
 
 Do NOT include:
 - startup founders
-- portfolio company executives
+- portfolio executives
 - article authors
-- guest writers
-- ecosystem participants
 - external advisors
 - companies
 - organizations
-- departments
-- software names
-- concepts
-- job functions
 
-If partner information is unclear,
-missing, or ambiguous:
+If unclear:
 return empty array.
-
-Prefer precision over recall.
-
-Never guess missing names.
 
 ----------------------------------------
 PORTFOLIO COMPANY EXTRACTION
 ----------------------------------------
 
 Extract ONLY startup/company names
-that are part of the firm's portfolio.
+belonging to the firm's portfolio.
 
 Do NOT extract:
-- investor firms
+- investors
 - sectors
-- people names
+- people
 - technologies
 - article titles
 
@@ -215,21 +279,105 @@ Do NOT extract:
 CONTACT LINK EXTRACTION
 ----------------------------------------
 
-Extract relevant investor-related
-contact URLs or communication links.
+Extract ALL valid communication,
+profile, social, or contact endpoints
+associated with the investment organization
+or its internal investment team.
+
+Possible examples include:
+- public profile URLs
+- social media profiles
+- communication pages
+- founder/contact pages
+- email addresses
+- team profile URLs
+- application/contact forms
+
+Extract exact URLs only.
+
+Never invent missing links.
+
+Do not restrict extraction to
+specific platforms.
+
+----------------------------------------
+SEMANTIC ENRICHMENT RULES
+----------------------------------------
+
+When explicit labels are unavailable,
+infer cautiously using semantic context.
 
 Examples:
-- LinkedIn URLs
-- Twitter/X URLs
-- contact pages
-- official email addresses
+- AI infrastructure startup investor
+  → Artificial Intelligence
+
+- enterprise workflow software investor
+  → B2B SaaS
+
+- conversational voice platform investor
+  → Voice AI
+
+- global multi-region portfolio
+  → Global
+
+- early-stage startup investor
+  → Seed
+
+Only infer when strongly supported
+by the content.
+
+Never hallucinate unsupported categories.
 
 ----------------------------------------
 WEBSITE CONTENT
 ----------------------------------------
 
-{markdown_content[:5000]}
+{markdown_content[:MAX_CONTENT_LENGTH]}
 """
+
+
+# =========================================
+# SAFE LIST NORMALIZATION
+# =========================================
+
+def ensure_list(value):
+
+    if value is None:
+
+        return []
+
+
+    if isinstance(value, list):
+
+        cleaned = []
+
+        for item in value:
+
+            if item is None:
+
+                continue
+
+            item = str(item).strip()
+
+            if item:
+
+                cleaned.append(item)
+
+        return cleaned
+
+
+    if isinstance(value, str):
+
+        value = value.strip()
+
+        if not value:
+
+            return []
+
+        return [value]
+
+
+    return []
 
 
 # =========================================
@@ -240,7 +388,7 @@ def normalize_output(parsed):
 
     if not isinstance(parsed, dict):
 
-        return EMPTY_RESPONSE
+        return EMPTY_RESPONSE.copy()
 
 
     parsed.setdefault("firm", "")
@@ -261,57 +409,71 @@ def normalize_output(parsed):
 
 
     # =====================================
-    # ENSURE LIST TYPES
+    # FIRM NORMALIZATION
     # =====================================
 
-    for field in [
+    raw_firm = parsed.get(
 
-        "partners",
+        "firm",
 
-        "focus_sectors",
+        ""
+    )
 
-        "investment_stage",
 
-        "portfolio_companies",
+    if isinstance(raw_firm, list):
 
-        "geography",
+        cleaned_firms = []
 
-        "contact_links"
-    ]:
 
-        if not isinstance(
+        for item in raw_firm:
 
-            parsed[field],
+            if item is None:
 
-            list
-        ):
+                continue
 
-            parsed[field] = []
+            item = str(item).strip()
+
+            if item:
+
+                cleaned_firms.append(item)
+
+
+        if cleaned_firms:
+
+            parsed["firm"] = cleaned_firms[0]
+
+        else:
+
+            parsed["firm"] = ""
+
+
+    else:
+
+        parsed["firm"] = str(
+
+            raw_firm
+
+        ).strip()
 
 
     # =====================================
-    # STRING CLEANUP
+    # WEBSITE NORMALIZATION
     # =====================================
-
-    parsed["firm"] = str(
-
-        parsed["firm"]
-    ).strip()
-
-    # =====================================
-    # INVALID MULTI-FIRM CLEANUP
-    # =====================================
-    if isinstance(parsed["firm"], list):
-        parsed["firm"] = parsed["firm"][0]
 
     parsed["website"] = str(
 
-        parsed["website"]
+        parsed.get(
+
+            "website",
+
+            ""
+        )
+
     ).strip()
 
 
     # =====================================
-    # REMOVE EMPTY VALUES
+    # SAFE ARRAY NORMALIZATION
     # =====================================
 
     for field in [
@@ -329,14 +491,35 @@ def normalize_output(parsed):
         "contact_links"
     ]:
 
-        parsed[field] = [
+        parsed[field] = ensure_list(
 
-            str(x).strip()
+            parsed.get(field, [])
+        )
 
-            for x in parsed[field]
 
-            if str(x).strip()
-        ]
+    # =====================================
+    # REMOVE DUPLICATES
+    # =====================================
+
+    for field in [
+
+        "partners",
+
+        "focus_sectors",
+
+        "investment_stage",
+
+        "portfolio_companies",
+
+        "geography",
+
+        "contact_links"
+    ]:
+
+        parsed[field] = list(
+
+            dict.fromkeys(parsed[field])
+        )
 
 
     return parsed
@@ -358,7 +541,7 @@ def filter_partner_names(partners):
 
         if not re.match(
 
-            r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)+$",
+            r"^[A-Z][a-zA-Z'\\-]+(?:\\s[A-Z][a-zA-Z'\\-]+)+$",
 
             partner
         ):
@@ -369,7 +552,10 @@ def filter_partner_names(partners):
         filtered.append(partner)
 
 
-    return list(set(filtered))
+    return list(
+
+        dict.fromkeys(filtered)
+    )
 
 
 # =========================================
@@ -383,34 +569,71 @@ def filter_contact_links(links):
 
     for link in links:
 
+        if link is None:
+
+            continue
+
+
         link = str(link).strip()
 
 
-        if (
+        if not link:
 
-            "linkedin.com" in link
+            continue
 
-            or
 
-            "twitter.com" in link
+        # =====================================
+        # VALID URL
+        # =====================================
 
-            or
+        if re.match(
 
-            "x.com" in link
+            r"^https?://",
 
-            or
+            link,
 
-            "mailto:" in link
-
-            or
-
-            "/contact" in link
+            re.IGNORECASE
         ):
 
             filtered.append(link)
 
+            continue
 
-    return list(set(filtered))
+
+        # =====================================
+        # EMAIL
+        # =====================================
+
+        if re.match(
+
+            r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$",
+
+            link
+        ):
+
+            filtered.append(link)
+
+            continue
+
+
+        # =====================================
+        # MAILTO
+        # =====================================
+
+        if link.lower().startswith(
+
+            "mailto:"
+        ):
+
+            filtered.append(link)
+
+            continue
+
+
+    return list(
+
+        dict.fromkeys(filtered)
+    )
 
 
 # =========================================
@@ -418,10 +641,6 @@ def filter_contact_links(links):
 # =========================================
 
 def apply_taxonomy_normalization(parsed):
-
-    # =====================================
-    # SECTOR NORMALIZATION
-    # =====================================
 
     sector_mapping = {
 
@@ -443,7 +662,9 @@ def apply_taxonomy_normalization(parsed):
 
         "machine learning": "Artificial Intelligence",
 
-        "ai infrastructure": "Artificial Intelligence"
+        "ai infrastructure": "Artificial Intelligence",
+
+        "workflow automation": "B2B SaaS"
     }
 
 
@@ -472,19 +693,17 @@ def apply_taxonomy_normalization(parsed):
 
     parsed["focus_sectors"] = list(
 
-        set(normalized_sectors)
+        dict.fromkeys(normalized_sectors)
     )
 
-
-    # =====================================
-    # STAGE NORMALIZATION
-    # =====================================
 
     stage_mapping = {
 
         "pre seed": "Pre-Seed",
 
         "early-stage": "Seed",
+
+        "early stage": "Seed",
 
         "seed": "Seed",
 
@@ -527,13 +746,9 @@ def apply_taxonomy_normalization(parsed):
 
     parsed["investment_stage"] = list(
 
-        set(normalized_stages)
+        dict.fromkeys(normalized_stages)
     )
 
-
-    # =====================================
-    # GEOGRAPHY NORMALIZATION
-    # =====================================
 
     geography_mapping = {
 
@@ -572,13 +787,9 @@ def apply_taxonomy_normalization(parsed):
 
     parsed["geography"] = list(
 
-        set(normalized_geography)
+        dict.fromkeys(normalized_geography)
     )
 
-
-    # =====================================
-    # PARTNER FILTERING
-    # =====================================
 
     parsed["partners"] = filter_partner_names(
 
@@ -586,14 +797,149 @@ def apply_taxonomy_normalization(parsed):
     )
 
 
-    # =====================================
-    # CONTACT LINK FILTERING
-    # =====================================
-
     parsed["contact_links"] = filter_contact_links(
 
         parsed["contact_links"]
     )
+
+
+    return parsed
+
+
+# =========================================
+# EMPTY FIELD RECOVERY
+# =========================================
+
+def recover_sparse_fields(
+
+    parsed,
+
+    markdown_content
+):
+
+    content_lower = markdown_content.lower()
+
+
+    # =====================================
+    # SECTOR RECOVERY
+    # =====================================
+
+    if not parsed["focus_sectors"]:
+
+        if (
+
+            "artificial intelligence" in content_lower
+
+            or
+
+            "machine learning" in content_lower
+
+            or
+
+            "generative ai" in content_lower
+
+            or
+
+            "ai startup" in content_lower
+        ):
+
+            parsed["focus_sectors"].append(
+
+                "Artificial Intelligence"
+            )
+
+
+        if (
+
+            "saas" in content_lower
+
+            or
+
+            "enterprise software" in content_lower
+
+            or
+
+            "workflow automation" in content_lower
+        ):
+
+            parsed["focus_sectors"].append(
+
+                "B2B SaaS"
+            )
+
+
+    # =====================================
+    # STAGE RECOVERY
+    # =====================================
+
+    if not parsed["investment_stage"]:
+
+        if (
+
+            "early-stage" in content_lower
+
+            or
+
+            "early stage" in content_lower
+
+            or
+
+            "seed-stage" in content_lower
+
+            or
+
+            "seed investor" in content_lower
+        ):
+
+            parsed["investment_stage"].append(
+
+                "Seed"
+            )
+
+
+        if "series a" in content_lower:
+
+            parsed["investment_stage"].append(
+
+                "Series A"
+            )
+
+
+    # =====================================
+    # GEOGRAPHY RECOVERY
+    # =====================================
+
+    if not parsed["geography"]:
+
+        if "india" in content_lower:
+
+            parsed["geography"].append(
+
+                "India"
+            )
+
+
+        if (
+
+            "united states" in content_lower
+
+            or
+
+            "usa" in content_lower
+        ):
+
+            parsed["geography"].append(
+
+                "United States"
+            )
+
+
+        if "europe" in content_lower:
+
+            parsed["geography"].append(
+
+                "Europe"
+            )
 
 
     return parsed
@@ -614,17 +960,12 @@ def extract_json(text):
     )
 
 
-    json_match = re.search(
+    start = cleaned.find("{")
 
-        r"\{.*?\}",
-
-        cleaned,
-
-        re.DOTALL
-    )
+    end = cleaned.rfind("}")
 
 
-    if not json_match:
+    if start == -1 or end == -1:
 
         raise ValueError(
 
@@ -632,10 +973,30 @@ def extract_json(text):
         )
 
 
-    json_text = json_match.group(0)
+    json_text = cleaned[start:end + 1]
 
 
     return json.loads(json_text)
+
+
+# =========================================
+# RETRY WAIT EXTRACTION
+# =========================================
+
+def extract_retry_wait(error_message):
+
+    match = re.search(
+
+        r"try again in ([0-9.]+)s",
+
+        error_message.lower()
+    )
+
+    if match:
+
+        return float(match.group(1)) + 2
+
+    return 15
 
 
 # =========================================
@@ -677,11 +1038,16 @@ def parse_with_ollama(prompt):
 # GROQ PARSER
 # =========================================
 
-def parse_with_groq(prompt):
+def parse_with_groq(
+
+    prompt,
+
+    model_name
+):
 
     response = groq_client.chat.completions.create(
 
-        model=GROQ_MODEL,
+        model=model_name,
 
         temperature=0,
 
@@ -726,14 +1092,16 @@ def parse_investor(markdown_content):
 
 
     # =====================================
-    # TRY OLLAMA FIRST
+    # PRIMARY: GROQ 70B
     # =====================================
 
     try:
 
-        parsed = parse_with_ollama(
+        parsed = parse_with_groq(
 
-            prompt
+            prompt,
+
+            GROQ_PRIMARY_MODEL
         )
 
         parsed = normalize_output(
@@ -746,70 +1114,192 @@ def parse_investor(markdown_content):
             parsed
         )
 
+        parsed = recover_sparse_fields(
+
+            parsed,
+
+            markdown_content
+        )
+
         print(
 
-            "Parsed using Ollama"
+            "Parsed using Groq 70B"
         )
+
+        time.sleep(8)
 
         return parsed
 
 
-    except Exception as ollama_error:
+    except Exception as groq_70b_error:
+
+        error_message = str(
+
+            groq_70b_error
+
+        ).lower()
+
 
         print(
 
-            f"Ollama failed: "
-            f"{ollama_error}"
+            f"Groq 70B failed: "
+            f"{groq_70b_error}"
         )
 
 
-    # =====================================
-    # FALLBACK TO GROQ
-    # =====================================
+        wait_time = extract_retry_wait(
 
-    for attempt in range(3):
+            error_message
+        )
 
-        try:
+        print(
 
-            parsed = parse_with_groq(
+            f"Waiting {wait_time}s "
+            f"before fallback..."
+        )
 
-                prompt
-            )
+        time.sleep(wait_time)
 
-            parsed = normalize_output(
 
-                parsed
-            )
+        if any(
 
-            parsed = apply_taxonomy_normalization(
+            error in error_message
 
-                parsed
-            )
+            for error in RECOVERABLE_GROQ_ERRORS
+        ):
 
             print(
 
-                "Parsed using Groq"
+                "Switching to Groq 8B..."
             )
 
-            return parsed
+
+            try:
+
+                parsed = parse_with_groq(
+
+                    prompt,
+
+                    GROQ_FALLBACK_MODEL
+                )
+
+                parsed = normalize_output(
+
+                    parsed
+                )
+
+                parsed = apply_taxonomy_normalization(
+
+                    parsed
+                )
+
+                parsed = recover_sparse_fields(
+
+                    parsed,
+
+                    markdown_content
+                )
+
+                print(
+
+                    "Parsed using Groq 8B"
+                )
+
+                time.sleep(8)
+
+                return parsed
 
 
-        except Exception as groq_error:
+            except Exception as groq_8b_error:
 
-            print(
+                groq_8b_message = str(
 
-                f"Groq failed: "
-                f"{groq_error}"
-            )
+                    groq_8b_error
 
-            time.sleep(2)
+                ).lower()
 
 
-    # =====================================
-    # FINAL FALLBACK
-    # =====================================
+                print(
 
-    return EMPTY_RESPONSE
+                    f"Groq 8B failed: "
+                    f"{groq_8b_error}"
+                )
+
+
+                wait_time = extract_retry_wait(
+
+                    groq_8b_message
+                )
+
+                print(
+
+                    f"Waiting {wait_time}s "
+                    f"before Ollama fallback..."
+                )
+
+                time.sleep(wait_time)
+
+
+                if any(
+
+                    error in groq_8b_message
+
+                    for error in RECOVERABLE_GROQ_ERRORS
+                ):
+
+                    print(
+
+                        "Switching to Ollama..."
+                    )
+
+
+                    try:
+
+                        parsed = parse_with_ollama(
+
+                            prompt
+                        )
+
+                        parsed = normalize_output(
+
+                            parsed
+                        )
+
+                        parsed = apply_taxonomy_normalization(
+
+                            parsed
+                        )
+
+                        parsed = recover_sparse_fields(
+
+                            parsed,
+
+                            markdown_content
+                        )
+
+                        print(
+
+                            "Parsed using Ollama"
+                        )
+
+                        return parsed
+
+
+                    except Exception as ollama_error:
+
+                        print(
+
+                            f"Ollama failed: "
+                            f"{ollama_error}"
+                        )
+
+                        return EMPTY_RESPONSE
+
+
+                return EMPTY_RESPONSE
+
+
+        return EMPTY_RESPONSE
 # import json
 # import time
 # import ollama

@@ -4,6 +4,7 @@ import pandas as pd
 
 from app.database.db import SessionLocal
 from app.database.models import Investor
+
 from app.search.semantic_search import (
     semantic_investor_search
 )
@@ -17,7 +18,7 @@ st.set_page_config(
 
     page_title="Investor Intelligence Platform",
 
-    page_icon="🚀",
+    page_icon="",
 
     layout="wide",
 
@@ -77,7 +78,7 @@ st.markdown(
     }
 
     .section-title {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         font-weight: 600;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
@@ -101,18 +102,26 @@ session = SessionLocal()
 # LOAD INVESTORS
 # =========================================
 
-all_investors = session.query(Investor).all()
+all_investors = session.query(
+
+    Investor
+
+).all()
 
 
 # =========================================
 # HEADER
 # =========================================
 
-st.title("🚀 Investor Intelligence Platform")
+st.title(
+
+    "Investor Intelligence Platform"
+)
 
 st.markdown(
     """
 AI-native semantic investor discovery platform powered by:
+
 - PostgreSQL + pgvector
 - Semantic embeddings
 - Hybrid retrieval
@@ -127,9 +136,11 @@ AI-native semantic investor discovery platform powered by:
 
 col1, col2, col3, col4 = st.columns(4)
 
+
 with col1:
 
     st.markdown(
+
         f"""
         <div class="metric-card">
             <h2>{len(all_investors)}</h2>
@@ -140,9 +151,11 @@ with col1:
         unsafe_allow_html=True
     )
 
+
 with col2:
 
     st.markdown(
+
         """
         <div class="metric-card">
             <h2>Semantic AI</h2>
@@ -153,9 +166,11 @@ with col2:
         unsafe_allow_html=True
     )
 
+
 with col3:
 
     st.markdown(
+
         """
         <div class="metric-card">
             <h2>pgvector</h2>
@@ -166,9 +181,11 @@ with col3:
         unsafe_allow_html=True
     )
 
+
 with col4:
 
     st.markdown(
+
         """
         <div class="metric-card">
             <h2>Hybrid</h2>
@@ -187,7 +204,10 @@ st.markdown("---")
 # SIDEBAR
 # =========================================
 
-st.sidebar.title("🔎 Investor Discovery")
+st.sidebar.title(
+
+    "Investor Discovery"
+)
 
 
 search_mode = st.sidebar.radio(
@@ -204,7 +224,7 @@ search_mode = st.sidebar.radio(
 
 
 # =========================================
-# SEMANTIC SEARCH INPUTS
+# SEMANTIC SEARCH
 # =========================================
 
 if search_mode == "Semantic Search":
@@ -304,7 +324,7 @@ raising Series A in India
 
 
 # =========================================
-# STRUCTURED SEARCH INPUTS
+# STRUCTURED SEARCH
 # =========================================
 
 else:
@@ -388,13 +408,13 @@ tab1, tab2 = st.tabs(
 
 
 # =========================================
-# INVESTOR DISCOVERY TAB
+# TAB 1
 # =========================================
 
 with tab1:
 
     # =====================================
-    # SEMANTIC SEARCH
+    # SEMANTIC SEARCH RESULTS
     # =====================================
 
     if (
@@ -436,7 +456,7 @@ with tab1:
 
             st.subheader(
 
-                "🎯 Semantic Investor Matches"
+                "Semantic Investor Matches"
             )
 
 
@@ -512,12 +532,28 @@ with tab1:
                 ) or []
 
 
+                source_url = investor.get(
+
+                    "source_url",
+
+                    ""
+                )
+
+
+                updated_at = investor.get(
+
+                    "updated_at",
+
+                    None
+                )
+
+
                 st.markdown(
 
                     f"""
                     <div class="investor-card">
 
-                    <h2>{investor['firm_name']}</h2>
+                    <h2>{investor['firm']}</h2>
 
                     <p>
                     🌐 <a href="{investor['website']}" target="_blank">
@@ -542,13 +578,65 @@ with tab1:
                 )
 
 
-                # =============================
+                # =================================
+                # SOURCE URL
+                # =================================
+
+                if source_url:
+
+                    st.markdown(
+
+                        '<div class="section-title">'
+                        'Source URL'
+                        '</div>',
+
+                        unsafe_allow_html=True
+                    )
+
+
+                    st.markdown(
+
+                        f"""
+                        <a href="{source_url}" target="_blank">
+                        {source_url}
+                        </a>
+                        """,
+
+                        unsafe_allow_html=True
+                    )
+
+
+                # =================================
+                # UPDATED TIME
+                # =================================
+
+                if updated_at:
+
+                    st.markdown(
+
+                        '<div class="section-title">'
+                        'Last Updated'
+                        '</div>',
+
+                        unsafe_allow_html=True
+                    )
+
+
+                    st.write(
+
+                        str(updated_at)
+                    )
+
+
+                # =================================
                 # SECTORS
-                # =============================
+                # =================================
 
                 st.markdown(
 
-                    '<div class="section-title">Sectors</div>',
+                    '<div class="section-title">'
+                    'Sectors'
+                    '</div>',
 
                     unsafe_allow_html=True
                 )
@@ -568,13 +656,15 @@ with tab1:
                     )
 
 
-                # =============================
+                # =================================
                 # STAGES
-                # =============================
+                # =================================
 
                 st.markdown(
 
-                    '<div class="section-title">Investment Stages</div>',
+                    '<div class="section-title">'
+                    'Investment Stages'
+                    '</div>',
 
                     unsafe_allow_html=True
                 )
@@ -594,13 +684,15 @@ with tab1:
                     )
 
 
-                # =============================
-                # GEOGRAPHY
-                # =============================
+                # =================================
+                # GEOGRAPHIES
+                # =================================
 
                 st.markdown(
 
-                    '<div class="section-title">Geography</div>',
+                    '<div class="section-title">'
+                    'Geography'
+                    '</div>',
 
                     unsafe_allow_html=True
                 )
@@ -620,15 +712,17 @@ with tab1:
                     )
 
 
-                # =============================
+                # =================================
                 # PARTNERS
-                # =============================
+                # =================================
 
                 if partners:
 
                     st.markdown(
 
-                        '<div class="section-title">Partners</div>',
+                        '<div class="section-title">'
+                        'Partners'
+                        '</div>',
 
                         unsafe_allow_html=True
                     )
@@ -640,15 +734,17 @@ with tab1:
                     )
 
 
-                # =============================
-                # PORTFOLIO COMPANIES
-                # =============================
+                # =================================
+                # PORTFOLIO
+                # =================================
 
                 if portfolio_companies:
 
                     st.markdown(
 
-                        '<div class="section-title">Portfolio Companies</div>',
+                        '<div class="section-title">'
+                        'Portfolio Companies'
+                        '</div>',
 
                         unsafe_allow_html=True
                     )
@@ -662,27 +758,32 @@ with tab1:
                     )
 
 
-                # =============================
+                # =================================
                 # CONTACT LINKS
-                # =============================
+                # =================================
 
                 if contact_links:
 
                     st.markdown(
 
-                        '<div class="section-title">Contact Links</div>',
+                        '<div class="section-title">'
+                        'Contact Links'
+                        '</div>',
 
                         unsafe_allow_html=True
                     )
 
-
                     for link in contact_links:
-
                         st.markdown(
 
-                            f"- [{link}]({link})"
-                        )
+                            f"""
+                            <a href="{link}" target="_blank">
+                            {link}
+                            </a>
+                            """,
 
+                            unsafe_allow_html=True
+                        )
 
                 st.markdown("---")
 
@@ -733,7 +834,7 @@ with tab1:
 
         st.subheader(
 
-            "📊 Structured Investor Matches"
+            "Structured Investor Matches"
         )
 
 
@@ -741,6 +842,14 @@ with tab1:
 
             f"Found {len(filtered_results)} investors"
         )
+
+
+        if not filtered_results:
+
+            st.warning(
+
+                "No matching investors found."
+            )
 
 
         for investor in filtered_results:
@@ -785,12 +894,31 @@ with tab1:
                 f"{', '.join(investor.geography or [])}"
             )
 
+            # =====================================
+            # CONTACT LINKS
+            # =====================================
+            contact_links = investor.contact_links or []
+            if contact_links:
+                st.write(
+                    "**Contact URLs:**"
+                )
+                for link in contact_links:
+                    st.markdown(
+                        f"""
+                        <a href="{link}" target="_blank">
+                        🔗 Open Contact Link
+                        </a>
+                        """,
+                        unsafe_allow_html=True
+        )
+            
+
 
             st.markdown("---")
 
 
 # =========================================
-# ANALYTICS TAB
+# TAB 2
 # =========================================
 
 with tab2:
@@ -832,6 +960,11 @@ with tab2:
 
             ", ".join(
                 investor.geography or []
+            ),
+
+            "Contact URLs":
+            ", ".join(
+                investor.contact_links or []
             )
         })
 
@@ -855,6 +988,7 @@ with tab2:
 # =========================================
 
 st.markdown("---")
+
 
 st.caption(
 

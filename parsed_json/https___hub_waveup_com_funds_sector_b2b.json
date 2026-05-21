@@ -1,18 +1,25 @@
 {
-    "firm": "406 Ventures",
+    "firm": ".406 Ventures",
     "website": "http://www.406ventures.com/",
+    "partners": [],
     "focus_sectors": [
-        "Data and AI",
-        "Cybersecurity",
+        "Artificial Intelligence",
         "B2B SaaS"
     ],
     "investment_stage": [
-        "Growth Stage",
-        "Seed",
-        "Series A"
+        "Seed"
+    ],
+    "portfolio_companies": [
+        "AbleTo",
+        "Carbon Black",
+        "CloudHealth Technologies",
+        "Iora Health"
     ],
     "geography": [
         "United States"
     ],
-    "partners": []
+    "contact_links": [
+        "http://www.406ventures.com/"
+    ],
+    "source_url": "https://hub.waveup.com/funds/sector/b2b"
 }

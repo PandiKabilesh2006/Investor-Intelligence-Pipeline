@@ -1,13 +1,16 @@
 {
     "firm": "Horizen Capital",
-    "website": "",
+    "website": "https://www.benchmarkit.ai/metrics-that-measure-up-podcasts",
+    "partners": [],
     "focus_sectors": [
         "B2B SaaS"
     ],
     "investment_stage": [
-        "Seed",
-        "Series A"
+        "Series A",
+        "Seed"
     ],
+    "portfolio_companies": [],
     "geography": [],
-    "partners": []
+    "contact_links": [],
+    "source_url": "https://www.benchmarkit.ai/metrics-that-measure-up-podcasts/micro-private-equity---new-path-to-b2b-saas-liquidity-%2B-growth"
 }

@@ -1,18 +1,22 @@
 {
     "firm": "Scale Capital",
-    "website": "https://www.scalecapital.com/",
+    "website": "https://www.scalecapital.com",
+    "partners": [],
     "focus_sectors": [
-        "Artificial Intelligence",
-        "Enterprise AI"
+        "Artificial Intelligence"
     ],
     "investment_stage": [
-        "Growth Stage",
-        "Seed",
-        "Series A",
-        "Series B"
+        "Seed"
     ],
+    "portfolio_companies": [],
     "geography": [
         "Global"
     ],
-    "partners": []
+    "contact_links": [
+        "https://www.scalecapital.com/author/sofia-svanqvist",
+        "https://www.statista.com/outlook/tmo/artificial-intelligence/generative-ai/worldwide#market-size",
+        "https://www.cbinsights.com/research/report/generative-ai-bible/",
+        "https://news.mit.edu/2023/explained-generative-ai-1109"
+    ],
+    "source_url": "https://www.scalecapital.com/stories/cutting-through-the-noise-in-the-generative-ai-landscape-as-an-early-stage-investor"
 }

@@ -1,0 +1,30 @@
+{
+    "firm": "SeedBlink",
+    "website": "https://seedblink.com/",
+    "partners": [],
+    "focus_sectors": [
+        "Artificial Intelligence"
+    ],
+    "investment_stage": [
+        "Series B",
+        "Series A",
+        "Growth Stage",
+        "Seed"
+    ],
+    "portfolio_companies": [
+        "Company 1",
+        "Company 2",
+        "Company 3"
+    ],
+    "geography": [
+        "Europe"
+    ],
+    "contact_links": [
+        "https://investors.seedblink.com/",
+        "https://seedblink.com/welcome-to-seedblink",
+        "https://seedblink.com/pricing",
+        "https://seedblink.com/blog/2025-03-13-europes-ai-investment-landscape-a-deep-dive#",
+        "https://seedblink.legal/"
+    ],
+    "source_url": "https://seedblink.com/blog/2025-03-13-europes-ai-investment-landscape-a-deep-dive"
+}

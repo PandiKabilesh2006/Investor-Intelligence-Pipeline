@@ -1,31 +1,24 @@
 {
-    "firm": "['ValueStream Ventures', 'Haatch', 'Big Basin Capital', 'Green Bay Ventures', 'BECO Capital', 'Flashpoint', 'Kae Capital']",
-    "website": "['https://www.valuestreamventures.com/', 'https://haatch.com/', 'https://www.bigbasincapital.com/', 'https://www.greenbayventures.com/', 'https://becocapital.com/', 'https://flashpointvc.com/', 'https://kae-capital.com/']",
+    "firm": "ValueStream Ventures",
+    "website": "https://www.valuestreamventures.com/",
+    "partners": [],
     "focus_sectors": [
-        "Consumer ServicesDTCE-commerce+4",
+        "B2B platforms",
         "B2B SaaS",
-        "B2B softwaretech-enabled solutionsmarketplaces+1",
-        "*",
-        "B2B platformsVertical AISaaS",
-        "Enterprise SoftwareDigital HealthTransportation+6",
-        "Enterprise SoftwarePropTechFinTech+13"
+        "Vertical AI"
     ],
     "investment_stage": [
-        "Late SeedPre Series ASeries A",
-        "*",
-        "Pre-SeedSeed",
-        "SeedSeries ASeries B",
-        "Post-SeedSeries A",
-        "SeedSeries A"
+        "Post-Seed",
+        "Series A"
     ],
+    "portfolio_companies": [],
     "geography": [
-        "Stamford (United Kingdom)",
-        "San Francisco (United States)",
-        "Mumbai (India)",
-        "New York (United States)",
-        "London (United Kingdom)",
-        "Cupertino (United States)",
-        "Dubai (United Arab Emirates)"
+        "United States"
     ],
-    "partners": []
+    "contact_links": [
+        "https://www.valuestreamventures.com/",
+        "https://www.linkedin.com/company/valuestream-ventures",
+        "https://pitchbook.com/profiles/investor/99508-96"
+    ],
+    "source_url": "https://www.poach.vc/vcs/b2b?page=22"
 }

@@ -5,6 +5,13 @@ import json
 import logging
 import asyncio
 
+from datetime import (
+    datetime,
+    timedelta
+)
+
+from urllib.parse import urlparse
+
 warnings.filterwarnings("ignore")
 
 from sqlalchemy import text
@@ -43,9 +50,28 @@ from app.config.ingestion_universe import (
 
 TEST_MODE = True
 
+
+# =========================================
+# DEVELOPMENT LIMITS
+# =========================================
+
 TEST_QUERY_LIMIT = 10
 
 TEST_URL_LIMIT = 5
+
+
+# =========================================
+# PRODUCTION INGESTION LIMITS
+# =========================================
+
+MAX_TOTAL_URLS = 500
+
+
+# =========================================
+# FRESHNESS CONFIG
+# =========================================
+
+RECRAWL_AFTER_DAYS = 30
 
 
 # =========================================
@@ -77,13 +103,50 @@ os.makedirs(
 
 
 # =========================================
+# URL CANONICALIZATION
+# =========================================
+
+def canonicalize_url(url):
+
+    """
+    Normalize URLs to reduce duplicates.
+    """
+
+    try:
+
+        parsed = urlparse(url)
+
+        scheme = "https"
+
+        netloc = parsed.netloc.lower()
+
+        if netloc.startswith("www."):
+
+            netloc = netloc[4:]
+
+        path = parsed.path.rstrip("/")
+
+        canonical_url = (
+
+            f"{scheme}://"
+            f"{netloc}"
+            f"{path}"
+        )
+
+        return canonical_url
+
+    except Exception:
+
+        return url
+
+
+# =========================================
 # DATABASE HELPERS
 # =========================================
 
 def already_crawled(url):
 
     session = SessionLocal()
-
 
     try:
 
@@ -92,8 +155,10 @@ def already_crawled(url):
             text(
 
                 """
-                SELECT id
+                SELECT updated_at
+
                 FROM crawled_urls
+
                 WHERE url = :url
                 """
             ),
@@ -104,14 +169,41 @@ def already_crawled(url):
             }
         ).fetchone()
 
+        if not result:
 
-        return result is not None
+            return False
 
+        updated_at = result[0]
+
+        if not updated_at:
+
+            return False
+
+        cutoff = (
+
+            datetime.utcnow()
+
+            -
+
+            timedelta(
+                days=RECRAWL_AFTER_DAYS
+            )
+        )
+
+        if updated_at > cutoff:
+
+            return True
+
+        return False
 
     finally:
 
         session.close()
 
+
+# =========================================
+# SAVE CRAWL MEMORY
+# =========================================
 
 def save_crawled_url(
 
@@ -121,7 +213,6 @@ def save_crawled_url(
 ):
 
     session = SessionLocal()
-
 
     try:
 
@@ -138,7 +229,9 @@ def save_crawled_url(
 
                     crawl_status,
 
-                    markdown_saved
+                    markdown_saved,
+
+                    updated_at
 
                 )
 
@@ -150,14 +243,16 @@ def save_crawled_url(
 
                     'success',
 
-                    true
+                    true,
+
+                    NOW()
                 )
 
                 ON CONFLICT (url)
 
                 DO UPDATE SET
 
-                    last_crawled = NOW(),
+                    updated_at = NOW(),
 
                     discovered_query = EXCLUDED.discovered_query
                 """
@@ -171,9 +266,7 @@ def save_crawled_url(
             }
         )
 
-
         session.commit()
-
 
     finally:
 
@@ -216,7 +309,6 @@ for sector in SECTORS:
                     theme=sector
                 )
             )
-
 
             queries.extend(
 
@@ -272,7 +364,7 @@ blocked_domains = [
 
 
 # =========================================
-# GLOBAL URL DEDUPLICATION
+# SESSION URL DEDUPLICATION
 # =========================================
 
 seen_urls = set()
@@ -305,12 +397,7 @@ for query in queries:
         f"Searching query: {query}"
     )
 
-
     try:
-
-        # =====================================
-        # SEARCH INVESTORS
-        # =====================================
 
         search_results = search_investors(
 
@@ -318,7 +405,6 @@ for query in queries:
 
             max_pages=10
         )
-
 
         if "results" not in search_results:
 
@@ -330,9 +416,7 @@ for query in queries:
 
             continue
 
-
         results = search_results["results"]
-
 
         if len(results) == 0:
 
@@ -344,17 +428,7 @@ for query in queries:
 
             continue
 
-
-        # =====================================
-        # CANDIDATE URL QUEUE
-        # =====================================
-
         candidate_urls = []
-
-
-        # =====================================
-        # RELEVANCE FILTERING
-        # =====================================
 
         for result in results:
 
@@ -363,6 +437,8 @@ for query in queries:
                 "url",
                 ""
             )
+
+            url = canonicalize_url(url)
 
             title = result.get(
 
@@ -376,30 +452,20 @@ for query in queries:
                 ""
             )
 
-
             if not url:
 
                 continue
 
-
             url_lower = url.lower()
 
-
-            # =================================
-            # BLOCK BAD DOMAINS
-            # =================================
-
             blocked = False
-
 
             for domain in blocked_domains:
 
                 if domain in url_lower:
 
                     blocked = True
-
                     break
-
 
             if blocked:
 
@@ -411,37 +477,21 @@ for query in queries:
 
                 continue
 
-
-            # =================================
-            # MEMORY-BASED URL DEDUPLICATION
-            # =================================
-
             if already_crawled(url):
 
                 print(
 
-                    f"Skipping already crawled URL: "
+                    f"Skipping recently crawled URL: "
                     f"{url}"
                 )
 
                 continue
 
-
-            # =================================
-            # SESSION DEDUPLICATION
-            # =================================
-
             if url in seen_urls:
 
                 continue
 
-
             seen_urls.add(url)
-
-
-            # =================================
-            # SEMANTIC RELEVANCE
-            # =================================
 
             classification = (
 
@@ -457,14 +507,12 @@ for query in queries:
                 )
             )
 
-
             is_relevant = classification.get(
 
                 "is_relevant",
 
                 False
             )
-
 
             confidence = classification.get(
 
@@ -473,18 +521,12 @@ for query in queries:
                 0.0
             )
 
-
             reason = classification.get(
 
                 "reason",
 
                 ""
             )
-
-
-            # =================================
-            # CONFIDENCE FILTER
-            # =================================
 
             if not is_relevant:
 
@@ -495,7 +537,6 @@ for query in queries:
 
                 continue
 
-
             if confidence < 0.75:
 
                 print(
@@ -505,7 +546,6 @@ for query in queries:
                 )
 
                 continue
-
 
             print("=" * 80)
 
@@ -526,20 +566,22 @@ for query in queries:
                 f"{reason}\n"
             )
 
-
             logging.info(
 
                 f"Queued URL: "
                 f"{url} | confidence={confidence}"
             )
 
-
             candidate_urls.append(url)
 
+            if total_processed >= MAX_TOTAL_URLS:
 
-            # =================================
-            # TEST MODE LIMIT
-            # =================================
+                print(
+
+                    "\nReached ingestion limit.\n"
+                )
+
+                break
 
             if (
 
@@ -554,17 +596,11 @@ for query in queries:
 
                 break
 
-
-        # =====================================
-        # ASYNC EXTRACTION
-        # =====================================
-
         print(
 
             f"\nRunning async extraction "
             f"for {len(candidate_urls)} URLs\n"
         )
-
 
         extraction_results = asyncio.run(
 
@@ -573,11 +609,6 @@ for query in queries:
                 candidate_urls
             )
         )
-
-
-        # =====================================
-        # PROCESS EXTRACTIONS
-        # =====================================
 
         for extraction_result in extraction_results:
 
@@ -590,16 +621,13 @@ for query in queries:
 
             success = extraction_result["success"]
 
-
             if not success:
 
                 continue
 
-
             if not markdown_content:
 
                 continue
-
 
             if len(markdown_content) < 500:
 
@@ -611,12 +639,7 @@ for query in queries:
 
                 continue
 
-
             try:
-
-                # =================================
-                # SAFE FILENAME
-                # =================================
 
                 safe_filename = re.sub(
 
@@ -627,17 +650,11 @@ for query in queries:
                     url
                 )
 
-
                 filename = (
 
                     f"{RAW_DATA_FOLDER}/"
                     f"{safe_filename[:120]}.md"
                 )
-
-
-                # =================================
-                # SAVE MARKDOWN
-                # =================================
 
                 with open(
 
@@ -653,18 +670,12 @@ for query in queries:
                         markdown_content
                     )
 
-
-                # =================================
-                # SAVE METADATA
-                # =================================
-
                 metadata = {
 
                     "query": query,
 
                     "url": url
                 }
-
 
                 metadata_filename = (
 
@@ -674,7 +685,6 @@ for query in queries:
                         ".json"
                     )
                 )
-
 
                 with open(
 
@@ -694,18 +704,12 @@ for query in queries:
                         indent=4
                     )
 
-
-                # =================================
-                # SAVE CRAWL MEMORY
-                # =================================
-
                 save_crawled_url(
 
                     url,
 
                     query
                 )
-
 
                 print(
 
@@ -714,7 +718,6 @@ for query in queries:
                 )
 
                 total_processed += 1
-
 
             except Exception as save_error:
 
@@ -729,7 +732,6 @@ for query in queries:
                     f"Save failed: "
                     f"{save_error}"
                 )
-
 
     except Exception as search_error:
 

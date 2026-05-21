@@ -1,17 +1,29 @@
 {
     "firm": "Rockwood Equity",
-    "website": "https://www.rockwoodequity.com/",
+    "website": "https://www.rockwoodequity.com",
+    "partners": [],
     "focus_sectors": [
+        "Healthcare & Medical",
         "Aerospace & Defense",
-        "Environmental",
-        "Industrials",
-        "Healthcare and Medical"
+        "B2B SaaS",
+        "Environmental"
     ],
     "investment_stage": [
         "Growth Stage"
     ],
+    "portfolio_companies": [
+        "Dynamic Entrance Solutions"
+    ],
     "geography": [
         "Global"
     ],
-    "partners": []
+    "contact_links": [
+        "https://www.rockwoodequity.com/opt-out-preferences/#cmplz-manage-consent-container",
+        "https://www.rockwoodequity.com/opt-out-preferences/#cmplz-cookies-overview",
+        "https://www.rockwoodequity.com/opt-out-preferences/#cmplz-tcf-wrapper",
+        "https://www.rockwoodequity.com/opt-out-preferences/",
+        "https://www.rockwoodequity.com/privacy-policy/",
+        "https://www.rockwoodequity.com/b2b-sectors/#"
+    ],
+    "source_url": "https://www.rockwoodequity.com/b2b-sectors/"
 }

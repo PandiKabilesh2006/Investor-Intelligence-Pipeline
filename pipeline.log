@@ -2661,3 +2661,239 @@
 2026-05-20 15:21:38,235 - INFO - Extracting URL: https://vestbee.com/insights/articles/100-vc-funds-investing-in-saas-startups-in-europe
 2026-05-20 15:21:38,236 - INFO - Extracting URL: https://shizune.co/investors/saas-vc-funds-germany
 2026-05-20 15:21:38,238 - INFO - Extracting URL: https://aventis-advisors.com/top-10-software-private-equity-europe/
+2026-05-21 12:44:17,253 - INFO - Searching query: SaaS investors in Global
+2026-05-21 12:44:23,209 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:44:23,217 - INFO - Queued URL: https://openvc.app/investor-lists/saas-investors | confidence=0.95
+2026-05-21 12:44:23,769 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:44:23,771 - INFO - Queued URL: https://affinity.co/blog/saas-venture-capital | confidence=0.95
+2026-05-21 12:44:24,229 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:44:24,236 - INFO - Queued URL: https://growfusely.com/blog/us-vc-firms-for-saas | confidence=0.95
+2026-05-21 12:44:24,776 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:44:24,778 - INFO - Queued URL: https://signal.nfx.com/investor-lists/top-saas-seed-investors | confidence=0.95
+2026-05-21 12:44:25,223 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:44:25,225 - INFO - Queued URL: https://vc-mapping.gilion.com/venture-capital-firms/saas-investors | confidence=0.95
+2026-05-21 12:44:25,228 - INFO - Extracting URL: https://openvc.app/investor-lists/saas-investors
+2026-05-21 12:44:25,236 - INFO - Extracting URL: https://affinity.co/blog/saas-venture-capital
+2026-05-21 12:44:25,237 - INFO - Extracting URL: https://growfusely.com/blog/us-vc-firms-for-saas
+2026-05-21 12:44:25,238 - INFO - Extracting URL: https://signal.nfx.com/investor-lists/top-saas-seed-investors
+2026-05-21 12:44:25,239 - INFO - Extracting URL: https://vc-mapping.gilion.com/venture-capital-firms/saas-investors
+2026-05-21 12:44:33,742 - INFO - Searching query: Artificial Intelligence venture capital firms in Southeast Asia
+2026-05-21 12:44:39,927 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:44:39,929 - INFO - Queued URL: https://growthlist.co/ai-vc | confidence=0.95
+2026-05-21 12:44:40,018 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:44:40,019 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-05-21 12:44:41,456 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:44:41,458 - INFO - Queued URL: https://wowsglobal.com/resources/blogs-insights/a-guide-to-southeast-asias-most-active-vcs | confidence=0.95
+2026-05-21 12:44:41,543 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:44:41,544 - INFO - Retrying request to /openai/v1/chat/completions in 11.000000 seconds
+2026-05-21 12:44:53,134 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:44:53,136 - INFO - Queued URL: https://visible.vc/blog/top-venture-capitalists-southeast-asia | confidence=0.95
+2026-05-21 12:44:53,221 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:44:53,221 - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-05-21 12:45:03,694 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:45:03,696 - INFO - Queued URL: https://weforum.org/stories/2024/11/ai-report-southeast-asia-economic-growth | confidence=0.95
+2026-05-21 12:45:03,790 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:45:03,790 - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-05-21 12:45:14,332 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:45:14,333 - INFO - Queued URL: https://seapublicpolicy.org/work/policy-state-of-play-artificial-intelligence-in-southeast-asia | confidence=0.95
+2026-05-21 12:45:14,335 - INFO - Extracting URL: https://growthlist.co/ai-vc
+2026-05-21 12:45:14,337 - INFO - Extracting URL: https://wowsglobal.com/resources/blogs-insights/a-guide-to-southeast-asias-most-active-vcs
+2026-05-21 12:45:14,340 - INFO - Extracting URL: https://visible.vc/blog/top-venture-capitalists-southeast-asia
+2026-05-21 12:45:14,342 - INFO - Extracting URL: https://weforum.org/stories/2024/11/ai-report-southeast-asia-economic-growth
+2026-05-21 12:45:14,343 - INFO - Extracting URL: https://seapublicpolicy.org/work/policy-state-of-play-artificial-intelligence-in-southeast-asia
+2026-05-21 12:45:21,220 - INFO - Searching query: Enterprise Software Voice AI investors
+2026-05-21 12:45:26,072 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:45:26,074 - INFO - Queued URL: https://news.crunchbase.com/venture/voice-ai-startups-global-investment | confidence=0.95
+2026-05-21 12:45:26,156 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:45:26,157 - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-05-21 12:45:35,091 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:45:35,105 - INFO - Queued URL: https://nextlevel.ai/voice-ai-trends-enterprise-adoption-roi | confidence=0.95
+2026-05-21 12:45:35,198 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:45:35,199 - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-05-21 12:45:45,856 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:45:45,859 - INFO - Queued URL: https://bvp.com/atlas/roadmap-voice-ai | confidence=0.95
+2026-05-21 12:45:45,942 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:45:45,942 - INFO - Retrying request to /openai/v1/chat/completions in 11.000000 seconds
+2026-05-21 12:45:57,533 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:45:57,534 - INFO - Queued URL: https://assemblyai.com/blog/voice-ai-in-2026-series-1 | confidence=0.95
+2026-05-21 12:45:57,654 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:45:57,654 - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-05-21 12:46:07,365 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:46:07,368 - INFO - Queued URL: https://mobisoftinfotech.com/resources/blog/ai-development/voice-ai-for-enterprise-workflows | confidence=0.95
+2026-05-21 12:46:07,370 - INFO - Extracting URL: https://news.crunchbase.com/venture/voice-ai-startups-global-investment
+2026-05-21 12:46:07,371 - INFO - Extracting URL: https://nextlevel.ai/voice-ai-trends-enterprise-adoption-roi
+2026-05-21 12:46:07,375 - INFO - Extracting URL: https://bvp.com/atlas/roadmap-voice-ai
+2026-05-21 12:46:07,377 - INFO - Extracting URL: https://assemblyai.com/blog/voice-ai-in-2026-series-1
+2026-05-21 12:46:07,379 - INFO - Extracting URL: https://mobisoftinfotech.com/resources/blog/ai-development/voice-ai-for-enterprise-workflows
+2026-05-21 12:46:13,184 - INFO - Searching query: Europe Voice AI startup investors
+2026-05-21 12:46:18,185 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:46:18,187 - INFO - Queued URL: https://seedblink.com/blog/2025-03-13-europes-ai-investment-landscape-a-deep-dive | confidence=0.95
+2026-05-21 12:46:18,285 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:46:18,286 - INFO - Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2026-05-21 12:46:31,206 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:46:31,208 - INFO - Queued URL: https://shizune.co/investors/artificial-intelligence-investors-europe | confidence=0.95
+2026-05-21 12:46:31,300 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:46:31,301 - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-05-21 12:46:42,377 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:46:42,379 - INFO - Queued URL: https://sifted.eu/articles/voice-ai-startups-to-watch | confidence=0.95
+2026-05-21 12:46:42,464 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:46:42,464 - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-05-21 12:46:51,967 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:46:51,969 - INFO - Queued URL: https://aiseedfund.com | confidence=0.95
+2026-05-21 12:46:52,059 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:46:52,060 - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-05-21 12:47:01,734 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:47:01,735 - INFO - Queued URL: https://ai-fund.vc | confidence=0.95
+2026-05-21 12:47:01,736 - INFO - Extracting URL: https://seedblink.com/blog/2025-03-13-europes-ai-investment-landscape-a-deep-dive
+2026-05-21 12:47:01,738 - INFO - Extracting URL: https://shizune.co/investors/artificial-intelligence-investors-europe
+2026-05-21 12:47:01,740 - INFO - Extracting URL: https://sifted.eu/articles/voice-ai-startups-to-watch
+2026-05-21 12:47:01,741 - INFO - Extracting URL: https://aiseedfund.com
+2026-05-21 12:47:01,742 - INFO - Extracting URL: https://ai-fund.vc
+2026-05-21 12:47:10,075 - INFO - Searching query: Machine Learning SaaS investors
+2026-05-21 12:47:15,795 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:47:15,797 - INFO - Queued URL: https://growthturbine.com/sectors/ai-and-machine-learning-investor-acquisition | confidence=0.95
+2026-05-21 12:47:15,874 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:47:15,875 - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-05-21 12:47:26,514 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:47:26,516 - INFO - Queued URL: https://ycombinator.com/companies/industry/machine-learning | confidence=0.95
+2026-05-21 12:47:26,598 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:47:26,599 - INFO - Retrying request to /openai/v1/chat/completions in 7.000000 seconds
+2026-05-21 12:47:34,147 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:47:34,149 - INFO - Queued URL: https://softwarestrategiesblog.com/2021/04/07/the-top-20-machine-learning-startups-to-watch-in-2021 | confidence=0.95
+2026-05-21 12:47:34,233 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:47:34,234 - INFO - Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2026-05-21 12:47:46,772 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:47:46,774 - INFO - Queued URL: https://seedtable.com/investors-software-as-a-service-saas | confidence=0.95
+2026-05-21 12:47:46,861 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:47:46,861 - INFO - Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2026-05-21 12:48:00,358 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:48:00,359 - INFO - Queued URL: https://cset.georgetown.edu/wp-content/uploads/CSET-Corporate-Investors-in-Top-U.S.-AI-Startups.pdf | confidence=0.95
+2026-05-21 12:48:00,360 - INFO - Extracting URL: https://growthturbine.com/sectors/ai-and-machine-learning-investor-acquisition
+2026-05-21 12:48:00,361 - INFO - Extracting URL: https://ycombinator.com/companies/industry/machine-learning
+2026-05-21 12:48:00,362 - INFO - Extracting URL: https://softwarestrategiesblog.com/2021/04/07/the-top-20-machine-learning-startups-to-watch-in-2021
+2026-05-21 12:48:00,363 - INFO - Extracting URL: https://seedtable.com/investors-software-as-a-service-saas
+2026-05-21 12:48:00,365 - INFO - Extracting URL: https://cset.georgetown.edu/wp-content/uploads/CSET-Corporate-Investors-in-Top-U.S.-AI-Startups.pdf
+2026-05-21 12:48:06,654 - INFO - Searching query: B2B startup investors
+2026-05-21 12:48:11,129 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:48:11,131 - INFO - Queued URL: https://rho.co/blog/vcs-in-b2b | confidence=0.95
+2026-05-21 12:48:11,199 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:48:11,200 - INFO - Retrying request to /openai/v1/chat/completions in 6.000000 seconds
+2026-05-21 12:48:17,882 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:48:17,884 - INFO - Queued URL: https://shizune.co/investors/b2b-investors | confidence=0.95
+2026-05-21 12:48:17,964 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:48:17,965 - INFO - Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2026-05-21 12:48:30,494 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:48:30,500 - INFO - Queued URL: https://openvc.app/investor-lists/b2b-investors | confidence=0.95
+2026-05-21 12:48:30,569 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:48:30,569 - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-05-21 12:48:40,090 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:48:40,092 - INFO - Queued URL: https://highalpha.com/resources/b2b-saas-investors | confidence=0.95
+2026-05-21 12:48:40,168 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:48:40,168 - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-05-21 12:48:49,855 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:48:49,856 - INFO - Queued URL: https://kpisense.com/blog/find-angel-investors-b2b-saas | confidence=0.95
+2026-05-21 12:48:49,856 - INFO - Extracting URL: https://rho.co/blog/vcs-in-b2b
+2026-05-21 12:48:49,857 - INFO - Extracting URL: https://shizune.co/investors/b2b-investors
+2026-05-21 12:48:49,858 - INFO - Extracting URL: https://openvc.app/investor-lists/b2b-investors
+2026-05-21 12:48:49,859 - INFO - Extracting URL: https://highalpha.com/resources/b2b-saas-investors
+2026-05-21 12:48:49,860 - INFO - Extracting URL: https://kpisense.com/blog/find-angel-investors-b2b-saas
+2026-05-21 12:48:54,802 - INFO - Searching query: India SaaS startup investors
+2026-05-21 12:49:01,272 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:49:01,276 - INFO - Queued URL: https://growfusely.com/blog/vc-firms-for-saas-india | confidence=0.95
+2026-05-21 12:49:01,368 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:49:01,368 - INFO - Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2026-05-21 12:49:14,059 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:49:14,060 - INFO - Queued URL: https://gritt.io/search-for-investors/top-saas-india-investors | confidence=0.95
+2026-05-21 12:49:14,141 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:49:14,142 - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-05-21 12:49:24,854 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:49:24,857 - INFO - Queued URL: https://shizune.co/investors/saas-investors-india | confidence=0.95
+2026-05-21 12:49:25,045 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:49:25,045 - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-05-21 12:49:33,445 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:49:33,445 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-05-21 12:49:35,024 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:49:35,025 - INFO - Queued URL: https://windrose.capital/blog/post/indias-saas-ecosystem-is-growing-deeper-with | confidence=0.95
+2026-05-21 12:49:35,332 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:49:35,332 - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-05-21 12:49:45,591 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:49:45,591 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-05-21 12:49:46,964 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:49:46,965 - INFO - Queued URL: https://ycombinator.com/companies/industry/saas/india | confidence=0.95
+2026-05-21 12:49:46,966 - INFO - Extracting URL: https://growfusely.com/blog/vc-firms-for-saas-india
+2026-05-21 12:49:46,967 - INFO - Extracting URL: https://gritt.io/search-for-investors/top-saas-india-investors
+2026-05-21 12:49:46,969 - INFO - Extracting URL: https://shizune.co/investors/saas-investors-india
+2026-05-21 12:49:46,970 - INFO - Extracting URL: https://windrose.capital/blog/post/indias-saas-ecosystem-is-growing-deeper-with
+2026-05-21 12:49:46,970 - INFO - Extracting URL: https://ycombinator.com/companies/industry/saas/india
+2026-05-21 12:49:54,408 - INFO - Searching query: SaaS venture capital firms in Southeast Asia
+2026-05-21 12:49:59,277 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:49:59,277 - INFO - Queued URL: https://shizune.co/investors/saas-vc-funds-asia | confidence=0.95
+2026-05-21 12:49:59,350 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:49:59,350 - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-05-21 12:50:08,814 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:50:08,816 - INFO - Queued URL: https://rho.co/blog/vcs-in-saas | confidence=0.95
+2026-05-21 12:50:08,913 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:50:08,913 - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-05-21 12:50:19,644 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:50:19,646 - INFO - Queued URL: https://earlynode.com/vc-fundraising/14-best-venture-capital-vc-firms-in-singapore | confidence=0.95
+2026-05-21 12:50:19,725 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:50:19,726 - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-05-21 12:50:28,317 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:50:28,331 - INFO - Queued URL: https://vcsheet.com/sheet/funds-investing-in-southeast-asia | confidence=0.95
+2026-05-21 12:50:28,447 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:50:28,448 - INFO - Retrying request to /openai/v1/chat/completions in 12.000000 seconds
+2026-05-21 12:50:41,109 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:50:41,111 - INFO - Queued URL: https://openvc.app/investor-lists/venture-capital-firms-investors-southeast-asia | confidence=0.95
+2026-05-21 12:50:41,113 - INFO - Extracting URL: https://shizune.co/investors/saas-vc-funds-asia
+2026-05-21 12:50:41,114 - INFO - Extracting URL: https://rho.co/blog/vcs-in-saas
+2026-05-21 12:50:41,117 - INFO - Extracting URL: https://earlynode.com/vc-fundraising/14-best-venture-capital-vc-firms-in-singapore
+2026-05-21 12:50:41,121 - INFO - Extracting URL: https://vcsheet.com/sheet/funds-investing-in-southeast-asia
+2026-05-21 12:50:41,123 - INFO - Extracting URL: https://openvc.app/investor-lists/venture-capital-firms-investors-southeast-asia
+2026-05-21 12:50:47,970 - INFO - Searching query: Artificial Intelligence portfolio companies
+2026-05-21 12:50:58,182 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:50:58,184 - INFO - Queued URL: https://aicapital.ai/our-companies | confidence=0.95
+2026-05-21 12:50:58,286 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:50:58,287 - INFO - Retrying request to /openai/v1/chat/completions in 6.000000 seconds
+2026-05-21 12:51:05,253 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:51:05,255 - INFO - Queued URL: https://generalcatalyst.com/portfolio | confidence=0.95
+2026-05-21 12:51:05,330 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:51:05,330 - INFO - Retrying request to /openai/v1/chat/completions in 11.000000 seconds
+2026-05-21 12:51:16,907 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:51:16,909 - INFO - Queued URL: https://nerdwallet.com/investing/learn/ai-stocks-invest-in-artificial-intelligence | confidence=0.95
+2026-05-21 12:51:16,988 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:51:16,989 - INFO - Retrying request to /openai/v1/chat/completions in 11.000000 seconds
+2026-05-21 12:51:28,510 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:51:28,512 - INFO - Queued URL: https://forbes.com/lists/ai50 | confidence=0.95
+2026-05-21 12:51:28,601 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:51:28,601 - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-05-21 12:51:38,096 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:51:38,098 - INFO - Queued URL: https://blackstone.com/investing-in-ai | confidence=0.95
+2026-05-21 12:51:38,099 - INFO - Extracting URL: https://aicapital.ai/our-companies
+2026-05-21 12:51:38,101 - INFO - Extracting URL: https://generalcatalyst.com/portfolio
+2026-05-21 12:51:38,104 - INFO - Extracting URL: https://nerdwallet.com/investing/learn/ai-stocks-invest-in-artificial-intelligence
+2026-05-21 12:51:38,106 - INFO - Extracting URL: https://forbes.com/lists/ai50
+2026-05-21 12:51:38,108 - INFO - Extracting URL: https://blackstone.com/investing-in-ai
+2026-05-21 12:51:46,184 - INFO - Searching query: Voice AI venture capital firms in India
+2026-05-21 12:51:53,548 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:51:53,551 - INFO - Queued URL: https://techcrunch.com/2026/05/09/voice-ai-in-india-is-hard-wispr-flow-is-betting-on-it-anyway | confidence=0.95
+2026-05-21 12:51:53,632 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:51:53,633 - INFO - Retrying request to /openai/v1/chat/completions in 5.000000 seconds
+2026-05-21 12:51:59,225 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:51:59,227 - INFO - Queued URL: https://antler.co/location/india | confidence=0.95
+2026-05-21 12:51:59,332 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:51:59,333 - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-05-21 12:52:09,910 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:52:09,912 - INFO - Queued URL: https://activatevc.ai | confidence=0.95
+2026-05-21 12:52:10,002 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:52:10,002 - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-05-21 12:52:20,170 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:52:20,172 - INFO - Queued URL: https://sierraventures.com/content/voice-ai-market-map | confidence=0.95
+2026-05-21 12:52:20,265 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-05-21 12:52:20,266 - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-05-21 12:52:31,167 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-21 12:52:31,169 - INFO - Queued URL: https://openvc.app/investor-lists/ai-investors | confidence=0.95
+2026-05-21 12:52:31,171 - INFO - Extracting URL: https://techcrunch.com/2026/05/09/voice-ai-in-india-is-hard-wispr-flow-is-betting-on-it-anyway
+2026-05-21 12:52:31,172 - INFO - Extracting URL: https://antler.co/location/india
+2026-05-21 12:52:31,175 - INFO - Extracting URL: https://activatevc.ai
+2026-05-21 12:52:31,177 - INFO - Extracting URL: https://sierraventures.com/content/voice-ai-market-map
+2026-05-21 12:52:31,180 - INFO - Extracting URL: https://openvc.app/investor-lists/ai-investors

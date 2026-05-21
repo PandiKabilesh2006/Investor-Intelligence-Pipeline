@@ -1,15 +1,20 @@
 {
-    "firm": "Tribal VC",
-    "website": "https://angel.co/tribal-vc/",
+    "firm": "Northcap",
+    "website": "http://northcap.vc/",
+    "partners": [],
     "focus_sectors": [
         "B2B SaaS"
     ],
     "investment_stage": [
-        "Seed",
-        "Series A"
+        "Seed"
+    ],
+    "portfolio_companies": [
+        "Falcon.io",
+        "Sekoia"
     ],
     "geography": [
         "Europe"
     ],
-    "partners": []
+    "contact_links": [],
+    "source_url": "https://growthlist.co/europe-saas-investors/"
 }

@@ -1,14 +1,27 @@
 {
     "firm": "Newcomer",
     "website": "https://www.newcomer.co/",
+    "partners": [],
     "focus_sectors": [
         "Voice AI"
     ],
     "investment_stage": [
-        "Series D",
-        "Seed",
-        "Series A"
+        "Series D"
     ],
-    "geography": [],
-    "partners": []
+    "portfolio_companies": [
+        "ElevenLabs",
+        "Decagon",
+        "Deepgram",
+        "Graudium",
+        "Phonic",
+        "Netomi"
+    ],
+    "geography": [
+        "Global"
+    ],
+    "contact_links": [
+        "https://www.newcomer.co/",
+        "https://substack.com/@maddierenbarger"
+    ],
+    "source_url": "https://www.newcomer.co/p/investors-go-hard-for-voice-ai-with"
 }

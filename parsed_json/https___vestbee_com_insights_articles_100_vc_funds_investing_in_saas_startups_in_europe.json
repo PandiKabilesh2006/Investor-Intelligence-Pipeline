@@ -1,13 +1,29 @@
 {
     "firm": "Vestbee",
     "website": "https://www.vestbee.com/",
+    "partners": [],
     "focus_sectors": [
         "B2B SaaS"
     ],
-    "investment_stage": [],
-    "geography": [
-        "Global",
-        "Europe"
+    "investment_stage": [
+        "Series B",
+        "Series A",
+        "Growth Stage",
+        "Seed"
     ],
-    "partners": []
+    "portfolio_companies": [
+        "a16z",
+        "Accel",
+        "Airbridge Equity Partners",
+        "All Iron Ventures"
+    ],
+    "geography": [
+        "Europe",
+        "Global"
+    ],
+    "contact_links": [
+        "https://bit.ly/3Ncs69u",
+        "mailto:lisa.palchynska@vestbee.com"
+    ],
+    "source_url": "https://vestbee.com/insights/articles/100-vc-funds-investing-in-saas-startups-in-europe"
 }
