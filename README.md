@@ -568,14 +568,6 @@ MIT License
 
 ---
 
-# 👨‍💻 Author
-
-**Pandi Kabilesh**
-
-Aspiring AI Engineer • Data Scientist • Machine Learning Engineer
-
----
-
 # ⭐ Final Vision
 
 The goal of this project is to build an intelligent infrastructure layer for startup fundraising and investor discovery using:
