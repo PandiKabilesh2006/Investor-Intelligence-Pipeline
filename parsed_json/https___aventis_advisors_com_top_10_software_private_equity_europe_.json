@@ -2,16 +2,20 @@
     "firm": "Hg",
     "website": "https://hgcapital.com/",
     "focus_sectors": [
-        "B2B SaaS"
+        "B2B SaaS",
+        "telecom",
+        "healthcare",
+        "industrials",
+        "media"
     ],
     "investment_stage": [
         "Growth Stage"
     ],
     "geography": [
-        "Europe",
         "United States",
-        "North America",
+        "Europe",
         "Germany",
+        "North America",
         "Nordic region"
     ],
     "partners": []

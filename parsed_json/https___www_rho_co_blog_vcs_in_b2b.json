@@ -1,14 +1,15 @@
 {
-    "firm": "Software M&A Today",
-    "website": "https://softwareequity.com/blog/",
+    "firm": "Work-Bench",
+    "website": "https://www.rho.co/",
     "focus_sectors": [
+        "Enterprise AI",
         "B2B SaaS"
     ],
     "investment_stage": [
-        "Growth Stage"
+        "Seed"
     ],
     "geography": [
-        "Global"
+        "United States"
     ],
     "partners": []
 }

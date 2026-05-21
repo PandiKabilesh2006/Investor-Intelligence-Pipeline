@@ -5,15 +5,14 @@
         "Artificial Intelligence"
     ],
     "investment_stage": [
-        "Series B",
-        "Pre-Seed",
-        "Series A",
         "Growth Stage",
-        "Seed"
+        "Seed",
+        "Series A",
+        "Series B"
     ],
     "geography": [
-        "Europe",
-        "Global"
+        "Global",
+        "Europe"
     ],
     "partners": []
 }

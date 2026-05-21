@@ -1,17 +1,16 @@
 {
-    "firm": "GV (formerly Google Ventures)",
-    "website": "https://www.gv.com/",
+    "firm": "High Alpha",
+    "website": "http://highalpha.com/",
     "focus_sectors": [
-        "Artificial Intelligence"
+        "B2B SaaS"
     ],
     "investment_stage": [
         "Growth Stage",
-        "Seed",
         "Series A",
         "Series B"
     ],
     "geography": [
-        "Global"
+        "United States"
     ],
     "partners": []
 }

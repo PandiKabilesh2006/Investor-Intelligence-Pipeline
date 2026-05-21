@@ -1,8 +1,8 @@
 {
-    "firm": "Point Nine",
-    "website": "https://www.pointnine.com/",
+    "firm": "The VC Corner",
+    "website": "https://www.thevccorner.com/",
     "focus_sectors": [
-        "B2B marketplaces",
+        "Artificial Intelligence",
         "B2B SaaS"
     ],
     "investment_stage": [
@@ -10,7 +10,8 @@
     ],
     "geography": [
         "United States",
-        "Canada",
+        "LatAm",
+        "Asia",
         "Europe"
     ],
     "partners": []

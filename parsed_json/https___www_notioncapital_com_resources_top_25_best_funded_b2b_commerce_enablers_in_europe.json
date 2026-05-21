@@ -1,14 +1,12 @@
 {
-    "firm": "Qubit Capital",
-    "website": "https://qubit.capital/",
+    "firm": "Notion Capital",
+    "website": "https://notion.vc/",
     "focus_sectors": [
-        "Artificial Intelligence",
         "B2B SaaS"
     ],
     "investment_stage": [
         "Growth Stage",
-        "Series A",
-        "Series B"
+        "Series A"
     ],
     "geography": [
         "United States"

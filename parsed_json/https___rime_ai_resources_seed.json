@@ -1,9 +1,8 @@
 {
     "firm": "Rime",
-    "website": "https://www.rime.ai/",
+    "website": "",
     "focus_sectors": [
-        "Enterprise AI",
-        "B2B SaaS"
+        "Voice AI"
     ],
     "investment_stage": [
         "Seed"
@@ -13,8 +12,19 @@
     ],
     "partners": [
         "Unusual Ventures",
-        "Founders You Should Know",
-        "Cadenza",
-        "Angel Investors (Aaron King, Alex Levin, Rebecca Greene, Michael Akilian, Maran Nelson, Nick Arner, Molly Mielke, Arnaud Schenk, Coyne Lloyd, Sarah Veit Wallac, Mike Heller, Zhenya Loginov, Monica Black)"
+        "Zhenya Loginov",
+        "Molly Mielke",
+        "Sarah Veit Wallis",
+        "Rebecca Greene",
+        "Coyne Lloyd",
+        "Nick Arner",
+        "Mike Heller",
+        "Monica Black",
+        "Michael Akilian",
+        "Alex Levin",
+        "Aaron King",
+        "Maran Nelson",
+        "Arnaud Schenk",
+        "Founders You Should Know"
     ]
 }

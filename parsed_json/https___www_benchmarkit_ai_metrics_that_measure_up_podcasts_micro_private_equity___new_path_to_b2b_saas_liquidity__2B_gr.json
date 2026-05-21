@@ -1,6 +1,6 @@
 {
-    "firm": "Tribal VC",
-    "website": "https://angel.co/tribal-vc/",
+    "firm": "Horizen Capital",
+    "website": "",
     "focus_sectors": [
         "B2B SaaS"
     ],
@@ -8,8 +8,6 @@
         "Seed",
         "Series A"
     ],
-    "geography": [
-        "Europe"
-    ],
+    "geography": [],
     "partners": []
 }

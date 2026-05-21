@@ -1,6 +1,6 @@
 {
-    "firm": "TinySeed",
-    "website": "https://tinyseed.com/",
+    "firm": "Zuora",
+    "website": "https://www.zuora.com/",
     "focus_sectors": [
         "B2B SaaS"
     ],
@@ -10,8 +10,5 @@
     "geography": [
         "Global"
     ],
-    "partners": [
-        "Rob Walling",
-        "Einar Vollset"
-    ]
+    "partners": []
 }

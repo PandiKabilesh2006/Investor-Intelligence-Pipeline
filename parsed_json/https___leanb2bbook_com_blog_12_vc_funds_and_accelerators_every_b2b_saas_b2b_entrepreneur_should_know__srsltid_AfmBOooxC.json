@@ -1,18 +1,16 @@
 {
-    "firm": "Accel Partners",
-    "website": "http://www.accel.com/",
+    "firm": "['Accel Partners', 'Bessemer Venture Partners', 'Emergence Capital', 'Matrix Partners', 'Point Nine Capital', 'SaaStr Fund', 'Scale Venture Partners', 'In-Q-Tel', 'Alchemist', 'AngelPad', 'Forum Ventures']",
+    "website": "['http://www.accel.com/', 'http://www.bvp.com/', 'http://www.emcap.com/', 'http://www.matrixpartners.com/', 'http://www.pointninecap.com/', 'https://www.saastr.com/saastr-fund-looking-to-fund-2-4-great-saas-companies-in-2023/', 'http://www.scalevp.com/', 'https://www.iqt.org/', 'http://alchemistaccelerator.com/', 'https://angelpad.org/', 'https://www.forumvc.com/']",
     "focus_sectors": [
         "B2B SaaS"
     ],
     "investment_stage": [
-        "Series B",
-        "Pre-Seed",
-        "Series A",
         "Growth Stage",
-        "Seed"
+        "Seed",
+        "Series A"
     ],
     "geography": [
-        "Global"
+        "United States"
     ],
     "partners": []
 }

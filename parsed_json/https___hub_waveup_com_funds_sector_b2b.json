@@ -2,11 +2,14 @@
     "firm": "406 Ventures",
     "website": "http://www.406ventures.com/",
     "focus_sectors": [
-        "Enterprise AI"
+        "Data and AI",
+        "Cybersecurity",
+        "B2B SaaS"
     ],
     "investment_stage": [
-        "Series A",
-        "Growth Stage"
+        "Growth Stage",
+        "Seed",
+        "Series A"
     ],
     "geography": [
         "United States"

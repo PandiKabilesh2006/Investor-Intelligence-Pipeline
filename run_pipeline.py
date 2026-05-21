@@ -7,7 +7,13 @@ import asyncio
 
 warnings.filterwarnings("ignore")
 
-from app.search.tavily_search import search_investors
+from sqlalchemy import text
+
+from app.database.db import SessionLocal
+
+from app.search.tavily_search import (
+    search_investors
+)
 
 from app.query.query_generator import (
     generate_queries
@@ -68,6 +74,110 @@ os.makedirs(
 
     exist_ok=True
 )
+
+
+# =========================================
+# DATABASE HELPERS
+# =========================================
+
+def already_crawled(url):
+
+    session = SessionLocal()
+
+
+    try:
+
+        result = session.execute(
+
+            text(
+
+                """
+                SELECT id
+                FROM crawled_urls
+                WHERE url = :url
+                """
+            ),
+
+            {
+
+                "url": url
+            }
+        ).fetchone()
+
+
+        return result is not None
+
+
+    finally:
+
+        session.close()
+
+
+def save_crawled_url(
+
+    url,
+
+    query
+):
+
+    session = SessionLocal()
+
+
+    try:
+
+        session.execute(
+
+            text(
+
+                """
+                INSERT INTO crawled_urls (
+
+                    url,
+
+                    discovered_query,
+
+                    crawl_status,
+
+                    markdown_saved
+
+                )
+
+                VALUES (
+
+                    :url,
+
+                    :query,
+
+                    'success',
+
+                    true
+                )
+
+                ON CONFLICT (url)
+
+                DO UPDATE SET
+
+                    last_crawled = NOW(),
+
+                    discovered_query = EXCLUDED.discovered_query
+                """
+            ),
+
+            {
+
+                "url": url,
+
+                "query": query
+            }
+        )
+
+
+        session.commit()
+
+
+    finally:
+
+        session.close()
 
 
 # =========================================
@@ -198,9 +308,9 @@ for query in queries:
 
     try:
 
-        # =========================================
+        # =====================================
         # SEARCH INVESTORS
-        # =========================================
+        # =====================================
 
         search_results = search_investors(
 
@@ -235,16 +345,16 @@ for query in queries:
             continue
 
 
-        # =========================================
+        # =====================================
         # CANDIDATE URL QUEUE
-        # =========================================
+        # =====================================
 
         candidate_urls = []
 
 
-        # =========================================
-        # SEMANTIC RELEVANCE FILTERING
-        # =========================================
+        # =====================================
+        # RELEVANCE FILTERING
+        # =====================================
 
         for result in results:
 
@@ -275,9 +385,9 @@ for query in queries:
             url_lower = url.lower()
 
 
-            # =========================================
+            # =================================
             # BLOCK BAD DOMAINS
-            # =========================================
+            # =================================
 
             blocked = False
 
@@ -302,9 +412,24 @@ for query in queries:
                 continue
 
 
-            # =========================================
-            # GLOBAL URL DEDUPLICATION
-            # =========================================
+            # =================================
+            # MEMORY-BASED URL DEDUPLICATION
+            # =================================
+
+            if already_crawled(url):
+
+                print(
+
+                    f"Skipping already crawled URL: "
+                    f"{url}"
+                )
+
+                continue
+
+
+            # =================================
+            # SESSION DEDUPLICATION
+            # =================================
 
             if url in seen_urls:
 
@@ -314,9 +439,9 @@ for query in queries:
             seen_urls.add(url)
 
 
-            # =========================================
-            # SEMANTIC RELEVANCE CLASSIFICATION
-            # =========================================
+            # =================================
+            # SEMANTIC RELEVANCE
+            # =================================
 
             classification = (
 
@@ -357,9 +482,9 @@ for query in queries:
             )
 
 
-            # =========================================
+            # =================================
             # CONFIDENCE FILTER
-            # =========================================
+            # =================================
 
             if not is_relevant:
 
@@ -412,9 +537,9 @@ for query in queries:
             candidate_urls.append(url)
 
 
-            # =========================================
-            # TEST MODE URL LIMIT
-            # =========================================
+            # =================================
+            # TEST MODE LIMIT
+            # =================================
 
             if (
 
@@ -430,9 +555,9 @@ for query in queries:
                 break
 
 
-        # =========================================
-        # RUN ASYNC EXTRACTION
-        # =========================================
+        # =====================================
+        # ASYNC EXTRACTION
+        # =====================================
 
         print(
 
@@ -450,9 +575,9 @@ for query in queries:
         )
 
 
-        # =========================================
-        # PROCESS EXTRACTION RESULTS
-        # =========================================
+        # =====================================
+        # PROCESS EXTRACTIONS
+        # =====================================
 
         for extraction_result in extraction_results:
 
@@ -489,9 +614,9 @@ for query in queries:
 
             try:
 
-                # =========================================
-                # SAFE FILE NAME
-                # =========================================
+                # =================================
+                # SAFE FILENAME
+                # =================================
 
                 safe_filename = re.sub(
 
@@ -510,9 +635,9 @@ for query in queries:
                 )
 
 
-                # =========================================
+                # =================================
                 # SAVE MARKDOWN
-                # =========================================
+                # =================================
 
                 with open(
 
@@ -529,9 +654,9 @@ for query in queries:
                     )
 
 
-                # =========================================
+                # =================================
                 # SAVE METADATA
-                # =========================================
+                # =================================
 
                 metadata = {
 
@@ -570,6 +695,18 @@ for query in queries:
                     )
 
 
+                # =================================
+                # SAVE CRAWL MEMORY
+                # =================================
+
+                save_crawled_url(
+
+                    url,
+
+                    query
+                )
+
+
                 print(
 
                     f"Saved markdown: "
@@ -586,7 +723,6 @@ for query in queries:
                     f"Save failed: "
                     f"{save_error}"
                 )
-
 
                 print(
 
@@ -626,9 +762,6 @@ print(
 
     "Pipeline execution completed.\n"
 )
-# search_results = search_investors(query)
-# # print(search_results)
-
 # first_result = search_results["results"][0]
 
 # url = first_result["url"]

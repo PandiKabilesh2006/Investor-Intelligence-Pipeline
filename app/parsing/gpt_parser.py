@@ -39,13 +39,17 @@ EMPTY_RESPONSE = {
 
     "website": "",
 
+    "partners": [],
+
     "focus_sectors": [],
 
     "investment_stage": [],
 
+    "portfolio_companies": [],
+
     "geography": [],
 
-    "partners": []
+    "contact_links": []
 }
 
 
@@ -73,10 +77,12 @@ SCHEMA
 {{
   "firm": "",
   "website": "",
+  "partners": [],
   "focus_sectors": [],
   "investment_stage": [],
+  "portfolio_companies": [],
   "geography": [],
-  "partners": []
+  "contact_links": []
 }}
 
 ----------------------------------------
@@ -85,10 +91,11 @@ CRITICAL RULES
 
 - Extract ONLY investor/VC information
 - Do NOT hallucinate
-- Do NOT explain
-- Return ONLY JSON
-- If unavailable, return empty arrays
-- Normalize data carefully
+- Do NOT explain anything
+- Return ONLY valid JSON
+- If information is unavailable,
+  return empty arrays
+- Normalize information carefully
 
 ----------------------------------------
 FOCUS SECTOR TAXONOMY
@@ -101,10 +108,9 @@ Allowed values:
 - B2B SaaS
 - Voice AI
 
-Map similar concepts carefully.
+Map similar concepts semantically.
 
 Examples:
-
 - conversational AI → Voice AI
 - speech AI → Voice AI
 - enterprise software → B2B SaaS
@@ -124,11 +130,9 @@ Allowed values:
 - Growth Stage
 
 Examples:
-
 - early-stage → Seed
 - growth equity → Growth Stage
 - expansion stage → Growth Stage
-- buyouts → Growth Stage
 
 ----------------------------------------
 GEOGRAPHY TAXONOMY
@@ -147,38 +151,78 @@ Allowed values:
 PARTNER EXTRACTION RULES
 ----------------------------------------
 
-Extract ONLY REAL HUMAN NAMES.
+Extract ONLY individuals who are explicitly
+part of the investment firm's internal
+investment team.
 
-Allowed partner roles:
+The individual should hold an
+investment-related role inside the
+organization.
+
+Possible roles include:
 - Partner
 - Managing Partner
 - General Partner
-- Investment Partner
-- Founding Partner
+- Venture Partner
+- Principal
+- Investment Director
+- Investor
 
-GOOD EXAMPLES:
-- Marc Andreessen
-- Ben Horowitz
-- Alfred Lin
+The extracted value must represent
+a REAL PERSON.
 
-BAD EXAMPLES:
-- Human Resources
-- Scaling Up
-- End-to-End Sales Process
-- Sequoia Capital
-- Andreessen Horowitz
+Only include names when the content
+clearly indicates the person belongs
+to the investment organization itself.
 
-Do NOT extract:
-- VC firm names
-- startup names
-- portfolio companies
+Do NOT include:
+- startup founders
+- portfolio company executives
 - article authors
+- guest writers
+- ecosystem participants
+- external advisors
+- companies
+- organizations
 - departments
+- software names
 - concepts
 - job functions
 
-If no real partner names exist:
+If partner information is unclear,
+missing, or ambiguous:
 return empty array.
+
+Prefer precision over recall.
+
+Never guess missing names.
+
+----------------------------------------
+PORTFOLIO COMPANY EXTRACTION
+----------------------------------------
+
+Extract ONLY startup/company names
+that are part of the firm's portfolio.
+
+Do NOT extract:
+- investor firms
+- sectors
+- people names
+- technologies
+- article titles
+
+----------------------------------------
+CONTACT LINK EXTRACTION
+----------------------------------------
+
+Extract relevant investor-related
+contact URLs or communication links.
+
+Examples:
+- LinkedIn URLs
+- Twitter/X URLs
+- contact pages
+- official email addresses
 
 ----------------------------------------
 WEBSITE CONTENT
@@ -203,13 +247,17 @@ def normalize_output(parsed):
 
     parsed.setdefault("website", "")
 
+    parsed.setdefault("partners", [])
+
     parsed.setdefault("focus_sectors", [])
 
     parsed.setdefault("investment_stage", [])
 
+    parsed.setdefault("portfolio_companies", [])
+
     parsed.setdefault("geography", [])
 
-    parsed.setdefault("partners", [])
+    parsed.setdefault("contact_links", [])
 
 
     # =====================================
@@ -218,13 +266,17 @@ def normalize_output(parsed):
 
     for field in [
 
+        "partners",
+
         "focus_sectors",
 
         "investment_stage",
 
+        "portfolio_companies",
+
         "geography",
 
-        "partners"
+        "contact_links"
     ]:
 
         if not isinstance(
@@ -246,6 +298,11 @@ def normalize_output(parsed):
         parsed["firm"]
     ).strip()
 
+    # =====================================
+    # INVALID MULTI-FIRM CLEANUP
+    # =====================================
+    if isinstance(parsed["firm"], list):
+        parsed["firm"] = parsed["firm"][0]
 
     parsed["website"] = str(
 
@@ -259,13 +316,17 @@ def normalize_output(parsed):
 
     for field in [
 
+        "partners",
+
         "focus_sectors",
 
         "investment_stage",
 
+        "portfolio_companies",
+
         "geography",
 
-        "partners"
+        "contact_links"
     ]:
 
         parsed[field] = [
@@ -295,10 +356,6 @@ def filter_partner_names(partners):
         partner = str(partner).strip()
 
 
-        # =====================================
-        # MUST LOOK LIKE HUMAN NAME
-        # =====================================
-
         if not re.match(
 
             r"^[A-Z][a-z]+(?:\s[A-Z][a-z]+)+$",
@@ -310,6 +367,47 @@ def filter_partner_names(partners):
 
 
         filtered.append(partner)
+
+
+    return list(set(filtered))
+
+
+# =========================================
+# CONTACT LINK FILTER
+# =========================================
+
+def filter_contact_links(links):
+
+    filtered = []
+
+
+    for link in links:
+
+        link = str(link).strip()
+
+
+        if (
+
+            "linkedin.com" in link
+
+            or
+
+            "twitter.com" in link
+
+            or
+
+            "x.com" in link
+
+            or
+
+            "mailto:" in link
+
+            or
+
+            "/contact" in link
+        ):
+
+            filtered.append(link)
 
 
     return list(set(filtered))
@@ -488,6 +586,16 @@ def apply_taxonomy_normalization(parsed):
     )
 
 
+    # =====================================
+    # CONTACT LINK FILTERING
+    # =====================================
+
+    parsed["contact_links"] = filter_contact_links(
+
+        parsed["contact_links"]
+    )
+
+
     return parsed
 
 
@@ -505,10 +613,6 @@ def extract_json(text):
         .strip()
     )
 
-
-    # =====================================
-    # NON-GREEDY JSON EXTRACTION
-    # =====================================
 
     json_match = re.search(
 

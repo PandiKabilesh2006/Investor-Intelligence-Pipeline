@@ -1,0 +1,31 @@
+{
+    "firm": "['ValueStream Ventures', 'Haatch', 'Big Basin Capital', 'Green Bay Ventures', 'BECO Capital', 'Flashpoint', 'Kae Capital']",
+    "website": "['https://www.valuestreamventures.com/', 'https://haatch.com/', 'https://www.bigbasincapital.com/', 'https://www.greenbayventures.com/', 'https://becocapital.com/', 'https://flashpointvc.com/', 'https://kae-capital.com/']",
+    "focus_sectors": [
+        "Consumer ServicesDTCE-commerce+4",
+        "B2B SaaS",
+        "B2B softwaretech-enabled solutionsmarketplaces+1",
+        "*",
+        "B2B platformsVertical AISaaS",
+        "Enterprise SoftwareDigital HealthTransportation+6",
+        "Enterprise SoftwarePropTechFinTech+13"
+    ],
+    "investment_stage": [
+        "Late SeedPre Series ASeries A",
+        "*",
+        "Pre-SeedSeed",
+        "SeedSeries ASeries B",
+        "Post-SeedSeries A",
+        "SeedSeries A"
+    ],
+    "geography": [
+        "Stamford (United Kingdom)",
+        "San Francisco (United States)",
+        "Mumbai (India)",
+        "New York (United States)",
+        "London (United Kingdom)",
+        "Cupertino (United States)",
+        "Dubai (United Arab Emirates)"
+    ],
+    "partners": []
+}

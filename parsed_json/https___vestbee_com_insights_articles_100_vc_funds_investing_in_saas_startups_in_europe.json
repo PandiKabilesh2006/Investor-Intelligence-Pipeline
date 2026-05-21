@@ -4,14 +4,10 @@
     "focus_sectors": [
         "B2B SaaS"
     ],
-    "investment_stage": [
-        "Series A",
-        "Seed",
-        "Growth Stage"
-    ],
+    "investment_stage": [],
     "geography": [
-        "Europe",
-        "Global"
+        "Global",
+        "Europe"
     ],
     "partners": []
 }

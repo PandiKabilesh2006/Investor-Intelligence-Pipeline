@@ -1,39 +1,51 @@
 import os
 import json
 
-from app.database.db import SessionLocal
+import psycopg2
 
-from app.database.models import (
-    Investor,
-    Partner,
-    PortfolioCompany
+from sentence_transformers import (
+    SentenceTransformer
 )
 
-from app.entity.entity_resolver import (
-    resolve_investor_entity
+from pgvector.psycopg2 import register_vector
+
+
+# =========================================
+# DATABASE CONNECTION
+# =========================================
+
+conn = psycopg2.connect(
+
+    host="localhost",
+
+    database="investor_intelligence",
+
+    user="postgres",
+
+    password="LiveClass2270157"
 )
 
-from app.entity.entity_merger import (
-    merge_investor_entities
-)
 
-from app.embeddings.embedder import (
-    generate_investor_embedding
+register_vector(conn)
+
+cursor = conn.cursor()
+
+
+# =========================================
+# EMBEDDING MODEL
+# =========================================
+
+embedding_model = SentenceTransformer(
+
+    "all-MiniLM-L6-v2"
 )
 
 
 # =========================================
-# CONFIG
+# PARSED JSON FOLDER
 # =========================================
 
-PARSED_JSON_FOLDER = "parsed_json"
-
-
-# =========================================
-# DATABASE SESSION
-# =========================================
-
-session = SessionLocal()
+PARSED_FOLDER = "parsed_json"
 
 
 # =========================================
@@ -44,587 +56,403 @@ json_files = [
 
     file
 
-    for file in os.listdir(PARSED_JSON_FOLDER)
+    for file in os.listdir(PARSED_FOLDER)
 
     if file.endswith(".json")
 ]
 
 
-print(f"\nFound {len(json_files)} parsed JSON files\n")
-
-
-# =========================================
-# COUNTERS
-# =========================================
-
-inserted_count = 0
-
-merged_count = 0
-
-
-# =========================================
-# FIELD NORMALIZATION
-# =========================================
-
-def normalize_field(value):
-
-    if isinstance(value, list):
-
-        if len(value) == 1:
-
-            return str(value[0])
-
-        return ", ".join(
-
-            [str(v) for v in value]
-        )
-
-    if value is None:
-
-        return ""
-
-    return str(value)
-
-
-# =========================================
-# BUILD EXISTING INVESTOR RECORD
-# =========================================
-
-def build_existing_investor_record(
-
-    db_investor
-):
-
-    return {
-
-        "firm": db_investor.firm_name,
-
-        "website": db_investor.website,
-
-        "focus_sectors": json.loads(
-
-            db_investor.focus_sectors or "[]"
-        ),
-
-        "investment_stage": json.loads(
-
-            db_investor.investment_stage or "[]"
-        ),
-
-        "geography": json.loads(
-
-            db_investor.geography or "[]"
-        )
-    }
-
-
-# =========================================
-# MAIN INSERTION LOOP
-# =========================================
-
-for json_file in json_files:
-
-    filepath = f"{PARSED_JSON_FOLDER}/{json_file}"
-
-    print("=" * 80)
-
-    print(f"\nProcessing: {json_file}\n")
-
-
-    try:
-
-        # =========================================
-        # LOAD PARSED JSON
-        # =========================================
-
-        with open(filepath, "r", encoding="utf-8") as file:
-
-            incoming_data = json.load(file)
-
-
-        # =========================================
-        # VALIDATE FIRM NAME
-        # =========================================
-
-        firm_name = normalize_field(
-
-            incoming_data.get("firm")
-        ).strip()
-
-
-        if not firm_name:
-
-            print("Missing firm name")
-
-            continue
-
-
-        # =========================================
-        # FIND CANONICAL MATCH
-        # =========================================
-
-        existing_investors = (
-
-            session.query(Investor).all()
-        )
-
-
-        canonical_match = None
-
-
-        for existing_db_investor in existing_investors:
-
-            existing_data = (
-
-                build_existing_investor_record(
-
-                    existing_db_investor
-                )
-            )
-
-
-            resolution = (
-
-                resolve_investor_entity(
-
-                    existing_data,
-
-                    incoming_data
-                )
-            )
-
-
-            if resolution["is_same_entity"]:
-
-                canonical_match = (
-
-                    existing_db_investor
-                )
-
-                print(
-
-                    f"Matched existing investor: "
-                    f"{existing_db_investor.firm_name}"
-                )
-
-                print(
-
-                    f"Confidence: "
-                    f"{resolution['confidence']}"
-                )
-
-                break
-
-
-        # =========================================
-        # MERGE EXISTING ENTITY
-        # =========================================
-
-        if canonical_match:
-
-            canonical_data = {
-
-                "firm": canonical_match.firm_name,
-
-                "website": canonical_match.website,
-
-                "focus_sectors": json.loads(
-
-                    canonical_match.focus_sectors or "[]"
-                ),
-
-                "investment_stage": json.loads(
-
-                    canonical_match.investment_stage or "[]"
-                ),
-
-                "partners": [
-
-                    partner.name
-
-                    for partner in (
-                        canonical_match.partners
-                    )
-                ],
-
-                "portfolio_companies": [
-
-                    company.company_name
-
-                    for company in (
-                        canonical_match
-                        .portfolio_companies
-                    )
-                ],
-
-                "geography": json.loads(
-
-                    canonical_match.geography or "[]"
-                ),
-
-                "contact_links": []
-            }
-
-
-            merged_entity = (
-
-                merge_investor_entities(
-
-                    canonical_data,
-
-                    incoming_data
-                )
-            )
-
-
-            # =========================================
-            # GENERATE UPDATED EMBEDDING
-            # =========================================
-
-            merged_embedding = (
-
-                generate_investor_embedding(
-
-                    merged_entity
-                )
-            )
-
-
-            # =========================================
-            # UPDATE CANONICAL ENTITY
-            # =========================================
-
-            canonical_match.website = (
-
-                merged_entity["website"]
-            )
-
-
-            canonical_match.focus_sectors = (
-
-                json.dumps(
-
-                    merged_entity[
-                        "focus_sectors"
-                    ]
-                )
-            )
-
-
-            canonical_match.investment_stage = (
-
-                json.dumps(
-
-                    merged_entity[
-                        "investment_stage"
-                    ]
-                )
-            )
-
-
-            canonical_match.geography = (
-
-                json.dumps(
-
-                    merged_entity[
-                        "geography"
-                    ]
-                )
-            )
-
-
-            canonical_match.embedding = (
-
-                merged_embedding
-            )
-
-
-            # =========================================
-            # UPDATE PARTNERS
-            # =========================================
-
-            existing_partner_names = set(
-
-                partner.name.lower()
-
-                for partner in (
-                    canonical_match.partners
-                )
-            )
-
-
-            for partner_name in (
-
-                merged_entity["partners"]
-            ):
-
-                normalized_partner = (
-
-                    partner_name.lower()
-                )
-
-
-                if normalized_partner in (
-
-                    existing_partner_names
-                ):
-
-                    continue
-
-
-                new_partner = Partner(
-
-                    investor_id=canonical_match.id,
-
-                    name=partner_name
-                )
-
-                session.add(new_partner)
-
-
-            # =========================================
-            # UPDATE PORTFOLIO COMPANIES
-            # =========================================
-
-            existing_company_names = set(
-
-                company.company_name.lower()
-
-                for company in (
-                    canonical_match
-                    .portfolio_companies
-                )
-            )
-
-
-            for company_name in (
-
-                merged_entity[
-                    "portfolio_companies"
-                ]
-            ):
-
-                normalized_company = (
-
-                    company_name.lower()
-                )
-
-
-                if normalized_company in (
-
-                    existing_company_names
-                ):
-
-                    continue
-
-
-                new_company = PortfolioCompany(
-
-                    investor_id=canonical_match.id,
-
-                    company_name=company_name
-                )
-
-                session.add(new_company)
-
-
-            session.commit()
-
-            merged_count += 1
-
-
-            print(
-
-                f"Merged investor entity: "
-                f"{canonical_match.firm_name}"
-            )
-
-            continue
-
-
-        # =========================================
-        # GENERATE INVESTOR EMBEDDING
-        # =========================================
-
-        embedding = (
-
-            generate_investor_embedding(
-
-                incoming_data
-            )
-        )
-
-
-        # =========================================
-        # CREATE NEW INVESTOR ENTITY
-        # =========================================
-
-        investor = Investor(
-
-            firm_name=firm_name,
-
-            website=normalize_field(
-
-                incoming_data.get("website")
-            ),
-
-            focus_sectors=json.dumps(
-
-                incoming_data.get(
-                    "focus_sectors",
-                    []
-                )
-            ),
-
-            investment_stage=json.dumps(
-
-                incoming_data.get(
-                    "investment_stage",
-                    []
-                )
-            ),
-
-            geography=json.dumps(
-
-                incoming_data.get(
-                    "geography",
-                    []
-                )
-            ),
-
-            embedding=embedding
-        )
-
-
-        session.add(investor)
-
-        session.commit()
-
-        session.refresh(investor)
-
-
-        # =========================================
-        # INSERT PARTNERS
-        # =========================================
-
-        partners = incoming_data.get(
-
-            "partners",
-            []
-        )
-
-
-        if isinstance(partners, str):
-
-            partners = [partners]
-
-
-        for partner_name in partners:
-
-            partner_name = normalize_field(
-
-                partner_name
-            ).strip()
-
-
-            if not partner_name:
-
-                continue
-
-
-            partner = Partner(
-
-                investor_id=investor.id,
-
-                name=partner_name
-            )
-
-            session.add(partner)
-
-
-        # =========================================
-        # INSERT PORTFOLIO COMPANIES
-        # =========================================
-
-        companies = incoming_data.get(
-
-            "portfolio_companies",
-            []
-        )
-
-
-        if isinstance(companies, str):
-
-            companies = [companies]
-
-
-        for company_name in companies:
-
-            company_name = normalize_field(
-
-                company_name
-            ).strip()
-
-
-            if not company_name:
-
-                continue
-
-
-            company = PortfolioCompany(
-
-                investor_id=investor.id,
-
-                company_name=company_name
-            )
-
-            session.add(company)
-
-
-        session.commit()
-
-        inserted_count += 1
-
-
-        print(
-
-            f"Inserted new investor: "
-            f"{firm_name}"
-        )
-
-
-    except Exception as insert_error:
-
-        session.rollback()
-
-        print(
-
-            f"Insertion failed: "
-            f"{insert_error}"
-        )
-
-
-# =========================================
-# CLOSE SESSION
-# =========================================
-
-session.close()
-
-
-# =========================================
-# FINAL SUMMARY
-# =========================================
-
-print("=" * 80)
-
 print(
 
-    f"\nInserted investors: "
-    f"{inserted_count}"
+    f"\nFound {len(json_files)} parsed files\n"
 )
 
+
+# =========================================
+# INSERT LOOP
+# =========================================
+
+for file_name in json_files:
+
+    file_path = os.path.join(
+
+        PARSED_FOLDER,
+
+        file_name
+    )
+
+
+    with open(
+
+        file_path,
+
+        "r",
+
+        encoding="utf-8"
+    ) as file:
+
+        data = json.load(file)
+
+
+    # =====================================
+    # REQUIRED FIELDS
+    # =====================================
+
+    firm = data.get(
+
+        "firm",
+
+        ""
+    ).strip()
+
+
+    if not firm:
+
+        print(
+
+            f"Skipping {file_name} "
+            f"(missing firm)"
+        )
+
+        continue
+
+
+    website = data.get(
+
+        "website",
+
+        ""
+    ).strip()
+
+
+    focus_sectors = data.get(
+
+        "focus_sectors",
+
+        []
+    )
+
+
+    investment_stage = data.get(
+
+        "investment_stage",
+
+        []
+    )
+
+
+    geography = data.get(
+
+        "geography",
+
+        []
+    )
+
+
+    contact_links = data.get(
+
+        "contact_links",
+
+        []
+    )
+
+
+    partners = data.get(
+
+        "partners",
+
+        []
+    )
+
+
+    portfolio_companies = data.get(
+
+        "portfolio_companies",
+
+        []
+    )
+
+
+    # =====================================
+    # EMBEDDING TEXT
+    # =====================================
+
+    embedding_text = " ".join([
+
+        firm,
+
+        website,
+
+        " ".join(focus_sectors),
+
+        " ".join(investment_stage),
+
+        " ".join(geography),
+
+        " ".join(partners),
+
+        " ".join(portfolio_companies)
+    ])
+
+
+    embedding = embedding_model.encode(
+
+        embedding_text
+    ).tolist()
+
+
+    # =====================================
+    # CHECK DUPLICATE
+    # =====================================
+
+    cursor.execute(
+
+        """
+        SELECT id
+        FROM investors
+        WHERE LOWER(firm) = LOWER(%s)
+        """,
+
+        (firm,)
+    )
+
+
+    existing = cursor.fetchone()
+
+
+    # =====================================
+    # UPDATE EXISTING INVESTOR
+    # =====================================
+
+    if existing:
+
+        investor_id = existing[0]
+
+
+        cursor.execute(
+
+            """
+            UPDATE investors
+            SET
+
+                website = %s,
+
+                focus_sectors = %s,
+
+                investment_stage = %s,
+
+                geography = %s,
+
+                contact_links = %s,
+
+                embedding = %s
+
+            WHERE id = %s
+            """,
+
+            (
+
+                website,
+
+                focus_sectors,
+
+                investment_stage,
+
+                geography,
+
+                contact_links,
+
+                embedding,
+
+                investor_id
+            )
+        )
+
+
+        print(
+
+            f"Updated investor: {firm}"
+        )
+
+
+    # =====================================
+    # INSERT NEW INVESTOR
+    # =====================================
+
+    else:
+
+        cursor.execute(
+
+            """
+            INSERT INTO investors (
+
+                firm,
+
+                website,
+
+                focus_sectors,
+
+                investment_stage,
+
+                geography,
+
+                contact_links,
+
+                embedding
+
+            )
+
+            VALUES (
+
+                %s,
+                %s,
+                %s,
+                %s,
+                %s,
+                %s,
+                %s
+            )
+
+            RETURNING id
+            """,
+
+            (
+
+                firm,
+
+                website,
+
+                focus_sectors,
+
+                investment_stage,
+
+                geography,
+
+                contact_links,
+
+                embedding
+            )
+        )
+
+
+        investor_id = cursor.fetchone()[0]
+
+
+        print(
+
+            f"Inserted investor: {firm}"
+        )
+
+
+    # =====================================
+    # DELETE OLD RELATIONAL DATA
+    # =====================================
+
+    cursor.execute(
+
+        """
+        DELETE FROM partners
+        WHERE investor_id = %s
+        """,
+
+        (investor_id,)
+    )
+
+
+    cursor.execute(
+
+        """
+        DELETE FROM portfolio_companies
+        WHERE investor_id = %s
+        """,
+
+        (investor_id,)
+    )
+
+
+    # =====================================
+    # INSERT PARTNERS
+    # =====================================
+
+    for partner in partners:
+
+        cursor.execute(
+
+            """
+            INSERT INTO partners (
+
+                investor_id,
+
+                name
+
+            )
+
+            VALUES (
+
+                %s,
+                %s
+            )
+            """,
+
+            (
+
+                investor_id,
+
+                partner
+            )
+        )
+
+
+    # =====================================
+    # INSERT PORTFOLIO COMPANIES
+    # =====================================
+
+    for company in portfolio_companies:
+
+        cursor.execute(
+
+            """
+            INSERT INTO portfolio_companies (
+
+                investor_id,
+
+                company_name
+
+            )
+
+            VALUES (
+
+                %s,
+                %s
+            )
+            """,
+
+            (
+
+                investor_id,
+
+                company
+            )
+        )
+
+
+# =========================================
+# SAVE CHANGES
+# =========================================
+
+conn.commit()
+
+
+# =========================================
+# CLOSE CONNECTION
+# =========================================
+
+cursor.close()
+
+conn.close()
+
+
 print(
 
-    f"Merged investors: "
-    f"{merged_count}\n"
+    "\nDatabase insertion complete.\n"
 )
