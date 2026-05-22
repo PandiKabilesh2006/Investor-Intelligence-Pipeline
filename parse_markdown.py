@@ -12,6 +12,7 @@ from app.utils.deduplicate import (
     is_duplicate_firm
 )
 
+from app.utils.failed_url_manager import add_failed_url
 
 # =========================================
 # FOLDERS
@@ -352,7 +353,13 @@ for markdown_file in markdown_files:
             f"Parsing failed: "
             f"{parsing_error}"
         )
-
+        # =====================================
+        # STORE FAILED FILE
+        # =====================================
+        add_failed_url(
+            markdown_file,
+            parsing_error
+    )
 
 # =========================================
 # FINAL SUMMARY
