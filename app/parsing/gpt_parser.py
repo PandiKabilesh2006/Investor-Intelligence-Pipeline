@@ -9,6 +9,12 @@ from app.config.settings import (
     GROQ_API_KEY
 )
 
+from app.utils.groq_circuit import (
+    is_recoverable_groq_error,
+    record_groq_70b_rate_limit_failure,
+    should_use_groq_70b,
+)
+
 
 # =========================================
 # GROQ CLIENT
@@ -1079,227 +1085,115 @@ def parse_with_groq(
     return extract_json(output)
 
 
+def _postprocess_parsed(parsed, markdown_content):
+
+    parsed = normalize_output(parsed)
+
+    parsed = apply_taxonomy_normalization(parsed)
+
+    parsed = recover_sparse_fields(parsed, markdown_content)
+
+    return parsed
+
+
+def _parse_with_groq_8b_then_ollama(prompt, markdown_content):
+
+    print("Switching to Groq 8B...")
+
+    try:
+
+        parsed = parse_with_groq(prompt, GROQ_FALLBACK_MODEL)
+
+        parsed = _postprocess_parsed(parsed, markdown_content)
+
+        print("Parsed using Groq 8B")
+
+        time.sleep(8)
+
+        return parsed
+
+    except Exception as groq_8b_error:
+
+        groq_8b_message = str(groq_8b_error).lower()
+
+        print(f"Groq 8B failed: {groq_8b_error}")
+
+        wait_time = extract_retry_wait(groq_8b_message)
+
+        print(f"Waiting {wait_time}s before Ollama fallback...")
+
+        time.sleep(wait_time)
+
+        if not is_recoverable_groq_error(groq_8b_message):
+
+            return EMPTY_RESPONSE
+
+        print("Switching to Ollama...")
+
+        try:
+
+            parsed = parse_with_ollama(prompt)
+
+            parsed = _postprocess_parsed(parsed, markdown_content)
+
+            print("Parsed using Ollama")
+
+            return parsed
+
+        except Exception as ollama_error:
+
+            print(f"Ollama failed: {ollama_error}")
+
+            return EMPTY_RESPONSE
+
+
 # =========================================
 # MAIN PARSER
 # =========================================
 
 def parse_investor(markdown_content):
 
-    prompt = build_prompt(
+    prompt = build_prompt(markdown_content)
 
-        markdown_content
-    )
+    if should_use_groq_70b():
 
+        try:
 
-    # =====================================
-    # PRIMARY: GROQ 70B
-    # =====================================
+            parsed = parse_with_groq(prompt, GROQ_PRIMARY_MODEL)
 
-    try:
+            parsed = _postprocess_parsed(parsed, markdown_content)
 
-        parsed = parse_with_groq(
+            print("Parsed using Groq 70B")
 
-            prompt,
+            time.sleep(8)
 
-            GROQ_PRIMARY_MODEL
-        )
+            return parsed
 
-        parsed = normalize_output(
+        except Exception as groq_70b_error:
 
-            parsed
-        )
+            error_message = str(groq_70b_error).lower()
 
-        parsed = apply_taxonomy_normalization(
+            print(f"Groq 70B failed: {groq_70b_error}")
 
-            parsed
-        )
-
-        parsed = recover_sparse_fields(
-
-            parsed,
-
-            markdown_content
-        )
-
-        print(
-
-            "Parsed using Groq 70B"
-        )
-
-        time.sleep(8)
-
-        return parsed
-
-
-    except Exception as groq_70b_error:
-
-        error_message = str(
-
-            groq_70b_error
-
-        ).lower()
-
-
-        print(
-
-            f"Groq 70B failed: "
-            f"{groq_70b_error}"
-        )
-
-
-        wait_time = extract_retry_wait(
-
-            error_message
-        )
-
-        print(
-
-            f"Waiting {wait_time}s "
-            f"before fallback..."
-        )
-
-        time.sleep(wait_time)
-
-
-        if any(
-
-            error in error_message
-
-            for error in RECOVERABLE_GROQ_ERRORS
-        ):
-
-            print(
-
-                "Switching to Groq 8B..."
-            )
-
-
-            try:
-
-                parsed = parse_with_groq(
-
-                    prompt,
-
-                    GROQ_FALLBACK_MODEL
-                )
-
-                parsed = normalize_output(
-
-                    parsed
-                )
-
-                parsed = apply_taxonomy_normalization(
-
-                    parsed
-                )
-
-                parsed = recover_sparse_fields(
-
-                    parsed,
-
-                    markdown_content
-                )
-
-                print(
-
-                    "Parsed using Groq 8B"
-                )
-
-                time.sleep(8)
-
-                return parsed
-
-
-            except Exception as groq_8b_error:
-
-                groq_8b_message = str(
-
-                    groq_8b_error
-
-                ).lower()
-
-
-                print(
-
-                    f"Groq 8B failed: "
-                    f"{groq_8b_error}"
-                )
-
-
-                wait_time = extract_retry_wait(
-
-                    groq_8b_message
-                )
-
-                print(
-
-                    f"Waiting {wait_time}s "
-                    f"before Ollama fallback..."
-                )
-
-                time.sleep(wait_time)
-
-
-                if any(
-
-                    error in groq_8b_message
-
-                    for error in RECOVERABLE_GROQ_ERRORS
-                ):
-
-                    print(
-
-                        "Switching to Ollama..."
-                    )
-
-
-                    try:
-
-                        parsed = parse_with_ollama(
-
-                            prompt
-                        )
-
-                        parsed = normalize_output(
-
-                            parsed
-                        )
-
-                        parsed = apply_taxonomy_normalization(
-
-                            parsed
-                        )
-
-                        parsed = recover_sparse_fields(
-
-                            parsed,
-
-                            markdown_content
-                        )
-
-                        print(
-
-                            "Parsed using Ollama"
-                        )
-
-                        return parsed
-
-
-                    except Exception as ollama_error:
-
-                        print(
-
-                            f"Ollama failed: "
-                            f"{ollama_error}"
-                        )
-
-                        return EMPTY_RESPONSE
-
+            if not is_recoverable_groq_error(error_message):
 
                 return EMPTY_RESPONSE
 
+            record_groq_70b_rate_limit_failure()
 
-        return EMPTY_RESPONSE
+            wait_time = extract_retry_wait(error_message)
+
+            print(f"Waiting {wait_time}s before fallback...")
+
+            time.sleep(wait_time)
+
+    else:
+
+        print(
+            "Groq 70B skipped (rate-limit circuit open); using 8B directly."
+        )
+
+    return _parse_with_groq_8b_then_ollama(prompt, markdown_content)
 # import json
 # import time
 # import ollama

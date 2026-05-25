@@ -1,6 +1,10 @@
 from sqlalchemy import (
 
+    Boolean,
+
     Column,
+
+    Float,
 
     Integer,
 
@@ -225,6 +229,71 @@ class PortfolioCompany(Base):
 
         back_populates="portfolio_companies"
     )
+
+
+# =========================================
+# CRAWLED URL MODEL
+# =========================================
+
+class CrawledUrl(Base):
+
+    __tablename__ = "crawled_urls"
+
+    id = Column(Integer, primary_key=True)
+
+    url = Column(Text, unique=True, nullable=False)
+
+    discovered_query = Column(Text)
+
+    crawl_status = Column(String)
+
+    markdown_saved = Column(Boolean, default=False)
+
+    updated_at = Column(TIMESTAMP)
+
+
+# =========================================
+# CRAWL QUEUE MODEL
+# =========================================
+
+class CrawlQueue(Base):
+
+    __tablename__ = "crawl_queue"
+
+    id = Column(Integer, primary_key=True)
+
+    url = Column(Text, unique=True, nullable=False)
+
+    priority_score = Column(Float, default=1.0)
+
+    discovered_at = Column(TIMESTAMP)
+
+    status = Column(String, default="pending")
+
+    last_crawled = Column(TIMESTAMP)
+
+
+# =========================================
+# FAILED URL MODEL
+# =========================================
+
+class FailedUrl(Base):
+
+    __tablename__ = "failed_urls"
+
+    id = Column(Integer, primary_key=True)
+
+    url = Column(Text)
+
+    error_message = Column(Text)
+
+    retry_count = Column(Integer, default=1)
+
+    last_attempt = Column(TIMESTAMP)
+
+    status = Column(String, default="pending")
+
+
 # from sqlalchemy import (
 #     Column,
 #     Integer,

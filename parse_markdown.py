@@ -14,6 +14,10 @@ from app.utils.deduplicate import (
 
 from app.utils.failed_url_manager import add_failed_url
 
+from app.utils.groq_circuit import reset_groq_70b_circuit
+
+reset_groq_70b_circuit()
+
 # =========================================
 # FOLDERS
 # =========================================

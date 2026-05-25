@@ -9,6 +9,12 @@ from app.config.settings import (
     GROQ_API_KEY
 )
 
+from app.utils.groq_circuit import (
+    is_recoverable_groq_error,
+    record_groq_70b_rate_limit_failure,
+    should_use_groq_70b,
+)
+
 
 # =========================================
 # GROQ CLIENT
@@ -467,6 +473,53 @@ def classify_with_groq(
     return normalize_output(parsed)
 
 
+def _classify_with_groq_8b_then_ollama(prompt):
+
+    print("Switching to Groq 8B...")
+
+    try:
+
+        parsed = classify_with_groq(prompt, GROQ_FALLBACK_MODEL)
+
+        print("Classification using Groq 8B")
+
+        time.sleep(8)
+
+        return parsed
+
+    except Exception as groq_8b_error:
+
+        groq_8b_message = str(groq_8b_error).lower()
+
+        print(f"Groq 8B failed: {groq_8b_error}")
+
+        wait_time = extract_retry_wait(groq_8b_message)
+
+        print(f"Waiting {wait_time}s before Ollama fallback...")
+
+        time.sleep(wait_time)
+
+        if not is_recoverable_groq_error(groq_8b_message):
+
+            return FALLBACK_RESPONSE
+
+        print("Switching to Ollama...")
+
+        try:
+
+            parsed = classify_with_ollama(prompt)
+
+            print("Classification using Ollama")
+
+            return parsed
+
+        except Exception as ollama_error:
+
+            print(f"Ollama failed: {ollama_error}")
+
+            return FALLBACK_RESPONSE
+
+
 # =========================================
 # INVESTOR RELEVANCE CLASSIFIER
 # =========================================
@@ -493,162 +546,40 @@ def classify_investor_relevance(
         snippet
     )
 
+    if should_use_groq_70b():
 
-    # =====================================
-    # PRIMARY: GROQ 70B
-    # =====================================
+        try:
 
-    try:
+            parsed = classify_with_groq(prompt, GROQ_PRIMARY_MODEL)
 
-        parsed = classify_with_groq(
+            print("Classification using Groq 70B")
 
-            prompt,
+            time.sleep(8)
 
-            GROQ_PRIMARY_MODEL
-        )
+            return parsed
 
-        print(
+        except Exception as groq_70b_error:
 
-            "Classification using Groq 70B"
-        )
+            error_message = str(groq_70b_error).lower()
 
-        time.sleep(8)
+            print(f"Groq 70B failed: {groq_70b_error}")
 
-        return parsed
-
-
-    except Exception as groq_70b_error:
-
-        error_message = str(
-
-            groq_70b_error
-
-        ).lower()
-
-
-        print(
-
-            f"Groq 70B failed: "
-            f"{groq_70b_error}"
-        )
-
-
-        wait_time = extract_retry_wait(
-
-            error_message
-        )
-
-        print(
-
-            f"Waiting {wait_time}s "
-            f"before fallback..."
-        )
-
-        time.sleep(wait_time)
-
-
-        if any(
-
-            error in error_message
-
-            for error in RECOVERABLE_GROQ_ERRORS
-        ):
-
-            print(
-
-                "Switching to Groq 8B..."
-            )
-
-
-            try:
-
-                parsed = classify_with_groq(
-
-                    prompt,
-
-                    GROQ_FALLBACK_MODEL
-                )
-
-                print(
-
-                    "Classification using Groq 8B"
-                )
-
-                time.sleep(8)
-
-                return parsed
-
-
-            except Exception as groq_8b_error:
-
-                groq_8b_message = str(
-
-                    groq_8b_error
-
-                ).lower()
-
-
-                print(
-
-                    f"Groq 8B failed: "
-                    f"{groq_8b_error}"
-                )
-
-
-                wait_time = extract_retry_wait(
-
-                    groq_8b_message
-                )
-
-                print(
-
-                    f"Waiting {wait_time}s "
-                    f"before Ollama fallback..."
-                )
-
-                time.sleep(wait_time)
-
-
-                if any(
-
-                    error in groq_8b_message
-
-                    for error in RECOVERABLE_GROQ_ERRORS
-                ):
-
-                    print(
-
-                        "Switching to Ollama..."
-                    )
-
-
-                    try:
-
-                        parsed = classify_with_ollama(
-
-                            prompt
-                        )
-
-                        print(
-
-                            "Classification using Ollama"
-                        )
-
-                        return parsed
-
-
-                    except Exception as ollama_error:
-
-                        print(
-
-                            f"Ollama failed: "
-                            f"{ollama_error}"
-                        )
-
-                        return FALLBACK_RESPONSE
-
+            if not is_recoverable_groq_error(error_message):
 
                 return FALLBACK_RESPONSE
 
+            record_groq_70b_rate_limit_failure()
 
-        return FALLBACK_RESPONSE
+            wait_time = extract_retry_wait(error_message)
+
+            print(f"Waiting {wait_time}s before fallback...")
+
+            time.sleep(wait_time)
+
+    else:
+
+        print(
+            "Groq 70B skipped (rate-limit circuit open); using 8B directly."
+        )
+
+    return _classify_with_groq_8b_then_ollama(prompt)

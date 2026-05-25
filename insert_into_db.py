@@ -1,7 +1,7 @@
 import os
 import json
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 import psycopg2
 
@@ -11,6 +11,14 @@ from sentence_transformers import (
 
 from pgvector.psycopg2 import (
     register_vector
+)
+
+from app.config.settings import (
+    DB_HOST,
+    DB_NAME,
+    DB_PASSWORD,
+    DB_PORT,
+    DB_USER,
 )
 
 
@@ -105,13 +113,15 @@ def insert_investor_data(data, conn=None):
 
         conn = psycopg2.connect(
 
-            host="localhost",
+            host=DB_HOST,
 
-            database="investor_intelligence",
+            port=DB_PORT,
 
-            user="postgres",
+            database=DB_NAME,
 
-            password="LiveClass2270157"
+            user=DB_USER,
+
+            password=DB_PASSWORD
         )
 
         register_vector(conn)
@@ -347,7 +357,7 @@ def insert_investor_data(data, conn=None):
 
                     embedding,
 
-                    datetime.utcnow(),
+                    datetime.now(timezone.utc),
 
                     investor_id
                 )
@@ -425,7 +435,7 @@ def insert_investor_data(data, conn=None):
 
                     embedding,
 
-                    datetime.utcnow()
+                    datetime.now(timezone.utc)
                 )
             )
 
@@ -541,10 +551,7 @@ def insert_investor_data(data, conn=None):
 
     except Exception as insertion_error:
 
-        if should_close_conn:
-
-            conn.rollback()
-
+        conn.rollback()
 
         print(
 
@@ -576,13 +583,15 @@ def main():
 
     conn = psycopg2.connect(
 
-        host="localhost",
+        host=DB_HOST,
 
-        database="investor_intelligence",
+        port=DB_PORT,
 
-        user="postgres",
+        database=DB_NAME,
 
-        password="LiveClass2270157"
+        user=DB_USER,
+
+        password=DB_PASSWORD
     )
 
 
@@ -648,6 +657,8 @@ def main():
 
 
         except Exception as file_error:
+
+            conn.rollback()
 
             print(
 

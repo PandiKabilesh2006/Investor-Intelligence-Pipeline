@@ -1,5 +1,8 @@
+import os
 import time
 import sys
+from datetime import datetime
+
 import schedule
 import subprocess
 
@@ -115,16 +118,53 @@ def run_nightly_pipeline():
     try:
 
         # =====================================
-        # RUN MAIN PIPELINE
+        # RUN DISCOVERY PIPELINE
         # =====================================
 
+        pipeline_logger.info("Starting run_pipeline.py...")
         subprocess.run(
 
             [
 
                 sys.executable,
 
-                "nightly_ingestion.py"
+                "run_pipeline.py"
+            ],
+
+            check=True
+        )
+
+
+        # =====================================
+        # RUN MARKDOWN PARSING
+        # =====================================
+
+        pipeline_logger.info("Starting parse_markdown.py...")
+        subprocess.run(
+
+            [
+
+                sys.executable,
+
+                "parse_markdown.py"
+            ],
+
+            check=True
+        )
+
+
+        # =====================================
+        # RUN DATABASE INSERTION
+        # =====================================
+
+        pipeline_logger.info("Starting insert_into_db.py...")
+        subprocess.run(
+
+            [
+
+                sys.executable,
+
+                "insert_into_db.py"
             ],
 
             check=True
@@ -168,15 +208,12 @@ def run_nightly_pipeline():
 # =========================================
 # SCHEDULE CONFIGURATION
 # =========================================
+# 24-hour local time, e.g. "12:00" = noon. Override with SCHEDULE_TIME in .env
+# Production default: 02:00. Keep this process running — closing the terminal stops scheduling.
 
-schedule.every().day.at(
+SCHEDULE_TIME = os.getenv("SCHEDULE_TIME", "12:00")
 
-    "02:00"
-
-).do(
-
-    run_nightly_pipeline
-)
+schedule.every().day.at(SCHEDULE_TIME).do(run_nightly_pipeline)
 
 
 # =========================================
@@ -195,7 +232,7 @@ pipeline_logger.info(
 
 pipeline_logger.info(
 
-    "Nightly ingestion scheduled at 02:00 AM"
+    f"Nightly ingestion scheduled daily at {SCHEDULE_TIME} (local time)"
 )
 
 pipeline_logger.info(
@@ -213,7 +250,12 @@ print(
 
 print(
 
-    "Nightly ingestion scheduled at 02:00 AM\n"
+    f"Nightly ingestion scheduled daily at {SCHEDULE_TIME} (local time)\n"
+)
+
+print(
+
+    f"Started at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} — leave this window open.\n"
 )
 
 print("=" * 80)
@@ -229,7 +271,7 @@ while True:
 
         schedule.run_pending()
 
-        time.sleep(60)
+        time.sleep(30)
 
 
     except Exception as loop_error:
