@@ -183,13 +183,124 @@ def semantic_investor_search(
         investors = []
 
 
+        # =====================================
+        # PROCESS RESULTS
+        # =====================================
+
         for row in results:
+
+            # =================================
+            # SEMANTIC SCORE
+            # =================================
+
+            semantic_score = (
+
+                1 - float(row.distance)
+            )
+
+
+            # =================================
+            # HYBRID BOOSTS
+            # =================================
+
+            sector_boost = 0.0
+
+            stage_boost = 0.0
+
+            geography_boost = 0.0
+
+
+            # =================================
+            # SECTOR BOOST
+            # =================================
+
+            if (
+
+                sector
+
+                and
+
+                row.focus_sectors
+
+                and
+
+                sector in row.focus_sectors
+            ):
+
+                sector_boost = 0.15
+
+
+            # =================================
+            # STAGE BOOST
+            # =================================
+
+            if (
+
+                stage
+
+                and
+
+                row.investment_stage
+
+                and
+
+                stage in row.investment_stage
+            ):
+
+                stage_boost = 0.05
+
+
+            # =================================
+            # GEOGRAPHY BOOST
+            # =================================
+
+            if (
+
+                geography
+
+                and
+
+                row.geography
+
+                and
+
+                geography in row.geography
+            ):
+
+                geography_boost = 0.10
+
+
+            # =================================
+            # FINAL HYBRID SCORE
+            # =================================
+
+            hybrid_score = (
+
+                semantic_score
+
+                +
+
+                sector_boost
+
+                +
+
+                stage_boost
+
+                +
+
+                geography_boost
+            )
+
+
+            # =================================
+            # STORE RESULT
+            # =================================
 
             investors.append({
 
                 "id": row.id,
 
-                "firm": row.firm,
+                "firm_name": row.firm,
 
                 "website": row.website,
 
@@ -206,10 +317,39 @@ def semantic_investor_search(
                 "contact_links": row.contact_links,
 
                 "distance": float(
-
                     row.distance
-                )
+                ),
+
+                "semantic_score": round(
+                    semantic_score,
+                    4
+                ),
+
+                "hybrid_score": round(
+                    hybrid_score,
+                    4
+                ),
+
+                "sector_boost": sector_boost,
+
+                "stage_boost": stage_boost,
+
+                "geography_boost": geography_boost
             })
+
+
+        # =====================================
+        # SORT BY HYBRID SCORE
+        # =====================================
+
+        investors = sorted(
+
+            investors,
+
+            key=lambda x: x["hybrid_score"],
+
+            reverse=True
+        )
 
 
         return investors

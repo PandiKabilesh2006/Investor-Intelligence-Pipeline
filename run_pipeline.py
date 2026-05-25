@@ -2,8 +2,8 @@ import warnings
 import re
 import os
 import json
-import logging
 import asyncio
+import sys
 
 from datetime import (
     datetime,
@@ -40,8 +40,28 @@ from app.config.ingestion_universe import (
 
     STAGES,
 
-    GEOGRAPHIES
+    GEOGRAPHIES,
+
+    generate_ingestion_queries
 )
+
+from app.logging.logging_config import (
+
+    pipeline_logger,
+
+    error_logger
+)
+
+from app.utils.crawl_queue_manager import (
+
+    add_to_crawl_queue,
+
+    get_next_urls,
+
+    mark_url_completed
+)
+
+from app.query.query_expansion import expand_query_theme
 
 
 # =========================================
@@ -75,20 +95,6 @@ RECRAWL_AFTER_DAYS = 30
 
 
 # =========================================
-# LOGGING
-# =========================================
-
-logging.basicConfig(
-
-    filename="pipeline.log",
-
-    level=logging.INFO,
-
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
-
-
-# =========================================
 # RAW DATA FOLDER
 # =========================================
 
@@ -107,10 +113,6 @@ os.makedirs(
 # =========================================
 
 def canonicalize_url(url):
-
-    """
-    Normalize URLs to reduce duplicates.
-    """
 
     try:
 
@@ -277,6 +279,12 @@ def save_crawled_url(
 # PIPELINE START
 # =========================================
 
+pipeline_logger.info(
+
+    "Investor Intelligence Pipeline Started"
+)
+
+
 print(
 
     "\nInvestor Intelligence Pipeline\n"
@@ -289,31 +297,13 @@ print(
 
 queries = []
 
+if len(sys.argv) > 1:
 
-for sector in SECTORS:
+    queries = [sys.argv[1]]
 
-    for stage in STAGES:
+else:
 
-        for geography in GEOGRAPHIES:
-
-            generated_queries = (
-
-                generate_queries(
-
-                    sector=sector,
-
-                    stage=stage,
-
-                    geography=geography,
-
-                    theme=sector
-                )
-            )
-
-            queries.extend(
-
-                generated_queries
-            )
+    queries = generate_ingestion_queries()
 
 
 # =========================================
@@ -330,6 +320,12 @@ queries = list(set(queries))
 if TEST_MODE:
 
     queries = queries[:TEST_QUERY_LIMIT]
+
+
+pipeline_logger.info(
+
+    f"Generated {len(queries)} queries"
+)
 
 
 print(
@@ -374,6 +370,12 @@ seen_urls = set()
 # SEARCH PIPELINE
 # =========================================
 
+pipeline_logger.info(
+
+    "Starting investor discovery"
+)
+
+
 print(
 
     "\nSearching investor websites...\n"
@@ -392,7 +394,7 @@ for query in queries:
         f"{query}\n"
     )
 
-    logging.info(
+    pipeline_logger.info(
 
         f"Searching query: {query}"
     )
@@ -408,7 +410,7 @@ for query in queries:
 
         if "results" not in search_results:
 
-            logging.error(
+            error_logger.error(
 
                 f"Search API error: "
                 f"{search_results}"
@@ -420,15 +422,13 @@ for query in queries:
 
         if len(results) == 0:
 
-            logging.warning(
+            pipeline_logger.warning(
 
                 f"No results found for query: "
                 f"{query}"
             )
 
             continue
-
-        candidate_urls = []
 
         for result in results:
 
@@ -469,21 +469,9 @@ for query in queries:
 
             if blocked:
 
-                print(
-
-                    f"Skipping blocked domain: "
-                    f"{url}"
-                )
-
                 continue
 
             if already_crawled(url):
-
-                print(
-
-                    f"Skipping recently crawled URL: "
-                    f"{url}"
-                )
 
                 continue
 
@@ -521,236 +509,277 @@ for query in queries:
                 0.0
             )
 
-            reason = classification.get(
-
-                "reason",
-
-                ""
-            )
-
             if not is_relevant:
-
-                print(
-
-                    f"Rejected URL: {url}"
-                )
 
                 continue
 
             if confidence < 0.75:
 
-                print(
-
-                    f"Low confidence URL: "
-                    f"{url}"
-                )
-
                 continue
 
-            print("=" * 80)
 
-            print(
+            # =====================================
+            # PRIORITY SCORING
+            # =====================================
 
-                f"\nQueued URL: {url}"
+            priority_score = confidence
+
+
+            if "portfolio" in url_lower:
+
+                priority_score += 2
+
+
+            if "team" in url_lower:
+
+                priority_score += 2
+
+
+            if "partner" in url_lower:
+
+                priority_score += 2
+
+
+            if "investor" in url_lower:
+
+                priority_score += 1
+
+
+            # =====================================
+            # ADD TO QUEUE
+            # =====================================
+
+            add_to_crawl_queue(
+
+                url,
+
+                priority_score
             )
 
-            print(
 
-                f"Relevance Confidence: "
-                f"{confidence}"
-            )
-
-            print(
-
-                f"Reason: "
-                f"{reason}\n"
-            )
-
-            logging.info(
+            pipeline_logger.info(
 
                 f"Queued URL: "
-                f"{url} | confidence={confidence}"
+                f"{url} | "
+                f"priority={priority_score}"
             )
 
-            candidate_urls.append(url)
-
-            if total_processed >= MAX_TOTAL_URLS:
-
-                print(
-
-                    "\nReached ingestion limit.\n"
-                )
-
-                break
-
-            if (
-
-                TEST_MODE
-
-                and
-
-                len(candidate_urls)
-
-                >= TEST_URL_LIMIT
-            ):
-
-                break
-
-        print(
-
-            f"\nRunning async extraction "
-            f"for {len(candidate_urls)} URLs\n"
-        )
-
-        extraction_results = asyncio.run(
-
-            extract_urls_async(
-
-                candidate_urls
-            )
-        )
-
-        for extraction_result in extraction_results:
-
-            url = extraction_result["url"]
-
-            markdown_content = (
-
-                extraction_result["markdown"]
-            )
-
-            success = extraction_result["success"]
-
-            if not success:
-
-                continue
-
-            if not markdown_content:
-
-                continue
-
-            if len(markdown_content) < 500:
-
-                print(
-
-                    f"Insufficient content: "
-                    f"{url}"
-                )
-
-                continue
-
-            try:
-
-                safe_filename = re.sub(
-
-                    r"[^a-zA-Z0-9]",
-
-                    "_",
-
-                    url
-                )
-
-                filename = (
-
-                    f"{RAW_DATA_FOLDER}/"
-                    f"{safe_filename[:120]}.md"
-                )
-
-                with open(
-
-                    filename,
-
-                    "w",
-
-                    encoding="utf-8"
-                ) as file:
-
-                    file.write(
-
-                        markdown_content
-                    )
-
-                metadata = {
-
-                    "query": query,
-
-                    "url": url
-                }
-
-                metadata_filename = (
-
-                    filename.replace(
-
-                        ".md",
-                        ".json"
-                    )
-                )
-
-                with open(
-
-                    metadata_filename,
-
-                    "w",
-
-                    encoding="utf-8"
-                ) as meta_file:
-
-                    json.dump(
-
-                        metadata,
-
-                        meta_file,
-
-                        indent=4
-                    )
-
-                save_crawled_url(
-
-                    url,
-
-                    query
-                )
-
-                print(
-
-                    f"Saved markdown: "
-                    f"{filename}"
-                )
-
-                total_processed += 1
-
-            except Exception as save_error:
-
-                logging.error(
-
-                    f"Save failed: "
-                    f"{save_error}"
-                )
-
-                print(
-
-                    f"Save failed: "
-                    f"{save_error}"
-                )
 
     except Exception as search_error:
 
-        logging.error(
+        error_logger.error(
 
             f"Search failed: "
             f"{search_error}"
         )
 
+
+# =========================================
+# PROCESS PRIORITY QUEUE
+# =========================================
+
+pipeline_logger.info(
+
+    "Starting queued URL processing"
+)
+
+
+queued_urls = get_next_urls(
+
+    limit=MAX_TOTAL_URLS
+)
+
+
+candidate_urls = []
+
+queue_mapping = {}
+
+
+for queued in queued_urls:
+
+    queue_id = queued.id
+
+    url = queued.url
+
+    candidate_urls.append(url)
+
+    queue_mapping[url] = queue_id
+
+
+pipeline_logger.info(
+
+    f"Processing {len(candidate_urls)} queued URLs"
+)
+
+
+print(
+
+    f"\nRunning async extraction "
+    f"for {len(candidate_urls)} URLs\n"
+)
+
+
+extraction_results = asyncio.run(
+
+    extract_urls_async(
+
+        candidate_urls
+    )
+)
+
+
+# =========================================
+# SAVE EXTRACTIONS
+# =========================================
+
+for extraction_result in extraction_results:
+
+    try:
+
+        url = extraction_result["url"]
+
+        markdown_content = (
+
+            extraction_result["markdown"]
+        )
+
+        success = extraction_result["success"]
+
+        if not success:
+
+            continue
+
+        if not markdown_content:
+
+            continue
+
+        if len(markdown_content) < 500:
+
+            continue
+
+        safe_filename = re.sub(
+
+            r"[^a-zA-Z0-9]",
+
+            "_",
+
+            url
+        )
+
+        filename = (
+
+            f"{RAW_DATA_FOLDER}/"
+            f"{safe_filename[:120]}.md"
+        )
+
+        with open(
+
+            filename,
+
+            "w",
+
+            encoding="utf-8"
+        ) as file:
+
+            file.write(
+
+                markdown_content
+            )
+
+        metadata = {
+
+            "url": url,
+
+            "collected_at": str(
+                datetime.utcnow()
+            )
+        }
+
+        metadata_filename = (
+
+            filename.replace(
+
+                ".md",
+                ".json"
+            )
+        )
+
+        with open(
+
+            metadata_filename,
+
+            "w",
+
+            encoding="utf-8"
+        ) as meta_file:
+
+            json.dump(
+
+                metadata,
+
+                meta_file,
+
+                indent=4
+            )
+
+        save_crawled_url(
+
+            url,
+
+            "priority_queue"
+        )
+
+        queue_id = queue_mapping.get(url)
+
+        if queue_id:
+
+            mark_url_completed(
+
+                queue_id
+            )
+
+        total_processed += 1
+
+        pipeline_logger.info(
+
+            f"Saved markdown: {filename}"
+        )
+
         print(
 
-            f"Search failed: "
-            f"{search_error}"
+            f"Saved markdown: "
+            f"{filename}"
+        )
+
+    except Exception as save_error:
+
+        error_logger.error(
+
+            f"Save failed: "
+            f"{save_error}"
+        )
+
+        print(
+
+            f"Save failed: "
+            f"{save_error}"
         )
 
 
 # =========================================
 # FINAL SUMMARY
 # =========================================
+
+pipeline_logger.info(
+
+    f"Total processed: {total_processed}"
+)
+
+pipeline_logger.info(
+
+    "Pipeline execution completed"
+)
+
 
 print("=" * 80)
 

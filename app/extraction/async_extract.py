@@ -45,16 +45,7 @@ async def extract_single_url(
                 url
             )
 
-
-            markdown = getattr(
-
-                result,
-
-                "markdown",
-
-                ""
-            )
-
+            markdown = result or ""
 
             return {
 

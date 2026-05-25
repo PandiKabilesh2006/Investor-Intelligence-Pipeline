@@ -39,22 +39,13 @@ for investor in investors:
 
         investor_data = {
 
-            "firm": investor.firm_name,
+            "firm": investor.firm,
 
-            "focus_sectors": json.loads(
+            "focus_sectors": investor.focus_sectors or [],
 
-                investor.focus_sectors or "[]"
-            ),
+            "investment_stage": investor.investment_stage or [],
 
-            "investment_stage": json.loads(
-
-                investor.investment_stage or "[]"
-            ),
-
-            "geography": json.loads(
-
-                investor.geography or "[]"
-            )
+            "geography": investor.geography or []
         }
 
 
@@ -79,7 +70,7 @@ for investor in investors:
         print(
 
             f"Generated embedding: "
-            f"{investor.firm_name}"
+            f"{investor.firm}"
         )
 
 

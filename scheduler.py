@@ -1,4 +1,5 @@
 import time
+import sys
 import schedule
 import subprocess
 
@@ -57,7 +58,7 @@ def retry_failed_urls():
 
                 [
 
-                    "py",
+                    sys.executable,
 
                     "nightly_ingestion.py",
 
@@ -121,7 +122,7 @@ def run_nightly_pipeline():
 
             [
 
-                "py",
+                sys.executable,
 
                 "nightly_ingestion.py"
             ],

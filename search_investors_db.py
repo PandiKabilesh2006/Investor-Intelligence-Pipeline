@@ -45,20 +45,11 @@ matched_investors = []
 
 for investor in investors:
 
-    sectors = json.loads(
+    sectors = investor.focus_sectors or []
 
-        investor.focus_sectors or "[]"
-    )
+    stages = investor.investment_stage or []
 
-    stages = json.loads(
-
-        investor.investment_stage or "[]"
-    )
-
-    geographies = json.loads(
-
-        investor.geography or "[]"
-    )
+    geographies = investor.geography or []
 
 
     sector_match = (
@@ -103,7 +94,7 @@ for investor in investors:
         matched_investors.append(
 
             {
-                "firm": investor.firm_name,
+                "firm": investor.firm,
                 "website": investor.website,
                 "focus_sectors": sectors,
                 "investment_stage": stages,

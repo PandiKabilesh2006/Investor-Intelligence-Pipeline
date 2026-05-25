@@ -50,20 +50,11 @@ for investor in investors:
     score = 0
 
 
-    sectors = json.loads(
+    sectors = investor.focus_sectors or []
 
-        investor.focus_sectors or "[]"
-    )
+    stages = investor.investment_stage or []
 
-    stages = json.loads(
-
-        investor.investment_stage or "[]"
-    )
-
-    geographies = json.loads(
-
-        investor.geography or "[]"
-    )
+    geographies = investor.geography or []
 
 
     # =========================================
@@ -102,7 +93,7 @@ for investor in investors:
         ranked_investors.append(
 
             {
-                "firm": investor.firm_name,
+                "firm": investor.firm,
                 "website": investor.website,
                 "score": score,
                 "focus_sectors": sectors,

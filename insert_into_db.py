@@ -15,61 +15,16 @@ from pgvector.psycopg2 import (
 
 
 # =========================================
-# DATABASE CONNECTION
+# LAZY-LOAD EMBEDDING MODEL
 # =========================================
 
-conn = psycopg2.connect(
+embedding_model = None
 
-    host="localhost",
-
-    database="investor_intelligence",
-
-    user="postgres",
-
-    password="LiveClass2270157"
-)
-
-
-register_vector(conn)
-
-cursor = conn.cursor()
-
-
-# =========================================
-# EMBEDDING MODEL
-# =========================================
-
-embedding_model = SentenceTransformer(
-
-    "all-MiniLM-L6-v2"
-)
-
-
-# =========================================
-# PARSED JSON FOLDER
-# =========================================
-
-PARSED_FOLDER = "parsed_json"
-
-
-# =========================================
-# LOAD JSON FILES
-# =========================================
-
-json_files = [
-
-    file
-
-    for file in os.listdir(PARSED_FOLDER)
-
-    if file.endswith(".json")
-]
-
-
-print(
-
-    f"\nFound {len(json_files)} parsed files\n"
-)
+def get_embedding_model():
+    global embedding_model
+    if embedding_model is None:
+        embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+    return embedding_model
 
 
 # =========================================
@@ -134,32 +89,39 @@ def ensure_list(value):
 
 
 # =========================================
-# INSERT LOOP
+# INSERT SINGLE INVESTOR DATA
 # =========================================
 
-for file_name in json_files:
+def insert_investor_data(data, conn=None):
 
-    file_path = os.path.join(
+    """
+    Insert or update a single investor record (and its relational partner/portfolio company data) into the database.
+    If conn is not provided, it creates a new database connection and commits/closes it.
+    """
 
-        PARSED_FOLDER,
+    should_close_conn = False
 
-        file_name
-    )
+    if conn is None:
 
+        conn = psycopg2.connect(
+
+            host="localhost",
+
+            database="investor_intelligence",
+
+            user="postgres",
+
+            password="LiveClass2270157"
+        )
+
+        register_vector(conn)
+
+        should_close_conn = True
+
+
+    cursor = conn.cursor()
 
     try:
-
-        with open(
-
-            file_path,
-
-            "r",
-
-            encoding="utf-8"
-        ) as file:
-
-            data = json.load(file)
-
 
         # =====================================
         # REQUIRED FIELDS
@@ -179,13 +141,9 @@ for file_name in json_files:
 
         if not firm:
 
-            print(
+            print("Skipping (missing firm)")
 
-                f"Skipping {file_name} "
-                f"(missing firm)"
-            )
-
-            continue
+            return False
 
 
         website = str(
@@ -312,7 +270,9 @@ for file_name in json_files:
         # GENERATE EMBEDDING
         # =====================================
 
-        embedding = embedding_model.encode(
+        model = get_embedding_model()
+
+        embedding = model.encode(
 
             embedding_text
         ).tolist()
@@ -510,7 +470,9 @@ for file_name in json_files:
         # =====================================
 
         for partner in partners:
+
             cursor.execute(
+
                 """
                 INSERT INTO partners (
 
@@ -569,33 +531,152 @@ for file_name in json_files:
             )
 
 
+        if should_close_conn:
+
+            conn.commit()
+
+
+        return True
+
+
     except Exception as insertion_error:
+
+        if should_close_conn:
+
+            conn.rollback()
+
 
         print(
 
-            f"Failed processing "
-            f"{file_name}: "
+            f"Failed processing investor data: "
             f"{insertion_error}"
         )
 
+        raise insertion_error
+
+
+    finally:
+
+        cursor.close()
+
+        if should_close_conn:
+
+            conn.close()
+
 
 # =========================================
-# SAVE CHANGES
+# MAIN FUNCTION
 # =========================================
 
-conn.commit()
+def main():
+
+    # =========================================
+    # DATABASE CONNECTION
+    # =========================================
+
+    conn = psycopg2.connect(
+
+        host="localhost",
+
+        database="investor_intelligence",
+
+        user="postgres",
+
+        password="LiveClass2270157"
+    )
 
 
-# =========================================
-# CLOSE CONNECTION
-# =========================================
-
-cursor.close()
-
-conn.close()
+    register_vector(conn)
 
 
-print(
+    # =========================================
+    # PARSED JSON FOLDER
+    # =========================================
 
-    "\nDatabase insertion complete.\n"
-)
+    PARSED_FOLDER = "parsed_json"
+
+
+    # =========================================
+    # LOAD JSON FILES
+    # =========================================
+
+    json_files = [
+
+        file
+
+        for file in os.listdir(PARSED_FOLDER)
+
+        if file.endswith(".json")
+    ]
+
+
+    print(
+
+        f"\nFound {len(json_files)} parsed files\n"
+    )
+
+
+    # =========================================
+    # INSERT LOOP
+    # =========================================
+
+    for file_name in json_files:
+
+        file_path = os.path.join(
+
+            PARSED_FOLDER,
+
+            file_name
+        )
+
+
+        try:
+
+            with open(
+
+                file_path,
+
+                "r",
+
+                encoding="utf-8"
+            ) as file:
+
+                data = json.load(file)
+
+
+            insert_investor_data(data, conn=conn)
+
+
+        except Exception as file_error:
+
+            print(
+
+                f"Failed processing "
+                f"{file_name}: "
+                f"{file_error}"
+            )
+
+
+    # =========================================
+    # SAVE CHANGES
+    # =========================================
+
+    conn.commit()
+
+
+    # =========================================
+    # CLOSE CONNECTION
+    # =========================================
+
+    conn.close()
+
+
+    print(
+
+        "\nDatabase insertion complete.\n"
+    )
+
+
+if __name__ == "__main__":
+
+    main()
