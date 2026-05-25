@@ -363,6 +363,31 @@ GROQ_API_KEY=your_groq_api_key
 OLLAMA_BASE_URL=http://localhost:11434
 ```
 
+### Production Ingestion Controls
+
+Production systems should keep crawl and search limits so API spend, provider rate limits, and job duration stay predictable. Tune these in `.env` instead of editing code:
+
+```env
+INGESTION_TEST_MODE=false
+INGESTION_TEST_QUERY_LIMIT=40
+INGESTION_SEARCH_MAX_PAGES=10
+INGESTION_MAX_URLS_PER_RUN=500
+INGESTION_QUEUE_STATUS_LIMIT=500
+INGESTION_RECRAWL_AFTER_DAYS=30
+INGESTION_QUERY_DELAY_SECONDS=2
+INGESTION_CRON=0 14 * * *
+EXTRACTION_MAX_CONCURRENT=5
+PARSER_MAX_CONTENT_LENGTH=8000
+PARTNER_MIN_CONFIDENCE=0.7
+TEAM_PAGE_PRIORITY=3.5
+TEAM_PAGE_PATHS=/team,/people,/partners,/about,/leadership,/our-team,/our-people,/investment-team
+EXTRACTION_SUBPAGES=<root>,/team,/people,/partners,/about,/leadership,/portfolio,/companies,/contact
+REJECTED_DISCOVERY_DOMAINS=crunchbase.com,linkedin.com,pitchbook.com,techcrunch.com,wikipedia.org,twitter.com,x.com
+PARTNER_ROLE_TITLES=partner,managing partner,general partner,venture partner,principal,investment director,founding partner
+```
+
+For larger production runs, increase `INGESTION_MAX_URLS_PER_RUN` and `INGESTION_SEARCH_MAX_PAGES` gradually while watching API cost, error rates, duplicate rate, and database growth.
+
 ---
 
 # ▶️ Running the Pipeline

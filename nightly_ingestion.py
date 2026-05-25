@@ -4,6 +4,11 @@ import sys
 
 from sqlalchemy import text
 
+from app.config.settings import (
+    INGESTION_QUERY_DELAY_SECONDS,
+    INGESTION_QUEUE_STATUS_LIMIT
+)
+
 from app.config.discovery_queries import (
     DISCOVERY_QUERIES
 )
@@ -297,7 +302,7 @@ for index, query in enumerate(
         # RATE LIMIT PROTECTION
         # =================================
 
-        time.sleep(2)
+        time.sleep(INGESTION_QUERY_DELAY_SECONDS)
 
 
     except Exception as query_error:
@@ -327,7 +332,7 @@ for index, query in enumerate(
 
 queued_urls = get_next_urls(
 
-    limit=500
+    limit=INGESTION_QUEUE_STATUS_LIMIT
 )
 
 

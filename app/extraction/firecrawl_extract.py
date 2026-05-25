@@ -3,6 +3,7 @@ from firecrawl import FirecrawlApp
 from urllib.parse import urljoin
 
 from app.config.settings import (
+    EXTRACTION_SUBPAGES,
     FIRECRAWL_API_KEY
 )
 
@@ -25,7 +26,7 @@ firecrawl = FirecrawlApp(
 # HIGH-SIGNAL SUBPAGES
 # =========================================
 
-IMPORTANT_SUBPAGES = [
+DEFAULT_IMPORTANT_SUBPAGES = [
 
     "",
 
@@ -56,7 +57,7 @@ def generate_subpage_urls(base_url):
     urls = []
 
 
-    for path in IMPORTANT_SUBPAGES:
+    for path in EXTRACTION_SUBPAGES or DEFAULT_IMPORTANT_SUBPAGES:
 
         full_url = urljoin(
 

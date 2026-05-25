@@ -6,7 +6,9 @@ import ollama
 from groq import Groq
 
 from app.config.settings import (
-    GROQ_API_KEY
+    GROQ_API_KEY,
+    GROQ_PRIMARY_MODEL,
+    GROQ_FALLBACK_MODEL
 )
 
 
@@ -28,9 +30,7 @@ client = Groq(
 # MODELS
 # =========================================
 
-GROQ_PRIMARY_MODEL = "llama-3.3-70b-versatile"
-
-GROQ_FALLBACK_MODEL = "llama-3.1-8b-instant"
+# Imported models configured from settings
 
 OLLAMA_MODEL = "qwen2.5:3b"
 
@@ -77,7 +77,9 @@ FALLBACK_RESPONSE = {
 
     "confidence": 0.0,
 
-    "reason": "classification_failed"
+    "reason": "classification_failed",
+
+    "source_type": "unknown"
 }
 
 
@@ -180,6 +182,42 @@ potentially useful investor intelligence
 than accidentally reject valuable sources.
 
 ----------------------------------------
+SOURCE TYPE CLASSIFICATION
+----------------------------------------
+
+Classify the source type as ONE of:
+
+"investor_profile"
+  The page IS a VC firm's own website.
+  Examples:
+  - a16z.com/team
+  - sequoiacap.com/people
+  - Any page where the firm describes
+    its own team, thesis, or portfolio.
+  Expect: real partner names available.
+
+"investor_mention"
+  A blog, article, or directory that
+  MENTIONS investors but is not their
+  own page.
+  Examples:
+  - moonfare.com/blog/ai-and-vc-2025
+  - techcrunch.com/best-seed-investors
+  - seedtable.com/investors-ai
+  Expect: firm names but no partner names.
+
+"investor_directory"
+  A structured database or aggregator
+  listing multiple investors.
+  Examples:
+  - crunchbase.com
+  - dealroom.co
+  - wellfound.com
+
+Pick the MOST SPECIFIC type that fits.
+Default to "investor_mention" if unsure.
+
+----------------------------------------
 USER QUERY
 ----------------------------------------
 
@@ -232,7 +270,8 @@ Return ONLY valid JSON:
   "relevance_tier": "high",
   "is_relevant": true,
   "confidence": 0.95,
-  "reason": ""
+  "reason": "",
+  "source_type": "investor_profile"
 }}
 """
 
@@ -323,6 +362,24 @@ def normalize_output(parsed):
             ""
         )
     ).strip()
+
+
+    # Normalize source_type
+    valid_source_types = {
+        "investor_profile",
+        "investor_mention",
+        "investor_directory",
+        "unknown"
+    }
+
+    source_type = str(
+        parsed.get("source_type", "investor_mention")
+    ).strip().lower()
+
+    if source_type not in valid_source_types:
+        source_type = "investor_mention"
+
+    parsed["source_type"] = source_type
 
 
     return parsed
@@ -482,6 +539,26 @@ def classify_investor_relevance(
     snippet
 ):
 
+    # =====================================
+    # LIGHTWEIGHT KEYWORD PRE-FILTER
+    # =====================================
+    text_to_check = f"{query} {title} {url} {snippet}".lower()
+    investor_keywords = [
+        "invest", "vc", "venture", "capital", "fund", "seed", "equity", 
+        "accelerator", "incubator", "angel", "portfolio", "startup", "partner", 
+        "founder", "backer", "allocator", "syndicate", "financing", "raising",
+        "b2b", "saas", "artificial intelligence", "voice ai", "dealroom", 
+        "crunchbase", "pitchbook", "y combinator", "techstars"
+    ]
+    if not any(kw in text_to_check for kw in investor_keywords):
+        print(f"Skipping LLM relevance classification for: {url} (pre-filter fail)")
+        return {
+            "relevance_tier": "reject",
+            "is_relevant": False,
+            "confidence": 0.0,
+            "reason": "lightweight_keyword_pre_filter_failed"
+        }
+
     prompt = build_prompt(
 
         query,
@@ -509,7 +586,7 @@ def classify_investor_relevance(
 
         print(
 
-            "Classification using Groq 70B"
+            f"Classification using primary model: {GROQ_PRIMARY_MODEL}"
         )
 
         time.sleep(8)
@@ -528,7 +605,7 @@ def classify_investor_relevance(
 
         print(
 
-            f"Groq 70B failed: "
+            f"Primary model {GROQ_PRIMARY_MODEL} failed: "
             f"{groq_70b_error}"
         )
 
@@ -556,7 +633,7 @@ def classify_investor_relevance(
 
             print(
 
-                "Switching to Groq 8B..."
+                f"Switching to fallback model {GROQ_FALLBACK_MODEL}..."
             )
 
 
@@ -571,7 +648,7 @@ def classify_investor_relevance(
 
                 print(
 
-                    "Classification using Groq 8B"
+                    f"Classification using fallback model: {GROQ_FALLBACK_MODEL}"
                 )
 
                 time.sleep(8)
@@ -590,7 +667,7 @@ def classify_investor_relevance(
 
                 print(
 
-                    f"Groq 8B failed: "
+                    f"Fallback model {GROQ_FALLBACK_MODEL} failed: "
                     f"{groq_8b_error}"
                 )
 

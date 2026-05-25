@@ -5,12 +5,16 @@ from app.extraction.firecrawl_extract import (
     extract_website
 )
 
+from app.config.settings import (
+    EXTRACTION_MAX_CONCURRENT
+)
+
 
 # =========================================
 # CONCURRENCY LIMIT
 # =========================================
 
-MAX_CONCURRENT_EXTRACTIONS = 5
+MAX_CONCURRENT_EXTRACTIONS = EXTRACTION_MAX_CONCURRENT
 
 
 # =========================================

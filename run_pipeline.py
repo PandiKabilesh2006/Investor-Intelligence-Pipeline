@@ -18,6 +18,15 @@ from sqlalchemy import text
 
 from app.database.db import SessionLocal
 
+from app.config.settings import (
+    INGESTION_MAX_URLS_PER_RUN,
+    INGESTION_RECRAWL_AFTER_DAYS,
+    INGESTION_SEARCH_MAX_PAGES,
+    INGESTION_TEST_MODE,
+    INGESTION_TEST_QUERY_LIMIT,
+    REJECTED_DISCOVERY_DOMAINS
+)
+
 from app.search.tavily_search import (
     search_investors
 )
@@ -65,33 +74,18 @@ from app.query.query_expansion import expand_query_theme
 
 
 # =========================================
-# TEST MODE
+# INGESTION LIMITS
 # =========================================
 
-TEST_MODE = True
+TEST_MODE = INGESTION_TEST_MODE
 
+TEST_QUERY_LIMIT = INGESTION_TEST_QUERY_LIMIT
 
-# =========================================
-# DEVELOPMENT LIMITS
-# =========================================
+MAX_TOTAL_URLS = INGESTION_MAX_URLS_PER_RUN
 
-TEST_QUERY_LIMIT = 10
+SEARCH_MAX_PAGES = INGESTION_SEARCH_MAX_PAGES
 
-TEST_URL_LIMIT = 5
-
-
-# =========================================
-# PRODUCTION INGESTION LIMITS
-# =========================================
-
-MAX_TOTAL_URLS = 500
-
-
-# =========================================
-# FRESHNESS CONFIG
-# =========================================
-
-RECRAWL_AFTER_DAYS = 30
+RECRAWL_AFTER_DAYS = INGESTION_RECRAWL_AFTER_DAYS
 
 
 # =========================================
@@ -152,6 +146,7 @@ def already_crawled(url):
 
     try:
 
+        # Check if URL is already crawled and fresh
         result = session.execute(
 
             text(
@@ -171,28 +166,48 @@ def already_crawled(url):
             }
         ).fetchone()
 
-        if not result:
+        if result:
 
-            return False
+            updated_at = result[0]
 
-        updated_at = result[0]
+            if updated_at:
 
-        if not updated_at:
+                cutoff = (
 
-            return False
+                    datetime.utcnow()
 
-        cutoff = (
+                    -
 
-            datetime.utcnow()
+                    timedelta(
+                        days=RECRAWL_AFTER_DAYS
+                    )
+                )
 
-            -
+                if updated_at > cutoff:
 
-            timedelta(
-                days=RECRAWL_AFTER_DAYS
-            )
-        )
+                    return True
 
-        if updated_at > cutoff:
+        # Check if URL is already in crawl queue (pending or otherwise)
+        queue_result = session.execute(
+
+            text(
+
+                """
+                SELECT id
+
+                FROM crawl_queue
+
+                WHERE url = :url
+                """
+            ),
+
+            {
+
+                "url": url
+            }
+        ).fetchone()
+
+        if queue_result:
 
             return True
 
@@ -339,24 +354,7 @@ print(
 # BLOCKED DOMAINS
 # =========================================
 
-blocked_domains = [
-
-    "linkedin.com",
-
-    "youtube.com",
-
-    "facebook.com",
-
-    "instagram.com",
-
-    "twitter.com",
-
-    "reddit.com",
-
-    "tiktok.com",
-
-    "wikipedia.org"
-]
+blocked_domains = REJECTED_DISCOVERY_DOMAINS
 
 
 # =========================================
@@ -405,7 +403,7 @@ for query in queries:
 
             query=query,
 
-            max_pages=10
+            max_pages=SEARCH_MAX_PAGES
         )
 
         if "results" not in search_results:
@@ -525,6 +523,7 @@ for query in queries:
             priority_score = confidence
 
 
+            # URL path signals — team/partner pages
             if "portfolio" in url_lower:
 
                 priority_score += 2
@@ -540,9 +539,45 @@ for query in queries:
                 priority_score += 2
 
 
+            if "people" in url_lower:
+
+                priority_score += 2
+
+
+            if "leadership" in url_lower:
+
+                priority_score += 2
+
+
+            if "about" in url_lower:
+
+                priority_score += 1.5
+
+
             if "investor" in url_lower:
 
                 priority_score += 1
+
+
+            # .vc TLD = almost certainly a VC firm's own site
+            try:
+                from urllib.parse import urlparse as _urlparse
+                _netloc = _urlparse(url).netloc.lower()
+                if _netloc.endswith(".vc") or ".vc/" in url_lower:
+                    priority_score += 1.5
+            except Exception:
+                pass
+
+
+            # source_type boost from classifier
+            source_type = classification.get(
+                "source_type",
+                "investor_mention"
+            )
+
+            if source_type == "investor_profile":
+
+                priority_score += 1.0
 
 
             # =====================================
@@ -561,7 +596,8 @@ for query in queries:
 
                 f"Queued URL: "
                 f"{url} | "
-                f"priority={priority_score}"
+                f"priority={priority_score:.2f} | "
+                f"source_type={source_type}"
             )
 
 

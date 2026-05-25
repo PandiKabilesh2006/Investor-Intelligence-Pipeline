@@ -6,7 +6,12 @@ import ollama
 from groq import Groq
 
 from app.config.settings import (
-    GROQ_API_KEY
+    GROQ_API_KEY,
+    PARSER_MAX_CONTENT_LENGTH,
+    PARTNER_MIN_CONFIDENCE,
+    PARTNER_ROLE_TITLES,
+    GROQ_PRIMARY_MODEL,
+    GROQ_FALLBACK_MODEL
 )
 
 
@@ -30,16 +35,20 @@ groq_client = Groq(
 
 OLLAMA_MODEL = "qwen2.5:3b"
 
-GROQ_PRIMARY_MODEL = "llama-3.3-70b-versatile"
-
-GROQ_FALLBACK_MODEL = "llama-3.1-8b-instant"
+# Imported models configured from settings
 
 
 # =========================================
 # MAX CONTENT LENGTH
 # =========================================
+# Increased from 4000 to 8000 chars.
+# Team/partner sections appear late in
+# VC pages — truncating at 4000 often
+# cuts them off before any names appear.
+# Groq llama-3.3-70b supports 128k ctx,
+# so 8000 chars is still very fast & cheap.
 
-MAX_CONTENT_LENGTH = 4000
+MAX_CONTENT_LENGTH = PARSER_MAX_CONTENT_LENGTH
 
 
 # =========================================
@@ -129,7 +138,16 @@ SCHEMA
 {{
   "firm": "",
   "website": "",
-  "partners": [],
+  "partners": [
+    {
+      "name": "",
+      "role": "",
+      "linkedin_url": "",
+      "twitter_url": "",
+      "source_url": "",
+      "confidence": 0.0
+    }
+  ],
   "focus_sectors": [],
   "investment_stage": [],
   "portfolio_companies": [],
@@ -261,6 +279,17 @@ Do NOT include:
 If unclear:
 return empty array.
 
+For each partner, return an object with:
+- name: full human name
+- role: explicit role/title if visible
+- linkedin_url: exact LinkedIn URL if visible
+- twitter_url: exact X/Twitter URL if visible
+- source_url: exact source page URL if visible in content
+- confidence: number from 0.0 to 1.0
+
+Do not return placeholders like
+"Partner 1", "Partner 2", or role-only names.
+
 ----------------------------------------
 PORTFOLIO COMPANY EXTRACTION
 ----------------------------------------
@@ -357,6 +386,21 @@ def ensure_list(value):
 
                 continue
 
+            if isinstance(item, dict):
+
+                # Try to extract human name or company/firm name if returned as dict
+                item = (
+
+                    item.get("name") or 
+
+                    item.get("company") or 
+
+                    item.get("firm") or 
+
+                    (list(item.values())[0] if item.values() else "")
+
+                )
+
             item = str(item).strip()
 
             if item:
@@ -378,6 +422,76 @@ def ensure_list(value):
 
 
     return []
+
+
+# =========================================
+# PARTNER RECORD NORMALIZATION
+# =========================================
+
+def normalize_partner_records(value):
+
+    raw_partners = value if isinstance(value, list) else ensure_list(value)
+
+    normalized = []
+
+    for item in raw_partners:
+
+        if item is None:
+
+            continue
+
+        if isinstance(item, dict):
+
+            name = str(item.get("name", "")).strip()
+
+            role = str(item.get("role", "")).strip()
+
+            linkedin_url = str(item.get("linkedin_url", "")).strip()
+
+            twitter_url = str(item.get("twitter_url", "")).strip()
+
+            source_url = str(item.get("source_url", "")).strip()
+
+            confidence = item.get("confidence", 0.0)
+
+        else:
+
+            name = str(item).strip()
+
+            role = ""
+
+            linkedin_url = ""
+
+            twitter_url = ""
+
+            source_url = ""
+
+            confidence = 0.7
+
+        try:
+
+            confidence = float(confidence)
+
+        except (TypeError, ValueError):
+
+            confidence = 0.0
+
+        normalized.append({
+
+            "name": name,
+
+            "role": role,
+
+            "linkedin_url": linkedin_url,
+
+            "twitter_url": twitter_url,
+
+            "source_url": source_url,
+
+            "confidence": confidence
+        })
+
+    return normalized
 
 
 # =========================================
@@ -478,8 +592,6 @@ def normalize_output(parsed):
 
     for field in [
 
-        "partners",
-
         "focus_sectors",
 
         "investment_stage",
@@ -496,14 +608,17 @@ def normalize_output(parsed):
             parsed.get(field, [])
         )
 
+    parsed["partners"] = normalize_partner_records(
+
+        parsed.get("partners", [])
+    )
+
 
     # =====================================
     # REMOVE DUPLICATES
     # =====================================
 
     for field in [
-
-        "partners",
 
         "focus_sectors",
 
@@ -521,6 +636,18 @@ def normalize_output(parsed):
             dict.fromkeys(parsed[field])
         )
 
+    deduped_partners = {}
+
+    for partner in parsed["partners"]:
+
+        key = partner.get("name", "").strip().lower()
+
+        if key and key not in deduped_partners:
+
+            deduped_partners[key] = partner
+
+    parsed["partners"] = list(deduped_partners.values())
+
 
     return parsed
 
@@ -533,28 +660,91 @@ def filter_partner_names(partners):
 
     filtered = []
 
+    role_titles = {
+        title.strip().lower()
+        for title in PARTNER_ROLE_TITLES
+    }
+
 
     for partner in partners:
 
-        partner = str(partner).strip()
+        if isinstance(partner, dict):
 
+            partner_record = partner.copy()
 
-        if not re.match(
+            partner_name = str(partner_record.get("name", "")).strip()
 
-            r"^[A-Z][a-zA-Z'\\-]+(?:\\s[A-Z][a-zA-Z'\\-]+)+$",
+        else:
 
-            partner
-        ):
+            partner_name = str(partner).strip()
+
+            partner_record = {
+
+                "name": partner_name,
+
+                "role": "",
+
+                "linkedin_url": "",
+
+                "twitter_url": "",
+
+                "source_url": "",
+
+                "confidence": 0.7
+            }
+
+        if re.match(r"^Partner\s+\d+$", partner_name, re.IGNORECASE):
 
             continue
 
 
-        filtered.append(partner)
+        if partner_name.lower() in role_titles:
 
+            continue
+
+
+        if not re.match(
+
+            r"^[A-Z][a-zA-Z'\-]+(?:\s[A-Z][a-zA-Z'\-]+)+$",
+
+            partner_name
+        ):
+
+            continue
+
+        try:
+
+            confidence = float(partner_record.get("confidence", 0.0))
+
+        except (TypeError, ValueError):
+
+            confidence = 0.0
+
+        if confidence < PARTNER_MIN_CONFIDENCE:
+
+            continue
+
+
+        partner_record["name"] = partner_name
+
+        partner_record["confidence"] = confidence
+
+        filtered.append(partner_record)
+
+
+    deduped = {}
+
+    for partner in filtered:
+
+        key = partner["name"].lower()
+
+        if key not in deduped:
+
+            deduped[key] = partner
 
     return list(
 
-        dict.fromkeys(filtered)
+        deduped.values()
     )
 
 
@@ -1123,7 +1313,7 @@ def parse_investor(markdown_content):
 
         print(
 
-            "Parsed using Groq 70B"
+            f"Parsed using primary model: {GROQ_PRIMARY_MODEL}"
         )
 
         time.sleep(8)
@@ -1142,7 +1332,7 @@ def parse_investor(markdown_content):
 
         print(
 
-            f"Groq 70B failed: "
+            f"Primary model {GROQ_PRIMARY_MODEL} failed: "
             f"{groq_70b_error}"
         )
 
@@ -1170,7 +1360,7 @@ def parse_investor(markdown_content):
 
             print(
 
-                "Switching to Groq 8B..."
+                f"Switching to fallback model {GROQ_FALLBACK_MODEL}..."
             )
 
 
@@ -1202,7 +1392,7 @@ def parse_investor(markdown_content):
 
                 print(
 
-                    "Parsed using Groq 8B"
+                    f"Parsed using fallback model: {GROQ_FALLBACK_MODEL}"
                 )
 
                 time.sleep(8)
@@ -1221,7 +1411,7 @@ def parse_investor(markdown_content):
 
                 print(
 
-                    f"Groq 8B failed: "
+                    f"Fallback model {GROQ_FALLBACK_MODEL} failed: "
                     f"{groq_8b_error}"
                 )
 

@@ -13,6 +13,16 @@ from pgvector.psycopg2 import (
     register_vector
 )
 
+from app.config.settings import (
+    DB_HOST,
+    DB_PORT,
+    DB_NAME,
+    DB_USER,
+    DB_PASSWORD,
+    PARTNER_MIN_CONFIDENCE,
+    PARTNER_ROLE_TITLES
+)
+
 
 # =========================================
 # LAZY-LOAD EMBEDDING MODEL
@@ -89,6 +99,113 @@ def ensure_list(value):
 
 
 # =========================================
+# FILTER FAKE/GENERIC PARTNER NAMES
+# =========================================
+
+import re as _re
+
+# VC role titles and generic terms that are NOT person names
+_ROLE_TITLES = {
+    title.strip().lower()
+    for title in PARTNER_ROLE_TITLES
+}
+
+def filter_real_partners(partners):
+
+    """
+    Remove LLM-hallucinated placeholder partner names.
+    Keeps only real human names.
+
+    Accepts:
+    - Multi-word names: 'Marc Andreessen', 'Scott Dorsey'
+    - Single-word mononyms >= 5 chars that are not role titles:
+      'Aakrit', 'Pratyush'
+
+    Rejects:
+    - 'Partner 7', 'Partner N' numbered placeholders
+    - Pure role titles like 'Managing Partner', 'Director'
+    - Very short strings (< 4 chars)
+    - Numbers-only or no-letter strings
+    - Common non-person aggregator terms
+    """
+
+    real_partners = []
+
+    for partner in partners:
+
+        if isinstance(partner, dict):
+
+            partner_record = partner.copy()
+
+            name = str(partner_record.get("name", "")).strip()
+
+        else:
+
+            name = str(partner).strip()
+
+            partner_record = {
+
+                "name": name,
+
+                "role": "",
+
+                "linkedin_url": "",
+
+                "twitter_url": "",
+
+                "source_url": "",
+
+                "confidence": 0.7
+            }
+
+        # Must be at least 4 characters
+        if len(name) < 4:
+            continue
+
+        # Reject generic numbered placeholders: 'Partner 7'
+        if _re.match(r'^Partner\s+\d+$', name, _re.IGNORECASE):
+            continue
+
+        # Reject pure role titles (exact match, case-insensitive)
+        if name.lower() in _ROLE_TITLES:
+            continue
+
+        # Reject entries that are purely numeric
+        if _re.match(r'^[\d\s]+$', name):
+            continue
+
+        # Reject entries with no letters at all
+        if not _re.search(r'[a-zA-Z]', name):
+            continue
+
+        # Single-word names: allow only if >= 5 chars
+        # (catches real mononyms like 'Aakrit', rejects 'LP', 'GP')
+        words = name.split()
+        if len(words) == 1 and len(name) < 5:
+            continue
+
+        try:
+
+            confidence = float(partner_record.get("confidence", 0.0))
+
+        except (TypeError, ValueError):
+
+            confidence = 0.0
+
+        if confidence < PARTNER_MIN_CONFIDENCE:
+
+            continue
+
+        partner_record["name"] = name
+
+        partner_record["confidence"] = confidence
+
+        real_partners.append(partner_record)
+
+    return real_partners
+
+
+# =========================================
 # INSERT SINGLE INVESTOR DATA
 # =========================================
 
@@ -105,13 +222,15 @@ def insert_investor_data(data, conn=None):
 
         conn = psycopg2.connect(
 
-            host="localhost",
+            host=DB_HOST,
 
-            database="investor_intelligence",
+            port=DB_PORT,
 
-            user="postgres",
+            database=DB_NAME,
 
-            password="LiveClass2270157"
+            user=DB_USER,
+
+            password=DB_PASSWORD
         )
 
         register_vector(conn)
@@ -218,7 +337,7 @@ def insert_investor_data(data, conn=None):
         )
 
 
-        partners = ensure_list(
+        partners = filter_real_partners(
 
             data.get(
 
@@ -260,7 +379,10 @@ def insert_investor_data(data, conn=None):
 
             " ".join(contact_links),
 
-            " ".join(partners),
+            " ".join(
+                partner["name"]
+                for partner in partners
+            ),
 
             " ".join(portfolio_companies)
         ])
@@ -401,6 +523,7 @@ def insert_investor_data(data, conn=None):
                     %s,
                     %s,
                     %s,
+                    %s,
                     %s
                 )
 
@@ -478,12 +601,29 @@ def insert_investor_data(data, conn=None):
 
                     investor_id,
 
-                    name
+                    name,
+
+                    role,
+
+                    linkedin_url,
+
+                    twitter_url,
+
+                    source_url,
+
+                    confidence,
+
+                    updated_at
 
                 )
 
                 VALUES (
 
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
                     %s,
                     %s
                 )
@@ -493,7 +633,19 @@ def insert_investor_data(data, conn=None):
 
                     investor_id,
 
-                    partner
+                    partner.get("name", ""),
+
+                    partner.get("role", ""),
+
+                    partner.get("linkedin_url", ""),
+
+                    partner.get("twitter_url", ""),
+
+                    partner.get("source_url", ""),
+
+                    partner.get("confidence", 0.0),
+
+                    datetime.utcnow()
                 )
             )
 
@@ -576,13 +728,15 @@ def main():
 
     conn = psycopg2.connect(
 
-        host="localhost",
+        host=DB_HOST,
 
-        database="investor_intelligence",
+        port=DB_PORT,
 
-        user="postgres",
+        database=DB_NAME,
 
-        password="LiveClass2270157"
+        user=DB_USER,
+
+        password=DB_PASSWORD
     )
 
 

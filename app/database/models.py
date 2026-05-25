@@ -10,6 +10,8 @@ from sqlalchemy import (
 
     ForeignKey,
 
+    Float,
+
     TIMESTAMP
 )
 
@@ -169,6 +171,41 @@ class Partner(Base):
     name = Column(
 
         String
+    )
+
+    role = Column(
+
+        String
+    )
+
+
+    linkedin_url = Column(
+
+        Text
+    )
+
+
+    twitter_url = Column(
+
+        Text
+    )
+
+
+    source_url = Column(
+
+        Text
+    )
+
+
+    confidence = Column(
+
+        Float
+    )
+
+
+    updated_at = Column(
+
+        TIMESTAMP
     )
 
 

@@ -2,20 +2,20 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+from app.config.settings import (
+    DB_HOST,
+    DB_PORT,
+    DB_NAME,
+    DB_USER,
+    DB_PASSWORD
+)
 
 # =========================================
 # POSTGRESQL DATABASE URL
 # =========================================
 
 DATABASE_URL = (
-
-    "postgresql+psycopg2://"
-
-    "postgres:LiveClass2270157"
-
-    "@localhost:5432/"
-
-    "investor_intelligence"
+    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
 
 

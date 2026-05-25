@@ -1,5 +1,6 @@
 import os
 import json
+import sys
 
 from app.parsing.gpt_parser import parse_investor
 
@@ -13,6 +14,8 @@ from app.utils.deduplicate import (
 )
 
 from app.utils.failed_url_manager import add_failed_url
+
+from app.utils.team_page_discovery import discover_team_pages
 
 # =========================================
 # FOLDERS
@@ -56,12 +59,29 @@ print(
 
 parsed_count = 0
 
+skipped_count = 0
+
+force_reparse = "--force" in sys.argv
+
 
 # =========================================
 # PARSING PIPELINE
 # =========================================
 
 for markdown_file in markdown_files:
+
+    json_filename = markdown_file.replace(".md", ".json")
+
+    json_filepath = f"{PARSED_DATA_FOLDER}/{json_filename}"
+
+    if os.path.exists(json_filepath) and not force_reparse:
+
+        print(f"Skipping: {markdown_file} (already parsed JSON exists)")
+
+        skipped_count += 1
+
+        continue
+
 
     filepath = (
 
@@ -317,6 +337,39 @@ for markdown_file in markdown_files:
 
 
         # =====================================
+        # TEAM PAGE DISCOVERY
+        # After parsing any source (blog, article,
+        # directory), queue the firm's team pages
+        # so real partner names can be scraped.
+        # =====================================
+
+        try:
+
+            team_pages_queued = discover_team_pages(
+
+                firm=firm_name,
+
+                website=parsed_data.get("website", "")
+            )
+
+            if team_pages_queued > 0:
+
+                print(
+
+                    f"Queued {team_pages_queued} team page(s) "
+                    f"for: {firm_name}"
+                )
+
+        except Exception as discovery_error:
+
+            print(
+
+                f"Team page discovery failed for {firm_name}: "
+                f"{discovery_error}"
+            )
+
+
+        # =====================================
         # PRINT STRUCTURED OUTPUT
         # =====================================
 
@@ -369,8 +422,9 @@ print("=" * 80)
 
 print(
 
-    f"\nSuccessfully parsed "
-    f"{parsed_count} investors\n"
+    f"\nSuccessfully parsed {parsed_count} investors"
+
+    f"\nSkipped {skipped_count} already parsed files\n"
 )
 
 print(

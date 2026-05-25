@@ -1,19 +1,17 @@
-import time
+import os
 import sys
-import schedule
 import subprocess
+from datetime import datetime
+from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.triggers.cron import CronTrigger
 
 from app.utils.failed_url_manager import (
-
     get_failed_urls,
-
     mark_failed_url_resolved
 )
 
 from app.logging.logging_config import (
-
     pipeline_logger,
-
     error_logger
 )
 
@@ -23,75 +21,41 @@ from app.logging.logging_config import (
 # =========================================
 
 def retry_failed_urls():
-
     failed_urls = get_failed_urls()
 
-
     pipeline_logger.info(
-
-        f"Retrying "
-        f"{len(failed_urls)} "
-        f"failed URLs"
+        f"Retrying {len(failed_urls)} failed URLs"
     )
 
-
     for failed in failed_urls:
-
         failed_id = failed["id"]
-
         url = failed["url"]
 
-
         try:
-
             pipeline_logger.info(
-
                 f"Retrying failed URL: {url}"
             )
 
-
-            # =================================
-            # REPROCESS FAILED URL
-            # =================================
-
+            # Reprocess failed URL via nightly_ingestion.py argument
             subprocess.run(
-
                 [
-
                     sys.executable,
-
                     "nightly_ingestion.py",
-
                     url
                 ],
-
                 check=True
             )
 
-
-            # =================================
-            # MARK RESOLVED
-            # =================================
-
-            mark_failed_url_resolved(
-
-                failed_id
-            )
-
+            # Mark resolved
+            mark_failed_url_resolved(failed_id)
 
             pipeline_logger.info(
-
                 f"Retry success: {url}"
             )
 
-
         except Exception as retry_error:
-
             error_logger.error(
-
-                f"Retry failed | "
-                f"URL: {url} | "
-                f"Error: {retry_error}"
+                f"Retry failed | URL: {url} | Error: {retry_error}"
             )
 
 
@@ -100,144 +64,77 @@ def retry_failed_urls():
 # =========================================
 
 def run_nightly_pipeline():
-
-    pipeline_logger.info(
-
-        "=" * 80
-    )
-
-    pipeline_logger.info(
-
-        "Starting scheduled investor ingestion"
-    )
-
+    pipeline_logger.info("=" * 80)
+    pipeline_logger.info("Starting scheduled investor ingestion")
 
     try:
-
-        # =====================================
-        # RUN MAIN PIPELINE
-        # =====================================
-
+        # Run main ingestion script
         subprocess.run(
-
             [
-
                 sys.executable,
-
                 "nightly_ingestion.py"
             ],
-
             check=True
         )
 
+        pipeline_logger.info("Scheduled ingestion completed")
 
-        pipeline_logger.info(
-
-            "Scheduled ingestion completed"
-        )
-
-
-        # =====================================
-        # RETRY FAILED URLS
-        # =====================================
-
+        # Retry failed URLs
         retry_failed_urls()
 
-
-        pipeline_logger.info(
-
-            "Failed URL retry completed"
-        )
-
+        pipeline_logger.info("Failed URL retry completed")
 
     except Exception as scheduler_error:
-
         error_logger.error(
-
-            f"Scheduler error: "
-            f"{scheduler_error}"
+            f"Scheduler error during pipeline execution: {scheduler_error}"
         )
 
-
-    pipeline_logger.info(
-
-        "=" * 80
-    )
-
-
-# =========================================
-# SCHEDULE CONFIGURATION
-# =========================================
-
-schedule.every().day.at(
-
-    "02:00"
-
-).do(
-
-    run_nightly_pipeline
-)
+    pipeline_logger.info("=" * 80)
 
 
 # =========================================
 # START SCHEDULER
 # =========================================
 
-pipeline_logger.info(
+if __name__ == "__main__":
+    scheduler = BlockingScheduler()
 
-    "=" * 80
-)
+    # Read cron schedule from environment, default to 2:00 PM daily ("0 14 * * *")
+    cron_expr = os.getenv("INGESTION_CRON", "0 14 * * *")
 
-pipeline_logger.info(
+    pipeline_logger.info(f"Initializing APScheduler with cron expression: '{cron_expr}'")
 
-    "Investor Intelligence Scheduler Started"
-)
-
-pipeline_logger.info(
-
-    "Nightly ingestion scheduled at 02:00 AM"
-)
-
-pipeline_logger.info(
-
-    "=" * 80
-)
-
-
-print("\n" + "=" * 80)
-
-print(
-
-    "\nInvestor Intelligence Scheduler Started\n"
-)
-
-print(
-
-    "Nightly ingestion scheduled at 02:00 AM\n"
-)
-
-print("=" * 80)
-
-
-# =========================================
-# EVENT LOOP
-# =========================================
-
-while True:
-
-    try:
-
-        schedule.run_pending()
-
-        time.sleep(60)
-
-
-    except Exception as loop_error:
-
-        error_logger.error(
-
-            f"Scheduler loop error: "
-            f"{loop_error}"
+    fields = cron_expr.strip().split()
+    if len(fields) == 5:
+        trigger = CronTrigger(
+            minute=fields[0],
+            hour=fields[1],
+            day=fields[2],
+            month=fields[3],
+            day_of_week=fields[4]
+        )
+    else:
+        # Fallback to daily 2 PM if invalid
+        trigger = CronTrigger(hour=14, minute=0)
+        pipeline_logger.warning(
+            f"Invalid cron expression '{cron_expr}' (must have exactly 5 fields). "
+            f"Falling back to daily at 02:00 PM."
         )
 
-        time.sleep(60)
+    scheduler.add_job(
+        run_nightly_pipeline,
+        trigger=trigger,
+        id="nightly_ingestion_job",
+        name="Nightly Investor Intelligence Ingestion and Failed Url Retry"
+    )
+
+    print("\n" + "=" * 80)
+    print(f"\nInvestor Intelligence Scheduler Started")
+    print(f"Scheduled Job: Nightly ingestion scheduled via CRON: '{cron_expr}'\n")
+    print("=" * 80)
+
+    try:
+        scheduler.start()
+    except (KeyboardInterrupt, SystemExit):
+        pipeline_logger.info("Scheduler stopped.")
+        print("\nScheduler stopped.")
