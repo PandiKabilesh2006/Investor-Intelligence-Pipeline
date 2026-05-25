@@ -1,581 +1,208 @@
 # Investor Intelligence Pipeline
 
-> An AI-powered investor discovery and intelligence platform that combines web scraping, NLP, vector embeddings, semantic search, and LLM-powered insights to help startups discover the right investors faster.
+Lightweight automated investor research pipeline for discovering investor pages,
+extracting structured firm data, and keeping a Postgres-backed investor database
+up to date.
 
----
-
-# 🚀 Overview
-
-The **Investor Intelligence Pipeline** is an end-to-end intelligent system designed to:
-
-- Scrape investor and venture capital data from the web
-- Extract structured investment intelligence
-- Generate semantic vector embeddings
-- Store investor profiles in PostgreSQL + pgvector
-- Perform AI-powered semantic investor search
-- Support LLM-enhanced investor discovery workflows
-
-The system enables founders, analysts, and startup teams to search investors using **natural language queries** such as:
-
-> “Seed-stage AI SaaS investors focused on B2B automation in India”
-
-instead of relying only on filters or keyword matching.
-
----
-
-# ✨ Core Features
-
-## 🔍 AI-Powered Semantic Investor Search
-
-Search investors using natural language.
-
-### Examples
-
-- “Fintech investors in India”
-- “AI healthcare VCs investing in early-stage startups”
-- “SaaS investors focused on enterprise automation”
-
-### Powered By
-
-- Vector embeddings
-- pgvector similarity search
-- Semantic retrieval
-
----
-
-## 🌐 Web Scraping Pipeline
-
-Automatically collects investor intelligence from:
-
-- VC websites
-- Funding blogs
-- Investor directories
-- Startup ecosystems
-- Public investment databases
-
-Supports scalable scraping workflows.
-
----
-
-## 🧠 LLM-Based Information Extraction
-
-Uses Large Language Models to extract:
-
-- Investor name
-- Firm name
-- Investment sectors
-- Funding stages
-- Geographic focus
-- Portfolio companies
-- Investment thesis
-- Website/contact links
-
-### Supported Models
-
-- Groq API
-- Ollama fallback support
-
----
-
-## ⚡ Groq + Ollama Fallback Architecture
-
-High-performance LLM processing using:
-
-- Primary: Groq API
-- Fallback: Ollama local models
-
-### Benefits
-
-- Reliability
-- Reduced downtime
-- Lower API dependency
-- Local inference support
-
----
-
-## 🗄 PostgreSQL + pgvector Integration
-
-Stores:
-
-- Structured investor metadata
-- Embedding vectors
-- Semantic search indexes
-
-### Supports
-
-- Cosine similarity search
-- Fast vector retrieval
-- Scalable AI search infrastructure
-
----
-
-## 🔎 Hybrid Investor Intelligence System
-
-Combines:
-
-- Structured filtering
-- Semantic vector similarity
-- NLP-based understanding
-
-Allows highly relevant investor matching.
-
----
-
-## 📄 Markdown Parsing & Document Processing
-
-Processes:
-
-- Web pages
-- Markdown files
-- Investment articles
-- Funding reports
-
-Transforms unstructured content into structured investor intelligence.
-
----
-
-## 🧩 Modular Backend Architecture
-
-Built with scalable modular architecture:
-
-- Scrapers
-- Embedding engine
-- Database layer
-- Search engine
-- API layer
-- LLM extraction services
-
-Easy to extend and maintain.
-
----
-
-## ⚙️ FastAPI Backend
-
-Provides scalable API endpoints for:
-
-- Investor search
-- Semantic retrieval
-- Data ingestion
-- Embedding generation
-- Search filtering
-
-Interactive API docs available through Swagger UI.
-
----
-
-# 🏗 System Architecture
+The current implementation intentionally keeps the V1 workflow simple:
 
 ```text
-                ┌─────────────────────┐
-                │   Web Sources       │
-                │ VC Sites / Blogs    │
-                └─────────┬───────────┘
-                          │
-                          ▼
-                ┌─────────────────────┐
-                │   Web Scraping      │
-                │ Firecrawl / Crawlers│
-                └─────────┬───────────┘
-                          │
-                          ▼
-                ┌─────────────────────┐
-                │  Markdown Parsing   │
-                │  Content Cleaning   │
-                └─────────┬───────────┘
-                          │
-                          ▼
-                ┌─────────────────────┐
-                │ LLM Information     │
-                │ Extraction Engine   │
-                │ Groq + Ollama       │
-                └─────────┬───────────┘
-                          │
-                          ▼
-                ┌─────────────────────┐
-                │ Structured Investor │
-                │ Intelligence Data   │
-                └─────────┬───────────┘
-                          │
-                          ▼
-                ┌─────────────────────┐
-                │ Embedding Generator │
-                │ SentenceTransformers│
-                └─────────┬───────────┘
-                          │
-                          ▼
-                ┌─────────────────────┐
-                │ PostgreSQL +        │
-                │ pgvector Database   │
-                └─────────┬───────────┘
-                          │
-                          ▼
-                ┌─────────────────────┐
-                │ Semantic Search API │
-                │ FastAPI             │
-                └─────────┬───────────┘
-                          │
-                          ▼
-                ┌─────────────────────┐
-                │ User Search Queries │
-                └─────────────────────┘
+Query generation
+  -> Tavily search
+  -> Firecrawl page extraction
+  -> Groq/Ollama structured parsing
+  -> Postgres storage
+  -> daily scheduled refresh
 ```
 
----
+OpenAI structured outputs are planned for the final stage once API rate limits
+are no longer a blocker. Tavily is the active search provider for V1.
 
-# 🧠 Semantic Search Workflow
+## What V1 Includes
 
-```text
-User Query
-   ↓
-Text Embedding Generation
-   ↓
-Vector Similarity Search
-   ↓
-Relevant Investor Retrieval
-   ↓
-Ranked Investor Results
-```
+- Manual query input through `run_pipeline.py "<query>"`
+- Generated investor discovery queries by sector, stage, geography, and theme
+- Tavily search with URL deduplication
+- High-signal page extraction with Firecrawl
+- Structured investor parsing with Groq and Ollama fallback
+- Postgres storage for investors, partners, portfolio companies, crawl history,
+  crawl queue, and failed URL retries
+- Daily scheduler process
+- Execution logs and failed URL tracking
+- Optional Streamlit dashboard for operational visibility and search
 
----
+## What V1 Does Not Try To Be
 
-# 📂 Project Structure
+- A CRM
+- An outreach automation system
+- A relationship intelligence graph
+- A multi-agent research system
+- A recursive autonomous crawler
+- A required scoring or recommendation engine
 
-```text
-investor-intelligence-pipeline/
-│
-├── app/
-│   ├── api/
-│   ├── database/
-│   ├── embeddings/
-│   ├── extraction/
-│   ├── models/
-│   ├── scraping/
-│   ├── search/
-│   └── services/
-│
-├── data/
-├── markdown_files/
-├── scripts/
-├── requirements.txt
-├── insert_into_db.py
-├── generate_embeddings.py
-├── main.py
-└── README.md
-```
+Semantic search, pgvector, ranking scripts, and the dashboard are available as
+optional extras in this repository. They are not required for the core ingestion
+pipeline.
 
----
+## Setup
 
-# 🛠 Tech Stack
-
-## Backend
-
-- Python
-- FastAPI
-
-## Database
-
-- PostgreSQL
-- pgvector
-
-## AI / ML
-
-- SentenceTransformers
-- NLP
-- Semantic Search
-- Vector Embeddings
-
-## LLM Providers
-
-- Groq API
-- Ollama
-
-## Scraping
-
-- Firecrawl
-- Custom Crawlers
-
----
-
-# ⚡ Installation
-
-## 1. Clone Repository
-
-```bash
-git clone <repository-url>
-cd investor-intelligence-pipeline
-```
-
----
-
-## 2. Create Virtual Environment
-
-### Windows
+Create a virtual environment and install dependencies:
 
 ```bash
 python -m venv venv
 venv\Scripts\activate
-```
-
-### Linux / Mac
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
----
-
-## 3. Install Dependencies
-
-```bash
 pip install -r requirements.txt
 ```
 
----
+For tests:
 
-# 🗄 Database Setup
-
-## Install PostgreSQL
-
-Install PostgreSQL locally.
-
----
-
-## Install pgvector Extension
-
-Inside PostgreSQL:
-
-```sql
-CREATE EXTENSION vector;
+```bash
+pip install -r requirements-dev.txt
 ```
 
----
-
-## Configure Environment Variables
-
-Create `.env`
+Configure `.env`:
 
 ```env
-DATABASE_URL=postgresql://username:password@localhost:5432/investor_db
+TAVILY_API_KEY=your_tavily_key
+FIRECRAWL_API_KEY=your_firecrawl_key
+GROQ_API_KEY=your_groq_key
 
-GROQ_API_KEY=your_groq_api_key
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=investor_intelligence
+DB_USER=postgres
+DB_PASSWORD=your_password
 
-OLLAMA_BASE_URL=http://localhost:11434
+TEST_MODE=true
+TEST_QUERY_LIMIT=10
+MAX_TOTAL_URLS=500
+RECRAWL_AFTER_DAYS=30
+FIRECRAWL_TIMEOUT_SECONDS=45
+SCHEDULE_TIME=02:00
 ```
 
----
+Use `TEST_MODE=true` while validating the pipeline against a live database. Set
+`TEST_MODE=false` only after confirming the search, extraction, parsing, and
+upsert behavior on a small sample.
 
-# ▶️ Running the Pipeline
+## Database Setup
 
-## Step 1 — Scrape Investor Data
+Create tables:
 
 ```bash
-py scrape_data.py
+python create_tables.py
 ```
 
----
-
-## Step 2 — Extract Structured Intelligence
+For an existing database, run the migration only after backing up or snapshotting
+the database:
 
 ```bash
-py extract_investors.py
+python migrate_pipeline_tables.py
 ```
 
----
+The migration only adds missing columns/tables needed by the pipeline. It does
+not drop existing data.
 
-## Step 3 — Insert Into Database
+## Running The Pipeline
+
+Run a single manual discovery query:
 
 ```bash
-py -m insert_into_db.py
+python run_pipeline.py "AI infrastructure seed investors"
+python parse_markdown.py
+python insert_into_db.py
 ```
 
----
-
-## Step 4 — Generate Embeddings
+Run the daily scheduler process:
 
 ```bash
-py generate_embeddings.py
+python scheduler.py
 ```
 
----
+The scheduler runs `run_pipeline.py`, `parse_markdown.py`, `insert_into_db.py`,
+and failed URL retries once per day at `SCHEDULE_TIME`.
 
-## Step 5 — Start FastAPI Server
+## Running The FastAPI Backend
+
+Start the API server:
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 ```
 
----
-
-# 📘 API Documentation
-
-After running FastAPI:
+Open the API docs:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-Swagger UI provides interactive API testing.
-
----
-
-# 🔍 Example Semantic Search Query
-
-```json
-{
-  "query": "AI SaaS investors investing in seed-stage startups"
-}
-```
-
----
-
-# 📊 Example Use Cases
-
-## 🚀 Startup Founder
-
-Find relevant investors for fundraising.
-
----
-
-## 📈 Venture Analyst
-
-Analyze investor focus areas and trends.
-
----
-
-## 🧠 AI Research
-
-Experiment with semantic retrieval systems.
-
----
-
-## 💼 Investment Intelligence Platforms
-
-Use as backend infrastructure for VC discovery products.
-
----
-
-# 🔒 Reliability Features
-
-## Fallback LLM Architecture
-
-If Groq API fails:
+Core frontend endpoints:
 
 ```text
-Groq → Ollama Fallback
+GET  /api/health
+GET  /api/investors
+GET  /api/investors/{id}
+GET  /api/investors/export
+GET  /api/search/structured
+POST /api/search/semantic
+GET  /api/operations/metrics
+GET  /api/operations/crawl-queue
+GET  /api/operations/crawled-urls
+GET  /api/operations/failed-urls
+POST /api/queries/preview
+POST /api/pipeline/runs
+GET  /api/pipeline/runs
+GET  /api/pipeline/runs/{id}
+GET  /api/pipeline/runs/{id}/logs
+POST /api/operations/failed-urls/{id}/retry
 ```
 
-Ensures uninterrupted extraction pipeline.
-
----
-
-# 📈 Scalability
-
-Designed for:
-
-- Large-scale investor datasets
-- Distributed scraping
-- AI retrieval systems
-- Production semantic search
-
----
-
-# 🔮 Future Enhancements
-
-- Hybrid Search (BM25 + Vector)
-- Investor Recommendation Engine
-- RAG-based Investor Chatbot
-- Multi-agent Research System
-- Real-time Funding News Tracking
-- Investor Email Discovery
-- Graph-based VC Relationship Mapping
-- Frontend Dashboard
-- Kubernetes Deployment
-- Redis Caching
-- Async Processing Pipelines
-
----
-
-# 🧪 Example Workflow
+Write endpoints require an admin header:
 
 ```text
-1. Scrape VC websites
-2. Parse markdown/articles
-3. Extract investor intelligence using LLMs
-4. Store structured data
-5. Generate embeddings
-6. Store vectors in pgvector
-7. Run semantic investor search
-8. Return ranked investor matches
+X-Admin-Key: your-admin-key
 ```
 
----
+Set these in `.env` for the frontend/API bridge:
 
-# 🧠 Why Semantic Search?
-
-Traditional keyword search fails for nuanced investor discovery.
-
-Semantic search understands meaning.
-
-### Example
-
-Query:
-
-```text
-“AI healthcare seed investors”
+```env
+ADMIN_API_KEY=change-me
+CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
 ```
 
-Can retrieve:
+## Scheduling In Production
 
-- “Machine learning healthcare venture firms”
-- “Digital health AI-focused investors”
+The built-in scheduler is intentionally lightweight. It must remain running. For
+production, prefer one of these wrappers:
 
-even without exact keyword matching.
+- Windows Task Scheduler running `python scheduler.py` at startup
+- Linux cron running the three pipeline commands directly
+- Docker container with a restart policy
+- GitHub Actions or another hosted scheduled job
 
----
+Example Linux cron:
 
-# 📌 Key Highlights
+```cron
+0 2 * * * cd /path/to/project && /path/to/venv/bin/python run_pipeline.py && /path/to/venv/bin/python parse_markdown.py && /path/to/venv/bin/python insert_into_db.py
+```
 
-✅ End-to-end AI investor discovery platform  
-✅ Semantic vector search  
-✅ PostgreSQL + pgvector integration  
-✅ LLM-powered extraction  
-✅ Groq + Ollama fallback system  
-✅ FastAPI backend  
-✅ Modular architecture  
-✅ Scalable infrastructure  
-✅ Production-ready foundation  
+## Data Safety
 
----
+Database updates are incremental. Existing investor rows are matched by firm
+name. When a new scrape returns sparse data, existing non-empty investor fields
+are preserved. Partner and portfolio child records are replaced only when new
+non-empty partner or portfolio data is available.
 
-# 🤝 Contributing
+Before switching from test mode to production mode, run against a database
+backup or staging database first.
 
-Contributions are welcome.
+## Tests
 
-Possible areas:
+Run lightweight tests:
 
-- Better extraction pipelines
-- Improved ranking algorithms
-- New scraping integrations
-- Frontend development
-- Search optimization
+```bash
+pytest
+```
 
----
-
-# 📜 License
-
-MIT License
-
----
-
-# ⭐ Final Vision
-
-The goal of this project is to build an intelligent infrastructure layer for startup fundraising and investor discovery using:
-
-- AI
-- Semantic Search
-- Vector Databases
-- LLMs
-- Scalable Data Pipelines
-
-transforming raw web data into actionable investor intelligence.
+The current tests focus on safe normalization of legacy and structured partner
+and portfolio records.

@@ -14,12 +14,15 @@ from sqlalchemy import (
 
     ForeignKey,
 
-    TIMESTAMP
+    TIMESTAMP,
+
+    func
 )
 
 from sqlalchemy.orm import relationship
 
 from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.dialects.postgresql import JSONB
 
 from pgvector.sqlalchemy import Vector
 
@@ -115,9 +118,20 @@ class Investor(Base):
     # TIMESTAMP
     # =====================================
 
+    created_at = Column(
+
+        TIMESTAMP,
+
+        server_default=func.now()
+    )
+
     updated_at = Column(
 
-        TIMESTAMP
+        TIMESTAMP,
+
+        server_default=func.now(),
+
+        onupdate=func.now()
     )
 
 
@@ -176,6 +190,24 @@ class Partner(Base):
     )
 
 
+    role = Column(
+
+        String
+    )
+
+
+    linkedin_url = Column(
+
+        Text
+    )
+
+
+    twitter_url = Column(
+
+        Text
+    )
+
+
     # =====================================
     # RELATIONSHIP
     # =====================================
@@ -214,6 +246,12 @@ class PortfolioCompany(Base):
 
 
     company_name = Column(
+
+        String
+    )
+
+
+    sector = Column(
 
         String
     )
@@ -292,6 +330,31 @@ class FailedUrl(Base):
     last_attempt = Column(TIMESTAMP)
 
     status = Column(String, default="pending")
+
+
+# =========================================
+# PIPELINE RUN MODEL
+# =========================================
+
+class PipelineRun(Base):
+
+    __tablename__ = "pipeline_runs"
+
+    id = Column(Integer, primary_key=True)
+
+    status = Column(String, default="pending", nullable=False)
+
+    trigger = Column(String, default="manual", nullable=False)
+
+    params = Column(JSONB)
+
+    started_at = Column(TIMESTAMP)
+
+    ended_at = Column(TIMESTAMP)
+
+    stats = Column(JSONB)
+
+    error_message = Column(Text)
 
 
 # from sqlalchemy import (

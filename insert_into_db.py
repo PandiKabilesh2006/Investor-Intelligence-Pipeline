@@ -65,6 +65,12 @@ def ensure_list(value):
 
                 continue
 
+            if isinstance(item, dict):
+
+                cleaned.append(item)
+
+                continue
+
             item = str(item).strip()
 
             if item:
@@ -94,6 +100,183 @@ def ensure_list(value):
     # =====================================
 
     return []
+
+
+def normalize_partner_records(value):
+
+    partners = []
+
+    for item in ensure_list(value):
+
+        if isinstance(item, dict):
+
+            partner = {
+
+                "name": str(
+                    item.get("name", "")
+                ).strip(),
+
+                "role": str(
+                    item.get("role", "")
+                ).strip(),
+
+                "linkedin_url": str(
+                    item.get("linkedin_url", "")
+                ).strip(),
+
+                "twitter_url": str(
+                    item.get("twitter_url", "")
+                ).strip()
+            }
+
+        else:
+
+            partner = {
+
+                "name": str(item).strip(),
+
+                "role": "",
+
+                "linkedin_url": "",
+
+                "twitter_url": ""
+            }
+
+        if partner["name"]:
+
+            partners.append(partner)
+
+    unique = {}
+
+    for partner in partners:
+
+        unique.setdefault(
+
+            partner["name"].lower(),
+
+            partner
+        )
+
+    return list(
+
+        unique.values()
+    )
+
+
+def normalize_portfolio_company_records(value):
+
+    companies = []
+
+    for item in ensure_list(value):
+
+        if isinstance(item, dict):
+
+            company = {
+
+                "company_name": str(
+                    item.get("company_name", "")
+                    or
+                    item.get("name", "")
+                ).strip(),
+
+                "sector": str(
+                    item.get("sector", "")
+                ).strip()
+            }
+
+        else:
+
+            company = {
+
+                "company_name": str(item).strip(),
+
+                "sector": ""
+            }
+
+        if company["company_name"]:
+
+            companies.append(company)
+
+    unique = {}
+
+    for company in companies:
+
+        unique.setdefault(
+
+            company["company_name"].lower(),
+
+            company
+        )
+
+    return list(
+
+        unique.values()
+    )
+
+
+def build_embedding_text(
+
+    firm,
+
+    website,
+
+    source_url,
+
+    focus_sectors,
+
+    investment_stage,
+
+    geography,
+
+    contact_links,
+
+    partners,
+
+    portfolio_companies
+):
+
+    return " ".join([
+
+        firm,
+
+        website,
+
+        source_url,
+
+        " ".join(focus_sectors),
+
+        " ".join(investment_stage),
+
+        " ".join(geography),
+
+        " ".join(contact_links),
+
+        " ".join(
+            [
+                " ".join(
+                    [
+                        partner["name"],
+                        partner["role"],
+                        partner["linkedin_url"],
+                        partner["twitter_url"]
+                    ]
+                )
+                for partner in partners
+            ]
+        ),
+
+        " ".join(
+            [
+                " ".join(
+                    [
+                        company["company_name"],
+                        company["sector"]
+                    ]
+                )
+                for company in portfolio_companies
+            ]
+        )
+    ])
 
 
 # =========================================
@@ -228,7 +411,7 @@ def insert_investor_data(data, conn=None):
         )
 
 
-        partners = ensure_list(
+        partners = normalize_partner_records(
 
             data.get(
 
@@ -239,7 +422,7 @@ def insert_investor_data(data, conn=None):
         )
 
 
-        portfolio_companies = ensure_list(
+        portfolio_companies = normalize_portfolio_company_records(
 
             data.get(
 
@@ -254,7 +437,7 @@ def insert_investor_data(data, conn=None):
         # EMBEDDING TEXT
         # =====================================
 
-        embedding_text = " ".join([
+        embedding_text = build_embedding_text(
 
             firm,
 
@@ -262,18 +445,18 @@ def insert_investor_data(data, conn=None):
 
             source_url,
 
-            " ".join(focus_sectors),
+            focus_sectors,
 
-            " ".join(investment_stage),
+            investment_stage,
 
-            " ".join(geography),
+            geography,
 
-            " ".join(contact_links),
+            contact_links,
 
-            " ".join(partners),
+            partners,
 
-            " ".join(portfolio_companies)
-        ])
+            portfolio_companies
+        )
 
 
         # =====================================
@@ -295,7 +478,14 @@ def insert_investor_data(data, conn=None):
         cursor.execute(
 
             """
-            SELECT id
+            SELECT
+                id,
+                website,
+                source_url,
+                focus_sectors,
+                investment_stage,
+                geography,
+                contact_links
             FROM investors
             WHERE LOWER(firm) = LOWER(%s)
             """,
@@ -314,6 +504,44 @@ def insert_investor_data(data, conn=None):
         if existing:
 
             investor_id = existing[0]
+
+            website = website or existing[1] or ""
+
+            source_url = source_url or existing[2] or ""
+
+            focus_sectors = focus_sectors or existing[3] or []
+
+            investment_stage = investment_stage or existing[4] or []
+
+            geography = geography or existing[5] or []
+
+            contact_links = contact_links or existing[6] or []
+
+            embedding_text = build_embedding_text(
+
+                firm,
+
+                website,
+
+                source_url,
+
+                focus_sectors,
+
+                investment_stage,
+
+                geography,
+
+                contact_links,
+
+                partners,
+
+                portfolio_companies
+            )
+
+            embedding = model.encode(
+
+                embedding_text
+            ).tolist()
 
 
             cursor.execute(
@@ -450,34 +678,21 @@ def insert_investor_data(data, conn=None):
 
 
         # =====================================
-        # DELETE OLD RELATIONAL DATA
-        # =====================================
-
-        cursor.execute(
-
-            """
-            DELETE FROM partners
-            WHERE investor_id = %s
-            """,
-
-            (investor_id,)
-        )
-
-
-        cursor.execute(
-
-            """
-            DELETE FROM portfolio_companies
-            WHERE investor_id = %s
-            """,
-
-            (investor_id,)
-        )
-
-
-        # =====================================
         # INSERT PARTNERS
         # =====================================
+
+        if partners:
+
+            cursor.execute(
+
+                """
+                DELETE FROM partners
+                WHERE investor_id = %s
+                """,
+
+                (investor_id,)
+            )
+
 
         for partner in partners:
 
@@ -488,12 +703,21 @@ def insert_investor_data(data, conn=None):
 
                     investor_id,
 
-                    name
+                    name,
+
+                    role,
+
+                    linkedin_url,
+
+                    twitter_url
 
                 )
 
                 VALUES (
 
+                    %s,
+                    %s,
+                    %s,
                     %s,
                     %s
                 )
@@ -503,7 +727,13 @@ def insert_investor_data(data, conn=None):
 
                     investor_id,
 
-                    partner
+                    partner["name"],
+
+                    partner["role"],
+
+                    partner["linkedin_url"],
+
+                    partner["twitter_url"]
                 )
             )
 
@@ -511,6 +741,19 @@ def insert_investor_data(data, conn=None):
         # =====================================
         # INSERT PORTFOLIO COMPANIES
         # =====================================
+
+        if portfolio_companies:
+
+            cursor.execute(
+
+                """
+                DELETE FROM portfolio_companies
+                WHERE investor_id = %s
+                """,
+
+                (investor_id,)
+            )
+
 
         for company in portfolio_companies:
 
@@ -521,12 +764,15 @@ def insert_investor_data(data, conn=None):
 
                     investor_id,
 
-                    company_name
+                    company_name,
+
+                    sector
 
                 )
 
                 VALUES (
 
+                    %s,
                     %s,
                     %s
                 )
@@ -536,7 +782,9 @@ def insert_investor_data(data, conn=None):
 
                     investor_id,
 
-                    company
+                    company["company_name"],
+
+                    company["sector"]
                 )
             )
 

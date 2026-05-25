@@ -62,36 +62,13 @@ from app.utils.crawl_queue_manager import (
 )
 
 from app.query.query_expansion import expand_query_theme
-
-
-# =========================================
-# TEST MODE
-# =========================================
-
-TEST_MODE = True
-
-
-# =========================================
-# DEVELOPMENT LIMITS
-# =========================================
-
-TEST_QUERY_LIMIT = 10
-
-TEST_URL_LIMIT = 5
-
-
-# =========================================
-# PRODUCTION INGESTION LIMITS
-# =========================================
-
-MAX_TOTAL_URLS = 500
-
-
-# =========================================
-# FRESHNESS CONFIG
-# =========================================
-
-RECRAWL_AFTER_DAYS = 30
+from app.config.settings import (
+    MAX_TOTAL_URLS,
+    RECRAWL_AFTER_DAYS,
+    TEST_MODE,
+    TEST_QUERY_LIMIT,
+    TEST_URL_LIMIT,
+)
 
 
 # =========================================

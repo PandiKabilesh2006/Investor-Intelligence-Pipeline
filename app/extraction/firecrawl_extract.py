@@ -1,9 +1,14 @@
 from firecrawl import FirecrawlApp
 
 from urllib.parse import urljoin
+from concurrent.futures import (
+    ThreadPoolExecutor,
+    TimeoutError
+)
 
 from app.config.settings import (
-    FIRECRAWL_API_KEY
+    FIRECRAWL_API_KEY,
+    FIRECRAWL_TIMEOUT_SECONDS
 )
 
 from app.utils.failed_url_manager import (
@@ -85,12 +90,32 @@ def scrape_single_page(url):
 
     try:
 
-        response = firecrawl.scrape(
+        executor = ThreadPoolExecutor(max_workers=1)
 
-            url=url,
+        try:
 
-            formats=["markdown"]
-        )
+            future = executor.submit(
+
+                firecrawl.scrape,
+
+                url=url,
+
+                formats=["markdown"]
+            )
+
+            response = future.result(
+
+                timeout=FIRECRAWL_TIMEOUT_SECONDS
+            )
+
+        finally:
+
+            executor.shutdown(
+
+                wait=False,
+
+                cancel_futures=True
+            )
 
 
         if not response:
@@ -119,6 +144,31 @@ def scrape_single_page(url):
 
 
         return markdown
+
+
+    except TimeoutError:
+
+        extraction_error = (
+            f"Timed out after {FIRECRAWL_TIMEOUT_SECONDS}s"
+        )
+
+        print(
+
+            f"Extraction failed: "
+            f"{url} | "
+            f"{extraction_error}"
+        )
+
+
+        add_failed_url(
+
+            url,
+
+            extraction_error
+        )
+
+
+        return None
 
 
     except Exception as extraction_error:

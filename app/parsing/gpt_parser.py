@@ -102,6 +102,30 @@ EMPTY_RESPONSE = {
 }
 
 
+def empty_partner():
+
+    return {
+
+        "name": "",
+
+        "role": "",
+
+        "linkedin_url": "",
+
+        "twitter_url": ""
+    }
+
+
+def empty_portfolio_company():
+
+    return {
+
+        "company_name": "",
+
+        "sector": ""
+    }
+
+
 # =========================================
 # PROMPT BUILDER
 # =========================================
@@ -135,10 +159,22 @@ SCHEMA
 {{
   "firm": "",
   "website": "",
-  "partners": [],
+  "partners": [
+    {{
+      "name": "",
+      "role": "",
+      "linkedin_url": "",
+      "twitter_url": ""
+    }}
+  ],
   "focus_sectors": [],
   "investment_stage": [],
-  "portfolio_companies": [],
+  "portfolio_companies": [
+    {{
+      "company_name": "",
+      "sector": ""
+    }}
+  ],
   "geography": [],
   "contact_links": []
 }}
@@ -248,6 +284,12 @@ Extract ONLY individuals explicitly
 part of the investment firm's internal
 investment team.
 
+Return each partner as an object with:
+- name
+- role
+- linkedin_url
+- twitter_url
+
 Possible roles:
 - Partner
 - Managing Partner
@@ -273,6 +315,10 @@ PORTFOLIO COMPANY EXTRACTION
 
 Extract ONLY startup/company names
 belonging to the firm's portfolio.
+
+Return each portfolio company as an object with:
+- company_name
+- sector
 
 Do NOT extract:
 - investors
@@ -363,6 +409,12 @@ def ensure_list(value):
 
                 continue
 
+            if isinstance(item, dict):
+
+                cleaned.append(item)
+
+                continue
+
             item = str(item).strip()
 
             if item:
@@ -384,6 +436,78 @@ def ensure_list(value):
 
 
     return []
+
+
+def ensure_partner_list(value):
+
+    partners = []
+
+    for item in ensure_list(value):
+
+        if isinstance(item, dict):
+
+            partner = empty_partner()
+
+            partner["name"] = str(
+                item.get("name", "")
+            ).strip()
+
+            partner["role"] = str(
+                item.get("role", "")
+            ).strip()
+
+            partner["linkedin_url"] = str(
+                item.get("linkedin_url", "")
+            ).strip()
+
+            partner["twitter_url"] = str(
+                item.get("twitter_url", "")
+            ).strip()
+
+        else:
+
+            partner = empty_partner()
+
+            partner["name"] = str(item).strip()
+
+        if partner["name"]:
+
+            partners.append(partner)
+
+    return partners
+
+
+def ensure_portfolio_company_list(value):
+
+    companies = []
+
+    for item in ensure_list(value):
+
+        if isinstance(item, dict):
+
+            company = empty_portfolio_company()
+
+            company["company_name"] = str(
+                item.get("company_name", "")
+                or
+                item.get("name", "")
+            ).strip()
+
+            company["sector"] = str(
+                item.get("sector", "")
+            ).strip()
+
+        else:
+
+            company = empty_portfolio_company()
+
+            company["company_name"] = str(item).strip()
+
+        if company["company_name"]:
+
+            companies.append(company)
+
+    return companies
 
 
 # =========================================
@@ -484,13 +608,9 @@ def normalize_output(parsed):
 
     for field in [
 
-        "partners",
-
         "focus_sectors",
 
         "investment_stage",
-
-        "portfolio_companies",
 
         "geography",
 
@@ -502,6 +622,16 @@ def normalize_output(parsed):
             parsed.get(field, [])
         )
 
+    parsed["partners"] = ensure_partner_list(
+
+        parsed.get("partners", [])
+    )
+
+    parsed["portfolio_companies"] = ensure_portfolio_company_list(
+
+        parsed.get("portfolio_companies", [])
+    )
+
 
     # =====================================
     # REMOVE DUPLICATES
@@ -509,13 +639,9 @@ def normalize_output(parsed):
 
     for field in [
 
-        "partners",
-
         "focus_sectors",
 
         "investment_stage",
-
-        "portfolio_companies",
 
         "geography",
 
@@ -526,6 +652,38 @@ def normalize_output(parsed):
 
             dict.fromkeys(parsed[field])
         )
+
+    partner_map = {}
+
+    for partner in parsed["partners"]:
+
+        partner_map.setdefault(
+
+            partner["name"].lower(),
+
+            partner
+        )
+
+    parsed["partners"] = list(
+
+        partner_map.values()
+    )
+
+    company_map = {}
+
+    for company in parsed["portfolio_companies"]:
+
+        company_map.setdefault(
+
+            company["company_name"].lower(),
+
+            company
+        )
+
+    parsed["portfolio_companies"] = list(
+
+        company_map.values()
+    )
 
 
     return parsed
@@ -542,25 +700,53 @@ def filter_partner_names(partners):
 
     for partner in partners:
 
-        partner = str(partner).strip()
+        if isinstance(partner, dict):
+
+            partner_record = partner.copy()
+
+            partner_name = str(
+                partner_record.get("name", "")
+            ).strip()
+
+        else:
+
+            partner_record = empty_partner()
+
+            partner_name = str(partner).strip()
+
+            partner_record["name"] = partner_name
 
 
         if not re.match(
 
             r"^[A-Z][a-zA-Z'\\-]+(?:\\s[A-Z][a-zA-Z'\\-]+)+$",
 
-            partner
+            partner_name
         ):
 
             continue
 
 
-        filtered.append(partner)
+        partner_record["name"] = partner_name
+
+        filtered.append(partner_record)
+
+
+    unique = {}
+
+    for partner in filtered:
+
+        unique.setdefault(
+
+            partner["name"].lower(),
+
+            partner
+        )
 
 
     return list(
 
-        dict.fromkeys(filtered)
+        unique.values()
     )
 
 
