@@ -1,0 +1,161 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --muted: 220 14% 92%;
+  --muted-foreground: 220 8% 42%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 22% 12%;
+  --border: 220 13% 87%;
+  --primary: 224 65% 28%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 220 18% 95%;
+  --accent-foreground: 224 22% 16%;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+a {
+  color: inherit;
+}
+
+@layer base {
+  .theme {
+    --font-heading: var(--font-sans);
+    --font-sans: var(--font-sans);
+  }
+  :root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+  }
+  .dark {
+    --background: hsl(224 71% 4%);
+    --foreground: hsl(213 31% 91%);
+    --card: hsl(224 71% 6%);
+    --card-foreground: hsl(213 31% 91%);
+    --popover: hsl(224 71% 4%);
+    --popover-foreground: hsl(213 31% 91%);
+    --primary: hsl(263 70% 50%);
+    --primary-foreground: hsl(210 40% 98%);
+    --secondary: hsl(222 47% 11%);
+    --secondary-foreground: hsl(210 40% 98%);
+    --muted: hsl(222 47% 11%);
+    --muted-foreground: hsl(215 20.2% 65.1%);
+    --accent: hsl(222 47% 11%);
+    --accent-foreground: hsl(210 40% 98%);
+    --destructive: hsl(0 62.8% 30.6%);
+    --border: hsl(224 71% 12%);
+    --input: hsl(224 71% 12%);
+    --ring: hsl(263 70% 50%);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+  html {
+    @apply font-sans scroll-smooth;
+  }
+
+  /* Glass card — light by default, dark when .dark is on html */
+  .glass-card {
+    background: hsl(var(--card) / 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid hsl(var(--border)) !important;
+    box-shadow: 0 4px 24px 0 rgba(15, 23, 42, 0.06) !important;
+  }
+
+  .dark .glass-card {
+    background: rgba(13, 17, 26, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .glass-card-hover:hover {
+    border-color: rgba(139, 92, 246, 0.35);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.12), 0 8px 24px 0 rgba(15, 23, 42, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .dark .glass-card-hover:hover {
+    background: rgba(13, 17, 26, 0.85);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.15), 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .glow-accent {
+    color: inherit;
+  }
+  .dark .glow-accent {
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  }
+
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(90deg, #8b5cf6, #ec4899, #3b82f6);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .glow-border:hover::after {
+    opacity: 0.7;
+  }
+}
