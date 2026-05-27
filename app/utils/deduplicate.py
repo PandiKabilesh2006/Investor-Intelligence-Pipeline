@@ -1,23 +1,20 @@
-seen_firms = set()
+from app.validation.investor_validation import normalize_firm_key
+
+_seen_firm_keys: set[str] = set()
 
 
-def is_duplicate_firm(firm_name):
+def reset_firm_dedup_cache() -> None:
+    _seen_firm_keys.clear()
 
-    if not firm_name:
+
+def is_duplicate_firm(firm_name: str) -> bool:
+    key = normalize_firm_key(firm_name)
+
+    if not key:
         return True
 
-    normalized = (
-        firm_name
-        .lower()
-        .replace("ventures", "")
-        .replace("capital", "")
-        .replace("partners", "")
-        .strip()
-    )
-
-    if normalized in seen_firms:
+    if key in _seen_firm_keys:
         return True
 
-    seen_firms.add(normalized)
-
+    _seen_firm_keys.add(key)
     return False

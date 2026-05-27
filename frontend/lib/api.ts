@@ -10,13 +10,15 @@ export type Metrics = {
 
 export type Investor = {
   id: number;
-  firm: string;
+  firm_name: string;
   website?: string | null;
-  source_url?: string | null;
   focus_sectors: string[];
   investment_stage: string[];
   geography: string[];
-  contact_links: string[];
+  portfolio_company_names?: string[] | null;
+  partner_count: number;
+  portfolio_count: number;
+  created_at?: string | null;
   updated_at?: string | null;
 };
 
@@ -27,9 +29,15 @@ export type Partner = {
   role?: string | null;
   linkedin_url?: string | null;
   twitter_url?: string | null;
-  source_url?: string | null;
-  confidence?: number | null;
-  updated_at?: string | null;
+  firm_name?: string | null;
+};
+
+export type PortfolioCompany = {
+  id: number;
+  investor_id: number;
+  company_name: string;
+  sector?: string | null;
+  firm_name?: string | null;
 };
 
 export type PipelineStatus = {
@@ -64,7 +72,7 @@ export type Paginated<T> = {
 
 export type InvestorDetail = Investor & {
   partners: Partner[];
-  portfolio_companies: { id: number; investor_id: number; company_name: string }[];
+  portfolio_companies: { id: number; investor_id: number; company_name: string; sector?: string | null }[];
 };
 
 export type QueueSummary = {
@@ -127,6 +135,8 @@ export function getInvestors(params?: {
 
 export function getPartners(params?: {
   q?: string;
+  investor_id?: number;
+  firm?: string;
   limit?: number;
   offset?: number;
 }) {
@@ -141,6 +151,27 @@ export function getPartners(params?: {
   const suffix = searchParams.toString();
   return request<Paginated<Partner>>(
     `/api/partners${suffix ? `?${suffix}` : ""}`
+  );
+}
+
+export function getPortfolioCompanies(params?: {
+  q?: string;
+  investor_id?: number;
+  firm?: string;
+  limit?: number;
+  offset?: number;
+}) {
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    if (value !== undefined && value !== "") {
+      searchParams.set(key, String(value));
+    }
+  });
+
+  const suffix = searchParams.toString();
+  return request<Paginated<PortfolioCompany>>(
+    `/api/portfolio-companies${suffix ? `?${suffix}` : ""}`
   );
 }
 
@@ -193,5 +224,32 @@ export async function triggerPipelineRun(q: string) {
 
 export function getActivePipelineJobs() {
   return request<ActiveJobs>("/api/pipeline/active-jobs");
+}
+
+export type QueryGenResponse = {
+  queries: string[];
+  source: "ai" | "rule_based";
+};
+
+export async function generateQueries(params: {
+  sector?: string;
+  stage?: string;
+  geography?: string;
+  theme?: string;
+  use_ai?: boolean;
+}) {
+  const response = await fetch(`${API_BASE_URL}/api/pipeline/generate-queries`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(params),
+  });
+
+  if (!response.ok) {
+    throw new Error(`API request failed: ${response.status}`);
+  }
+
+  return response.json() as Promise<QueryGenResponse>;
 }
 

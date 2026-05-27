@@ -93,7 +93,7 @@ for investor in investors:
         ranked_investors.append(
 
             {
-                "firm": investor.firm,
+                "firm_name": investor.firm_name,
                 "website": investor.website,
                 "score": score,
                 "focus_sectors": sectors,

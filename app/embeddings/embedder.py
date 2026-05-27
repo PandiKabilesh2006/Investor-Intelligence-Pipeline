@@ -21,7 +21,7 @@ def build_investor_text(investor):
 
     components = [
 
-        investor.get("firm", ""),
+        investor.get("firm_name", ""),
 
         " ".join(
 

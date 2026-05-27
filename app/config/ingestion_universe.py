@@ -41,7 +41,6 @@ STAGES = [
 # GEOGRAPHIES
 
 GEOGRAPHIES = [
-
     "United States",
     "India",
     "Europe",

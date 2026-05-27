@@ -239,7 +239,7 @@ export function DashboardClient({ metrics, recentInvestors, allInvestors, pipeli
                 {recentInvestors.map((investor) => (
                   <tr key={investor.id} className="hover:bg-muted/50 transition duration-150">
                     <td className="px-6 py-4 font-semibold text-foreground">
-                      {investor.firm}
+                      {investor.firm_name}
                     </td>
                     <td className="px-6 py-4 text-muted-foreground text-xs">
                       {investor.investment_stage.join(", ") || "Not specified"}

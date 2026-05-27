@@ -36,15 +36,19 @@ def retry_failed_urls():
                 f"Retrying failed URL: {url}"
             )
 
-            # Reprocess failed URL via nightly_ingestion.py argument
-            subprocess.run(
-                [
-                    sys.executable,
-                    "nightly_ingestion.py",
-                    url
-                ],
-                check=True
-            )
+            # Reprocess failed URL via nightly_ingestion.py argument with unbuffered output
+            with open("pipeline.log", "a", encoding="utf-8") as log_file:
+                subprocess.run(
+                    [
+                        sys.executable,
+                        "-u",
+                        "nightly_ingestion.py",
+                        url
+                    ],
+                    stdout=log_file,
+                    stderr=log_file,
+                    check=True
+                )
 
             # Mark resolved
             mark_failed_url_resolved(failed_id)
@@ -68,14 +72,18 @@ def run_nightly_pipeline():
     pipeline_logger.info("Starting scheduled investor ingestion")
 
     try:
-        # Run main ingestion script
-        subprocess.run(
-            [
-                sys.executable,
-                "nightly_ingestion.py"
-            ],
-            check=True
-        )
+        # Run main ingestion script with unbuffered output redirected to pipeline.log
+        with open("pipeline.log", "a", encoding="utf-8") as log_file:
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-u",
+                    "nightly_ingestion.py"
+                ],
+                stdout=log_file,
+                stderr=log_file,
+                check=True
+            )
 
         pipeline_logger.info("Scheduled ingestion completed")
 

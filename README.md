@@ -372,10 +372,16 @@ INGESTION_TEST_MODE=false
 INGESTION_TEST_QUERY_LIMIT=40
 INGESTION_SEARCH_MAX_PAGES=10
 INGESTION_MAX_URLS_PER_RUN=500
+INGESTION_TOTAL_URL_BUDGET=0
 INGESTION_QUEUE_STATUS_LIMIT=500
 INGESTION_RECRAWL_AFTER_DAYS=30
 INGESTION_QUERY_DELAY_SECONDS=2
 INGESTION_CRON=0 14 * * *
+INGESTION_ALLOW_MOCK_DATA=false
+INGESTION_REQUIRE_RAW_PROVENANCE=true
+INGESTION_MIN_MARKDOWN_LENGTH=500
+RAW_DATA_FOLDER=raw_markdown
+PARSED_DATA_FOLDER=parsed_json
 EXTRACTION_MAX_CONCURRENT=5
 PARSER_MAX_CONTENT_LENGTH=8000
 PARTNER_MIN_CONFIDENCE=0.7
@@ -391,6 +397,39 @@ For larger production runs, increase `INGESTION_MAX_URLS_PER_RUN` and `INGESTION
 ---
 
 # ▶️ Running the Pipeline
+
+## Production Frontend
+
+The production frontend lives in `frontend/` and uses Next.js, TypeScript, Tailwind CSS, and shadcn-style local components.
+
+Prerequisite: install Node.js LTS so `node` and `npm` are available.
+
+Start the FastAPI backend:
+
+```bash
+uvicorn main:app --reload --port 8000
+```
+
+Start the frontend:
+
+```bash
+cd frontend
+npm install
+copy .env.example .env.local
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+The frontend reads `NEXT_PUBLIC_API_BASE_URL` from `frontend/.env.local`. The default is:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
+```
 
 ## Step 1 — Scrape Investor Data
 

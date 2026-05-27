@@ -1,0 +1,24 @@
+Based on the following search snippets about the company '{company_name}', classify its industry/sector.
+
+Allowed categories (prefer these if applicable):
+- Artificial Intelligence
+- B2B
+- SaaS
+- Voice AI
+- Fintech
+- Healthcare
+- Security
+- Developer Tools
+- Consumer
+- E-commerce
+- Web3
+
+CRITICAL ANTI-HALLUCINATION RULE:
+- Do NOT guess or make up a sector. Only classify based on concrete facts mentioned in the snippets below.
+- If none of the allowed categories apply, return a clean 1-2 word industry name that is strictly and factually supported by the search snippets (e.g., Biotech, Hardware, Logistics, Energy, Proptech).
+- If the search snippets do not contain enough information to identify the company's sector, return "Unknown". Do not guess.
+
+Search Snippets:
+{snippets}
+
+Return ONLY the category name. Do not explain, do not add punctuation, do not write a sentence. Return just the string.

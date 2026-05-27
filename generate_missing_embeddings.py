@@ -39,7 +39,7 @@ for investor in investors:
 
         investor_data = {
 
-            "firm": investor.firm,
+            "firm_name": investor.firm_name,
 
             "focus_sectors": investor.focus_sectors or [],
 
@@ -70,7 +70,7 @@ for investor in investors:
         print(
 
             f"Generated embedding: "
-            f"{investor.firm}"
+            f"{investor.firm_name}"
         )
 
 

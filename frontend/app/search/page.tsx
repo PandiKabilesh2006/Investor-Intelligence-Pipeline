@@ -7,17 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Search, SlidersHorizontal, Loader2, Sparkles, ShieldCheck, ChevronRight, Compass, Shield } from "lucide-react";
 import { InvestorDetailModal } from "@/components/investor-detail-modal";
 import { cn, fieldInputClassName } from "@/lib/utils";
+import { GEOGRAPHIES } from "@/lib/countries";
 
 const SECTORS = [
   "Artificial Intelligence",
-  "Enterprise AI",
-  "B2B SaaS",
-  "Voice AI",
-  "Fintech",
-  "Healthcare",
-  "Deeptech",
-  "Web3",
-  "Proptech"
+  "B2B",
+  "SaaS",
+  "Voice AI"
 ];
 
 const STAGES = [
@@ -26,15 +22,6 @@ const STAGES = [
   "Series A",
   "Series B",
   "Growth Stage"
-];
-
-const GEOGRAPHIES = [
-  "India",
-  "United States",
-  "Europe",
-  "Southeast Asia",
-  "Middle East",
-  "Global"
 ];
 
 export default function SearchPage() {

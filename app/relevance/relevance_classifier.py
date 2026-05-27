@@ -4,11 +4,26 @@ import re
 import ollama
 
 from groq import Groq
+from openai import OpenAI
 
 from app.config.settings import (
     GROQ_API_KEY,
     GROQ_PRIMARY_MODEL,
-    GROQ_FALLBACK_MODEL
+    GROQ_FALLBACK_MODEL,
+    OPENAI_API_KEY,
+    OPENAI_PRIMARY_MODEL
+)
+from app.prompts.loader import load_prompt
+
+
+# =========================================
+# OPENAI CLIENT
+# =========================================
+
+openai_client = OpenAI(
+    api_key=OPENAI_API_KEY,
+    max_retries=0,
+    timeout=30.0
 )
 
 
@@ -17,11 +32,8 @@ from app.config.settings import (
 # =========================================
 
 client = Groq(
-
     api_key=GROQ_API_KEY,
-
     max_retries=0,
-
     timeout=30.0
 )
 
@@ -88,192 +100,18 @@ FALLBACK_RESPONSE = {
 # =========================================
 
 def build_prompt(
-
     query,
-
     title,
-
     url,
-
     snippet
 ):
-
-    return f"""
-You are an investor intelligence retrieval system.
-
-Your task is to determine whether
-a search result contains useful:
-
-- venture capital intelligence
-- startup funding intelligence
-- investor ecosystem intelligence
-- portfolio intelligence
-- startup investment intelligence
-
-The PRIMARY GOAL is:
-MAXIMUM INVESTOR DISCOVERY.
-
-IMPORTANT:
-
-A page DOES NOT need to be an
-official VC homepage to be valuable.
-
-Many useful investor intelligence sources are:
-- investor directories
-- curated investor lists
-- startup ecosystem databases
-- accelerator pages
-- VC portfolio pages
-- investment theses
-- funding reports
-- AI startup ecosystem pages
-- venture studio pages
-- angel investor platforms
-- startup funding platforms
-
-----------------------------------------
-HIGH VALUE SOURCES
-----------------------------------------
-
-Strongly accept:
-
-- venture capital firms
-- investment funds
-- VC portfolio pages
-- investor directories
-- startup funding databases
-- curated VC lists
-- accelerator investor pages
-- AI investor ecosystem pages
-- SaaS investor lists
-- startup ecosystem intelligence
-- funding network pages
-- venture studios
-- angel investor networks
-- early-stage investment platforms
-- investment thesis pages
-- AI infrastructure investment pages
-- enterprise AI investment pages
-
-----------------------------------------
-REJECT ONLY
-----------------------------------------
-
-Reject ONLY if the page is clearly unrelated:
-
-- ecommerce stores
-- celebrity news
-- sports
-- entertainment
-- generic spam
-- unrelated SaaS products
-- unrelated businesses
-- unrelated media/news
-- gambling/adult content
-- random irrelevant websites
-
-DO NOT over-filter.
-
-False positives are acceptable.
-False negatives are dangerous.
-
-It is MUCH BETTER to keep
-potentially useful investor intelligence
-than accidentally reject valuable sources.
-
-----------------------------------------
-SOURCE TYPE CLASSIFICATION
-----------------------------------------
-
-Classify the source type as ONE of:
-
-"investor_profile"
-  The page IS a VC firm's own website.
-  Examples:
-  - a16z.com/team
-  - sequoiacap.com/people
-  - Any page where the firm describes
-    its own team, thesis, or portfolio.
-  Expect: real partner names available.
-
-"investor_mention"
-  A blog, article, or directory that
-  MENTIONS investors but is not their
-  own page.
-  Examples:
-  - moonfare.com/blog/ai-and-vc-2025
-  - techcrunch.com/best-seed-investors
-  - seedtable.com/investors-ai
-  Expect: firm names but no partner names.
-
-"investor_directory"
-  A structured database or aggregator
-  listing multiple investors.
-  Examples:
-  - crunchbase.com
-  - dealroom.co
-  - wellfound.com
-
-Pick the MOST SPECIFIC type that fits.
-Default to "investor_mention" if unsure.
-
-----------------------------------------
-USER QUERY
-----------------------------------------
-
-{query}
-
-----------------------------------------
-SEARCH RESULT TITLE
-----------------------------------------
-
-{title}
-
-----------------------------------------
-SEARCH RESULT URL
-----------------------------------------
-
-{url}
-
-----------------------------------------
-SEARCH RESULT SNIPPET
-----------------------------------------
-
-{snippet}
-
-----------------------------------------
-SCORING GUIDELINES
-----------------------------------------
-
-0.90 - 1.00
-Extremely strong investor relevance
-
-0.75 - 0.89
-Strong investor ecosystem relevance
-
-0.60 - 0.74
-Potentially valuable investor intelligence
-
-0.40 - 0.59
-Weak but maybe useful startup ecosystem content
-
-Below 0.40
-Likely irrelevant
-
-----------------------------------------
-RETURN FORMAT
-----------------------------------------
-
-Return ONLY valid JSON:
-
-{{
-  "relevance_tier": "high",
-  "is_relevant": true,
-  "confidence": 0.95,
-  "reason": "",
-  "source_type": "investor_profile"
-}}
-"""
+    template = load_prompt("relevance_prompt.txt")
+    return template.format(
+        query=query,
+        title=title,
+        url=url,
+        snippet=snippet
+    )
 
 
 # =========================================
@@ -477,6 +315,40 @@ def classify_with_ollama(prompt):
 
 
 # =========================================
+# OPENAI CLASSIFIER
+# =========================================
+
+def classify_with_openai(
+    prompt,
+    model_name
+):
+    response = openai_client.chat.completions.create(
+        model=model_name,
+        temperature=0,
+        response_format={
+            "type": "json_object"
+        },
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    )
+
+    output = (
+        response
+        .choices[0]
+        .message
+        .content
+    )
+
+    parsed = extract_json(output)
+
+    return normalize_output(parsed)
+
+
+# =========================================
 # GROQ CLASSIFIER
 # =========================================
 
@@ -572,160 +444,55 @@ def classify_investor_relevance(
 
 
     # =====================================
-    # PRIMARY: GROQ 70B
+    # 1. PRIMARY: OPENAI (gpt-4o)
     # =====================================
+    if OPENAI_API_KEY:
+        try:
+            parsed = classify_with_openai(prompt, OPENAI_PRIMARY_MODEL)
+            print(f"Classification using OpenAI primary model: {OPENAI_PRIMARY_MODEL}")
+            return parsed
+        except Exception as openai_error:
+            print(f"OpenAI model {OPENAI_PRIMARY_MODEL} failed: {openai_error}")
+            print("Switching to Groq primary model fallback...")
 
+    # =====================================
+    # 2. FALLBACK 1: GROQ 70B
+    # =====================================
     try:
-
-        parsed = classify_with_groq(
-
-            prompt,
-
-            GROQ_PRIMARY_MODEL
-        )
-
-        print(
-
-            f"Classification using primary model: {GROQ_PRIMARY_MODEL}"
-        )
-
+        parsed = classify_with_groq(prompt, GROQ_PRIMARY_MODEL)
+        print(f"Classification using Groq primary model: {GROQ_PRIMARY_MODEL}")
         time.sleep(8)
-
         return parsed
-
-
     except Exception as groq_70b_error:
-
-        error_message = str(
-
-            groq_70b_error
-
-        ).lower()
-
-
-        print(
-
-            f"Primary model {GROQ_PRIMARY_MODEL} failed: "
-            f"{groq_70b_error}"
-        )
-
-
-        wait_time = extract_retry_wait(
-
-            error_message
-        )
-
-        print(
-
-            f"Waiting {wait_time}s "
-            f"before fallback..."
-        )
-
+        error_message = str(groq_70b_error).lower()
+        print(f"Groq primary model {GROQ_PRIMARY_MODEL} failed: {groq_70b_error}")
+        wait_time = extract_retry_wait(error_message)
+        print(f"Waiting {wait_time}s before Groq fallback...")
         time.sleep(wait_time)
 
+        # =====================================
+        # 3. FALLBACK 2: GROQ 8B
+        # =====================================
+        try:
+            parsed = classify_with_groq(prompt, GROQ_FALLBACK_MODEL)
+            print(f"Classification using Groq fallback model: {GROQ_FALLBACK_MODEL}")
+            time.sleep(8)
+            return parsed
+        except Exception as groq_8b_error:
+            groq_8b_message = str(groq_8b_error).lower()
+            print(f"Groq fallback model {GROQ_FALLBACK_MODEL} failed: {groq_8b_error}")
+            wait_time = extract_retry_wait(groq_8b_message)
+            print(f"Waiting {wait_time}s before Ollama fallback...")
+            time.sleep(wait_time)
 
-        if any(
-
-            error in error_message
-
-            for error in RECOVERABLE_GROQ_ERRORS
-        ):
-
-            print(
-
-                f"Switching to fallback model {GROQ_FALLBACK_MODEL}..."
-            )
-
-
+            # =====================================
+            # 4. FALLBACK 3: OLLAMA
+            # =====================================
             try:
-
-                parsed = classify_with_groq(
-
-                    prompt,
-
-                    GROQ_FALLBACK_MODEL
-                )
-
-                print(
-
-                    f"Classification using fallback model: {GROQ_FALLBACK_MODEL}"
-                )
-
-                time.sleep(8)
-
+                print("Switching to Ollama...")
+                parsed = classify_with_ollama(prompt)
+                print("Classification using Ollama")
                 return parsed
-
-
-            except Exception as groq_8b_error:
-
-                groq_8b_message = str(
-
-                    groq_8b_error
-
-                ).lower()
-
-
-                print(
-
-                    f"Fallback model {GROQ_FALLBACK_MODEL} failed: "
-                    f"{groq_8b_error}"
-                )
-
-
-                wait_time = extract_retry_wait(
-
-                    groq_8b_message
-                )
-
-                print(
-
-                    f"Waiting {wait_time}s "
-                    f"before Ollama fallback..."
-                )
-
-                time.sleep(wait_time)
-
-
-                if any(
-
-                    error in groq_8b_message
-
-                    for error in RECOVERABLE_GROQ_ERRORS
-                ):
-
-                    print(
-
-                        "Switching to Ollama..."
-                    )
-
-
-                    try:
-
-                        parsed = classify_with_ollama(
-
-                            prompt
-                        )
-
-                        print(
-
-                            "Classification using Ollama"
-                        )
-
-                        return parsed
-
-
-                    except Exception as ollama_error:
-
-                        print(
-
-                            f"Ollama failed: "
-                            f"{ollama_error}"
-                        )
-
-                        return FALLBACK_RESPONSE
-
-
+            except Exception as ollama_error:
+                print(f"Ollama failed: {ollama_error}")
                 return FALLBACK_RESPONSE
-
-
-        return FALLBACK_RESPONSE

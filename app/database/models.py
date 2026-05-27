@@ -1,323 +1,44 @@
-from sqlalchemy import (
-
-    Column,
-
-    Integer,
-
-    String,
-
-    Text,
-
-    ForeignKey,
-
-    Float,
-
-    TIMESTAMP
-)
-
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, TIMESTAMP
 from sqlalchemy.orm import relationship
-
 from sqlalchemy.dialects.postgresql import ARRAY
-
 from pgvector.sqlalchemy import Vector
-
 from app.database.db import Base
 
-
-# =========================================
-# INVESTOR MODEL
-# =========================================
-
 class Investor(Base):
-
     __tablename__ = "investors"
 
+    id = Column(Integer, primary_key=True)
+    firm_name = Column(String, unique=True, nullable=False)
+    website = Column(String)
+    source_url = Column(Text)
+    focus_sectors = Column(ARRAY(Text))
+    investment_stage = Column(ARRAY(Text))
+    geography = Column(ARRAY(Text))
+    embedding = Column(Vector(384))
+    created_at = Column(TIMESTAMP)
+    updated_at = Column(TIMESTAMP)
 
-    # =====================================
-    # PRIMARY KEY
-    # =====================================
-
-    id = Column(
-
-        Integer,
-
-        primary_key=True
-    )
-
-
-    # =====================================
-    # CORE INVESTOR DATA
-    # =====================================
-
-    firm = Column(
-
-        String,
-
-        unique=True,
-
-        nullable=False
-    )
-
-
-    website = Column(
-
-        String
-    )
-
-
-    source_url = Column(
-
-        Text
-    )
-
-
-    # =====================================
-    # ARRAY FIELDS
-    # =====================================
-
-    focus_sectors = Column(
-
-        ARRAY(Text)
-    )
-
-
-    investment_stage = Column(
-
-        ARRAY(Text)
-    )
-
-
-    geography = Column(
-
-        ARRAY(Text)
-    )
-
-
-    contact_links = Column(
-
-        ARRAY(Text)
-    )
-
-
-    # =====================================
-    # VECTOR EMBEDDING
-    # =====================================
-
-    embedding = Column(
-
-        Vector(384)
-    )
-
-
-    # =====================================
-    # TIMESTAMP
-    # =====================================
-
-    updated_at = Column(
-
-        TIMESTAMP
-    )
-
-
-    # =====================================
-    # RELATIONSHIPS
-    # =====================================
-
-    partners = relationship(
-
-        "Partner",
-
-        back_populates="investor",
-
-        cascade="all, delete-orphan"
-    )
-
-
-    portfolio_companies = relationship(
-
-        "PortfolioCompany",
-
-        back_populates="investor",
-
-        cascade="all, delete-orphan"
-    )
-
-
-# =========================================
-# PARTNER MODEL
-# =========================================
+    partners = relationship("Partner", back_populates="investor", cascade="all, delete-orphan")
+    portfolio_companies = relationship("PortfolioCompany", back_populates="investor", cascade="all, delete-orphan")
 
 class Partner(Base):
-
     __tablename__ = "partners"
 
+    id = Column(Integer, primary_key=True)
+    investor_id = Column(Integer, ForeignKey("investors.id"))
+    name = Column(String)
+    role = Column(String)
+    linkedin_url = Column(Text)
+    twitter_url = Column(Text)
 
-    id = Column(
-
-        Integer,
-
-        primary_key=True
-    )
-
-
-    investor_id = Column(
-
-        Integer,
-
-        ForeignKey("investors.id")
-    )
-
-
-    name = Column(
-
-        String
-    )
-
-    role = Column(
-
-        String
-    )
-
-
-    linkedin_url = Column(
-
-        Text
-    )
-
-
-    twitter_url = Column(
-
-        Text
-    )
-
-
-    source_url = Column(
-
-        Text
-    )
-
-
-    confidence = Column(
-
-        Float
-    )
-
-
-    updated_at = Column(
-
-        TIMESTAMP
-    )
-
-
-    # =====================================
-    # RELATIONSHIP
-    # =====================================
-
-    investor = relationship(
-
-        "Investor",
-
-        back_populates="partners"
-    )
-
-
-# =========================================
-# PORTFOLIO COMPANY MODEL
-# =========================================
+    investor = relationship("Investor", back_populates="partners")
 
 class PortfolioCompany(Base):
-
     __tablename__ = "portfolio_companies"
 
+    id = Column(Integer, primary_key=True)
+    investor_id = Column(Integer, ForeignKey("investors.id"))
+    company_name = Column(String)
+    sector = Column(String)
 
-    id = Column(
-
-        Integer,
-
-        primary_key=True
-    )
-
-
-    investor_id = Column(
-
-        Integer,
-
-        ForeignKey("investors.id")
-    )
-
-
-    company_name = Column(
-
-        String
-    )
-
-
-    # =====================================
-    # RELATIONSHIP
-    # =====================================
-
-    investor = relationship(
-
-        "Investor",
-
-        back_populates="portfolio_companies"
-    )
-# from sqlalchemy import (
-#     Column,
-#     Integer,
-#     String,
-#     Text,
-#     ForeignKey
-# )
-
-# from sqlalchemy.orm import relationship
-
-# from app.database.db import Base
-# from pgvector.sqlalchemy import Vector
-
-
-# class Investor(Base):
-
-#     __tablename__ = "investors"
-
-#     id = Column(Integer, primary_key=True)
-
-#     firm = Column(String, unique=True)
-
-#     website = Column(String)
-
-#     focus_sectors = Column(Text)
-
-#     investment_stage = Column(Text)
-
-#     geography = Column(Text)
-
-#     embedding=Column(Vector(384))
-
-#     contact_links=Column(Array(Text))
-
-#     embedding=Column(vector(384))
-
-#     updated_at=Column(TIMESTAMP)
-
-
-# class Partner(Base):
-
-#     __tablename__ = "partners"
-
-#     id = Column(Integer, primary_key=True)
-
-#     investor_id = Column(Integer, ForeignKey("investors.id"))
-
-#     name = Column(String)
-
-
-# class PortfolioCompany(Base):
-
-#     __tablename__ = "portfolio_companies"
-
-#     id = Column(Integer, primary_key=True)
-
-#     investor_id = Column(Integer, ForeignKey("investors.id"))
-
-#     company_name = Column(String)
+    investor = relationship("Investor", back_populates="portfolio_companies")

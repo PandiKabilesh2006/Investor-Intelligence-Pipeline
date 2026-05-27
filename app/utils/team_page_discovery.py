@@ -4,9 +4,13 @@ from urllib.parse import urlparse
 from app.utils.crawl_queue_manager import add_to_crawl_queue
 from app.logging.logging_config import pipeline_logger
 from app.config.settings import (
-    REJECTED_DISCOVERY_DOMAINS,
     TEAM_PAGE_PATHS,
-    TEAM_PAGE_PRIORITY
+    TEAM_PAGE_PRIORITY,
+)
+from app.validation.investor_validation import (
+    canonicalize_url,
+    extract_domain,
+    is_rejected_url,
 )
 
 
@@ -48,69 +52,22 @@ DEFAULT_TEAM_PAGE_PRIORITY = 3.5
 # =========================================
 
 def is_valid_vc_website(website: str) -> bool:
-    """
-    Validate that the website URL is a
-    real domain we can build team-page
-    URLs from. Rejects empty, localhost,
-    and generic aggregator domains.
-    """
-
+    """Validate URL is a crawlable VC firm domain (not a publisher/platform)."""
     if not website:
         return False
 
-    website = website.strip().lower()
-
-    # Must start with http
-    if not website.startswith("http"):
+    website = canonicalize_url(website)
+    if is_rejected_url(website):
         return False
 
-    default_rejected_domains = [
-        "crunchbase.com",
-        "linkedin.com",
-        "pitchbook.com",
-        "techcrunch.com",
-        "forbes.com",
-        "bloomberg.com",
-        "reuters.com",
-        "wikipedia.org",
-        "twitter.com",
-        "x.com",
-        "youtube.com",
-        "facebook.com",
-        "instagram.com",
-        "medium.com",
-        "substack.com",
-        "angellist.com",
-        "wellfound.com",
-        "dealroom.co",
-        "cbinsights.com",
-        "sifted.eu",
-        "venturebeat.com",
-        "techcrunch.com",
-        "seedtable.com",
-        "tracxn.com",
-    ]
-
-    try:
-        parsed = urlparse(website)
-        netloc = parsed.netloc.lower()
-        if netloc.startswith("www."):
-            netloc = netloc[4:]
-
-        rejected_domains = REJECTED_DISCOVERY_DOMAINS or default_rejected_domains
-
-        for domain in rejected_domains:
-            if domain in netloc:
-                return False
-
-        # Must have at least a valid TLD
-        if "." not in netloc:
-            return False
-
-        return True
-
-    except Exception:
+    domain = extract_domain(website)
+    if not domain or "." not in domain:
         return False
+
+    if domain in ("localhost", "127.0.0.1"):
+        return False
+
+    return True
 
 
 # =========================================

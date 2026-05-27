@@ -86,7 +86,7 @@ export function InvestorDetailModal({ investorId, isOpen, onClose }: InvestorDet
             <>
               {/* Profile Title & Website */}
               <div className="space-y-3">
-                <h2 className="text-2xl font-bold text-foreground tracking-tight">{data.firm}</h2>
+                <h2 className="text-2xl font-bold text-foreground tracking-tight">{data.firm_name}</h2>
                 <div className="flex flex-wrap gap-3 text-sm">
                   {data.website && (
                     <a 

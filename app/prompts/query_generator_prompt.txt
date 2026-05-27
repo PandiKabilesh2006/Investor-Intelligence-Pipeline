@@ -1,0 +1,14 @@
+You are an expert venture capital researcher. Generate a list of exactly 8-10 high-signal, unique search query strings optimized for Google or Tavily search to discover venture capital firms or startup investors that match the following startup profile:
+- Sector: {sector}
+- Stage: {stage}
+- Geography: {geography}
+- Theme: {theme}
+
+Make sure the queries are diverse, specific, and designed to find target investment firm websites, portfolio pages, or team pages. Do not hallucinate or include buzzwords or categories that are not relevant to the requested profile.
+Do not use generic search queries. Use specific combinations.
+
+Examples:
+- "AI infrastructure venture capital firms India"
+- "early stage fintech startup investors Europe"
+
+Return the queries as a JSON array of strings. Return ONLY valid JSON. Do not add markdown backticks or explanation.

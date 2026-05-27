@@ -8,10 +8,21 @@ from app.parsing.normalize import (
     normalize_investment_stages,
     normalize_sectors
 )
+from app.config.settings import (
+    PARSED_DATA_FOLDER,
+    RAW_DATA_FOLDER,
+)
 
 from app.utils.deduplicate import (
-    is_duplicate_firm
+    is_duplicate_firm,
+    reset_firm_dedup_cache,
 )
+from app.validation.investor_validation import (
+    resolve_website,
+    validate_parsed_investor,
+)
+
+reset_firm_dedup_cache()
 
 from app.utils.failed_url_manager import add_failed_url
 
@@ -20,10 +31,6 @@ from app.utils.team_page_discovery import discover_team_pages
 # =========================================
 # FOLDERS
 # =========================================
-
-RAW_DATA_FOLDER = "raw_markdown"
-
-PARSED_DATA_FOLDER = "parsed_json"
 
 os.makedirs(
 
@@ -164,10 +171,13 @@ for markdown_file in markdown_files:
         # AI STRUCTURED PARSING
         # =====================================
 
-        parsed_data = parse_investor(
+        source_url = metadata.get("url", "")
 
-            markdown_content
-        )
+        if not source_url:
+            print(f"Rejected markdown without source URL metadata: {markdown_file}")
+            continue
+
+        parsed_data = parse_investor(markdown_content, source_url=source_url)
 
 
         # =====================================
@@ -206,86 +216,24 @@ for markdown_file in markdown_files:
         # SOURCE URL TRACEABILITY
         # =====================================
 
-        parsed_data["source_url"] = metadata.get(
+        is_valid, reason, parsed_data = validate_parsed_investor(parsed_data)
 
-            "url",
-
-            ""
-        )
-
-
-        # =====================================
-        # VALIDATE FIRM NAME
-        # =====================================
-
-        firm_name = parsed_data.get(
-
-            "firm",
-
-            ""
-        )
-
-
-        # =====================================
-        # HANDLE LIST RESPONSES
-        # =====================================
-
-        if isinstance(firm_name, list):
-
-            if len(firm_name) > 0:
-
-                firm_name = str(
-
-                    firm_name[0]
-                )
-
-            else:
-
-                firm_name = ""
-
-
-        # =====================================
-        # SAFE STRING CLEANUP
-        # =====================================
-
-        firm_name = str(
-
-            firm_name
-        ).strip()
-
-
-        # =====================================
-        # MISSING FIRM NAME
-        # =====================================
-
-        if not firm_name:
-
-            print(
-
-                "Missing firm name"
-            )
-
+        if not is_valid:
+            print(f"Rejected parsed record ({reason}): {markdown_file}")
             continue
 
+        firm_name = parsed_data["firm_name"]
+        parsed_data["ingestion_source"] = metadata.get("ingestion_source", "web_crawl")
+        parsed_data["raw_markdown_file"] = markdown_file
+        parsed_data["raw_metadata_file"] = os.path.basename(metadata_filepath)
+        parsed_data["collected_at"] = metadata.get("collected_at", "")
+        parsed_data["website"] = resolve_website(
+            parsed_data.get("website", ""),
+            parsed_data.get("source_url", ""),
+        )
 
-        parsed_data["firm"] = firm_name
-
-
-        # =====================================
-        # INVESTOR DEDUPLICATION
-        # =====================================
-
-        if is_duplicate_firm(
-
-            firm_name
-        ):
-
-            print(
-
-                f"Duplicate investor skipped: "
-                f"{firm_name}"
-            )
-
+        if is_duplicate_firm(firm_name):
+            print(f"Duplicate investor skipped: {firm_name}")
             continue
 
 
@@ -346,10 +294,8 @@ for markdown_file in markdown_files:
         try:
 
             team_pages_queued = discover_team_pages(
-
                 firm=firm_name,
-
-                website=parsed_data.get("website", "")
+                website=parsed_data.get("website", "") or parsed_data.get("source_url", ""),
             )
 
             if team_pages_queued > 0:

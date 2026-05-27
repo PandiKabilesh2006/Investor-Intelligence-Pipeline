@@ -10,8 +10,6 @@ from datetime import (
     timedelta
 )
 
-from urllib.parse import urlparse
-
 warnings.filterwarnings("ignore")
 
 from sqlalchemy import text
@@ -20,11 +18,18 @@ from app.database.db import SessionLocal
 
 from app.config.settings import (
     INGESTION_MAX_URLS_PER_RUN,
+    INGESTION_MIN_MARKDOWN_LENGTH,
     INGESTION_RECRAWL_AFTER_DAYS,
     INGESTION_SEARCH_MAX_PAGES,
     INGESTION_TEST_MODE,
     INGESTION_TEST_QUERY_LIMIT,
-    REJECTED_DISCOVERY_DOMAINS
+    RAW_DATA_FOLDER,
+)
+from app.validation.investor_validation import (
+    canonicalize_url,
+    is_investor_profile_url,
+    is_rejected_url,
+    should_queue_discovery_url,
 )
 
 from app.search.tavily_search import (
@@ -81,7 +86,10 @@ TEST_MODE = INGESTION_TEST_MODE
 
 TEST_QUERY_LIMIT = INGESTION_TEST_QUERY_LIMIT
 
-MAX_TOTAL_URLS = INGESTION_MAX_URLS_PER_RUN
+MAX_TOTAL_URLS = int(os.getenv(
+    "INGESTION_RUN_URL_LIMIT",
+    str(INGESTION_MAX_URLS_PER_RUN)
+))
 
 SEARCH_MAX_PAGES = INGESTION_SEARCH_MAX_PAGES
 
@@ -92,48 +100,12 @@ RECRAWL_AFTER_DAYS = INGESTION_RECRAWL_AFTER_DAYS
 # RAW DATA FOLDER
 # =========================================
 
-RAW_DATA_FOLDER = "raw_markdown"
-
 os.makedirs(
 
     RAW_DATA_FOLDER,
 
     exist_ok=True
 )
-
-
-# =========================================
-# URL CANONICALIZATION
-# =========================================
-
-def canonicalize_url(url):
-
-    try:
-
-        parsed = urlparse(url)
-
-        scheme = "https"
-
-        netloc = parsed.netloc.lower()
-
-        if netloc.startswith("www."):
-
-            netloc = netloc[4:]
-
-        path = parsed.path.rstrip("/")
-
-        canonical_url = (
-
-            f"{scheme}://"
-            f"{netloc}"
-            f"{path}"
-        )
-
-        return canonical_url
-
-    except Exception:
-
-        return url
 
 
 # =========================================
@@ -351,13 +323,6 @@ print(
 
 
 # =========================================
-# BLOCKED DOMAINS
-# =========================================
-
-blocked_domains = REJECTED_DISCOVERY_DOMAINS
-
-
-# =========================================
 # SESSION URL DEDUPLICATION
 # =========================================
 
@@ -454,19 +419,7 @@ for query in queries:
 
                 continue
 
-            url_lower = url.lower()
-
-            blocked = False
-
-            for domain in blocked_domains:
-
-                if domain in url_lower:
-
-                    blocked = True
-                    break
-
-            if blocked:
-
+            if is_rejected_url(url):
                 continue
 
             if already_crawled(url):
@@ -507,14 +460,13 @@ for query in queries:
                 0.0
             )
 
-            if not is_relevant:
+            should_queue, queue_reason = should_queue_discovery_url(url, classification)
 
+            if not should_queue:
+                pipeline_logger.info(f"Skipped URL ({queue_reason}): {url}")
                 continue
 
-            if confidence < 0.75:
-
-                continue
-
+            url_lower = url.lower()
 
             # =====================================
             # PRIORITY SCORING
@@ -522,6 +474,8 @@ for query in queries:
 
             priority_score = confidence
 
+            if is_investor_profile_url(url):
+                priority_score += 0.5
 
             # URL path signals — team/partner pages
             if "portfolio" in url_lower:
@@ -560,13 +514,8 @@ for query in queries:
 
 
             # .vc TLD = almost certainly a VC firm's own site
-            try:
-                from urllib.parse import urlparse as _urlparse
-                _netloc = _urlparse(url).netloc.lower()
-                if _netloc.endswith(".vc") or ".vc/" in url_lower:
-                    priority_score += 1.5
-            except Exception:
-                pass
+            if ".vc" in url_lower:
+                priority_score += 1.5
 
 
             # source_type boost from classifier
@@ -689,7 +638,7 @@ for extraction_result in extraction_results:
 
             continue
 
-        if len(markdown_content) < 500:
+        if len(markdown_content) < INGESTION_MIN_MARKDOWN_LENGTH:
 
             continue
 
@@ -725,6 +674,12 @@ for extraction_result in extraction_results:
         metadata = {
 
             "url": url,
+
+            "ingestion_source": "web_crawl",
+
+            "content_type": "markdown",
+
+            "markdown_length": len(markdown_content),
 
             "collected_at": str(
                 datetime.utcnow()

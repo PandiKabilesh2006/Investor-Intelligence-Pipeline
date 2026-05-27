@@ -4,7 +4,8 @@ from urllib.parse import urljoin
 
 from app.config.settings import (
     EXTRACTION_SUBPAGES,
-    FIRECRAWL_API_KEY
+    FIRECRAWL_API_KEY,
+    FIRECRAWL_API_URL
 )
 
 from app.utils.failed_url_manager import (
@@ -17,7 +18,7 @@ from app.utils.failed_url_manager import (
 # =========================================
 
 firecrawl = FirecrawlApp(
-
+    api_url=FIRECRAWL_API_URL,
     api_key=FIRECRAWL_API_KEY
 )
 
@@ -82,6 +83,53 @@ def generate_subpage_urls(base_url):
 # SCRAPE SINGLE PAGE
 # =========================================
 
+import requests
+import re
+from html.parser import HTMLParser
+
+class HTMLToTextParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.text = []
+        self.ignore = False
+
+    def handle_starttag(self, tag, attrs):
+        if tag in ["script", "style", "nav", "footer", "header", "head"]:
+            self.ignore = True
+
+    def handle_endtag(self, tag):
+        if tag in ["script", "style", "nav", "footer", "header", "head"]:
+            self.ignore = False
+        elif tag in ["p", "div", "h1", "h2", "h3", "h4", "h5", "h6", "li", "tr", "br"]:
+            self.text.append("\n")
+
+    def handle_data(self, data):
+        if not self.ignore:
+            cleaned = data.strip()
+            if cleaned:
+                self.text.append(cleaned + " ")
+
+    def get_text(self):
+        return re.sub(r'\n{3,}', '\n\n', "".join(self.text))
+
+def scrape_fallback(url):
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+        resp = requests.get(url, headers=headers, timeout=10)
+        if resp.status_code == 200:
+            parser = HTMLToTextParser()
+            parser.feed(resp.text)
+            text_content = parser.get_text()
+            if len(text_content) >= 500:
+                print(f"Fallback local scraper success: {url} ({len(text_content)} chars)")
+                return text_content
+        return None
+    except Exception as fallback_err:
+        print(f"Fallback local scraper failed: {url} | {fallback_err}")
+        return None
+
 def scrape_single_page(url):
 
     try:
@@ -96,7 +144,7 @@ def scrape_single_page(url):
 
         if not response:
 
-            return None
+            raise Exception("Empty response from Firecrawl")
 
 
         if isinstance(response, dict):
@@ -110,7 +158,7 @@ def scrape_single_page(url):
 
         if not markdown:
 
-            return None
+            raise Exception("No markdown content returned from Firecrawl")
 
 
         print(
@@ -126,11 +174,15 @@ def scrape_single_page(url):
 
         print(
 
-            f"Extraction failed: "
+            f"Firecrawl extraction failed: "
             f"{url} | "
             f"{extraction_error}"
         )
 
+        print(f"Attempting local scraper fallback for: {url}")
+        fallback_markdown = scrape_fallback(url)
+        if fallback_markdown:
+            return fallback_markdown
 
         add_failed_url(
 

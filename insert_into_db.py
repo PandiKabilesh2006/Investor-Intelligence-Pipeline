@@ -19,8 +19,18 @@ from app.config.settings import (
     DB_NAME,
     DB_USER,
     DB_PASSWORD,
+    INGESTION_ALLOW_MOCK_DATA,
+    INGESTION_REQUIRE_RAW_PROVENANCE,
     PARTNER_MIN_CONFIDENCE,
-    PARTNER_ROLE_TITLES
+    PARTNER_ROLE_TITLES,
+    PARSED_DATA_FOLDER,
+    RAW_DATA_FOLDER,
+)
+from app.validation.investor_validation import (
+    find_duplicate_investor_id,
+    is_rejected_url,
+    normalize_firm_name,
+    validate_parsed_investor,
 )
 
 
@@ -185,15 +195,15 @@ def filter_real_partners(partners):
             continue
 
         try:
-
             confidence = float(partner_record.get("confidence", 0.0))
-
         except (TypeError, ValueError):
-
             confidence = 0.0
 
-        if confidence < PARTNER_MIN_CONFIDENCE:
+        # LLM-parsed partners often omit confidence; treat validated names as high quality.
+        if confidence <= 0.0:
+            confidence = 0.85
 
+        if confidence < PARTNER_MIN_CONFIDENCE:
             continue
 
         partner_record["name"] = name
@@ -203,6 +213,59 @@ def filter_real_partners(partners):
         real_partners.append(partner_record)
 
     return real_partners
+
+
+# =========================================
+# PRODUCTION PROVENANCE CHECKS
+# =========================================
+
+def is_mock_parsed_file(file_name):
+    normalized = file_name.lower()
+
+    return (
+        normalized.startswith("https___mock_investor_")
+        or "mock_investor" in normalized
+    )
+
+
+def has_raw_crawl_provenance(file_name, data):
+    source_url = str(data.get("source_url", "")).strip()
+
+    if not source_url or is_rejected_url(source_url):
+        return False, "missing_or_rejected_source_url"
+
+    if data.get("ingestion_source") and data.get("ingestion_source") != "web_crawl":
+        return False, "non_web_crawl_source"
+
+    if not INGESTION_REQUIRE_RAW_PROVENANCE:
+        return True, "ok"
+
+    markdown_file = data.get("raw_markdown_file") or file_name.replace(".json", ".md")
+    metadata_file = data.get("raw_metadata_file") or file_name
+
+    markdown_path = os.path.join(RAW_DATA_FOLDER, markdown_file)
+    metadata_path = os.path.join(RAW_DATA_FOLDER, metadata_file)
+
+    if not os.path.exists(markdown_path):
+        return False, "missing_raw_markdown_file"
+
+    if not os.path.exists(metadata_path):
+        return False, "missing_raw_metadata_file"
+
+    try:
+        with open(metadata_path, "r", encoding="utf-8") as metadata_handle:
+            metadata = json.load(metadata_handle)
+    except Exception:
+        return False, "invalid_raw_metadata_file"
+
+    metadata_url = str(metadata.get("url", "")).strip()
+    if metadata_url != source_url:
+        return False, "source_url_metadata_mismatch"
+
+    if metadata.get("ingestion_source") not in ("web_crawl", None):
+        return False, "metadata_not_web_crawl"
+
+    return True, "ok"
 
 
 # =========================================
@@ -242,51 +305,15 @@ def insert_investor_data(data, conn=None):
 
     try:
 
-        # =====================================
-        # REQUIRED FIELDS
-        # =====================================
+        is_valid, reason, data = validate_parsed_investor(data)
 
-        firm = str(
-
-            data.get(
-
-                "firm",
-
-                ""
-            )
-
-        ).strip()
-
-
-        if not firm:
-
-            print("Skipping (missing firm)")
-
+        if not is_valid:
+            print(f"Skipping ({reason}): {data.get('firm_name', '')!r}")
             return False
 
-
-        website = str(
-
-            data.get(
-
-                "website",
-
-                ""
-            )
-
-        ).strip()
-
-
-        source_url = str(
-
-            data.get(
-
-                "source_url",
-
-                ""
-            )
-
-        ).strip()
+        firm_name = normalize_firm_name(data.get("firm_name", ""))
+        website = str(data.get("website", "")).strip()
+        source_url = str(data.get("source_url", "")).strip()
 
 
         # =====================================
@@ -326,17 +353,6 @@ def insert_investor_data(data, conn=None):
         )
 
 
-        contact_links = ensure_list(
-
-            data.get(
-
-                "contact_links",
-
-                []
-            )
-        )
-
-
         partners = filter_real_partners(
 
             data.get(
@@ -348,28 +364,40 @@ def insert_investor_data(data, conn=None):
         )
 
 
-        portfolio_companies = ensure_list(
+        portfolio_companies = data.get("portfolio_companies", [])
 
-            data.get(
-
-                "portfolio_companies",
-
-                []
-            )
-        )
+        deduped_portfolio = {}
+        for company in portfolio_companies:
+            if isinstance(company, dict):
+                company_name = str(company.get("company_name", "")).strip()
+                sector = str(company.get("sector", "")).strip()
+            else:
+                company_name = str(company).strip()
+                sector = ""
+            if company_name:
+                deduped_portfolio[company_name.lower()] = {
+                    "company_name": company_name,
+                    "sector": sector,
+                }
+        portfolio_companies = list(deduped_portfolio.values())
 
 
         # =====================================
         # EMBEDDING TEXT
         # =====================================
 
+        pc_names = []
+        for pc in portfolio_companies:
+            if isinstance(pc, dict):
+                pc_names.append(pc.get("company_name", ""))
+            else:
+                pc_names.append(str(pc))
+
         embedding_text = " ".join([
 
-            firm,
+            firm_name,
 
             website,
-
-            source_url,
 
             " ".join(focus_sectors),
 
@@ -377,14 +405,12 @@ def insert_investor_data(data, conn=None):
 
             " ".join(geography),
 
-            " ".join(contact_links),
-
             " ".join(
                 partner["name"]
                 for partner in partners
             ),
 
-            " ".join(portfolio_companies)
+            " ".join(pc_names)
         ])
 
 
@@ -401,90 +427,47 @@ def insert_investor_data(data, conn=None):
 
 
         # =====================================
-        # DUPLICATE CHECK
+        # DUPLICATE CHECK (name, normalized key, domain)
         # =====================================
 
-        cursor.execute(
-
-            """
-            SELECT id
-            FROM investors
-            WHERE LOWER(firm) = LOWER(%s)
-            """,
-
-            (firm,)
+        investor_id = find_duplicate_investor_id(
+            cursor,
+            firm_name,
+            website=website,
+            source_url=source_url,
         )
 
-
-        existing = cursor.fetchone()
-
-
-        # =====================================
-        # UPDATE EXISTING INVESTOR
-        # =====================================
-
-        if existing:
-
-            investor_id = existing[0]
+        if investor_id:
 
 
             cursor.execute(
-
                 """
                 UPDATE investors
                 SET
-
+                    firm_name = %s,
                     website = %s,
-
                     source_url = %s,
-
                     focus_sectors = %s,
-
                     investment_stage = %s,
-
                     geography = %s,
-
-                    contact_links = %s,
-
                     embedding = %s,
-
                     updated_at = %s
-
                 WHERE id = %s
                 """,
-
                 (
-
-                    website,
-
-                    source_url,
-
+                    firm_name,
+                    website or None,
+                    source_url or None,
                     focus_sectors,
-
                     investment_stage,
-
                     geography,
-
-                    contact_links,
-
                     embedding,
-
                     datetime.utcnow(),
-
-                    investor_id
-                )
+                    investor_id,
+                ),
             )
 
-
-            print(
-
-                f"Updated investor: {firm}"
-            )
-
-
-        # =====================================
-        # INSERT NEW INVESTOR
-        # =====================================
+            print(f"Updated investor: {firm_name}")
 
         else:
 
@@ -493,7 +476,7 @@ def insert_investor_data(data, conn=None):
                 """
                 INSERT INTO investors (
 
-                    firm,
+                    firm_name,
 
                     website,
 
@@ -505,9 +488,9 @@ def insert_investor_data(data, conn=None):
 
                     geography,
 
-                    contact_links,
-
                     embedding,
+
+                    created_at,
 
                     updated_at
 
@@ -515,7 +498,6 @@ def insert_investor_data(data, conn=None):
 
                 VALUES (
 
-                    %s,
                     %s,
                     %s,
                     %s,
@@ -532,7 +514,7 @@ def insert_investor_data(data, conn=None):
 
                 (
 
-                    firm,
+                    firm_name,
 
                     website,
 
@@ -544,9 +526,9 @@ def insert_investor_data(data, conn=None):
 
                     geography,
 
-                    contact_links,
-
                     embedding,
+
+                    datetime.utcnow(),
 
                     datetime.utcnow()
                 )
@@ -558,7 +540,7 @@ def insert_investor_data(data, conn=None):
 
             print(
 
-                f"Inserted investor: {firm}"
+                f"Inserted investor: {firm_name}"
             )
 
 
@@ -607,20 +589,12 @@ def insert_investor_data(data, conn=None):
 
                     linkedin_url,
 
-                    twitter_url,
-
-                    source_url,
-
-                    confidence,
-
-                    updated_at
+                    twitter_url
 
                 )
 
                 VALUES (
 
-                    %s,
-                    %s,
                     %s,
                     %s,
                     %s,
@@ -639,13 +613,7 @@ def insert_investor_data(data, conn=None):
 
                     partner.get("linkedin_url", ""),
 
-                    partner.get("twitter_url", ""),
-
-                    partner.get("source_url", ""),
-
-                    partner.get("confidence", 0.0),
-
-                    datetime.utcnow()
+                    partner.get("twitter_url", "")
                 )
             )
 
@@ -655,31 +623,32 @@ def insert_investor_data(data, conn=None):
         # =====================================
 
         for company in portfolio_companies:
+            company_name = company.get("company_name", "")
+            sector = company.get("sector", "")
+            if not company_name:
+                continue
 
             cursor.execute(
-
                 """
                 INSERT INTO portfolio_companies (
-
                     investor_id,
-
-                    company_name
-
+                    company_name,
+                    sector
                 )
-
-                VALUES (
-
-                    %s,
-                    %s
+                SELECT %s, %s, %s
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM portfolio_companies
+                    WHERE investor_id = %s
+                      AND LOWER(company_name) = LOWER(%s)
                 )
                 """,
-
                 (
-
                     investor_id,
-
-                    company
-                )
+                    company_name,
+                    sector,
+                    investor_id,
+                    company_name,
+                ),
             )
 
 
@@ -697,6 +666,8 @@ def insert_investor_data(data, conn=None):
 
             conn.rollback()
 
+        import traceback
+        traceback.print_exc()
 
         print(
 
@@ -747,7 +718,7 @@ def main():
     # PARSED JSON FOLDER
     # =========================================
 
-    PARSED_FOLDER = "parsed_json"
+    PARSED_FOLDER = PARSED_DATA_FOLDER
 
 
     # =========================================
@@ -776,6 +747,10 @@ def main():
 
     for file_name in json_files:
 
+        if is_mock_parsed_file(file_name) and not INGESTION_ALLOW_MOCK_DATA:
+            print(f"Skipping mock parsed file: {file_name}")
+            continue
+
         file_path = os.path.join(
 
             PARSED_FOLDER,
@@ -796,6 +771,18 @@ def main():
             ) as file:
 
                 data = json.load(file)
+
+            has_provenance, provenance_reason = has_raw_crawl_provenance(
+                file_name,
+                data
+            )
+
+            if not has_provenance:
+                print(
+                    f"Skipping non-production parsed file "
+                    f"({provenance_reason}): {file_name}"
+                )
+                continue
 
 
             insert_investor_data(data, conn=conn)

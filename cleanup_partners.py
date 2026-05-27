@@ -29,10 +29,10 @@ print("Real partners remaining:", cur.fetchone()[0])
 
 # Show sample
 cur.execute("""
-    SELECT i.firm, p.name
+    SELECT i.firm_name, p.name
     FROM partners p
     JOIN investors i ON i.id = p.investor_id
-    ORDER BY i.firm
+    ORDER BY i.firm_name
     LIMIT 30
 """)
 rows = cur.fetchall()

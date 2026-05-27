@@ -139,7 +139,7 @@ def semantic_investor_search(
 
                 id,
 
-                firm,
+                firm_name AS firm,
 
                 website,
 
@@ -153,7 +153,7 @@ def semantic_investor_search(
 
                 geography,
 
-                contact_links,
+                NULL AS contact_links,
 
                 embedding <=> CAST(
                     :query_embedding AS vector

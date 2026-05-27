@@ -94,7 +94,7 @@ for investor in investors:
         matched_investors.append(
 
             {
-                "firm": investor.firm,
+                "firm_name": investor.firm_name,
                 "website": investor.website,
                 "focus_sectors": sectors,
                 "investment_stage": stages,

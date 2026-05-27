@@ -7,7 +7,8 @@ import time
 sys.stdout.reconfigure(encoding='utf-8')
 
 from app.parsing.gpt_parser import parse_investor
-from insert_into_db import insert_investor_data, main as sync_db
+from app.validation.investor_validation import validate_parsed_investor
+from insert_into_db import main as sync_db
 
 RAW_FOLDER = "raw_markdown"
 PARSED_FOLDER = "parsed_json"
@@ -45,21 +46,20 @@ for index, md_file in enumerate(markdown_files, start=1):
         with open(md_path, "r", encoding="utf-8") as f:
             content = f.read()
 
-        # Parse with updated LLM config
-        parsed = parse_investor(content)
-        parsed["source_url"] = metadata.get("url", "")
+        source_url = metadata.get("url", "")
+        parsed = parse_investor(content, source_url=source_url)
 
-        # Validate firm name
-        firm = str(parsed.get("firm", "")).strip()
-        if not firm:
-            print("  Skipping: Empty firm name parsed.")
+        is_valid, reason, parsed = validate_parsed_investor(parsed)
+        if not is_valid:
+            print(f"  Skipping ({reason})")
             continue
 
-        # Save to disk
+        firm = parsed.get("firm_name", "")
+
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump(parsed, f, indent=4, ensure_ascii=False)
 
-        print(f"  Success! Parsed firm: '{firm}' | Partners: {parsed.get('partners', [])}")
+        print(f"  Success! Parsed firm: '{firm}' | Partners: {len(parsed.get('partners', []))}")
         success_count += 1
 
     except Exception as err:

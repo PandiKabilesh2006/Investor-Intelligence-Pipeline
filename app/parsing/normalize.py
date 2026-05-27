@@ -29,26 +29,32 @@ def normalize_investment_stages(stages):
 
 
 def normalize_sectors(sectors):
-
     mapping = {
-        "ai": "Artificial Intelligence",
-        "b2b saas": "B2B SaaS",
-        "voice ai": "Voice AI",
-        "enterprise ai": "Enterprise AI"
+        "ai": ["Artificial Intelligence"],
+        "artificial intelligence": ["Artificial Intelligence"],
+        "enterprise ai": ["Artificial Intelligence"],
+        "voice ai": ["Voice AI"],
+        "b2b saas": ["B2B", "SaaS"],
+        "b2b": ["B2B"],
+        "saas": ["SaaS"]
     }
 
     normalized = []
 
     for sector in sectors:
-
         cleaned = sector.lower().strip()
 
         if cleaned in mapping:
-
-            normalized.append(mapping[cleaned])
-
+            normalized.extend(mapping[cleaned])
         else:
-
-            normalized.append(sector)
+            # Fallback logic for arbitrary strings
+            if "voice" in cleaned:
+                normalized.append("Voice AI")
+            elif "ai" in cleaned:
+                normalized.append("Artificial Intelligence")
+            elif "saas" in cleaned:
+                normalized.append("SaaS")
+            elif "b2b" in cleaned:
+                normalized.append("B2B")
 
     return list(set(normalized))

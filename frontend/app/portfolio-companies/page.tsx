@@ -2,17 +2,17 @@
 
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getPartners, Partner } from "@/lib/api";
+import { getPortfolioCompanies, PortfolioCompany } from "@/lib/api";
 import { Card, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { cn, fieldInputClassName } from "@/lib/utils";
-import { Search, ChevronLeft, ChevronRight, Loader2, Linkedin, Twitter, X, Building2 } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight, Loader2, Building, Building2, X } from "lucide-react";
 import { InvestorDetailModal } from "@/components/investor-detail-modal";
 
-function PartnersContent() {
+function PortfolioCompaniesContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Read URL params
   const urlInvestorId = searchParams.get("investor_id") ? Number(searchParams.get("investor_id")) : undefined;
   const urlFirm = searchParams.get("firm") || "";
 
@@ -20,7 +20,7 @@ function PartnersContent() {
   const [firm, setFirm] = useState(urlFirm);
   const [investorId] = useState<number | undefined>(urlInvestorId);
 
-  const [partners, setPartners] = useState<Partner[]>([]);
+  const [companies, setCompanies] = useState<PortfolioCompany[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -36,11 +36,11 @@ function PartnersContent() {
       setLoading(true);
       try {
         const offset = (page - 1) * limit;
-        const res = await getPartners({ q, investor_id: investorId, firm, limit, offset });
-        setPartners(res.items);
+        const res = await getPortfolioCompanies({ q, investor_id: investorId, firm, limit, offset });
+        setCompanies(res.items);
         setTotal(res.total);
       } catch (err) {
-        console.error("Failed to load partners:", err);
+        console.error("Failed to load portfolio companies:", err);
       } finally {
         setLoading(false);
       }
@@ -53,51 +53,44 @@ function PartnersContent() {
   const clearFirmFilter = () => {
     setFirm("");
     setPage(1);
-    router.push("/partners");
-  };
-
-  const handleFirmSearch = (val: string) => {
-    setFirm(val);
-    setPage(1);
+    router.push("/portfolio-companies");
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Partner Intelligence</p>
-        <h2 className="mt-1 text-3xl font-extrabold text-foreground glow-accent">Venture Partners</h2>
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Market Ecosystem</p>
+        <h2 className="mt-1 text-3xl font-extrabold text-foreground glow-accent">Portfolio Companies</h2>
       </div>
 
       {/* Active investor filter banner */}
       {isFiltered && (
-        <div className="flex items-center gap-3 rounded-xl border border-violet-300 bg-violet-50 dark:bg-violet-950/30 dark:border-violet-700 px-4 py-3">
-          <Building2 className="h-4 w-4 text-violet-600 shrink-0" />
-          <p className="text-sm text-violet-800 dark:text-violet-300 font-medium">
+        <div className="flex items-center gap-3 rounded-xl border border-amber-300 bg-amber-50 dark:bg-amber-950/30 dark:border-amber-700 px-4 py-3">
+          <Building2 className="h-4 w-4 text-amber-600 shrink-0" />
+          <p className="text-sm text-amber-800 dark:text-amber-300 font-medium">
             Filtered by firm: <span className="font-bold">{urlFirm || `Investor #${investorId}`}</span>
           </p>
           <button
             onClick={clearFirmFilter}
-            className="ml-auto flex items-center gap-1 rounded-lg bg-violet-200 dark:bg-violet-800 px-2.5 py-1 text-xs font-semibold text-violet-800 dark:text-violet-200 hover:bg-violet-300 transition"
+            className="ml-auto flex items-center gap-1 rounded-lg bg-amber-200 dark:bg-amber-800 px-2.5 py-1 text-xs font-semibold text-amber-800 dark:text-amber-200 hover:bg-amber-300 transition"
           >
             <X className="h-3 w-3" /> Clear filter
           </button>
         </div>
       )}
 
-      {/* Search bar */}
+      {/* Search */}
       <Card className="glass-card border-border p-6">
         <div className="grid gap-4 sm:grid-cols-2">
-          {/* Partner name search */}
+          {/* Company name search */}
           <div>
-            <label className="mb-1.5 block text-xs font-semibold text-muted-foreground uppercase tracking-wider">Partner Name</label>
+            <label className="mb-1.5 block text-xs font-semibold text-muted-foreground uppercase tracking-wider">Company Name</label>
             <div className="relative">
               <Search className="absolute top-3 left-3 h-4 w-4 text-muted-foreground" />
-              <input
-                type="text" placeholder="Search partner name..."
+              <input type="text" placeholder="Search company name..."
                 value={q} onChange={(e) => { setQ(e.target.value); setPage(1); }}
-                className={cn(fieldInputClassName, "pl-10 pr-4 py-2.5")}
-              />
+                className={cn(fieldInputClassName, "pl-10 pr-4 py-2.5")} />
             </div>
           </div>
           {/* Firm name filter */}
@@ -105,11 +98,9 @@ function PartnersContent() {
             <label className="mb-1.5 block text-xs font-semibold text-muted-foreground uppercase tracking-wider">Filter by Firm</label>
             <div className="relative">
               <Building2 className="absolute top-3 left-3 h-4 w-4 text-muted-foreground" />
-              <input
-                type="text" placeholder="Search investor firm name..."
-                value={firm} onChange={(e) => handleFirmSearch(e.target.value)}
-                className={cn(fieldInputClassName, "pl-10 pr-4 py-2.5")}
-              />
+              <input type="text" placeholder="Search investor firm name..."
+                value={firm} onChange={(e) => { setFirm(e.target.value); setPage(1); }}
+                className={cn(fieldInputClassName, "pl-10 pr-4 py-2.5")} />
               {firm && (
                 <button onClick={() => { setFirm(""); setPage(1); }}
                   className="absolute top-2.5 right-2.5 rounded p-0.5 text-muted-foreground hover:text-foreground transition">
@@ -125,85 +116,76 @@ function PartnersContent() {
       <Card className="glass-card border-border overflow-hidden">
         <CardHeader className="px-6 py-5 border-b border-border flex flex-row items-center justify-between">
           <div>
-            <h3 className="text-base font-bold text-foreground">Partner Directory</h3>
+            <h3 className="text-base font-bold text-foreground">Ecosystem Directory</h3>
             <p className="text-xs text-muted-foreground">
               {isFiltered
-                ? `${total} partner${total !== 1 ? "s" : ""} from ${urlFirm || `investor #${investorId}`}`
-                : `Total ${total} partner records found`}
+                ? `${total} compan${total !== 1 ? "ies" : "y"} from ${urlFirm || `investor #${investorId}`}`
+                : `Total ${total} portfolio companies tracked`}
             </p>
           </div>
           {loading && <Loader2 className="h-5 w-5 animate-spin text-violet-400" />}
         </CardHeader>
 
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[900px] text-left text-sm">
+          <table className="w-full min-w-[800px] text-left text-sm">
             <thead className="border-b border-border text-muted-foreground text-xs font-semibold bg-muted/50">
               <tr>
                 <th className="px-4 py-3.5 w-14 text-center">ID</th>
-                <th className="px-4 py-3.5 w-24 text-center">Investor ID</th>
-                <th className="px-4 py-3.5">Name</th>
-                <th className="px-4 py-3.5">Role</th>
-                <th className="px-4 py-3.5">LinkedIn URL</th>
-                <th className="px-4 py-3.5">Twitter URL</th>
-                <th className="px-4 py-3.5 text-right">Firm Profile</th>
+                <th className="px-4 py-3.5 w-28 text-center">Investor ID</th>
+                <th className="px-4 py-3.5">Company Name</th>
+                <th className="px-4 py-3.5">Sector</th>
+                <th className="px-4 py-3.5 text-right">VC Profile</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {!loading && partners.length === 0 ? (
+              {!loading && companies.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-12 text-center text-muted-foreground">
-                    No matching partner profiles found.
+                  <td colSpan={5} className="px-6 py-12 text-center text-muted-foreground">
+                    No matching portfolio companies found.
                   </td>
                 </tr>
               ) : (
-                partners.map((partner) => (
-                  <tr key={partner.id} className="hover:bg-muted/50 transition duration-150 align-middle">
-                    <td className="px-4 py-4 text-center text-xs text-muted-foreground font-mono">{partner.id}</td>
+                companies.map((company) => (
+                  <tr key={company.id} className="hover:bg-muted/50 transition duration-150 align-middle">
+                    <td className="px-4 py-4 text-center text-xs text-muted-foreground font-mono">{company.id}</td>
                     <td className="px-4 py-4 text-center">
-                      <span className="inline-block rounded bg-muted px-2 py-0.5 text-xs font-mono text-muted-foreground">{partner.investor_id}</span>
+                      <span className="inline-block rounded bg-muted px-2 py-0.5 text-xs font-mono text-muted-foreground">
+                        {company.investor_id}
+                      </span>
                     </td>
                     <td className="px-4 py-4">
-                      <p className="font-semibold text-foreground whitespace-nowrap">{partner.name}</p>
-                      {partner.firm_name && (
-                        <p className="text-[11px] text-muted-foreground mt-0.5">{partner.firm_name}</p>
-                      )}
-                    </td>
-                    <td className="px-4 py-4 text-xs text-muted-foreground">
-                      {partner.role ? (
-                        <span className="rounded-full bg-violet-100 text-violet-800 border border-violet-200 px-2.5 py-0.5 text-[11px] font-medium">
-                          {partner.role}
-                        </span>
-                      ) : <span className="italic text-muted-foreground">—</span>}
-                    </td>
-                    <td className="px-4 py-4">
-                      {partner.linkedin_url ? (
-                        <a href={partner.linkedin_url} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs text-[#0077b5] hover:underline transition">
-                          <Linkedin className="h-3.5 w-3.5 shrink-0" />
-                          <span className="max-w-[160px] truncate">
-                            {partner.linkedin_url.replace(/^https?:\/\/(www\.)?linkedin\.com\/in\//, "")}
-                          </span>
-                        </a>
-                      ) : <span className="text-xs text-muted-foreground italic">—</span>}
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-violet-500 shrink-0" />
+                        <div>
+                          <p className="font-semibold text-foreground">{company.company_name}</p>
+                          {company.firm_name && (
+                            <button
+                              onClick={() => { setSelectedInvestorId(company.investor_id); setModalOpen(true); }}
+                              className="flex items-center gap-1 mt-0.5 text-[11px] text-muted-foreground hover:text-violet-600 transition"
+                            >
+                              <Building className="h-3 w-3" />
+                              <span>{company.firm_name}</span>
+                            </button>
+                          )}
+                        </div>
+                      </div>
                     </td>
                     <td className="px-4 py-4">
-                      {partner.twitter_url ? (
-                        <a href={partner.twitter_url} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs text-sky-500 hover:underline transition">
-                          <Twitter className="h-3.5 w-3.5 shrink-0" />
-                          <span className="max-w-[140px] truncate">
-                            {partner.twitter_url.replace(/^https?:\/\/(www\.)?(x|twitter)\.com\//, "@")}
-                          </span>
-                        </a>
+                      {company.sector ? (
+                        <Badge className="bg-amber-100 text-amber-800 border border-amber-200 px-2.5 py-0.5 text-[11px]">
+                          {company.sector}
+                        </Badge>
                       ) : <span className="text-xs text-muted-foreground italic">—</span>}
                     </td>
                     <td className="px-4 py-4 text-right">
-                      <button
-                        onClick={() => { setSelectedInvestorId(partner.investor_id); setModalOpen(true); }}
-                        className="rounded-lg bg-violet-600/10 px-3.5 py-1.5 text-xs font-bold text-violet-700 hover:bg-violet-600/20 transition"
-                      >
-                        VC Firm
-                      </button>
+                      {company.investor_id ? (
+                        <button
+                          onClick={() => { setSelectedInvestorId(company.investor_id); setModalOpen(true); }}
+                          className="rounded-lg bg-violet-600/10 px-3.5 py-1.5 text-xs font-bold text-violet-700 hover:bg-violet-600/20 transition"
+                        >
+                          VC Profile
+                        </button>
+                      ) : <span className="text-xs text-muted-foreground italic">—</span>}
                     </td>
                   </tr>
                 ))
@@ -241,10 +223,10 @@ function PartnersContent() {
   );
 }
 
-export default function PartnersPage() {
+export default function PortfolioCompaniesPage() {
   return (
     <Suspense fallback={<div className="flex items-center justify-center py-20"><Loader2 className="h-8 w-8 animate-spin text-violet-600" /></div>}>
-      <PartnersContent />
+      <PortfolioCompaniesContent />
     </Suspense>
   );
 }

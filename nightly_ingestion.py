@@ -1,12 +1,14 @@
 import subprocess
 import time
 import sys
+import os
 
 from sqlalchemy import text
 
 from app.config.settings import (
     INGESTION_QUERY_DELAY_SECONDS,
-    INGESTION_QUEUE_STATUS_LIMIT
+    INGESTION_QUEUE_STATUS_LIMIT,
+    INGESTION_TOTAL_URL_BUDGET
 )
 
 from app.config.discovery_queries import (
@@ -131,41 +133,21 @@ if len(sys.argv) > 1:
 
 
             # Step 2: Parse
-            parsed_data = parse_investor(website_data)
+            parsed_data = parse_investor(website_data, source_url=url)
 
-
-            # Step 3: Normalize
             parsed_data["focus_sectors"] = normalize_sectors(
-
                 parsed_data.get("focus_sectors", [])
             )
-
             parsed_data["investment_stage"] = normalize_investment_stages(
-
                 parsed_data.get("investment_stage", [])
             )
 
-            parsed_data["source_url"] = url
+            from app.validation.investor_validation import validate_parsed_investor
 
+            is_valid, reason, parsed_data = validate_parsed_investor(parsed_data)
+            if not is_valid:
+                raise Exception(f"Parsed record rejected: {reason}")
 
-            firm_name = parsed_data.get("firm", "")
-
-            if isinstance(firm_name, list):
-
-                firm_name = str(firm_name[0]) if len(firm_name) > 0 else ""
-
-            firm_name = str(firm_name).strip()
-
-
-            if not firm_name:
-
-                raise Exception("Could not parse firm name from website content")
-
-
-            parsed_data["firm"] = firm_name
-
-
-            # Step 4: Insert/update database
             insert_investor_data(parsed_data)
 
 
@@ -224,6 +206,8 @@ total_queries = len(
     DISCOVERY_QUERIES
 )
 
+total_urls_processed = 0
+
 
 pipeline_logger.info(
 
@@ -252,6 +236,21 @@ for index, query in enumerate(
     start=1
 ):
 
+    if INGESTION_TOTAL_URL_BUDGET > 0 and total_urls_processed >= INGESTION_TOTAL_URL_BUDGET:
+        pipeline_logger.info(
+            f"Stopping discovery: total URL budget reached "
+            f"({total_urls_processed}/{INGESTION_TOTAL_URL_BUDGET})"
+        )
+        print(
+            f"\nTotal URL budget reached: "
+            f"{total_urls_processed}/{INGESTION_TOTAL_URL_BUDGET}\n"
+        )
+        break
+
+    remaining_url_budget = 0
+    if INGESTION_TOTAL_URL_BUDGET > 0:
+        remaining_url_budget = INGESTION_TOTAL_URL_BUDGET - total_urls_processed
+
     print("=" * 80)
 
     print(
@@ -277,19 +276,50 @@ for index, query in enumerate(
         # RUN DISCOVERY PIPELINE
         # =================================
 
-        subprocess.run(
+        command = [
+            sys.executable,
+            "-u",
+            "run_pipeline.py",
+            query
+        ]
 
-            [
+        run_env = None
+        if remaining_url_budget > 0:
+            run_env = os.environ.copy()
+            run_env["INGESTION_RUN_URL_LIMIT"] = str(remaining_url_budget)
 
-                sys.executable,
+        before_processed = 0
+        try:
+            with open("pipeline.log", "r", encoding="utf-8", errors="ignore") as log_file:
+                before_processed = sum(
+                    1
+                    for line in log_file
+                    if "Saved markdown:" in line
+                )
+        except FileNotFoundError:
+            before_processed = 0
 
-                "run_pipeline.py",
+        with open("pipeline.log", "a", encoding="utf-8") as log_file:
+            subprocess.run(
+                command,
+                stdout=log_file,
+                stderr=log_file,
+                check=True,
+                env=run_env
+            )
 
-                query
-            ],
+        after_processed = before_processed
+        try:
+            with open("pipeline.log", "r", encoding="utf-8", errors="ignore") as log_file:
+                after_processed = sum(
+                    1
+                    for line in log_file
+                    if "Saved markdown:" in line
+                )
+        except FileNotFoundError:
+            after_processed = before_processed
 
-            check=True
-        )
+        total_urls_processed += max(0, after_processed - before_processed)
 
 
         pipeline_logger.info(
@@ -372,17 +402,17 @@ print(
 
 try:
 
-    subprocess.run(
-
-        [
-
-            sys.executable,
-
-            "parse_markdown.py"
-        ],
-
-        check=True
-    )
+    with open("pipeline.log", "a", encoding="utf-8") as log_file:
+        subprocess.run(
+            [
+                sys.executable,
+                "-u",
+                "parse_markdown.py"
+            ],
+            stdout=log_file,
+            stderr=log_file,
+            check=True
+        )
 
 
     pipeline_logger.info(
@@ -427,17 +457,17 @@ print(
 
 try:
 
-    subprocess.run(
-
-        [
-
-            sys.executable,
-
-            "insert_into_db.py"
-        ],
-
-        check=True
-    )
+    with open("pipeline.log", "a", encoding="utf-8") as log_file:
+        subprocess.run(
+            [
+                sys.executable,
+                "-u",
+                "insert_into_db.py"
+            ],
+            stdout=log_file,
+            stderr=log_file,
+            check=True
+        )
 
 
     pipeline_logger.info(

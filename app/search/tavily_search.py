@@ -1,6 +1,7 @@
 import requests
 
 from app.config.settings import TAVILY_API_KEY
+from app.validation.investor_validation import canonicalize_url, is_rejected_url
 
 
 TAVILY_URL = "https://api.tavily.com/search"
@@ -68,19 +69,19 @@ def search_investors(
 
                 url = result.get("url")
 
-
                 if not url:
-
                     continue
 
+                url = canonicalize_url(url)
+
+                if is_rejected_url(url):
+                    continue
 
                 if url in seen_urls:
-
                     continue
 
-
                 seen_urls.add(url)
-
+                result["url"] = url
                 all_results.append(result)
 
                 new_results_found = True
