@@ -4,9 +4,12 @@ import re
 import ollama
 
 from groq import Groq
+from openai import OpenAI
 
 from app.config.settings import (
-    GROQ_API_KEY
+    GROQ_API_KEY,
+    OPENAI_API_KEY,
+    OPENAI_MODEL
 )
 
 from app.utils.groq_circuit import (
@@ -17,8 +20,13 @@ from app.utils.groq_circuit import (
 
 
 # =========================================
-# GROQ CLIENT
+# LLM CLIENTS
 # =========================================
+
+openai_client = OpenAI(
+
+    api_key=OPENAI_API_KEY
+) if OPENAI_API_KEY else None
 
 client = Groq(
 
@@ -84,6 +92,55 @@ FALLBACK_RESPONSE = {
     "confidence": 0.0,
 
     "reason": "classification_failed"
+}
+
+
+RELEVANCE_JSON_SCHEMA = {
+
+    "name": "investor_relevance_classification",
+
+    "strict": True,
+
+    "schema": {
+
+        "type": "object",
+
+        "additionalProperties": False,
+
+        "properties": {
+
+            "relevance_tier": {
+
+                "type": "string"
+            },
+
+            "is_relevant": {
+
+                "type": "boolean"
+            },
+
+            "confidence": {
+
+                "type": "number"
+            },
+
+            "reason": {
+
+                "type": "string"
+            }
+        },
+
+        "required": [
+
+            "relevance_tier",
+
+            "is_relevant",
+
+            "confidence",
+
+            "reason"
+        ]
+    }
 }
 
 
@@ -426,6 +483,81 @@ def classify_with_ollama(prompt):
 
 
 # =========================================
+# OPENAI CLASSIFIER
+# =========================================
+
+def classify_with_openai(prompt):
+
+    if not openai_client:
+
+        raise RuntimeError(
+
+            "OPENAI_API_KEY is not configured"
+        )
+
+
+    response = openai_client.chat.completions.create(
+
+        model=OPENAI_MODEL,
+
+        temperature=0,
+
+        response_format={
+
+            "type": "json_schema",
+
+            "json_schema": RELEVANCE_JSON_SCHEMA
+        },
+
+        messages=[
+
+            {
+                "role": "system",
+
+                "content": (
+                    "Classify investor-search relevance and return only "
+                    "schema-valid JSON."
+                )
+            },
+
+            {
+                "role": "user",
+
+                "content": prompt
+            }
+        ]
+    )
+
+
+    message = response.choices[0].message
+
+    refusal = getattr(
+
+        message,
+
+        "refusal",
+
+        None
+    )
+
+    if refusal:
+
+        raise RuntimeError(
+
+            f"OpenAI refused relevance classification: {refusal}"
+        )
+
+
+    parsed = extract_json(
+
+        message.content
+    )
+
+
+    return normalize_output(parsed)
+
+
+# =========================================
 # GROQ CLASSIFIER
 # =========================================
 
@@ -520,6 +652,50 @@ def _classify_with_groq_8b_then_ollama(prompt):
             return FALLBACK_RESPONSE
 
 
+def _classify_with_groq_70b_then_8b_then_ollama(prompt):
+
+    if should_use_groq_70b():
+
+        try:
+
+            parsed = classify_with_groq(prompt, GROQ_PRIMARY_MODEL)
+
+            print("Classification using Groq 70B")
+
+            time.sleep(8)
+
+            return parsed
+
+        except Exception as groq_70b_error:
+
+            error_message = str(groq_70b_error).lower()
+
+            print(f"Groq 70B failed: {groq_70b_error}")
+
+            if is_recoverable_groq_error(error_message):
+
+                record_groq_70b_rate_limit_failure()
+
+                wait_time = extract_retry_wait(error_message)
+
+                print(f"Waiting {wait_time}s before Groq 8B fallback...")
+
+                time.sleep(wait_time)
+
+            else:
+
+                print("Groq 70B error is not recoverable; trying Groq 8B.")
+
+    else:
+
+        print(
+            "Groq 70B skipped (rate-limit circuit open); using 8B directly."
+        )
+
+
+    return _classify_with_groq_8b_then_ollama(prompt)
+
+
 # =========================================
 # INVESTOR RELEVANCE CLASSIFIER
 # =========================================
@@ -546,40 +722,18 @@ def classify_investor_relevance(
         snippet
     )
 
-    if should_use_groq_70b():
+    try:
 
-        try:
+        parsed = classify_with_openai(prompt)
 
-            parsed = classify_with_groq(prompt, GROQ_PRIMARY_MODEL)
+        print(f"Classification using OpenAI {OPENAI_MODEL}")
 
-            print("Classification using Groq 70B")
+        return parsed
 
-            time.sleep(8)
+    except Exception as openai_error:
 
-            return parsed
+        print(f"OpenAI classification failed: {openai_error}")
 
-        except Exception as groq_70b_error:
+        print("Switching to Groq 70B...")
 
-            error_message = str(groq_70b_error).lower()
-
-            print(f"Groq 70B failed: {groq_70b_error}")
-
-            if not is_recoverable_groq_error(error_message):
-
-                return FALLBACK_RESPONSE
-
-            record_groq_70b_rate_limit_failure()
-
-            wait_time = extract_retry_wait(error_message)
-
-            print(f"Waiting {wait_time}s before fallback...")
-
-            time.sleep(wait_time)
-
-    else:
-
-        print(
-            "Groq 70B skipped (rate-limit circuit open); using 8B directly."
-        )
-
-    return _classify_with_groq_8b_then_ollama(prompt)
+    return _classify_with_groq_70b_then_8b_then_ollama(prompt)

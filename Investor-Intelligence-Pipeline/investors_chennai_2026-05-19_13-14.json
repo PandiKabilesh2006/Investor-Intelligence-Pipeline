@@ -1,0 +1,457 @@
+[
+  {
+    "firm": "Endiya Partners",
+    "website": "https://www.endiya.com/",
+    "thesis": "We look for large and growing markets, well defined problems, disruptive solutions, deep customer relationships and strong teams.",
+    "focus_sectors": [
+      "Enterprise",
+      "Industrial Tech",
+      "Healthcare & Life Sciences"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "$500K-$2M",
+    "fund_number": "Fund III",
+    "fund_size": "$150M",
+    "active_status": "actively investing",
+    "pitch_process": "email contact@endiya.com",
+    "partners": [
+      {
+        "name": "Sateesh Ambudkar",
+        "role": "Managing Director"
+      },
+      {
+        "name": "Ramesh Swaminathan",
+        "role": "Managing Director"
+      }
+    ],
+    "portfolio_companies": [
+      "Scrut Automation",
+      "Sugar.fit",
+      "Zluri",
+      "Aquaexchange",
+      "Darwinbox",
+      "Eyestem",
+      "Kissht",
+      "Mylo",
+      "Qapita",
+      "Sigtuple"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": "contact@endiya.com"
+      }
+    ],
+    "confidence_score": 19,
+    "source_url": "https://www.endiya.com",
+    "extracted_at": "2026-05-19T07:41:57.988152Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "FPrime Capital",
+    "website": "https://fprimecapital.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Life Sciences",
+      "Technology",
+      "Healthtech + Services",
+      "Crypto"
+    ],
+    "domain_specializations": [
+      "AI",
+      "SaaS"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@fprimecapital.com",
+    "partners": [
+      {
+        "name": "Ketan Patel",
+        "role": ""
+      },
+      {
+        "name": "Rocio Wu",
+        "role": ""
+      },
+      {
+        "name": "Jon Lim",
+        "role": ""
+      },
+      {
+        "name": "Kevin Chu",
+        "role": ""
+      },
+      {
+        "name": "David Jegen",
+        "role": ""
+      },
+      {
+        "name": "Betsy Mule",
+        "role": ""
+      },
+      {
+        "name": "Abdul Abdirahman",
+        "role": ""
+      },
+      {
+        "name": "Raj Basak",
+        "role": ""
+      },
+      {
+        "name": "Robert Weisskoff",
+        "role": ""
+      },
+      {
+        "name": "Brett Cook",
+        "role": ""
+      },
+      {
+        "name": "Rosanne Yang",
+        "role": ""
+      },
+      {
+        "name": "Rachel Feely-Kohl",
+        "role": ""
+      },
+      {
+        "name": "Sanjay Aggarwal",
+        "role": ""
+      },
+      {
+        "name": "Stephen Knight",
+        "role": ""
+      },
+      {
+        "name": "Jess Alston",
+        "role": ""
+      },
+      {
+        "name": "Carl Byers",
+        "role": ""
+      },
+      {
+        "name": "Gaurav Tuli",
+        "role": ""
+      },
+      {
+        "name": "Davina Magargal",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Innovent",
+      "Iora",
+      "AviadioBio",
+      "Lighthouse",
+      "PatientPing",
+      "Insmed",
+      "Carrot-Fertility",
+      "Semma-Therapeutics",
+      "Benchling",
+      "Beam-Therapeutics",
+      "Toast",
+      "Equip",
+      "Metsera",
+      "Flywire",
+      "Devoted-Health",
+      "Denali",
+      "Toku"
+    ],
+    "geography": [
+      "US",
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@fprimecapital.com"
+      }
+    ],
+    "confidence_score": 16,
+    "source_url": "https://fprimecapital.com",
+    "extracted_at": "2026-05-19T07:41:50.871863Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "a99",
+    "website": "https://a99.vc",
+    "thesis": "Early to late-stage investments in deploying capital across the manufacturing spectrum",
+    "focus_sectors": [
+      "Manufacturing",
+      "Semiconductors",
+      "Metals and Mining",
+      "Alternate Energy",
+      "Specialty Chemicals"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps",
+      "AI",
+      "SaaS"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B",
+      "Growth"
+    ],
+    "check_size": "",
+    "fund_number": "Fund for Sunrise Industries",
+    "fund_size": "$100M",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@a99.vc",
+    "partners": [
+      {
+        "name": "Vignesh Shankar",
+        "role": "Founder"
+      },
+      {
+        "name": "Aditya",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Aditya Avartan Technologies Private Limited",
+      "Sidix",
+      "InterCosmos",
+      "TierX Data Center Solutions LLP",
+      "Atomgrid",
+      "OptoML",
+      "Technocrat Plasma",
+      "Raptee Energy",
+      "Ezerx Health",
+      "Intangles North America",
+      "Lyzr Platform",
+      "Innocule",
+      "Rapid Acceleration Partners",
+      "Ethan AI",
+      "Acadspace"
+    ],
+    "geography": [
+      "India",
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "Website",
+        "value": "https://a99.vc"
+      },
+      {
+        "type": "LinkedIn",
+        "value": "https://www.linkedin.com/company/a99-capital/"
+      }
+    ],
+    "confidence_score": 16,
+    "source_url": "https://a99.vc",
+    "extracted_at": "2026-05-19T07:43:23.513325Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Prosus Ventures",
+    "website": "https://www.prosus.com",
+    "thesis": "",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@prosus.com",
+    "partners": [
+      {
+        "name": "Mobin Uddin",
+        "role": "Investor"
+      },
+      {
+        "name": "Orkun Saitoglu",
+        "role": "Investor"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US",
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "LinkedIn",
+        "value": "https://www.linkedin.com/company/prosus-ventures"
+      },
+      {
+        "type": "Twitter",
+        "value": "https://twitter.com/prosusventures"
+      }
+    ],
+    "confidence_score": 14,
+    "source_url": "https://www.prosus.com",
+    "extracted_at": "2026-05-19T07:42:38.464256Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "IKP Knowledge Park",
+    "website": "https://ikpknowledgepark.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Life Sciences",
+      "Biotechnology",
+      "Health Tech",
+      "Agri-Tech",
+      "Engineering"
+    ],
+    "domain_specializations": [
+      "R&D",
+      "Innovation"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "use contact form on website",
+    "partners": [
+      {
+        "name": "Dr. Uday B. Desai",
+        "role": "Chairperson"
+      },
+      {
+        "name": "Professor Seyed E. Hasnain",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India",
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "https://ikpknowledgepark.com/contact-us/"
+      },
+      {
+        "type": "partner",
+        "value": "https://ikpknowledgepark.com/partner-with-us/"
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://ikpknowledgepark.com",
+    "extracted_at": "2026-05-19T07:43:44.135888Z",
+    "pages_scraped": 2
+  },
+  {
+    "firm": "MudhalVC",
+    "website": "https://mudhalvc.com",
+    "thesis": "Coach First, Capital Second. Patient Capital until the Founder Wins.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Pre-Seed",
+      "Seed"
+    ],
+    "check_size": "$30K-$100K",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@mudhalvc.com",
+    "partners": [
+      {
+        "name": "Aravind Suresh",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Suresh Sambandam",
+        "role": "General Partner"
+      },
+      {
+        "name": "Arun Karthik",
+        "role": "Head | Investments & Strategy"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Tamilnadu"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@mudhalvc.com"
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://mudhalvc.com",
+    "extracted_at": "2026-05-19T07:43:59.496420Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "Nordic Capital",
+    "website": "https://www.nordiccapital.com",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Emil Anderson",
+        "role": ""
+      },
+      {
+        "name": "John Damgaard",
+        "role": ""
+      },
+      {
+        "name": "Mark Stubbs",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "LEO Pharma",
+      "Siteimprove",
+      "Replay gene therapy platform"
+    ],
+    "geography": [
+      "US",
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@nordiccapital.com"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/nordic-capital/"
+      }
+    ],
+    "confidence_score": 12,
+    "source_url": "https://www.nordiccapital.com",
+    "extracted_at": "2026-05-19T07:42:11.769870Z",
+    "pages_scraped": 3
+  }
+]

@@ -18,8 +18,13 @@ class PartnerOut(BaseModel):
     id: int
     name: str | None = ""
     role: str | None = ""
+    title: str | None = ""
     linkedin_url: str | None = ""
     twitter_url: str | None = ""
+    source_url: str | None = ""
+    extraction_confidence: float | None = None
+    scraped_at: datetime | None = None
+    updated_at: datetime | None = None
 
 
 class PortfolioCompanyOut(BaseModel):
@@ -132,6 +137,7 @@ class QueryPreviewRequest(BaseModel):
     sector: str | None = None
     stage: str | None = None
     geography: str | None = None
+    business_model: str | None = None
     theme: str | None = None
     manual_queries: list[str] = Field(default_factory=list)
     use_expansion: bool = False

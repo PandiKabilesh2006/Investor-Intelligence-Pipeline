@@ -195,6 +195,11 @@ class Partner(Base):
         String
     )
 
+    title = Column(
+
+        String
+    )
+
 
     linkedin_url = Column(
 
@@ -205,6 +210,30 @@ class Partner(Base):
     twitter_url = Column(
 
         Text
+    )
+
+    source_url = Column(
+
+        Text
+    )
+
+    extraction_confidence = Column(
+
+        Float
+    )
+
+    scraped_at = Column(
+
+        TIMESTAMP
+    )
+
+    updated_at = Column(
+
+        TIMESTAMP,
+
+        server_default=func.now(),
+
+        onupdate=func.now()
     )
 
 

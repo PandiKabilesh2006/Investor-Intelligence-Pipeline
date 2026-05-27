@@ -11,7 +11,8 @@ export default async function DashboardPage() {
     getInvestors({ limit: 150 }).catch(() => ({ items: [], total: 0 })),
     getPipelineStatus().catch(() => ({
       pipeline_log: { exists: false, tail: [] },
-      scheduler_log: { exists: false, tail: [] }
+      scheduler_log: { exists: false, tail: [] },
+      latest_run: null
     })),
     getPipelineQueueSummary().catch(() => ({
       queue: { pending: 0, completed: 0, failed: 0, total: 0 },

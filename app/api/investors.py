@@ -1,5 +1,6 @@
 import csv
 import io
+from urllib.parse import urlparse
 
 from fastapi import (
     APIRouter,
@@ -25,6 +26,47 @@ router = APIRouter(prefix="/api/investors", tags=["investors"])
 
 def _clean_list(value):
     return value or []
+
+
+def _url_contains(url, domains):
+    if not url:
+        return False
+
+    try:
+        hostname = urlparse(url).hostname or ""
+    except ValueError:
+        return False
+
+    hostname = hostname.lower()
+    return any(hostname == domain or hostname.endswith(f".{domain}") for domain in domains)
+
+
+def serialize_partner(partner):
+    linkedin_url = partner.linkedin_url or None
+    twitter_url = partner.twitter_url or None
+    source_url = partner.source_url or None
+
+    if linkedin_url and not _url_contains(linkedin_url, ["linkedin.com"]):
+        source_url = source_url or linkedin_url
+        linkedin_url = None
+
+    if twitter_url and not _url_contains(twitter_url, ["twitter.com", "x.com"]):
+        source_url = source_url or twitter_url
+        twitter_url = None
+
+    return {
+        "id": partner.id,
+        "name": partner.name,
+        "role": partner.role,
+        "title": partner.title,
+        "linkedin_url": linkedin_url,
+        "twitter_url": twitter_url,
+        "source_url": source_url,
+        "confidence": partner.extraction_confidence,
+        "extraction_confidence": partner.extraction_confidence,
+        "scraped_at": partner.scraped_at,
+        "updated_at": partner.updated_at,
+    }
 
 
 def serialize_investor(investor):
@@ -187,7 +229,10 @@ def get_investor(
         raise HTTPException(status_code=404, detail="Investor not found")
 
     data = serialize_investor(investor)
-    data["partners"] = investor.partners or []
+    data["partners"] = [
+        serialize_partner(partner)
+        for partner in investor.partners or []
+    ]
     data["portfolio_companies"] = investor.portfolio_companies or []
 
     return data

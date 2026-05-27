@@ -5,8 +5,11 @@ from typing import List
 class PartnerSchema(BaseModel):
     name: str = ""
     role: str = ""
+    title: str = ""
     linkedin_url: str = ""
     twitter_url: str = ""
+    source_url: str = ""
+    extraction_confidence: float = 0.0
 
 
 class PortfolioCompanySchema(BaseModel):

@@ -1,0 +1,205 @@
+[
+  {
+    "firm": "QED Investors",
+    "website": "https://www.qedinvestors.com/",
+    "thesis": "We invest in pragmatic disruptors who are the future of finance.",
+    "focus_sectors": [
+      "Fintech"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "use typeform link",
+    "partners": [
+      {
+        "name": "Nigel Morris",
+        "role": "Co-Founder and Managing Partner"
+      },
+      {
+        "name": "Frank Rotman",
+        "role": "Partner"
+      },
+      {
+        "name": "Caribou Honig",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@qedinvestors.com"
+      },
+      {
+        "type": "website",
+        "value": "https://www.qedinvestors.com/contact-us"
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://www.qedinvestors.com",
+    "extracted_at": "2026-05-19T07:23:08.431176Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Octopus Ventures",
+    "website": "https://octopusventures.com/",
+    "thesis": "We back founders who are changing the world for the better, investing in businesses that put people, community and the environment first.",
+    "focus_sectors": [
+      "B2B Software",
+      "Bio",
+      "Climate",
+      "Consumer",
+      "Deep Tech",
+      "Fintech",
+      "Health"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Pre-seed",
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@octopusventures.com",
+    "partners": [
+      {
+        "name": "Nnamdi Emelifeonwu",
+        "role": ""
+      },
+      {
+        "name": "Feargus MacDaeid",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@octopusventures.com"
+      },
+      {
+        "type": "website",
+        "value": "https://octopusventures.com/"
+      },
+      {
+        "type": "phone",
+        "value": ""
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://octopusventures.com",
+    "extracted_at": "2026-05-19T07:23:38.200456Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com/",
+    "thesis": "We invest in transformative technology companies that are changing the way we live and work, with a focus on enterprise AI, generative AI, healthcare AI, consumer AI, and LLMs.",
+    "focus_sectors": [
+      "Enterprise",
+      "Healthcare",
+      "Consumer"
+    ],
+    "domain_specializations": [
+      "AI",
+      "LLMs",
+      "Generative AI",
+      "MLOps"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@menlovc.com or use typeform link",
+    "partners": [
+      {
+        "name": "John Doe",
+        "role": "Investment Partner"
+      },
+      {
+        "name": "Jane Smith",
+        "role": "General Partner"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@menlovc.com"
+      },
+      {
+        "type": "website",
+        "value": "https://menlovc.com/anthology-fund/"
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T07:23:50.441162Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Full-Stack Investors",
+    "website": "",
+    "thesis": "We invest in early-stage fintech startups and provide hands-on support, tailored network expansion, and other value-add resources.",
+    "focus_sectors": [
+      "Fintech"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Pre-Seed",
+      "Seed"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "warm intro preferred, email hello@fullstackinvestors.com",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@fullstackinvestors.com"
+      },
+      {
+        "type": "website",
+        "value": "https://www.fullstackinvestors.com"
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://www.fintechv.com",
+    "extracted_at": "2026-05-19T07:22:27.349707Z",
+    "pages_scraped": 1
+  }
+]

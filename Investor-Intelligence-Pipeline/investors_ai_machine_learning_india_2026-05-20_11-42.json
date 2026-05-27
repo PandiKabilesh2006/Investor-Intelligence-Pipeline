@@ -1,0 +1,1636 @@
+[
+  {
+    "firm": "Benhamou Global Ventures",
+    "website": "https://benhamouglobalventures.com",
+    "thesis": "We focus our energy and talent at the intersection of Enterprise 5.0 companies and cross border innovation.",
+    "focus_sectors": [
+      "Enterprise AI",
+      "Cross Border Innovation"
+    ],
+    "domain_specializations": [
+      "Enterprise Automation",
+      "Intelligent Machines",
+      "Human Ingenuity"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "IPO"
+    ],
+    "check_size": "$100K-$500K",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively deploying",
+    "pitch_process": "warm intros only",
+    "partners": [
+      {
+        "name": "Dror Nathaniel",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "David Benhamou",
+        "role": "Managing Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Upsun",
+      "Opsmill",
+      "XCaliber Health",
+      "Fiddler AI",
+      "Pay I",
+      "Asenion",
+      "Percepto",
+      "Earnix",
+      "JumpCloud",
+      "Source Defense",
+      "Interactly.ai",
+      "The Forecasting Company",
+      "Outbuild",
+      "Workhelix",
+      "Affineon",
+      "Evinced",
+      "AIDash",
+      "Greenly",
+      "Firmly",
+      "Essenvia",
+      "ThetaRay",
+      "MindsDB",
+      "Covu",
+      "SandboxAQ",
+      "Datawizz",
+      "Lyzr"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Asia",
+      "Silicon Valley"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/benhamou-global-ventures/"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://benhamouglobalventures.com/contact/"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 17,
+    "source_url": "https://benhamouglobalventures.com",
+    "extracted_at": "2026-05-20T06:03:26.154281Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Dror Nathaniel: [dror@benhamouglobalventures.com, dror.nathaniel@benhamouglobalventures.com, dnathaniel@benhamouglobalventures.com]",
+      "David Benhamou: [david@benhamouglobalventures.com, david.benhamou@benhamouglobalventures.com, dbenhamou@benhamouglobalventures.com]"
+    ]
+  },
+  {
+    "firm": "IAN Group",
+    "website": "https://alphafund.iangroup.vc/",
+    "thesis": "Invests in early-stage companies and MSMEs with strong founders, solving real problems, leveraging technology and innovation, including those aligned with India’s national strategic imperatives. Deep tech remains at the heart of its investment thesis, supported by a carefully structured risk-mitigation strategy.",
+    "focus_sectors": [
+      "AI",
+      "SaaS",
+      "Healthcare"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "Fund Size: USD 100 Million",
+    "fund_size": "USD 100 Million",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Sanjay Nekkanti",
+        "role": "Founder & CEO"
+      },
+      {
+        "name": "Dhruva Space",
+        "role": "Founder & CEO"
+      },
+      {
+        "name": "Vaibhav Bhatia",
+        "role": "CEO and Founder, Lamark Biotech"
+      },
+      {
+        "name": "Dr. Rimjhim Agrawal & Laina Emmanuel",
+        "role": "Brainsight AI"
+      }
+    ],
+    "portfolio_companies": [
+      "Dhruva Space",
+      "Lamark Biotech",
+      "Brainsight AI",
+      "Serigen",
+      "Fluxgen",
+      "Innovodigm",
+      "Endure Air",
+      "Morphing Machines",
+      "LearnTube.ai",
+      "D Propulse",
+      "Peptris Technologies",
+      "e-TRNL"
+    ],
+    "geography": [
+      "India",
+      "US",
+      "Europe",
+      "Asia",
+      "San Francisco"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/ian-group"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://alphafund.iangroup.vc/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 17,
+    "source_url": "https://alphafund.iangroup.vc",
+    "extracted_at": "2026-05-20T06:04:05.759531Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Sanjay Nekkanti: [sanjay@alphafund.iangroup.vc, sanjay.nekkanti@alphafund.iangroup.vc, snekkanti@alphafund.iangroup.vc]",
+      "Dhruva Space: [dhruva@alphafund.iangroup.vc, dhruva.space@alphafund.iangroup.vc, dspace@alphafund.iangroup.vc]",
+      "Vaibhav Bhatia: [vaibhav@alphafund.iangroup.vc, vaibhav.bhatia@alphafund.iangroup.vc, vbhatia@alphafund.iangroup.vc]",
+      "Dr. Rimjhim Agrawal & Laina Emmanuel: [dr@alphafund.iangroup.vc, dr.emmanuel@alphafund.iangroup.vc, demmanuel@alphafund.iangroup.vc]"
+    ]
+  },
+  {
+    "firm": "Capital-A",
+    "website": "https://capital-a.vc",
+    "thesis": "We back founders building from the ground up — from advanced hardware to other patient-capital businesses that demand conviction and time.",
+    "focus_sectors": [
+      "manufacturing",
+      "deep tech",
+      "climate"
+    ],
+    "domain_specializations": [
+      "semiconductors",
+      "R&D & Design"
+    ],
+    "investment_stage": [
+      "early-stage"
+    ],
+    "check_size": "",
+    "fund_number": "Fund II",
+    "fund_size": "$50 million",
+    "active_status": "actively deploying",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Unknown Partner",
+        "role": "Unknown Role"
+      }
+    ],
+    "portfolio_companies": [
+      "Misochain",
+      "Enerzi"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@capital-a.vc"
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://capital-a.vc/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 17,
+    "source_url": "https://capital-a.vc",
+    "extracted_at": "2026-05-20T06:09:33.131546Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Unknown Partner: [unknown@capital-a.vc, unknown.partner@capital-a.vc, upartner@capital-a.vc]"
+    ]
+  },
+  {
+    "firm": "Endiya Partners",
+    "website": "https://www.endiya.com",
+    "thesis": "Investing in India’s Best Product Startups, focussed on enterprise, industrial tech, healthcare & life sciences, with strong fundamentals & clear competitive advantage",
+    "focus_sectors": [
+      "enterprise",
+      "industrial tech",
+      "healthcare",
+      "life sciences"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "early-stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Chaitanya Peddi",
+        "role": ""
+      },
+      {
+        "name": "Ranvir Singh",
+        "role": ""
+      },
+      {
+        "name": "Aayush Ghosh Choudhary",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Scrut Automation",
+      "Sugar Fit",
+      "Zluri",
+      "Aquaexchange",
+      "Darwinbox",
+      "Eyestem",
+      "Kissht",
+      "Mylo",
+      "Qapita",
+      "SigTuple"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "contact@endiya.com"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/endiya-partners"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/endiyavc"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://www.endiya.com",
+    "extracted_at": "2026-05-20T05:59:12.311765Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Chaitanya Peddi: [chaitanya@endiya.com, chaitanya.peddi@endiya.com, cpeddi@endiya.com]",
+      "Ranvir Singh: [ranvir@endiya.com, ranvir.singh@endiya.com, rsingh@endiya.com]",
+      "Aayush Ghosh Choudhary: [aayush@endiya.com, aayush.choudhary@endiya.com, achoudhary@endiya.com]"
+    ]
+  },
+  {
+    "firm": "Generate Capital",
+    "website": "https://generatecapital.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Sustainable & Specialty Infrastructure",
+      "Energy",
+      "Mobility",
+      "Water",
+      "Waste",
+      "Communities",
+      "Planet"
+    ],
+    "domain_specializations": [
+      "Distributed Generation",
+      "Energy Storage",
+      "Grid Resilience",
+      "Utility Scale Solar"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Please complete the form below with your details, or the details of the person attending in-person in San Fransisco.",
+    "partners": [
+      {
+        "name": "David Crane",
+        "role": "Chief Executive Officer"
+      },
+      {
+        "name": "Harsi Thethi",
+        "role": "Chief Financial Officer"
+      },
+      {
+        "name": "Ed Bossange",
+        "role": "Chief Capital Formation Officer"
+      }
+    ],
+    "portfolio_companies": [
+      "Airbnb",
+      "Stripe",
+      "GitLab"
+    ],
+    "geography": [
+      "North America",
+      "US",
+      "Europe",
+      "Asia",
+      "San Francisco"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@generatecapital.com"
+      },
+      {
+        "type": "email",
+        "value": "press@generatecapital.com"
+      },
+      {
+        "type": "email",
+        "value": "InvestorSolutions@generatecapital.com"
+      },
+      {
+        "type": "email",
+        "value": "InvestorRelations@generatecapital.com"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/generatecapital"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/generatecapital"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://services.dataexchange.fiscloudservices.com/Document/4090814/4114349"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://generatecapital.com",
+    "extracted_at": "2026-05-20T06:04:52.245568Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "David Crane: [david@generatecapital.com, david.crane@generatecapital.com, dcrane@generatecapital.com]",
+      "Harsi Thethi: [harsi@generatecapital.com, harsi.thethi@generatecapital.com, hthethi@generatecapital.com]",
+      "Ed Bossange: [ed@generatecapital.com, ed.bossange@generatecapital.com, ebossange@generatecapital.com]"
+    ]
+  },
+  {
+    "firm": "India Internet Fund",
+    "website": "https://www.indiainternetfund.com/",
+    "thesis": "",
+    "focus_sectors": [
+      "Technology",
+      "Media & Entertainment",
+      "Big Data",
+      "Logistics",
+      "Travel",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Food & Agri-tech"
+    ],
+    "domain_specializations": [
+      "AI",
+      "Machine Learning"
+    ],
+    "investment_stage": [
+      "Early stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Get in touch with us today to schedule an appointment with our investment team.",
+    "partners": [
+      {
+        "name": "Anirudh Suri",
+        "role": "Founder"
+      },
+      {
+        "name": "Nihal Mehta",
+        "role": "Founder"
+      }
+    ],
+    "portfolio_companies": [
+      "tookitaki",
+      "frrole",
+      "humantic",
+      "Alavi Ai"
+    ],
+    "geography": [
+      "India",
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@indiainternetfund.com"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/company/247-techies/"
+      },
+      {
+        "type": "twitter",
+        "value": "twitter.com/indiafund"
+      },
+      {
+        "type": "facebook",
+        "value": "www.facebook.com/IndiaInternetFund/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://www.indiainternetfund.com",
+    "extracted_at": "2026-05-20T06:05:32.037402Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Anirudh Suri: [anirudh@indiainternetfund.com, anirudh.suri@indiainternetfund.com, asuri@indiainternetfund.com]",
+      "Nihal Mehta: [nihal@indiainternetfund.com, nihal.mehta@indiainternetfund.com, nmehta@indiainternetfund.com]"
+    ]
+  },
+  {
+    "firm": "Ankur Capital",
+    "website": "https://www.ankurcapital.com",
+    "thesis": "We back founders the way we'd want to be backed — with conviction, expertise, and skin in the game.",
+    "focus_sectors": [
+      "life sciences",
+      "clean energy",
+      "advanced materials",
+      "machine learning"
+    ],
+    "domain_specializations": [
+      "edge of life sciences",
+      "clean energy",
+      "advanced materials",
+      "machine learning"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Praneeth Kumar",
+        "role": "Partner"
+      },
+      {
+        "name": "Shobhit Jain",
+        "role": "Partner"
+      },
+      {
+        "name": "Mrudhukar Batchu",
+        "role": "Partner"
+      },
+      {
+        "name": "Kiran Naik",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Captain Fresh",
+      "Vimano",
+      "Pranos",
+      "Craftif",
+      "Turiyam",
+      "OneKiraana",
+      "Offgrid"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@ankurcapital.com"
+      },
+      {
+        "type": "phone",
+        "value": "+91 77385 54128"
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.ankurcapital.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://www.ankurcapital.com",
+    "extracted_at": "2026-05-20T06:07:10.487162Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Praneeth Kumar: [praneeth@ankurcapital.com, praneeth.kumar@ankurcapital.com, pkumar@ankurcapital.com]",
+      "Shobhit Jain: [shobhit@ankurcapital.com, shobhit.jain@ankurcapital.com, sjain@ankurcapital.com]",
+      "Mrudhukar Batchu: [mrudhukar@ankurcapital.com, mrudhukar.batchu@ankurcapital.com, mbatchu@ankurcapital.com]",
+      "Kiran Naik: [kiran@ankurcapital.com, kiran.naik@ankurcapital.com, knaik@ankurcapital.com]"
+    ]
+  },
+  {
+    "firm": "247VC",
+    "website": "https://www.247vc.in/",
+    "thesis": "We partner with bold insurgents - the ones rewiring Bharat’s destiny with audacity and execution.",
+    "focus_sectors": [
+      "Frontier - Deep Tech",
+      "Enterprise Tech"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "",
+    "fund_number": "India Fund I",
+    "fund_size": "₹250 Crore (~$30 million)",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Yagnesh",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Shashank Randev",
+        "role": "General Partner"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/company/247vc"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.247vc.in/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "x.com/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://www.247vc.in",
+    "extracted_at": "2026-05-20T06:09:41.781268Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Yagnesh: [yagnesh@247vc.in]",
+      "Shashank Randev: [shashank@247vc.in, shashank.randev@247vc.in, srandev@247vc.in]"
+    ]
+  },
+  {
+    "firm": "Speciale Invest",
+    "website": "https://www.specialeinvest.com",
+    "thesis": "We enable visionary founders building the next frontiers of humanity. We focus on deep tech innovations across DeepTech Hardware and Software.",
+    "focus_sectors": [
+      "AI",
+      "DeepTech Hardware",
+      "DeepTech Software"
+    ],
+    "domain_specializations": [
+      "AI Led Software"
+    ],
+    "investment_stage": [
+      "Pre-seed",
+      "Seed"
+    ],
+    "check_size": "~$1M",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Vishesh",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Arjun",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Dhanush",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "CynLr",
+      "Airboxr",
+      "Wingman"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 14,
+    "source_url": "https://www.specialeinvest.com",
+    "extracted_at": "2026-05-20T06:01:19.705048Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Vishesh: [vishesh@specialeinvest.com]",
+      "Arjun: [arjun@specialeinvest.com]",
+      "Dhanush: [dhanush@specialeinvest.com]"
+    ]
+  },
+  {
+    "firm": "Qualcomm Ventures",
+    "website": "https://www.qualcommventures.com",
+    "thesis": "We invest in early to growth stage companies to accelerate the ecosystem",
+    "focus_sectors": [
+      "AI",
+      "IoT",
+      "Automotive",
+      "Consumer",
+      "Enterprise & Data Center"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "early",
+      "growth"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "$150M",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "SentinelOne",
+      "Hugging Face",
+      "Ring",
+      "Xiaomi",
+      "Cloudflare",
+      "99",
+      "Mapmyindia",
+      "Airspace",
+      "SafelyYou"
+    ],
+    "geography": [
+      "India",
+      "US"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 13,
+    "source_url": "https://www.qualcommventures.com",
+    "extracted_at": "2026-05-20T05:59:09.681283Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Look AI Ventures",
+    "website": "https://lookai.vc",
+    "thesis": "We invest in globally disruptive early-stage AI Startups",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "Artificial Intelligence"
+    ],
+    "investment_stage": [
+      "Early-stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Martin Dostal",
+        "role": "Partner & Chief Science Officer"
+      },
+      {
+        "name": "Veronika Argust",
+        "role": ""
+      },
+      {
+        "name": "Eva Slonkova",
+        "role": ""
+      },
+      {
+        "name": "Kate Inozemtseva",
+        "role": "Investment Analyst"
+      },
+      {
+        "name": "Alexander Branyik",
+        "role": ""
+      },
+      {
+        "name": "Daniel Kunz",
+        "role": ""
+      },
+      {
+        "name": "Pavel Rosendorf",
+        "role": ""
+      },
+      {
+        "name": "Martina Jankovska",
+        "role": ""
+      },
+      {
+        "name": "Martin Havlik",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Angelo Burgarello",
+        "role": "Partner & Chief"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Europe",
+      "Czech Republic"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@lookai.vc"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/lookai-ventures/"
+      },
+      {
+        "type": "facebook",
+        "value": "https://www.facebook.com/Look-AI-Ventures-111992481428008/"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/LookAIVentures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://lookai.vc",
+    "extracted_at": "2026-05-20T05:59:51.130177Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Martin Dostal: [martin@lookai.vc, martin.dostal@lookai.vc, mdostal@lookai.vc]",
+      "Veronika Argust: [veronika@lookai.vc, veronika.argust@lookai.vc, vargust@lookai.vc]",
+      "Eva Slonkova: [eva@lookai.vc, eva.slonkova@lookai.vc, eslonkova@lookai.vc]",
+      "Kate Inozemtseva: [kate@lookai.vc, kate.inozemtseva@lookai.vc, kinozemtseva@lookai.vc]",
+      "Alexander Branyik: [alexander@lookai.vc, alexander.branyik@lookai.vc, abranyik@lookai.vc]",
+      "Daniel Kunz: [daniel@lookai.vc, daniel.kunz@lookai.vc, dkunz@lookai.vc]",
+      "Pavel Rosendorf: [pavel@lookai.vc, pavel.rosendorf@lookai.vc, prosendorf@lookai.vc]",
+      "Martina Jankovska: [martina@lookai.vc, martina.jankovska@lookai.vc, mjankovska@lookai.vc]",
+      "Martin Havlik: [martin@lookai.vc, martin.havlik@lookai.vc, mhavlik@lookai.vc]",
+      "Angelo Burgarello: [angelo@lookai.vc, angelo.burgarello@lookai.vc, aburgarello@lookai.vc]"
+    ]
+  },
+  {
+    "firm": "Antler",
+    "website": "https://www.antler.co",
+    "thesis": "Investing at inception-stage means entering at lower valuations with higher return potential. We spend hundreds of hours with founders assessing their skills.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "AI"
+    ],
+    "investment_stage": [
+      "Early-stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "active across 30 locations globally",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Airalo",
+      "Peec ai",
+      "fileai"
+    ],
+    "geography": [
+      "Europe",
+      "US",
+      "Global"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 13,
+    "source_url": "https://www.antler.co",
+    "extracted_at": "2026-05-20T06:02:27.498654Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Green Frontier Capital",
+    "website": "https://www.greenfrontiercapital.com/",
+    "thesis": "We meticulously evaluate the expertise and experience of the founding team. A strong founding team with complementary skills and a shared vision is essential for navigating challenges, driving innovation, and executing the company’s growth strategy effectively.",
+    "focus_sectors": [
+      "electric mobility",
+      "foodtech",
+      "agtech",
+      "renewable energy",
+      "biofuels",
+      "waste management",
+      "clean water",
+      "sustainable lifestyles"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Individuals and institutions interested in climate investment can reach out to Green Frontier Capital to explore partnership opportunities.",
+    "partners": [
+      {
+        "name": "Avinash Sharma",
+        "role": ""
+      },
+      {
+        "name": "Vivek Nirmal",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.greenfrontiercapital.com/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://www.greenfrontiercapital.com",
+    "extracted_at": "2026-05-20T06:06:07.903695Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Avinash Sharma: [avinash@greenfrontiercapital.com, avinash.sharma@greenfrontiercapital.com, asharma@greenfrontiercapital.com]",
+      "Vivek Nirmal: [vivek@greenfrontiercapital.com, vivek.nirmal@greenfrontiercapital.com, vnirmal@greenfrontiercapital.com]"
+    ]
+  },
+  {
+    "firm": "BVP",
+    "website": "https://www.bvp.com",
+    "thesis": "We partner with entrepreneurs from their early days through every stage of growth.",
+    "focus_sectors": [
+      "AI",
+      "Fintech",
+      "Vertical software",
+      "Developer",
+      "Deep tech",
+      "Healthcare"
+    ],
+    "domain_specializations": [
+      "Graph AI",
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively deploying",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Byron Deeter",
+        "role": "General Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Airbnb",
+      "Stripe",
+      "GitLab",
+      "Waymo",
+      "Ramp",
+      "EliseAI",
+      "Fal.ai",
+      "LinkedIn"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Asia",
+      "San Francisco"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@bvp.com"
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/company/bvp"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.bvp.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "twitter.com/bvp_vc"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://www.bvp.com",
+    "extracted_at": "2026-05-20T06:08:12.831588Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Byron Deeter: [byron@bvp.com, byron.deeter@bvp.com, bdeeter@bvp.com]"
+    ]
+  },
+  {
+    "firm": "AJVC",
+    "website": "https://www.ajuniorvc.com/",
+    "thesis": "We take away the friction of starting to fundraise through a 3 minute application. We reply with yes/no within 48 hours.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Apply now and get a response in 48 hours. First Time Founder",
+    "partners": [
+      {
+        "name": "Aviral",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Nyug",
+      "Chop",
+      "Gaadi Mech",
+      "Jaagruk Bharat",
+      "Mithila Foods",
+      "Trufides",
+      "Iztri",
+      "Faraday",
+      "Care Dale",
+      "Handy Panda"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.ajuniorvc.com/apply"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://www.ajuniorvc.com",
+    "extracted_at": "2026-05-20T06:10:48.936407Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Aviral: [aviral@ajuniorvc.com]"
+    ]
+  },
+  {
+    "firm": "AI Capital",
+    "website": "https://www.ai.vc",
+    "thesis": "We invest in AI-enabled business software companies that facilitate efficiencies and foster resilience in the supply and delivery of critical goods and services.",
+    "focus_sectors": [
+      "AI",
+      "Software"
+    ],
+    "domain_specializations": [
+      "Applied Artificial Intelligence",
+      "Artificial Intelligence Systems"
+    ],
+    "investment_stage": [
+      "Early Growth-Stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Agorai",
+      "Caladrius Ventures",
+      "DataFi",
+      "Link3D",
+      "Luminoso",
+      "MIIT-Born Netra",
+      "Noetic Machines",
+      "Syndesis Health"
+    ],
+    "geography": [
+      "US",
+      "Denver",
+      "Baltimore",
+      "Boston",
+      "Las Vegas",
+      "Vail"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 12,
+    "source_url": "https://www.ai.vc",
+    "extracted_at": "2026-05-20T05:59:37.975028Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Bessemer Venture Partners",
+    "website": "https://www.bvp.com",
+    "thesis": "We partner with entrepreneurs from their early days through every stage of growth",
+    "focus_sectors": [
+      "AI",
+      "ML",
+      "Fintech",
+      "Vertical software",
+      "Developer",
+      "Deep tech",
+      "Healthcare"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI",
+      "Biology-native data infrastructure"
+    ],
+    "investment_stage": [
+      "Early days",
+      "Growth"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Waymo",
+      "Ramp",
+      "EliseAI",
+      "Fal.ai",
+      "LinkedIn"
+    ],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "linkedin",
+        "value": "https://www.bvp.com/companies/linkedin"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://www.bvp.com",
+    "extracted_at": "2026-05-20T06:00:50.490218Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Suvan Ventures",
+    "website": "https://www.suvan.vc",
+    "thesis": "Invests in early stage AI first B2B Indian crossborder SaaS companies.",
+    "focus_sectors": [
+      "AI",
+      "IOT",
+      "Big Data & Analytics",
+      "AR & VR",
+      "Cloude & Application Management",
+      "Security",
+      "Blockchain",
+      "HR & Future Works",
+      "Supply Chain",
+      "Sales & Marketing",
+      "Legal",
+      "Finance",
+      "Healthcare",
+      "Retail Tech",
+      "Energy & Utilities",
+      "Smart Cities",
+      "Digital Media",
+      "Mobility",
+      "Fintech"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Pre-seed",
+      "Seed"
+    ],
+    "check_size": "$200k-$400k",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Submit at https://docs.google.com/forms/d/e/1FAIpQLScaTDDDiG_bBXZroZCCC0j4rB0KCIaHSq6pZLyc_RBNL_pi8w/viewform?usp=sf_link",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [
+      "India",
+      "US",
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.suvan.vc/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://suvan.vc",
+    "extracted_at": "2026-05-20T06:11:54.151326Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "NVIDIA",
+    "website": "https://www.nvidia.com",
+    "thesis": "",
+    "focus_sectors": [
+      "AI",
+      "Machine Learning"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI",
+      "Quantum Computing"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Adobe",
+      "Dassault Systèmes",
+      "T-Mobile"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Asia"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 10,
+    "source_url": "https://www.nvidia.com",
+    "extracted_at": "2026-05-20T06:05:08.310335Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "3one4 Capital",
+    "website": "",
+    "thesis": "",
+    "focus_sectors": [
+      "Supply Chain / Logistics",
+      "SaaS / DevOps / Marketplace",
+      "Media & Entertainment",
+      "Deep Tech / Hard Science",
+      "Climate / Sustainability"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Unknown Partner",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Powai",
+      "Mumbai"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "team@indianvcs.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 9,
+    "source_url": "https://www.indianvcs.com",
+    "extracted_at": "2026-05-20T06:09:07.457906Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "AngelList India",
+    "website": "https://www.angellistindia.com/",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Udayan Walvekar",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.angellistindia.com/#"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 9,
+    "source_url": "https://www.angellistindia.com",
+    "extracted_at": "2026-05-20T06:10:56.624207Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Udayan Walvekar: [udayan@angellistindia.com, udayan.walvekar@angellistindia.com, uwalvekar@angellistindia.com]"
+    ]
+  },
+  {
+    "firm": "Y Combinator",
+    "website": "",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "$500k",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Airbnb",
+      "OpenAI",
+      "Scale AI",
+      "Faire",
+      "Benchling",
+      "Flexport",
+      "Instacart",
+      "Twitch",
+      "Vanta",
+      "Reddit"
+    ],
+    "geography": [
+      "San Francisco"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 7,
+    "source_url": "https://www.ycombinator.com",
+    "extracted_at": "2026-05-20T06:00:36.586437Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Chiratae Ventures",
+    "website": "https://www.chiratae.com",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "$500,00 up to $2 million",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 7,
+    "source_url": "https://www.chiratae.com",
+    "extracted_at": "2026-05-20T06:08:44.631659Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Startup India",
+    "website": "https://seedfund.startupindia.gov.in",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "INR 945 Crore",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 3,
+      "completeness_percent": 33,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 7,
+    "source_url": "https://seedfund.startupindia.gov.in",
+    "extracted_at": "2026-05-20T06:10:05.788849Z",
+    "pages_scraped": 2,
+    "guessed_emails": []
+  }
+]

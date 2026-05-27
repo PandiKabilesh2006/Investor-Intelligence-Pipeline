@@ -162,6 +162,7 @@ def semantic_investor_search(
             FROM investors
 
             {where_clause}
+            {"AND" if where_clause else "WHERE"} embedding IS NOT NULL
 
             ORDER BY embedding <=> CAST(
                 :query_embedding AS vector
@@ -193,9 +194,14 @@ def semantic_investor_search(
             # SEMANTIC SCORE
             # =================================
 
-            semantic_score = (
+            semantic_score = max(
 
-                1 - float(row.distance)
+                0.0,
+
+                min(
+                    1.0,
+                    1 - float(row.distance)
+                )
             )
 
 
@@ -299,6 +305,8 @@ def semantic_investor_search(
             investors.append({
 
                 "id": row.id,
+
+                "firm": row.firm,
 
                 "firm_name": row.firm,
 

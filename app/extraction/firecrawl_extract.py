@@ -36,9 +36,17 @@ IMPORTANT_SUBPAGES = [
 
     "/team",
 
+    "/our-team",
+
+    "/investment-team",
+
     "/people",
 
     "/partners",
+
+    "/team/partners",
+
+    "/investors",
 
     "/about",
 

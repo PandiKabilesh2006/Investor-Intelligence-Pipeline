@@ -1,0 +1,211 @@
+[
+  {
+    "firm": "Together Fund",
+    "website": "https://www.together.fund/",
+    "thesis": "Partnering with visionary founders building Al-native startups that redefine global industries.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "$1M-$10M",
+    "partners": [
+      {
+        "name": "Manav Garg",
+        "role": "Co-Founder & CEO"
+      },
+      {
+        "name": "Girish Mathrubootham",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US",
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.together.fund/contact"
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://www.together.fund",
+    "extracted_at": "2026-05-19T06:33:45.556373Z"
+  },
+  {
+    "firm": "Pinwheel Ventures",
+    "website": "https://www.pinwheel.vc/#home",
+    "thesis": "We back founder-led organizations in Cybersecurity, Fintech, AI-First, and Deep Tech from Seed to Exit.",
+    "focus_sectors": [
+      "Cybersecurity",
+      "Fintech",
+      "AI-First",
+      "Deep Tech"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "$500K-$2M",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "",
+        "value": ""
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://www.pinwheel.vc",
+    "extracted_at": "2026-05-19T06:34:35.759851Z"
+  },
+  {
+    "firm": "Backingfoundersshapingtomorrow",
+    "website": "",
+    "thesis": "We back visionary founders leveraging cutting-edge technology to solve global problems.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Manish Singhal",
+        "role": "Co-founder & CEO, Agnikul Cosmos"
+      },
+      {
+        "name": "Jo Aggarwal",
+        "role": "Co-founder & CEO, Niramai"
+      },
+      {
+        "name": "Geetha Manjunath",
+        "role": "Founder & CEO, Niramai"
+      }
+    ],
+    "portfolio_companies": [
+      "Agnikul Cosmos",
+      "Wysa",
+      "Niramai"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@piventures.in"
+      },
+      {
+        "type": "website",
+        "value": "https://www.piventures.in/"
+      }
+    ],
+    "confidence_score": 11,
+    "source_url": "https://www.piventures.in",
+    "extracted_at": "2026-05-19T06:33:59.904908Z"
+  },
+  {
+    "firm": "Ovington Capital Partners",
+    "website": "",
+    "thesis": "We partner with entrepreneurial teams working on ventures leveraging transformative technologies to create impactful solutions in Deep Tech and AI-SaaS across various sectors including HealthTech, Defense, Cybersecurity, and Creative Industries (Interactive Media & Gaming). We also help inventors build upon revolutionary ideas.",
+    "focus_sectors": [
+      "HealthTech",
+      "Defense",
+      "Cybersecurity",
+      "Creative Industries"
+    ],
+    "domain_specializations": [
+      "Deep Tech",
+      "AI-SaaS"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India",
+      "Luxembourg"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://www.ovingtoncap.ai/"
+      }
+    ],
+    "confidence_score": 11,
+    "source_url": "https://www.ovingtoncap.ai",
+    "extracted_at": "2026-05-19T06:34:25.425171Z"
+  },
+  {
+    "firm": "MudhalVC",
+    "website": "",
+    "thesis": "Investing in Pre-Seed/Seed early-stage startups that require mentorship right from the start and have potential to grow in Tamil Nadu.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Pre-Seed",
+      "Seed"
+    ],
+    "check_size": "$30K-$100K",
+    "partners": [
+      {
+        "name": "Aravind Suresh",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Suresh Sambandam",
+        "role": "General Partner"
+      },
+      {
+        "name": "Arun Karthik",
+        "role": "Head & Investments & Strategy"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Tamil Nadu"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": ""
+      },
+      {
+        "type": "Phone",
+        "value": ""
+      }
+    ],
+    "confidence_score": 9,
+    "source_url": "https://mudhalvc.com",
+    "extracted_at": "2026-05-19T06:33:52.999803Z"
+  }
+]

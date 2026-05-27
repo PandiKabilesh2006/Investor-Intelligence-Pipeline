@@ -1,0 +1,2266 @@
+[
+  {
+    "firm": "Sound Ventures",
+    "website": "https://www.soundventures.com",
+    "thesis": "We have 15+ years of experience tracking the signals that shape industries, and partnering early with founders building the products and infrastructure of the future.",
+    "focus_sectors": [
+      "Media",
+      "Tech"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Early",
+      "Seed"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively deploying",
+    "pitch_process": "warm intros only",
+    "partners": [
+      {
+        "name": "Effie Epstein",
+        "role": "General Partner"
+      },
+      {
+        "name": "Ashton Kutcher",
+        "role": "General Partner"
+      },
+      {
+        "name": "Guy Oseary",
+        "role": "General Partner"
+      },
+      {
+        "name": "Juliette Bolea",
+        "role": "Investor"
+      }
+    ],
+    "portfolio_companies": [
+      "Airtable",
+      "Robinhood",
+      "Affirm",
+      "Airbnb",
+      "Anthropic",
+      "Duolingo",
+      "Equipment Share",
+      "Flexport",
+      "GitLab",
+      "OpenAI",
+      "Spotify",
+      "Uber"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.soundventures.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://www.soundventures.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 17,
+    "source_url": "https://www.soundventures.com",
+    "extracted_at": "2026-05-19T09:34:03.728107Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Effie Epstein: [effie@soundventures.com, effie.epstein@soundventures.com, eepstein@soundventures.com]",
+      "Ashton Kutcher: [ashton@soundventures.com, ashton.kutcher@soundventures.com, akutcher@soundventures.com]",
+      "Guy Oseary: [guy@soundventures.com, guy.oseary@soundventures.com, goseary@soundventures.com]",
+      "Juliette Bolea: [juliette@soundventures.com, juliette.bolea@soundventures.com, jbolea@soundventures.com]"
+    ]
+  },
+  {
+    "firm": "Icon Ventures",
+    "website": "https://iconventures.com",
+    "thesis": "A prepared mind for investing in AI. Deep foundational knowledge of how venture capital works. Strong relationships within the venture capital ecosystem.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "warm intros only",
+    "partners": [
+      {
+        "name": "Joe Horowitz",
+        "role": "Managing General Partner"
+      },
+      {
+        "name": "Tom Mawhinney",
+        "role": "General Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Rockset",
+      "Eppo",
+      "Quizlet",
+      "Alation",
+      "Midi",
+      "Tilt"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/icon-ventures"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://iconventures.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/iconventures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 17,
+    "source_url": "https://iconventures.com",
+    "extracted_at": "2026-05-19T09:34:48.863325Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Joe Horowitz: [joe@iconventures.com, joe.horowitz@iconventures.com, jhorowitz@iconventures.com]",
+      "Tom Mawhinney: [tom@iconventures.com, tom.mawhinney@iconventures.com, tmawhinney@iconventures.com]"
+    ]
+  },
+  {
+    "firm": "Link Ventures",
+    "website": "https://www.linkventures.com",
+    "thesis": "Lisa and team is a long-term partner to propel past the seed stage, offering proven GTM playbooks and leaders with decades of technical and industry experience.",
+    "focus_sectors": [
+      "AI",
+      "Machine Learning"
+    ],
+    "domain_specializations": [
+      "Large Datasets",
+      "Cutting Edge Machine Learning and AI Technologies"
+    ],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "get in touch if you're an exceptional builder in the Cambridge/Boston area",
+    "partners": [
+      {
+        "name": "Lisa Dolan",
+        "role": "Managing Director"
+      },
+      {
+        "name": "Boaz Fachler",
+        "role": ""
+      },
+      {
+        "name": "Nick Fay",
+        "role": ""
+      },
+      {
+        "name": "Karen Green",
+        "role": ""
+      },
+      {
+        "name": "Michael Griffin",
+        "role": ""
+      },
+      {
+        "name": "Elena Heims",
+        "role": ""
+      },
+      {
+        "name": "Dan Oliveri",
+        "role": ""
+      },
+      {
+        "name": "Dominic Lloyd",
+        "role": ""
+      },
+      {
+        "name": "Bill McCarran",
+        "role": ""
+      },
+      {
+        "name": "Yianni Psaltis",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "VoiceRun",
+      "Cruisebound",
+      "Control Plane",
+      "Anomaly"
+    ],
+    "geography": [
+      "Cambridge",
+      "Boston"
+    ],
+    "contact_links": [
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/link-ventures-partners/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 16,
+    "source_url": "https://www.linkventures.com",
+    "extracted_at": "2026-05-19T09:35:42.179794Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Lisa Dolan: [lisa@linkventures.com, lisa.dolan@linkventures.com, ldolan@linkventures.com]",
+      "Boaz Fachler: [boaz@linkventures.com, boaz.fachler@linkventures.com, bfachler@linkventures.com]",
+      "Nick Fay: [nick@linkventures.com, nick.fay@linkventures.com, nfay@linkventures.com]",
+      "Karen Green: [karen@linkventures.com, karen.green@linkventures.com, kgreen@linkventures.com]",
+      "Michael Griffin: [michael@linkventures.com, michael.griffin@linkventures.com, mgriffin@linkventures.com]",
+      "Elena Heims: [elena@linkventures.com, elena.heims@linkventures.com, eheims@linkventures.com]",
+      "Dan Oliveri: [dan@linkventures.com, dan.oliveri@linkventures.com, doliveri@linkventures.com]",
+      "Dominic Lloyd: [dominic@linkventures.com, dominic.lloyd@linkventures.com, dlloyd@linkventures.com]",
+      "Bill McCarran: [bill@linkventures.com, bill.mccarran@linkventures.com, bmccarran@linkventures.com]",
+      "Yianni Psaltis: [yianni@linkventures.com, yianni.psaltis@linkventures.com, ypsaltis@linkventures.com]"
+    ]
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com",
+    "thesis": "We invest in transformative technology companies that are changing the way we live and work.",
+    "focus_sectors": [
+      "AI",
+      "Healthcare"
+    ],
+    "domain_specializations": [
+      "Generative AI",
+      "Large Language Models"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "$100K-$500K",
+    "fund_number": "Anthology Fund",
+    "fund_size": "$100 million",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Airbnb",
+      "Stripe",
+      "GitLab",
+      "Chime",
+      "Nectar Social",
+      "Pinecone-io",
+      "Typefaceai",
+      "Sana-labs",
+      "Clarifai",
+      "Genesistherapeutics",
+      "Lindyai",
+      "Observeai",
+      "Benchling",
+      "Delfi-diagnostics",
+      "Encodedtherapeutics",
+      "Gilead-sciences",
+      "H1co",
+      "Pliant-therapeutics",
+      "Recursion-pharmaceuticals"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/menlovc/"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://menlovc.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T09:33:24.823885Z",
+    "pages_scraped": 3,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Seedtable",
+    "website": "https://www.seedtable.com/intel",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Google",
+      "Grover",
+      "Bolt",
+      "Adyen",
+      "Intercom",
+      "Revolut"
+    ],
+    "geography": [],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 3,
+      "completeness_percent": 33,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 7,
+    "source_url": "https://www.seedtable.com",
+    "extracted_at": "2026-05-19T09:36:19.963774Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "IAN Group",
+    "website": "https://alphafund.iangroup.vc/",
+    "thesis": "Invests in early-stage companies and MSMEs with strong founders, solving real problems, leveraging technology and innovation, including those aligned with India’s national strategic imperatives. Deep tech remains at the heart of its investment thesis, supported by a carefully structured risk-mitigation strategy.",
+    "focus_sectors": [
+      "AI",
+      "SaaS",
+      "Healthcare"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "Fund Size: USD 100 Million",
+    "fund_size": "USD 100 Million",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Sanjay Nekkanti",
+        "role": "Founder & CEO"
+      },
+      {
+        "name": "Dhruva Space",
+        "role": "Founder & CEO"
+      },
+      {
+        "name": "Vaibhav Bhatia",
+        "role": "CEO and Founder, Lamark Biotech"
+      },
+      {
+        "name": "Dr. Rimjhim Agrawal & Laina Emmanuel",
+        "role": "Brainsight AI"
+      }
+    ],
+    "portfolio_companies": [
+      "Dhruva Space",
+      "Lamark Biotech",
+      "Brainsight AI",
+      "Serigen",
+      "Fluxgen",
+      "Innovodigm",
+      "Endure Air",
+      "Morphing Machines",
+      "LearnTube.ai",
+      "D Propulse",
+      "Peptris Technologies",
+      "e-TRNL"
+    ],
+    "geography": [
+      "India",
+      "US",
+      "Europe",
+      "Asia",
+      "San Francisco"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 16,
+    "source_url": "https://alphafund.iangroup.vc",
+    "extracted_at": "2026-05-19T10:47:51.120840Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Sanjay Nekkanti: [sanjay@alphafund.iangroup.vc, sanjay.nekkanti@alphafund.iangroup.vc, snekkanti@alphafund.iangroup.vc]",
+      "Dhruva Space: [dhruva@alphafund.iangroup.vc, dhruva.space@alphafund.iangroup.vc, dspace@alphafund.iangroup.vc]",
+      "Vaibhav Bhatia: [vaibhav@alphafund.iangroup.vc, vaibhav.bhatia@alphafund.iangroup.vc, vbhatia@alphafund.iangroup.vc]",
+      "Dr. Rimjhim Agrawal & Laina Emmanuel: [dr@alphafund.iangroup.vc, dr.emmanuel@alphafund.iangroup.vc, demmanuel@alphafund.iangroup.vc]"
+    ]
+  },
+  {
+    "firm": "Endiya Partners",
+    "website": "https://www.endiya.com",
+    "thesis": "Investing in India’s Best Product Startups, focussed on enterprise, industrial tech, healthcare & life sciences, with strong fundamentals & clear competitive advantage",
+    "focus_sectors": [
+      "enterprise",
+      "industrial tech",
+      "healthcare",
+      "life sciences"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "early-stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Chaitanya Peddi",
+        "role": ""
+      },
+      {
+        "name": "Ranvir Singh",
+        "role": ""
+      },
+      {
+        "name": "Aayush Ghosh Choudhary",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Scrut Automation",
+      "Sugar Fit",
+      "Zluri",
+      "Aquaexchange",
+      "Darwinbox",
+      "Eyestem",
+      "Kissht",
+      "Mylo",
+      "Qapita",
+      "SigTuple"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "contact@endiya.com"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/endiya-partners"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/endiyavc"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://www.endiya.com",
+    "extracted_at": "2026-05-19T10:46:26.418679Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Chaitanya Peddi: [chaitanya@endiya.com, chaitanya.peddi@endiya.com, cpeddi@endiya.com]",
+      "Ranvir Singh: [ranvir@endiya.com, ranvir.singh@endiya.com, rsingh@endiya.com]",
+      "Aayush Ghosh Choudhary: [aayush@endiya.com, aayush.choudhary@endiya.com, achoudhary@endiya.com]"
+    ]
+  },
+  {
+    "firm": "MudhalVC",
+    "website": "https://mudhalvc.com",
+    "thesis": "Coach First, Capital Second. Patient Capital until the Founder Wins.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Pre-Seed",
+      "Seed"
+    ],
+    "check_size": "$30K-$100K",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "submit at MudhalVC",
+    "partners": [
+      {
+        "name": "Aravind Suresh",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Suresh Sambandam",
+        "role": "General Partner"
+      },
+      {
+        "name": "Arun Karthik",
+        "role": "Head | Investments & Strategy"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Tamilnadu"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.mudhalvc.com/contact"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://mudhalvc.com",
+    "extracted_at": "2026-05-19T10:47:22.469002Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Aravind Suresh: [aravind@mudhalvc.com, aravind.suresh@mudhalvc.com, asuresh@mudhalvc.com]",
+      "Suresh Sambandam: [suresh@mudhalvc.com, suresh.sambandam@mudhalvc.com, ssambandam@mudhalvc.com]",
+      "Arun Karthik: [arun@mudhalvc.com, arun.karthik@mudhalvc.com, akarthik@mudhalvc.com]"
+    ]
+  },
+  {
+    "firm": "F Prime Capital",
+    "website": "https://fprimecapital.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Life Sciences",
+      "Technology",
+      "Healthtech + Services",
+      "Crypto"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Ketan Patel",
+        "role": ""
+      },
+      {
+        "name": "Rocio Wu",
+        "role": ""
+      },
+      {
+        "name": "Jon Lim",
+        "role": ""
+      },
+      {
+        "name": "Kevin Chu",
+        "role": ""
+      },
+      {
+        "name": "David Jegen",
+        "role": ""
+      },
+      {
+        "name": "Betsy Mule",
+        "role": ""
+      },
+      {
+        "name": "Abdul Abdirahman",
+        "role": ""
+      },
+      {
+        "name": "Raj Basak",
+        "role": ""
+      },
+      {
+        "name": "Robert Weisskoff",
+        "role": ""
+      },
+      {
+        "name": "Brett Cook",
+        "role": ""
+      },
+      {
+        "name": "Rosanne Yang",
+        "role": ""
+      },
+      {
+        "name": "Rachel Feely-Kohl",
+        "role": ""
+      },
+      {
+        "name": "Sanjay Aggarwal",
+        "role": ""
+      },
+      {
+        "name": "Stephen Knight",
+        "role": ""
+      },
+      {
+        "name": "Jess Alston",
+        "role": ""
+      },
+      {
+        "name": "Carl Byers",
+        "role": ""
+      },
+      {
+        "name": "Gaurav Tuli",
+        "role": ""
+      },
+      {
+        "name": "Davina Magargal",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Innovent",
+      "Iora",
+      "Aviadio",
+      "Lighthouse",
+      "PatientPing",
+      "Insmed",
+      "Carrot Fertility",
+      "Semma Therapeutics",
+      "Benchling",
+      "Beam Therapeutics",
+      "Toast",
+      "Equip",
+      "Metsera",
+      "Flywire",
+      "Devoted Health",
+      "Denali"
+    ],
+    "geography": [],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 11,
+    "source_url": "https://fprimecapital.com",
+    "extracted_at": "2026-05-19T10:46:32.698926Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Ketan Patel: [ketan@fprimecapital.com, ketan.patel@fprimecapital.com, kpatel@fprimecapital.com]",
+      "Rocio Wu: [rocio@fprimecapital.com, rocio.wu@fprimecapital.com, rwu@fprimecapital.com]",
+      "Jon Lim: [jon@fprimecapital.com, jon.lim@fprimecapital.com, jlim@fprimecapital.com]",
+      "Kevin Chu: [kevin@fprimecapital.com, kevin.chu@fprimecapital.com, kchu@fprimecapital.com]",
+      "David Jegen: [david@fprimecapital.com, david.jegen@fprimecapital.com, djegen@fprimecapital.com]",
+      "Betsy Mule: [betsy@fprimecapital.com, betsy.mule@fprimecapital.com, bmule@fprimecapital.com]",
+      "Abdul Abdirahman: [abdul@fprimecapital.com, abdul.abdirahman@fprimecapital.com, aabdirahman@fprimecapital.com]",
+      "Raj Basak: [raj@fprimecapital.com, raj.basak@fprimecapital.com, rbasak@fprimecapital.com]",
+      "Robert Weisskoff: [robert@fprimecapital.com, robert.weisskoff@fprimecapital.com, rweisskoff@fprimecapital.com]",
+      "Brett Cook: [brett@fprimecapital.com, brett.cook@fprimecapital.com, bcook@fprimecapital.com]",
+      "Rosanne Yang: [rosanne@fprimecapital.com, rosanne.yang@fprimecapital.com, ryang@fprimecapital.com]",
+      "Rachel Feely-Kohl: [rachel@fprimecapital.com, rachel.feelykohl@fprimecapital.com, rfeelykohl@fprimecapital.com]",
+      "Sanjay Aggarwal: [sanjay@fprimecapital.com, sanjay.aggarwal@fprimecapital.com, saggarwal@fprimecapital.com]",
+      "Stephen Knight: [stephen@fprimecapital.com, stephen.knight@fprimecapital.com, sknight@fprimecapital.com]",
+      "Jess Alston: [jess@fprimecapital.com, jess.alston@fprimecapital.com, jalston@fprimecapital.com]",
+      "Carl Byers: [carl@fprimecapital.com, carl.byers@fprimecapital.com, cbyers@fprimecapital.com]",
+      "Gaurav Tuli: [gaurav@fprimecapital.com, gaurav.tuli@fprimecapital.com, gtuli@fprimecapital.com]",
+      "Davina Magargal: [davina@fprimecapital.com, davina.magargal@fprimecapital.com, dmagargal@fprimecapital.com]"
+    ]
+  },
+  {
+    "firm": "IKP Knowledge Park",
+    "website": "https://ikpknowledgepark.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Life Sciences",
+      "Biotechnology",
+      "Health Tech",
+      "Agri-Tech",
+      "Engineering"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [
+      "India",
+      "Hyderabad",
+      "Bangalore"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://ikpknowledgepark.com/contact-us/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 9,
+    "source_url": "https://ikpknowledgepark.com",
+    "extracted_at": "2026-05-19T10:46:59.068199Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Prosus Ventures",
+    "website": "https://www.prosus.com",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [
+      "AI"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [
+      "Europe"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 6,
+    "source_url": "https://www.prosus.com",
+    "extracted_at": "2026-05-19T10:46:37.859283Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Alumni Ventures",
+    "website": "https://www.av.vc/",
+    "thesis": "To give investors access to the best possible venture deals. We partner with lead VCs, apply rigorous diligence, and make investing straightforward.",
+    "focus_sectors": [
+      "Technology",
+      "Fintech",
+      "AI"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "$100K-$500K",
+    "fund_number": "Fund 2024",
+    "fund_size": "$1.4B",
+    "active_status": "actively deploying",
+    "pitch_process": "submit at [website URL]",
+    "partners": [
+      {
+        "name": "Mike Collins",
+        "role": "CEO"
+      },
+      {
+        "name": "Laura Rippy",
+        "role": "Managing Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Bluesky",
+      "Circle",
+      "Cohere",
+      "Frore Systems",
+      "Groq",
+      "Impulse Space",
+      "Lambda",
+      "Oura",
+      "RapidSOS",
+      "Rigetti"
+    ],
+    "geography": [
+      "US",
+      "Japan"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/company/alumni-ventures"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.av.vc/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "twitter.com/alumni_ventures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 19,
+    "source_url": "https://av.vc",
+    "extracted_at": "2026-05-19T10:54:43.615206Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Mike Collins: [mike@av.vc, mike.collins@av.vc, mcollins@av.vc]",
+      "Laura Rippy: [laura@av.vc, laura.rippy@av.vc, lrippy@av.vc]"
+    ]
+  },
+  {
+    "firm": "Look AI Ventures",
+    "website": "https://lookai.vc",
+    "thesis": "We aim to nurture the AI startup ecosystem by investing in a new portfolio of promising early-stage AI startups.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Martin Dostal",
+        "role": "Partner & Chief Science Officer"
+      },
+      {
+        "name": "Veronika Argust",
+        "role": ""
+      },
+      {
+        "name": "Eva Slonkova",
+        "role": ""
+      },
+      {
+        "name": "Kate Inozemtseva",
+        "role": "Investment Analyst"
+      },
+      {
+        "name": "Andrej",
+        "role": ""
+      },
+      {
+        "name": "Alexander Branyik",
+        "role": ""
+      },
+      {
+        "name": "Daniel Kunz",
+        "role": ""
+      },
+      {
+        "name": "Pavel Rosendorf",
+        "role": ""
+      },
+      {
+        "name": "Martina Jankovska",
+        "role": ""
+      },
+      {
+        "name": "Martin Havlik",
+        "role": ""
+      },
+      {
+        "name": "Angelo Burgarello",
+        "role": "Partner & Chief"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Europe",
+      "Czech Republic"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@lookai.vc"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/lookai-ventures/"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/LookAIVentures"
+      },
+      {
+        "type": "facebook",
+        "value": "https://www.facebook.com/Look-AI-Ventures-111992481428008/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://lookai.vc",
+    "extracted_at": "2026-05-19T10:55:46.988699Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Martin Dostal: [martin@lookai.vc, martin.dostal@lookai.vc, mdostal@lookai.vc]",
+      "Veronika Argust: [veronika@lookai.vc, veronika.argust@lookai.vc, vargust@lookai.vc]",
+      "Eva Slonkova: [eva@lookai.vc, eva.slonkova@lookai.vc, eslonkova@lookai.vc]",
+      "Kate Inozemtseva: [kate@lookai.vc, kate.inozemtseva@lookai.vc, kinozemtseva@lookai.vc]",
+      "Andrej: [andrej@lookai.vc]",
+      "Alexander Branyik: [alexander@lookai.vc, alexander.branyik@lookai.vc, abranyik@lookai.vc]",
+      "Daniel Kunz: [daniel@lookai.vc, daniel.kunz@lookai.vc, dkunz@lookai.vc]",
+      "Pavel Rosendorf: [pavel@lookai.vc, pavel.rosendorf@lookai.vc, prosendorf@lookai.vc]",
+      "Martina Jankovska: [martina@lookai.vc, martina.jankovska@lookai.vc, mjankovska@lookai.vc]",
+      "Martin Havlik: [martin@lookai.vc, martin.havlik@lookai.vc, mhavlik@lookai.vc]",
+      "Angelo Burgarello: [angelo@lookai.vc, angelo.burgarello@lookai.vc, aburgarello@lookai.vc]"
+    ]
+  },
+  {
+    "firm": "AI Capital",
+    "website": "https://www.ai.vc",
+    "thesis": "We invest in AI-enabled business software companies that facilitate efficiencies and foster resilience in the supply and delivery of critical goods and services.",
+    "focus_sectors": [
+      "AI",
+      "Software"
+    ],
+    "domain_specializations": [
+      "Applied Artificial Intelligence",
+      "Natural Language Understanding",
+      "Video Comprehension"
+    ],
+    "investment_stage": [
+      "Early growth-stage",
+      "Enterprise"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Agorai",
+      "Caladrius Ventures",
+      "DataFi",
+      "Link3D",
+      "Luminoso",
+      "Netra",
+      "Noetic Machines",
+      "Syndesis Health"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Asia",
+      "Denver",
+      "Baltimore",
+      "Boston",
+      "Las Vegas",
+      "Vail"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.ai.vc/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://www.ai.vc"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://www.ai.vc",
+    "extracted_at": "2026-05-19T10:56:33.196014Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "AI Seed",
+    "website": "https://aiseedfund.com",
+    "thesis": "",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Michael Axelgaard",
+        "role": "Founder and Managing Partner"
+      },
+      {
+        "name": "Jacques de Cock",
+        "role": "Operations and Managing Partner"
+      },
+      {
+        "name": "Steve Weis",
+        "role": "Technical Analysis and Managing Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Rahko",
+      "Observe",
+      "Facesoft",
+      "EYN",
+      "9fin",
+      "AI-build",
+      "Causalens",
+      "limbic",
+      "hopsworks",
+      "Purple Dot",
+      "ntropy",
+      "flox",
+      "juno.bio",
+      "kiroku",
+      "Number 8",
+      "sparkbox",
+      "bluezoneinsurance",
+      "kuano",
+      "LGN",
+      "maxatta",
+      "robok",
+      "Evolution AI",
+      "sociate",
+      "Alterest",
+      "Thingtrax",
+      "plural AI"
+    ],
+    "geography": [
+      "Europe",
+      "Silicon Valley"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 12,
+    "source_url": "https://aiseedfund.com",
+    "extracted_at": "2026-05-19T10:55:21.181671Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Michael Axelgaard: [michael@aiseedfund.com, michael.axelgaard@aiseedfund.com, maxelgaard@aiseedfund.com]",
+      "Jacques de Cock: [jacques@aiseedfund.com, jacques.cock@aiseedfund.com, jcock@aiseedfund.com]",
+      "Steve Weis: [steve@aiseedfund.com, steve.weis@aiseedfund.com, sweis@aiseedfund.com]"
+    ]
+  },
+  {
+    "firm": "AIX Ventures",
+    "website": "https://www.aixventures.com",
+    "thesis": "The AI-focused fund built for and by the industry’s best.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Hugging Face",
+      "Perplexity",
+      "You.com",
+      "Tollbit",
+      "Ambience",
+      "Windsurf",
+      "Weights & Biases"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Asia",
+      "San Francisco"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 12,
+    "source_url": "https://www.aixventures.com",
+    "extracted_at": "2026-05-19T10:56:54.875038Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "AI Fund",
+    "website": "",
+    "thesis": "We collaborate with entrepreneurs, venture funds, and corporate partners to create great companies that move humanity forward.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "$1-5M",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively deploying new initiatives",
+    "pitch_process": "submit at build-with-us@ai-fund.ai or contact us for a warm intro",
+    "partners": [],
+    "portfolio_companies": [
+      "IrisGo",
+      "Profitmind",
+      "Workera",
+      "Factored"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "build-with-us@ai-fund.ai"
+      },
+      {
+        "type": "phone",
+        "value": "+1-650-555-0123"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/ai-fund"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 11,
+    "source_url": "https://aifund.ai",
+    "extracted_at": "2026-05-19T10:57:58.440974Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "645 Ventures",
+    "website": "https://645ventures.com",
+    "thesis": "We partner with relentless founders who defy convention to change the future.",
+    "focus_sectors": [
+      "Enterprise",
+      "Deep Tech",
+      "AI Infra / Dev Tools",
+      "Fintech",
+      "Consumer",
+      "Cybersecurity",
+      "Health Tech"
+    ],
+    "domain_specializations": [
+      "AI Infra / Dev Tools"
+    ],
+    "investment_stage": [
+      "Early-Stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "early-stage venture firm",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Aaron Holiday",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Nnamdi Okike",
+        "role": "Investment Partner"
+      },
+      {
+        "name": "Parul Singh",
+        "role": "Investment Partner"
+      },
+      {
+        "name": "Vardan Gattani",
+        "role": "Investment Partner"
+      },
+      {
+        "name": "William Hess",
+        "role": "Vice President"
+      },
+      {
+        "name": "Mendy Yang",
+        "role": "Senior Software Engineer II"
+      },
+      {
+        "name": "Pete Keenan",
+        "role": "Senior Software Engineer II"
+      },
+      {
+        "name": "Chonlathit Jittachalothorn",
+        "role": "Head of Finance"
+      },
+      {
+        "name": "Stephen Lang",
+        "role": "Designer"
+      },
+      {
+        "name": "Christina Siadat",
+        "role": "Office Manager"
+      },
+      {
+        "name": "Natasha Bradley",
+        "role": "Office Manager"
+      }
+    ],
+    "portfolio_companies": [
+      "Goldbelly",
+      "FiscalNote",
+      "Shift5",
+      "Setpoint.io",
+      "Resident Home",
+      "RentSpree",
+      "Overtime",
+      "Panther Labs"
+    ],
+    "geography": [
+      "New York",
+      "San Francisco"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/645-ventures"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://645ventures.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/645ventures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 16,
+    "source_url": "https://645ventures.com",
+    "extracted_at": "2026-05-19T11:19:49.375606Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Aaron Holiday: [aaron@645ventures.com, aaron.holiday@645ventures.com, aholiday@645ventures.com]",
+      "Nnamdi Okike: [nnamdi@645ventures.com, nnamdi.okike@645ventures.com, nokike@645ventures.com]",
+      "Parul Singh: [parul@645ventures.com, parul.singh@645ventures.com, psingh@645ventures.com]",
+      "Vardan Gattani: [vardan@645ventures.com, vardan.gattani@645ventures.com, vgattani@645ventures.com]",
+      "William Hess: [william@645ventures.com, william.hess@645ventures.com, whess@645ventures.com]",
+      "Mendy Yang: [mendy@645ventures.com, mendy.yang@645ventures.com, myang@645ventures.com]",
+      "Pete Keenan: [pete@645ventures.com, pete.keenan@645ventures.com, pkeenan@645ventures.com]",
+      "Chonlathit Jittachalothorn: [chonlathit@645ventures.com, chonlathit.jittachalothorn@645ventures.com, cjittachalothorn@645ventures.com]",
+      "Stephen Lang: [stephen@645ventures.com, stephen.lang@645ventures.com, slang@645ventures.com]",
+      "Christina Siadat: [christina@645ventures.com, christina.siadat@645ventures.com, csiadat@645ventures.com]",
+      "Natasha Bradley: [natasha@645ventures.com, natasha.bradley@645ventures.com, nbradley@645ventures.com]"
+    ]
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "",
+    "thesis": "Invest in transformative technology companies that are changing the way we live and work.",
+    "focus_sectors": [
+      "Enterprise",
+      "Healthcare",
+      "Consumer"
+    ],
+    "domain_specializations": [
+      "Generative AI",
+      "LLM (Large Language Models)",
+      "AI in Finance"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively deploying the Anthology Fund",
+    "pitch_process": "contact@menlovc.com or via email to partners@menlovc.com",
+    "partners": [
+      {
+        "name": "Chris Dixon",
+        "role": "General Partner"
+      },
+      {
+        "name": "Ryan Holmes",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Chime"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@menlovc.com"
+      },
+      {
+        "type": "phone",
+        "value": "+1-650-555-0123"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/menlo-ventures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T11:19:09.250846Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "CRV",
+    "website": "https://www.threads.net",
+    "thesis": "No project is too early or too ambitious. We aim to be your first term sheet. We lead rounds; we don’t wait for others to show social proof.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "submit at [415-960-3000](tel:415-960-3000) or [650-687-5600](tel:650-687-5600)",
+    "partners": [
+      {
+        "name": "Hannah Bravo",
+        "role": "General Partner"
+      },
+      {
+        "name": "Immad Akhund",
+        "role": "Partner"
+      },
+      {
+        "name": "Tony Xu",
+        "role": "Partner"
+      },
+      {
+        "name": "Lior Div",
+        "role": "Partner"
+      },
+      {
+        "name": "Guillermo Rauch",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Loop",
+      "Mercury",
+      "DoorDash",
+      "7AI",
+      "Vercel"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "phone",
+        "value": "415-960-3000"
+      },
+      {
+        "type": "phone",
+        "value": "650-687-5600"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://www.crv.com",
+    "extracted_at": "2026-05-19T11:18:49.112084Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Hannah Bravo: [hannah@threads.net, hannah.bravo@threads.net, hbravo@threads.net]",
+      "Immad Akhund: [immad@threads.net, immad.akhund@threads.net, iakhund@threads.net]",
+      "Tony Xu: [tony@threads.net, tony.xu@threads.net, txu@threads.net]",
+      "Lior Div: [lior@threads.net, lior.div@threads.net, ldiv@threads.net]",
+      "Guillermo Rauch: [guillermo@threads.net, guillermo.rauch@threads.net, grauch@threads.net]"
+    ]
+  },
+  {
+    "firm": "Evil Martians",
+    "website": "https://evilmartians.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Developer tools",
+      "AI",
+      "Cybersecurity"
+    ],
+    "domain_specializations": [
+      "AI-native development",
+      "LLM integrations",
+      "Agent orchestration",
+      "Agent observability",
+      "Agentic coding tools",
+      "AI Harnesses"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "bolt.new",
+      "Tines",
+      "Wallarm",
+      "Daylight Security"
+    ],
+    "geography": [
+      "San Francisco",
+      "New York",
+      "Porto",
+      "Osaka"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "surrender@evilmartians.com"
+      },
+      {
+        "type": "website",
+        "value": "https://evilmartians.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 11,
+    "source_url": "https://evilmartians.com",
+    "extracted_at": "2026-05-19T11:17:47.588054Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "FourBridge Partners",
+    "website": "https://fourbridgepartners.com/",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Ted Clark",
+        "role": "View Profile"
+      },
+      {
+        "name": "Jon Terbell",
+        "role": "View Profile"
+      },
+      {
+        "name": "Christopher Gilman",
+        "role": "View Profile"
+      }
+    ],
+    "portfolio_companies": [
+      "Amplify Partners",
+      "Ampersand Capital Partners",
+      "Audacious Ventures",
+      "Battery Ventures",
+      "CoFound",
+      "CoinFund",
+      "Fika Ventures",
+      "Humba Ventures",
+      "LGVP Partners",
+      "Luminate Capital",
+      "Mucker Capital"
+    ],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@fourbridgepartners.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 10,
+    "source_url": "https://fourbridgepartners.com",
+    "extracted_at": "2026-05-19T11:20:01.631608Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Ted Clark: [ted@fourbridgepartners.com, ted.clark@fourbridgepartners.com, tclark@fourbridgepartners.com]",
+      "Jon Terbell: [jon@fourbridgepartners.com, jon.terbell@fourbridgepartners.com, jterbell@fourbridgepartners.com]",
+      "Christopher Gilman: [christopher@fourbridgepartners.com, christopher.gilman@fourbridgepartners.com, cgilman@fourbridgepartners.com]"
+    ]
+  },
+  {
+    "firm": "Devtool Angels",
+    "website": "https://www.devtoolangels.com/",
+    "thesis": "",
+    "focus_sectors": [
+      "developer tools"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "$32k",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.devtoolangels.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/nutlope"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 8,
+    "source_url": "https://www.devtoolangels.com",
+    "extracted_at": "2026-05-19T11:18:13.422218Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "",
+    "thesis": "Invest in transformative technology companies that are changing the way we live and work.",
+    "focus_sectors": [
+      "Enterprise",
+      "Healthcare",
+      "Consumer"
+    ],
+    "domain_specializations": [
+      "Generative AI",
+      "LLM (Large Language Models)",
+      "AI in Finance"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively deploying the Anthology Fund",
+    "pitch_process": "contact@menlovc.com or via email to partners@menlovc.com",
+    "partners": [
+      {
+        "name": "Chris Dixon",
+        "role": "General Partner"
+      },
+      {
+        "name": "Ryan Holmes",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Chime"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@menlovc.com"
+      },
+      {
+        "type": "phone",
+        "value": "+1-650-555-0123"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/menlo-ventures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T11:28:57.226395Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "S3 Ventures",
+    "website": "https://www.s3vc.com",
+    "thesis": "We are committed to empowering visionary entrepreneurs with the patient capital and true resources required to build extraordinary, high-impact companies.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "$500K-$15M+",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "submit at [about us page]",
+    "partners": [
+      {
+        "name": "Denis Harrington",
+        "role": "CEO & Co-Founder"
+      },
+      {
+        "name": "Walter Rogers",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Mike Sanders",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Marty Kagan",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Patti Soch",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Erez Dror",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Doug Neumann",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Hersh Tapadia",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Ryan Walsh",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Dave Guillo",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Yash Sabharwal",
+        "role": "CEO & Founder"
+      },
+      {
+        "name": "Richard Lebovitz",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Damola Ogundipe",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Rose Punkunus",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Adam Berman",
+        "role": "President & Co-Founder"
+      },
+      {
+        "name": "Leo Resig",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Scott Wolfe Jr.",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Stephen Bohanon",
+        "role": "CSSO & Co-Founder"
+      },
+      {
+        "name": "Kim Rodriguez",
+        "role": "Co-Founder"
+      }
+    ],
+    "portfolio_companies": [
+      "Airbnb",
+      "Stripe",
+      "GitLab",
+      "Braincheck",
+      "Plural Acq by SAI360",
+      "UpEquity",
+      "Saranas",
+      "Spectrawave",
+      "Stellar",
+      "Storediq",
+      "Sudozi",
+      "Suite Studios",
+      "Sumatra",
+      "Sunthetics",
+      "Tango",
+      "Tensorstax",
+      "TVA Medical",
+      "Vahaticor",
+      "Versa",
+      "Videate",
+      "Vuv Analytics",
+      "ZSuite Tech"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@firm.com"
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.s3vc.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://www.s3vc.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://www.s3vc.com",
+    "extracted_at": "2026-05-19T11:32:50.488241Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Denis Harrington: [denis@s3vc.com, denis.harrington@s3vc.com, dharrington@s3vc.com]",
+      "Walter Rogers: [walter@s3vc.com, walter.rogers@s3vc.com, wrogers@s3vc.com]",
+      "Mike Sanders: [mike@s3vc.com, mike.sanders@s3vc.com, msanders@s3vc.com]",
+      "Marty Kagan: [marty@s3vc.com, marty.kagan@s3vc.com, mkagan@s3vc.com]",
+      "Patti Soch: [patti@s3vc.com, patti.soch@s3vc.com, psoch@s3vc.com]",
+      "Erez Dror: [erez@s3vc.com, erez.dror@s3vc.com, edror@s3vc.com]",
+      "Doug Neumann: [doug@s3vc.com, doug.neumann@s3vc.com, dneumann@s3vc.com]",
+      "Hersh Tapadia: [hersh@s3vc.com, hersh.tapadia@s3vc.com, htapadia@s3vc.com]",
+      "Ryan Walsh: [ryan@s3vc.com, ryan.walsh@s3vc.com, rwalsh@s3vc.com]",
+      "Dave Guillo: [dave@s3vc.com, dave.guillo@s3vc.com, dguillo@s3vc.com]",
+      "Yash Sabharwal: [yash@s3vc.com, yash.sabharwal@s3vc.com, ysabharwal@s3vc.com]",
+      "Richard Lebovitz: [richard@s3vc.com, richard.lebovitz@s3vc.com, rlebovitz@s3vc.com]",
+      "Damola Ogundipe: [damola@s3vc.com, damola.ogundipe@s3vc.com, dogundipe@s3vc.com]",
+      "Rose Punkunus: [rose@s3vc.com, rose.punkunus@s3vc.com, rpunkunus@s3vc.com]",
+      "Adam Berman: [adam@s3vc.com, adam.berman@s3vc.com, aberman@s3vc.com]",
+      "Leo Resig: [leo@s3vc.com, leo.resig@s3vc.com, lresig@s3vc.com]",
+      "Scott Wolfe Jr.: [scott@s3vc.com, scott.jr@s3vc.com, sjr@s3vc.com]",
+      "Stephen Bohanon: [stephen@s3vc.com, stephen.bohanon@s3vc.com, sbohanon@s3vc.com]",
+      "Kim Rodriguez: [kim@s3vc.com, kim.rodriguez@s3vc.com, krodriguez@s3vc.com]"
+    ]
+  },
+  {
+    "firm": "The Founders Group",
+    "website": "https://thefounders.group",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "submit at [Discord](https://discord.gg/FxyMZMb7Sh) or [Founder portal](https://thefounders.group/my)",
+    "partners": [
+      {
+        "name": "Ben Wiggins",
+        "role": "Investor"
+      },
+      {
+        "name": "Blake Burns",
+        "role": "Investor"
+      },
+      {
+        "name": "Saviour U",
+        "role": "Investor"
+      },
+      {
+        "name": "Colin Morris",
+        "role": "Investor"
+      },
+      {
+        "name": "Anushrot Mohanty",
+        "role": "Investor"
+      },
+      {
+        "name": "Adam Rhinehart",
+        "role": "Investor"
+      },
+      {
+        "name": "Fabio C",
+        "role": "Investor"
+      },
+      {
+        "name": "Sir Adam Meek III",
+        "role": "Investor"
+      },
+      {
+        "name": "Kevin Wu",
+        "role": "Investor"
+      },
+      {
+        "name": "Caleb Gipson",
+        "role": "Investor"
+      }
+    ],
+    "portfolio_companies": [
+      "Fixxr",
+      "Frameworks",
+      "Elam Global",
+      "NicklPay",
+      "Sparkyl",
+      "HydraNova Labs",
+      "Midwest Aquatic Suppliers"
+    ],
+    "geography": [
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/thefoundersgroup"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://thefounders.group/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://thefounders.group"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://thefounders.group",
+    "extracted_at": "2026-05-19T11:32:16.925706Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Ben Wiggins: [ben@thefounders.group, ben.wiggins@thefounders.group, bwiggins@thefounders.group]",
+      "Blake Burns: [blake@thefounders.group, blake.burns@thefounders.group, bburns@thefounders.group]",
+      "Saviour U: [saviour@thefounders.group, saviour.u@thefounders.group, su@thefounders.group]",
+      "Colin Morris: [colin@thefounders.group, colin.morris@thefounders.group, cmorris@thefounders.group]",
+      "Anushrot Mohanty: [anushrot@thefounders.group, anushrot.mohanty@thefounders.group, amohanty@thefounders.group]",
+      "Adam Rhinehart: [adam@thefounders.group, adam.rhinehart@thefounders.group, arhinehart@thefounders.group]",
+      "Fabio C: [fabio@thefounders.group, fabio.c@thefounders.group, fc@thefounders.group]",
+      "Sir Adam Meek III: [sir@thefounders.group, sir.iii@thefounders.group, siii@thefounders.group]",
+      "Kevin Wu: [kevin@thefounders.group, kevin.wu@thefounders.group, kwu@thefounders.group]",
+      "Caleb Gipson: [caleb@thefounders.group, caleb.gipson@thefounders.group, cgipson@thefounders.group]"
+    ]
+  },
+  {
+    "firm": "Venture Guides",
+    "website": "https://www.ventureguides.com",
+    "thesis": "Our laser-focused sector experience ensures we are positioned to understand each start-up's strategic market opportunity and its micro-trends.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Benjamin Nye",
+        "role": "Partner"
+      },
+      {
+        "name": "Anton Simunovic",
+        "role": "Partner"
+      },
+      {
+        "name": "Ava Simunovic",
+        "role": "Partner"
+      },
+      {
+        "name": "Bear Brofft",
+        "role": "Partner"
+      },
+      {
+        "name": "Ben Holzman",
+        "role": "Partner"
+      },
+      {
+        "name": "Chibuikem Uche",
+        "role": "Partner"
+      },
+      {
+        "name": "Daniel Bransom",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Dynatrace",
+      "Turbonomic",
+      "Rapid7",
+      "Archer",
+      "SolarWinds",
+      "Sysdig",
+      "Docusign",
+      "Vibeiq",
+      "Elastio"
+    ],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/benjaminnye"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/anton-simunovic-0543876"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/ava-simunovic-23a584227"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/bear-brofft"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/benholzman"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/chibuikem-uche-482156187"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 11,
+    "source_url": "https://www.ventureguides.com",
+    "extracted_at": "2026-05-19T11:33:49.268523Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Benjamin Nye: [benjamin@ventureguides.com, benjamin.nye@ventureguides.com, bnye@ventureguides.com]",
+      "Anton Simunovic: [anton@ventureguides.com, anton.simunovic@ventureguides.com, asimunovic@ventureguides.com]",
+      "Ava Simunovic: [ava@ventureguides.com, ava.simunovic@ventureguides.com, asimunovic@ventureguides.com]",
+      "Bear Brofft: [bear@ventureguides.com, bear.brofft@ventureguides.com, bbrofft@ventureguides.com]",
+      "Ben Holzman: [ben@ventureguides.com, ben.holzman@ventureguides.com, bholzman@ventureguides.com]",
+      "Chibuikem Uche: [chibuikem@ventureguides.com, chibuikem.uche@ventureguides.com, cuche@ventureguides.com]",
+      "Daniel Bransom: [daniel@ventureguides.com, daniel.bransom@ventureguides.com, dbransom@ventureguides.com]"
+    ]
+  },
+  {
+    "firm": "CVC",
+    "website": "https://www.cvc.com",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Ontic",
+      "Breitling",
+      "Six Nations Rugby",
+      "EcoVadis",
+      "A Bathing Ape"
+    ],
+    "geography": [
+      "Europe",
+      "Americas",
+      "Asia"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 5,
+    "source_url": "https://www.cvc.com",
+    "extracted_at": "2026-05-19T11:33:19.226861Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  }
+]

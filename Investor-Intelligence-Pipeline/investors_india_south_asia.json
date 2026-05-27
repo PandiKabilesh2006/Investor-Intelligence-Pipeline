@@ -1,0 +1,470 @@
+[
+  {
+    "firm": "Unicorn India Ventures",
+    "website": "https://www.unicornivc.com",
+    "thesis": "We strive to create a deep rooted societal impact and partner with the founders whose vision is aligned with ours.",
+    "focus_sectors": [
+      "Tech Driven",
+      "Nascency",
+      "Novelty",
+      "Capital"
+    ],
+    "domain_specializations": [
+      "Robotics",
+      "Artificial Intelligence"
+    ],
+    "investment_stage": [
+      "Early-stage"
+    ],
+    "check_size": "",
+    "fund_number": "Fund-I",
+    "fund_size": "₹600 Crore",
+    "active_status": "actively deployed",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Unspecified Managing Partners",
+        "role": "Managing Partners"
+      },
+      {
+        "name": "Unspecified Founders",
+        "role": "Founders"
+      }
+    ],
+    "portfolio_companies": [
+      "Genrobotics"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 16,
+    "source_url": "https://www.unicornivc.com",
+    "extracted_at": "2026-05-19T11:59:51.830916Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Unspecified Managing Partners: [unspecified@unicornivc.com, unspecified.partners@unicornivc.com, upartners@unicornivc.com]",
+      "Unspecified Founders: [unspecified@unicornivc.com, unspecified.founders@unicornivc.com, ufounders@unicornivc.com]"
+    ]
+  },
+  {
+    "firm": "Blume Ventures",
+    "website": "https://blume.vc",
+    "thesis": "We back transformational companies, and their revolutionary founders early, and remain lifelong partners.",
+    "focus_sectors": [
+      "B2B",
+      "Ecommerce",
+      "Consumer Transaction",
+      "Marketplace"
+    ],
+    "domain_specializations": [
+      "AI",
+      "Warehouse Automation",
+      "Insurance Advisor",
+      "Credit",
+      "Beauty and Wellness",
+      "Health and Nutrition"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "$375k-$3cr",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "warm intros only, submit at email ids which are not hard to guess",
+    "partners": [
+      {
+        "name": "Akash Gupta",
+        "role": "Co-Founder and CEO"
+      }
+    ],
+    "portfolio_companies": [
+      "Slice",
+      "GreyOrange",
+      "Turtlemint",
+      "Ultrahuman",
+      "Purplle",
+      "Carbon Clean"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@blume.vc"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 16,
+    "source_url": "https://blume.vc",
+    "extracted_at": "2026-05-19T12:01:54.144044Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Akash Gupta: [akash@blume.vc, akash.gupta@blume.vc, agupta@blume.vc]"
+    ]
+  },
+  {
+    "firm": "Elevation Capital",
+    "website": "https://www.elevationcapital.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Consumer Tech",
+      "Fintech & Financial Services",
+      "Enterprise",
+      "Frontier Tech",
+      "Healthcare"
+    ],
+    "domain_specializations": [
+      "AI organizational brain"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Rohan Malhotra",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Ritesh Banglani",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Paytm",
+      "Swiggy",
+      "Mosaic Wellness"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/company/elevationcapital"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.elevationcapital.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "twitter.com/elevationcap"
+      },
+      {
+        "type": "website",
+        "value": "https://www.elevationcapital.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 14,
+    "source_url": "https://elevationcapital.com",
+    "extracted_at": "2026-05-19T12:01:41.662465Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Rohan Malhotra: [rohan@elevationcapital.com, rohan.malhotra@elevationcapital.com, rmalhotra@elevationcapital.com]",
+      "Ritesh Banglani: [ritesh@elevationcapital.com, ritesh.banglani@elevationcapital.com, rbanglani@elevationcapital.com]"
+    ]
+  },
+  {
+    "firm": "100X.VC",
+    "website": "https://www.100x.vc/",
+    "thesis": "We let you focus on growth. Helping founders get to the next round of funding and beyond.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Apply Now at https://form.jotform.com/100xvc/100xvc-startup-application",
+    "partners": [
+      {
+        "name": "Founder / Co-President",
+        "role": "Stanford Angels"
+      },
+      {
+        "name": "Founding Partner",
+        "role": "Inflexor Ventures"
+      },
+      {
+        "name": "Co-Founder, President",
+        "role": "Indian Angel Network"
+      }
+    ],
+    "portfolio_companies": [
+      "Knorish",
+      "Cora Health",
+      "Bugbase",
+      "Data Sutram",
+      "Dezy",
+      "Beyond Snack",
+      "Emo Energy",
+      "Fyllo",
+      "Pocketly",
+      "abcoffee"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "https://www.100x.vc/contact"
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/100x-vc/"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://form.jotform.com/100xvc/100xvc-startup-application"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/100X_VC"
+      },
+      {
+        "type": "youtube",
+        "value": "https://www.youtube.com/100XVC"
+      },
+      {
+        "type": "instagram",
+        "value": "https://www.instagram.com/100X.VC/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://www.100x.vc",
+    "extracted_at": "2026-05-19T12:00:51.522111Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Founder / Co-President: [founder@100x.vc, founder.copresident@100x.vc, fcopresident@100x.vc]",
+      "Founding Partner: [founding@100x.vc, founding.partner@100x.vc, fpartner@100x.vc]",
+      "Co-Founder, President: [cofounder@100x.vc, cofounder.president@100x.vc, cpresident@100x.vc]"
+    ]
+  },
+  {
+    "firm": "Bain Capital Private Equity",
+    "website": "https://www.baincapitalprivateequity.com",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "Asia Fund VI",
+    "fund_size": "$10.5 Billion",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Ankit Aggarwal",
+        "role": ""
+      },
+      {
+        "name": "Chris An",
+        "role": ""
+      },
+      {
+        "name": "Eric Anderson",
+        "role": ""
+      },
+      {
+        "name": "Maria Andrisani",
+        "role": "Partner"
+      },
+      {
+        "name": "Ken Ashida",
+        "role": "Co-Chairman"
+      },
+      {
+        "name": "Emily Ashworth",
+        "role": ""
+      },
+      {
+        "name": "Seamus Bann",
+        "role": ""
+      },
+      {
+        "name": "Luca Bassi",
+        "role": "Partner"
+      },
+      {
+        "name": "James Bath",
+        "role": "Operating Partner"
+      },
+      {
+        "name": "John Belitsos",
+        "role": "Partner"
+      },
+      {
+        "name": "Hannah Bend",
+        "role": ""
+      },
+      {
+        "name": "Nicholas Bendt",
+        "role": ""
+      },
+      {
+        "name": "Adam Berg",
+        "role": "Fund Controller, Europe Private Equity"
+      },
+      {
+        "name": "Pranit Bhandari",
+        "role": ""
+      },
+      {
+        "name": "Saahil Bhatia",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Beeline Medicines",
+      "Perpetual Wealth Management"
+    ],
+    "geography": [
+      "Asia",
+      "Europe",
+      "US",
+      "London",
+      "Boston",
+      "Mumbai",
+      "Tokyo"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 11,
+    "source_url": "https://www.baincapitalprivateequity.com",
+    "extracted_at": "2026-05-19T12:02:38.721384Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Ankit Aggarwal: [ankit@baincapitalprivateequity.com, ankit.aggarwal@baincapitalprivateequity.com, aaggarwal@baincapitalprivateequity.com]",
+      "Chris An: [chris@baincapitalprivateequity.com, chris.an@baincapitalprivateequity.com, can@baincapitalprivateequity.com]",
+      "Eric Anderson: [eric@baincapitalprivateequity.com, eric.anderson@baincapitalprivateequity.com, eanderson@baincapitalprivateequity.com]",
+      "Maria Andrisani: [maria@baincapitalprivateequity.com, maria.andrisani@baincapitalprivateequity.com, mandrisani@baincapitalprivateequity.com]",
+      "Ken Ashida: [ken@baincapitalprivateequity.com, ken.ashida@baincapitalprivateequity.com, kashida@baincapitalprivateequity.com]",
+      "Emily Ashworth: [emily@baincapitalprivateequity.com, emily.ashworth@baincapitalprivateequity.com, eashworth@baincapitalprivateequity.com]",
+      "Seamus Bann: [seamus@baincapitalprivateequity.com, seamus.bann@baincapitalprivateequity.com, sbann@baincapitalprivateequity.com]",
+      "Luca Bassi: [luca@baincapitalprivateequity.com, luca.bassi@baincapitalprivateequity.com, lbassi@baincapitalprivateequity.com]",
+      "James Bath: [james@baincapitalprivateequity.com, james.bath@baincapitalprivateequity.com, jbath@baincapitalprivateequity.com]",
+      "John Belitsos: [john@baincapitalprivateequity.com, john.belitsos@baincapitalprivateequity.com, jbelitsos@baincapitalprivateequity.com]",
+      "Hannah Bend: [hannah@baincapitalprivateequity.com, hannah.bend@baincapitalprivateequity.com, hbend@baincapitalprivateequity.com]",
+      "Nicholas Bendt: [nicholas@baincapitalprivateequity.com, nicholas.bendt@baincapitalprivateequity.com, nbendt@baincapitalprivateequity.com]",
+      "Adam Berg: [adam@baincapitalprivateequity.com, adam.berg@baincapitalprivateequity.com, aberg@baincapitalprivateequity.com]",
+      "Pranit Bhandari: [pranit@baincapitalprivateequity.com, pranit.bhandari@baincapitalprivateequity.com, pbhandari@baincapitalprivateequity.com]",
+      "Saahil Bhatia: [saahil@baincapitalprivateequity.com, saahil.bhatia@baincapitalprivateequity.com, sbhatia@baincapitalprivateequity.com]"
+    ]
+  },
+  {
+    "firm": "Venture Catalysts++",
+    "website": "https://www.venturecatalysts.in/",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Join as a member",
+    "partners": [],
+    "portfolio_companies": [
+      "Kidbea",
+      "Assiduus Global",
+      "Pee Safe"
+    ],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@venturecatalysts.in"
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.venturecatalysts.in/contact-us"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://www.venturecatalysts.in/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 9,
+    "source_url": "https://venturecatalysts.in",
+    "extracted_at": "2026-05-19T12:00:41.249903Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  }
+]

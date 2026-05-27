@@ -1,0 +1,561 @@
+[
+  {
+    "firm": "Pi Ventures",
+    "website": "https://www.piventures.in",
+    "thesis": "We back visionary founders leveraging cutting-edge technology to solve global problems. Believers in India’s potential to be a global deep-tech superpower, we invest with patience and a deep understanding of deep-tech innovation cycles.",
+    "focus_sectors": [
+      "Deep-tech",
+      "AI"
+    ],
+    "domain_specializations": [
+      "Space Tech",
+      "AI-powered Marketing Automation",
+      "Quantum computing",
+      "Life Sciences"
+    ],
+    "investment_stage": [
+      "Early-stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "submit at info@piventures.in or contacting our team through Linkedin",
+    "partners": [
+      {
+        "name": "Manish Singhal",
+        "role": "General Partner"
+      },
+      {
+        "name": "Jo Aggarwal",
+        "role": "Partner"
+      },
+      {
+        "name": "Geetha Manjunath",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Agnikul Cosmos",
+      "Pixis",
+      "Locus",
+      "Quanfluence",
+      "Zero Cow Factory",
+      "Wysa",
+      "Niramai"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@piventures.in"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/company/pi-ventures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 16,
+    "source_url": "https://www.piventures.in",
+    "extracted_at": "2026-05-20T05:13:41.544011Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Manish Singhal: [manish@piventures.in, manish.singhal@piventures.in, msinghal@piventures.in]",
+      "Jo Aggarwal: [jo@piventures.in, jo.aggarwal@piventures.in, jaggarwal@piventures.in]",
+      "Geetha Manjunath: [geetha@piventures.in, geetha.manjunath@piventures.in, gmanjunath@piventures.in]"
+    ]
+  },
+  {
+    "firm": "Activate",
+    "website": "https://www.activatevc.ai",
+    "thesis": "We believe AI in India will be built by technical crack teams. Activate is a new age venture firm purpose-built for such founders, engaging with them well before incorporation and investing $500k–$3M at inception.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "Generative AI",
+      "Large Language Models",
+      "Speech-first models"
+    ],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "$500k–$3M",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "currently in the process of making our first few investments",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Aakrit",
+        "role": ""
+      },
+      {
+        "name": "Pratyush",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Composio",
+      "Park+",
+      "Rapidclaims",
+      "Sri Mandir",
+      "Spry",
+      "Smallest AI",
+      "Seekho",
+      "Emergent",
+      "Eka Care",
+      "Unacademy",
+      "ZuAI",
+      "Spendflo",
+      "Rocket.new",
+      "Truva",
+      "Boba Bhai"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/aakrit/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/177pc/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 16,
+    "source_url": "https://www.activatevc.ai",
+    "extracted_at": "2026-05-20T05:13:46.592346Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Aakrit: [aakrit@activatevc.ai]",
+      "Pratyush: [pratyush@activatevc.ai]"
+    ]
+  },
+  {
+    "firm": "Yali Capital",
+    "website": "https://yali.vc",
+    "thesis": "We look for exceptional founding teams solving hard technical problems with defensible IP and a clear path to market differentiation. Grit, clarity of thought, and long-term resilience matter as much as technology depth.",
+    "focus_sectors": [
+      "Artificial Intelligence",
+      "Aerospace and Surveillance",
+      "Life Sciences",
+      "Robotics",
+      "Fabless Semiconductor",
+      "Smart Manufacturing"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "$104 million",
+    "active_status": "",
+    "pitch_process": "Pitch to us → https://yali.vc/contact/",
+    "partners": [
+      {
+        "name": "Ganapathy 'Gani' Subramaniam",
+        "role": ""
+      },
+      {
+        "name": "Mathew Cyriac",
+        "role": ""
+      },
+      {
+        "name": "Lip-Bu Tan",
+        "role": ""
+      },
+      {
+        "name": "Karthikeyan 'Karthik' Madathil",
+        "role": ""
+      },
+      {
+        "name": "Sandipan Mondal",
+        "role": ""
+      },
+      {
+        "name": "Kaushik Ram",
+        "role": ""
+      },
+      {
+        "name": "Sunil S Patil",
+        "role": ""
+      },
+      {
+        "name": "Manjunath M P",
+        "role": ""
+      },
+      {
+        "name": "Pranav Karnad",
+        "role": ""
+      },
+      {
+        "name": "Karthik Sunder",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "PointAI",
+      "Deeplase",
+      "Perceptyne Robotics",
+      "4baseCare",
+      "C2i",
+      "LatentForce"
+    ],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "contact_form",
+        "value": "https://yali.vc/contact/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/feed/update/urn:li:activity:7440713805934006272"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://yali.vc",
+    "extracted_at": "2026-05-20T05:12:57.759616Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Ganapathy 'Gani' Subramaniam: [ganapathy@yali.vc, ganapathy.subramaniam@yali.vc, gsubramaniam@yali.vc]",
+      "Mathew Cyriac: [mathew@yali.vc, mathew.cyriac@yali.vc, mcyriac@yali.vc]",
+      "Lip-Bu Tan: [lipbu@yali.vc, lipbu.tan@yali.vc, ltan@yali.vc]",
+      "Karthikeyan 'Karthik' Madathil: [karthikeyan@yali.vc, karthikeyan.madathil@yali.vc, kmadathil@yali.vc]",
+      "Sandipan Mondal: [sandipan@yali.vc, sandipan.mondal@yali.vc, smondal@yali.vc]",
+      "Kaushik Ram: [kaushik@yali.vc, kaushik.ram@yali.vc, kram@yali.vc]",
+      "Sunil S Patil: [sunil@yali.vc, sunil.patil@yali.vc, spatil@yali.vc]",
+      "Manjunath M P: [manjunath@yali.vc, manjunath.p@yali.vc, mp@yali.vc]",
+      "Pranav Karnad: [pranav@yali.vc, pranav.karnad@yali.vc, pkarnad@yali.vc]",
+      "Karthik Sunder: [karthik@yali.vc, karthik.sunder@yali.vc, ksunder@yali.vc]"
+    ]
+  },
+  {
+    "firm": "Together",
+    "website": "https://www.together.fund",
+    "thesis": "Partnering with visionary founders building AI-native startups that redefine global industries.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "AI Agents",
+      "AI content creation",
+      "AI Recruiter",
+      "Generative AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "$1M-$10M",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Presentations AI",
+      "Rapidclaims",
+      "Emergent"
+    ],
+    "geography": [
+      "US",
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/scaletogether"
+      },
+      {
+        "type": "twitter",
+        "value": "https://x.com/scaletogether"
+      },
+      {
+        "type": "website",
+        "value": "https://medium.com/@scaletogether"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://www.together.fund",
+    "extracted_at": "2026-05-20T05:13:15.407942Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Capria Ventures",
+    "website": "https://capria.vc",
+    "thesis": "We believe entrepreneurs are the ultimate agents of positive, transformational change across every aspect of our society and economy. With a focus on Applied AI, we are looking to invest in startups at the forefront of innovation, primed to disrupt traditional sectors, forge new industries and propel economic growth in the Global South.",
+    "focus_sectors": [
+      "tech"
+    ],
+    "domain_specializations": [
+      "Applied AI"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "reach out to us",
+    "partners": [],
+    "portfolio_companies": [
+      "SeamlessHR",
+      "Masai School",
+      "Home Agent",
+      "Helium Health",
+      "Agrofy",
+      "Betterplace",
+      "Magma"
+    ],
+    "geography": [
+      "India",
+      "Southeast Asia",
+      "Latin America",
+      "Africa",
+      "Middle East"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 12,
+    "source_url": "https://capria.vc",
+    "extracted_at": "2026-05-20T05:13:26.834650Z",
+    "pages_scraped": 3,
+    "guessed_emails": []
+  },
+  {
+    "firm": "General Catalyst",
+    "website": "https://www.generalcatalyst.com",
+    "thesis": "We hatch new companies through uncommon collaboration and global ambition. We dream together with founders and help them manifest their visions. We empower companies to take a more enduring growth path.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "Applied AI",
+      "Large Language Models"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Dario Amodei",
+        "role": ""
+      },
+      {
+        "name": "Paul Kwan",
+        "role": ""
+      },
+      {
+        "name": "Eric Glyman",
+        "role": ""
+      },
+      {
+        "name": "Hemant Taneja",
+        "role": ""
+      },
+      {
+        "name": "Patrick Collison",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Nominal",
+      "Percepta"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 12,
+    "source_url": "https://www.generalcatalyst.com",
+    "extracted_at": "2026-05-20T05:13:50.805327Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Dario Amodei: [dario@generalcatalyst.com, dario.amodei@generalcatalyst.com, damodei@generalcatalyst.com]",
+      "Paul Kwan: [paul@generalcatalyst.com, paul.kwan@generalcatalyst.com, pkwan@generalcatalyst.com]",
+      "Eric Glyman: [eric@generalcatalyst.com, eric.glyman@generalcatalyst.com, eglyman@generalcatalyst.com]",
+      "Hemant Taneja: [hemant@generalcatalyst.com, hemant.taneja@generalcatalyst.com, htaneja@generalcatalyst.com]",
+      "Patrick Collison: [patrick@generalcatalyst.com, patrick.collison@generalcatalyst.com, pcollison@generalcatalyst.com]"
+    ]
+  },
+  {
+    "firm": "Khosla Ventures",
+    "website": "https://www.khoslaventures.com",
+    "thesis": "Invest in bold, early, impactful ventures, making big, contrarian bets, as long the team is world class and has done their homework",
+    "focus_sectors": [
+      "Artificial Intelligence",
+      "Cleantech"
+    ],
+    "domain_specializations": [
+      "Deep Tech"
+    ],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "OpenAI",
+      "Sword Health",
+      "GitLab",
+      "Affirm",
+      "Impossible Foods",
+      "Guardant Health",
+      "Alivecor",
+      "Block",
+      "Stripe",
+      "DoorDash",
+      "Ultima Genomics",
+      "Fortera",
+      "Waabi",
+      "Commonwealth Fusion Systems (CFS)",
+      "Nutanix",
+      "DevRev"
+    ],
+    "geography": [],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 11,
+    "source_url": "https://khoslaventures.com",
+    "extracted_at": "2026-05-20T05:14:48.522074Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Silicon Catalyst",
+    "website": "https://siliconcatalyst.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Semiconductor"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Ayar Labs",
+      "AEPONYX",
+      "SPARK",
+      "Probius Diagnostics",
+      "EcoCircuits",
+      "One Silicon Chip Photonics",
+      "Neurophos",
+      "Beam",
+      "Scale Photonics"
+    ],
+    "geography": [],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 9,
+    "source_url": "https://siliconcatalyst.com",
+    "extracted_at": "2026-05-20T05:14:43.359942Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Owl VC",
+    "website": "https://www.owlvc.com",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Amira Learning",
+      "Brisk Teaching",
+      "Hazel",
+      "Kiddom",
+      "Leap Finance",
+      "Newsela",
+      "Preply",
+      "Quizlet"
+    ],
+    "geography": [],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 3,
+      "completeness_percent": 33,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 7,
+    "source_url": "https://www.owlvc.com",
+    "extracted_at": "2026-05-20T05:14:07.033614Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  }
+]

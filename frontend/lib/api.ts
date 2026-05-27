@@ -1,5 +1,12 @@
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
+function getApiBaseUrl() {
+  if (typeof window === "undefined") {
+    return process.env.API_BASE_URL || "http://127.0.0.1:8000";
+  }
+
+  return process.env.NEXT_PUBLIC_API_BASE_URL || "";
+}
+
+const ADMIN_API_KEY = process.env.NEXT_PUBLIC_ADMIN_API_KEY || "";
 
 export type Metrics = {
   investors: number;
@@ -25,10 +32,13 @@ export type Partner = {
   investor_id: number;
   name: string;
   role?: string | null;
+  title?: string | null;
   linkedin_url?: string | null;
   twitter_url?: string | null;
   source_url?: string | null;
   confidence?: number | null;
+  extraction_confidence?: number | null;
+  scraped_at?: string | null;
   updated_at?: string | null;
 };
 
@@ -43,6 +53,14 @@ export type PipelineStatus = {
     last_modified?: string | null;
     tail: string[];
   };
+  latest_run?: {
+    id: number;
+    status: string;
+    trigger: string;
+    started_at?: string | null;
+    ended_at?: string | null;
+    error_message?: string | null;
+  } | null;
 };
 
 export type SearchResult = Investor & {
@@ -74,6 +92,7 @@ export type QueueSummary = {
     failed: number;
     total: number;
   };
+  pending_urls?: { id: number; url: string; discovered_at?: string | null }[];
   crawled_urls: number;
   failed_urls: number;
   error?: string;
@@ -84,12 +103,20 @@ export type ActiveJobs = {
   jobs: { pid: number }[];
 };
 
+export type QueryPreviewRequest = {
+  sector?: string;
+  stage?: string;
+  geography?: string;
+  business_model?: string;
+  theme?: string;
+  manual_queries?: string[];
+  use_expansion?: boolean;
+};
+
 
 async function request<T>(path: string): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    next: {
-      revalidate: 30
-    }
+  const response = await fetch(`${getApiBaseUrl()}${path}`, {
+    cache: "no-store",
   });
 
   if (!response.ok) {
@@ -178,8 +205,8 @@ export function getPipelineQueueSummary() {
   return request<QueueSummary>("/api/pipeline/queue-summary");
 }
 
-export async function triggerPipelineRun(q: string) {
-  const response = await fetch(`${API_BASE_URL}/api/pipeline/trigger?q=${encodeURIComponent(q)}`, {
+export async function clearPendingQueue() {
+  const response = await fetch(`${getApiBaseUrl()}/api/pipeline/queue/clear-pending`, {
     method: "POST",
   });
 
@@ -188,7 +215,53 @@ export async function triggerPipelineRun(q: string) {
     throw new Error(err.detail || `API request failed: ${response.status}`);
   }
 
-  return response.json() as Promise<{ status: string; query: string; pid: number }>;
+  return response.json() as Promise<{ updated: number; status: string }>;
+}
+
+export async function previewQueries(payload: QueryPreviewRequest) {
+  const response = await fetch(`${getApiBaseUrl()}/api/queries/preview`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.detail || `API request failed: ${response.status}`);
+  }
+
+  return response.json() as Promise<{ queries: string[] }>;
+}
+
+export async function triggerPipelineRun(q: string) {
+  const response = await fetch(`${getApiBaseUrl()}/api/pipeline/runs`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...(ADMIN_API_KEY ? { "x-admin-key": ADMIN_API_KEY } : {}),
+    },
+    body: JSON.stringify({
+      trigger: "manual",
+      queries: [q],
+      run_parse: true,
+      run_insert: true,
+    }),
+  });
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.detail || `API request failed: ${response.status}`);
+  }
+
+  const run = await response.json() as { id: number; status: string };
+
+  return {
+    status: run.status,
+    query: q,
+    pid: run.id,
+  };
 }
 
 export function getActivePipelineJobs() {

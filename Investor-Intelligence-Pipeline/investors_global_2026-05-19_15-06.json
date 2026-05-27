@@ -1,0 +1,398 @@
+[
+  {
+    "firm": "Sound Ventures",
+    "website": "https://www.soundventures.com",
+    "thesis": "We have 15+ years of experience tracking the signals that shape industries, and partnering early with founders building the products and infrastructure of the future.",
+    "focus_sectors": [
+      "Media",
+      "Tech"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Early",
+      "Seed"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively deploying",
+    "pitch_process": "warm intros only",
+    "partners": [
+      {
+        "name": "Effie Epstein",
+        "role": "General Partner"
+      },
+      {
+        "name": "Ashton Kutcher",
+        "role": "General Partner"
+      },
+      {
+        "name": "Guy Oseary",
+        "role": "General Partner"
+      },
+      {
+        "name": "Juliette Bolea",
+        "role": "Investor"
+      }
+    ],
+    "portfolio_companies": [
+      "Airtable",
+      "Robinhood",
+      "Affirm",
+      "Airbnb",
+      "Anthropic",
+      "Duolingo",
+      "Equipment Share",
+      "Flexport",
+      "GitLab",
+      "OpenAI",
+      "Spotify",
+      "Uber"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.soundventures.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://www.soundventures.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 17,
+    "source_url": "https://www.soundventures.com",
+    "extracted_at": "2026-05-19T09:34:03.728107Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Effie Epstein: [effie@soundventures.com, effie.epstein@soundventures.com, eepstein@soundventures.com]",
+      "Ashton Kutcher: [ashton@soundventures.com, ashton.kutcher@soundventures.com, akutcher@soundventures.com]",
+      "Guy Oseary: [guy@soundventures.com, guy.oseary@soundventures.com, goseary@soundventures.com]",
+      "Juliette Bolea: [juliette@soundventures.com, juliette.bolea@soundventures.com, jbolea@soundventures.com]"
+    ]
+  },
+  {
+    "firm": "Icon Ventures",
+    "website": "https://iconventures.com",
+    "thesis": "A prepared mind for investing in AI. Deep foundational knowledge of how venture capital works. Strong relationships within the venture capital ecosystem.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "warm intros only",
+    "partners": [
+      {
+        "name": "Joe Horowitz",
+        "role": "Managing General Partner"
+      },
+      {
+        "name": "Tom Mawhinney",
+        "role": "General Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Rockset",
+      "Eppo",
+      "Quizlet",
+      "Alation",
+      "Midi",
+      "Tilt"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/icon-ventures"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://iconventures.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/iconventures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 17,
+    "source_url": "https://iconventures.com",
+    "extracted_at": "2026-05-19T09:34:48.863325Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Joe Horowitz: [joe@iconventures.com, joe.horowitz@iconventures.com, jhorowitz@iconventures.com]",
+      "Tom Mawhinney: [tom@iconventures.com, tom.mawhinney@iconventures.com, tmawhinney@iconventures.com]"
+    ]
+  },
+  {
+    "firm": "Link Ventures",
+    "website": "https://www.linkventures.com",
+    "thesis": "Lisa and team is a long-term partner to propel past the seed stage, offering proven GTM playbooks and leaders with decades of technical and industry experience.",
+    "focus_sectors": [
+      "AI",
+      "Machine Learning"
+    ],
+    "domain_specializations": [
+      "Large Datasets",
+      "Cutting Edge Machine Learning and AI Technologies"
+    ],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "get in touch if you're an exceptional builder in the Cambridge/Boston area",
+    "partners": [
+      {
+        "name": "Lisa Dolan",
+        "role": "Managing Director"
+      },
+      {
+        "name": "Boaz Fachler",
+        "role": ""
+      },
+      {
+        "name": "Nick Fay",
+        "role": ""
+      },
+      {
+        "name": "Karen Green",
+        "role": ""
+      },
+      {
+        "name": "Michael Griffin",
+        "role": ""
+      },
+      {
+        "name": "Elena Heims",
+        "role": ""
+      },
+      {
+        "name": "Dan Oliveri",
+        "role": ""
+      },
+      {
+        "name": "Dominic Lloyd",
+        "role": ""
+      },
+      {
+        "name": "Bill McCarran",
+        "role": ""
+      },
+      {
+        "name": "Yianni Psaltis",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "VoiceRun",
+      "Cruisebound",
+      "Control Plane",
+      "Anomaly"
+    ],
+    "geography": [
+      "Cambridge",
+      "Boston"
+    ],
+    "contact_links": [
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/link-ventures-partners/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 16,
+    "source_url": "https://www.linkventures.com",
+    "extracted_at": "2026-05-19T09:35:42.179794Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Lisa Dolan: [lisa@linkventures.com, lisa.dolan@linkventures.com, ldolan@linkventures.com]",
+      "Boaz Fachler: [boaz@linkventures.com, boaz.fachler@linkventures.com, bfachler@linkventures.com]",
+      "Nick Fay: [nick@linkventures.com, nick.fay@linkventures.com, nfay@linkventures.com]",
+      "Karen Green: [karen@linkventures.com, karen.green@linkventures.com, kgreen@linkventures.com]",
+      "Michael Griffin: [michael@linkventures.com, michael.griffin@linkventures.com, mgriffin@linkventures.com]",
+      "Elena Heims: [elena@linkventures.com, elena.heims@linkventures.com, eheims@linkventures.com]",
+      "Dan Oliveri: [dan@linkventures.com, dan.oliveri@linkventures.com, doliveri@linkventures.com]",
+      "Dominic Lloyd: [dominic@linkventures.com, dominic.lloyd@linkventures.com, dlloyd@linkventures.com]",
+      "Bill McCarran: [bill@linkventures.com, bill.mccarran@linkventures.com, bmccarran@linkventures.com]",
+      "Yianni Psaltis: [yianni@linkventures.com, yianni.psaltis@linkventures.com, ypsaltis@linkventures.com]"
+    ]
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com",
+    "thesis": "We invest in transformative technology companies that are changing the way we live and work.",
+    "focus_sectors": [
+      "AI",
+      "Healthcare"
+    ],
+    "domain_specializations": [
+      "Generative AI",
+      "Large Language Models"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "$100K-$500K",
+    "fund_number": "Anthology Fund",
+    "fund_size": "$100 million",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Airbnb",
+      "Stripe",
+      "GitLab",
+      "Chime",
+      "Nectar Social",
+      "Pinecone-io",
+      "Typefaceai",
+      "Sana-labs",
+      "Clarifai",
+      "Genesistherapeutics",
+      "Lindyai",
+      "Observeai",
+      "Benchling",
+      "Delfi-diagnostics",
+      "Encodedtherapeutics",
+      "Gilead-sciences",
+      "H1co",
+      "Pliant-therapeutics",
+      "Recursion-pharmaceuticals"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/menlovc/"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://menlovc.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T09:33:24.823885Z",
+    "pages_scraped": 3,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Seedtable",
+    "website": "https://www.seedtable.com/intel",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Google",
+      "Grover",
+      "Bolt",
+      "Adyen",
+      "Intercom",
+      "Revolut"
+    ],
+    "geography": [],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 3,
+      "completeness_percent": 33,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 7,
+    "source_url": "https://www.seedtable.com",
+    "extracted_at": "2026-05-19T09:36:19.963774Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  }
+]

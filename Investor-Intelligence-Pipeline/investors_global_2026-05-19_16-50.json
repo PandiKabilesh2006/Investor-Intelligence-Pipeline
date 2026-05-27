@@ -1,0 +1,482 @@
+[
+  {
+    "firm": "645 Ventures",
+    "website": "https://645ventures.com",
+    "thesis": "We partner with relentless founders who defy convention to change the future.",
+    "focus_sectors": [
+      "Enterprise",
+      "Deep Tech",
+      "AI Infra / Dev Tools",
+      "Fintech",
+      "Consumer",
+      "Cybersecurity",
+      "Health Tech"
+    ],
+    "domain_specializations": [
+      "AI Infra / Dev Tools"
+    ],
+    "investment_stage": [
+      "Early-Stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "early-stage venture firm",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Aaron Holiday",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Nnamdi Okike",
+        "role": "Investment Partner"
+      },
+      {
+        "name": "Parul Singh",
+        "role": "Investment Partner"
+      },
+      {
+        "name": "Vardan Gattani",
+        "role": "Investment Partner"
+      },
+      {
+        "name": "William Hess",
+        "role": "Vice President"
+      },
+      {
+        "name": "Mendy Yang",
+        "role": "Senior Software Engineer II"
+      },
+      {
+        "name": "Pete Keenan",
+        "role": "Senior Software Engineer II"
+      },
+      {
+        "name": "Chonlathit Jittachalothorn",
+        "role": "Head of Finance"
+      },
+      {
+        "name": "Stephen Lang",
+        "role": "Designer"
+      },
+      {
+        "name": "Christina Siadat",
+        "role": "Office Manager"
+      },
+      {
+        "name": "Natasha Bradley",
+        "role": "Office Manager"
+      }
+    ],
+    "portfolio_companies": [
+      "Goldbelly",
+      "FiscalNote",
+      "Shift5",
+      "Setpoint.io",
+      "Resident Home",
+      "RentSpree",
+      "Overtime",
+      "Panther Labs"
+    ],
+    "geography": [
+      "New York",
+      "San Francisco"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/645-ventures"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://645ventures.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/645ventures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 16,
+    "source_url": "https://645ventures.com",
+    "extracted_at": "2026-05-19T11:19:49.375606Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Aaron Holiday: [aaron@645ventures.com, aaron.holiday@645ventures.com, aholiday@645ventures.com]",
+      "Nnamdi Okike: [nnamdi@645ventures.com, nnamdi.okike@645ventures.com, nokike@645ventures.com]",
+      "Parul Singh: [parul@645ventures.com, parul.singh@645ventures.com, psingh@645ventures.com]",
+      "Vardan Gattani: [vardan@645ventures.com, vardan.gattani@645ventures.com, vgattani@645ventures.com]",
+      "William Hess: [william@645ventures.com, william.hess@645ventures.com, whess@645ventures.com]",
+      "Mendy Yang: [mendy@645ventures.com, mendy.yang@645ventures.com, myang@645ventures.com]",
+      "Pete Keenan: [pete@645ventures.com, pete.keenan@645ventures.com, pkeenan@645ventures.com]",
+      "Chonlathit Jittachalothorn: [chonlathit@645ventures.com, chonlathit.jittachalothorn@645ventures.com, cjittachalothorn@645ventures.com]",
+      "Stephen Lang: [stephen@645ventures.com, stephen.lang@645ventures.com, slang@645ventures.com]",
+      "Christina Siadat: [christina@645ventures.com, christina.siadat@645ventures.com, csiadat@645ventures.com]",
+      "Natasha Bradley: [natasha@645ventures.com, natasha.bradley@645ventures.com, nbradley@645ventures.com]"
+    ]
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "",
+    "thesis": "Invest in transformative technology companies that are changing the way we live and work.",
+    "focus_sectors": [
+      "Enterprise",
+      "Healthcare",
+      "Consumer"
+    ],
+    "domain_specializations": [
+      "Generative AI",
+      "LLM (Large Language Models)",
+      "AI in Finance"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively deploying the Anthology Fund",
+    "pitch_process": "contact@menlovc.com or via email to partners@menlovc.com",
+    "partners": [
+      {
+        "name": "Chris Dixon",
+        "role": "General Partner"
+      },
+      {
+        "name": "Ryan Holmes",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Chime"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@menlovc.com"
+      },
+      {
+        "type": "phone",
+        "value": "+1-650-555-0123"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/menlo-ventures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T11:19:09.250846Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "CRV",
+    "website": "https://www.threads.net",
+    "thesis": "No project is too early or too ambitious. We aim to be your first term sheet. We lead rounds; we don’t wait for others to show social proof.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "submit at [415-960-3000](tel:415-960-3000) or [650-687-5600](tel:650-687-5600)",
+    "partners": [
+      {
+        "name": "Hannah Bravo",
+        "role": "General Partner"
+      },
+      {
+        "name": "Immad Akhund",
+        "role": "Partner"
+      },
+      {
+        "name": "Tony Xu",
+        "role": "Partner"
+      },
+      {
+        "name": "Lior Div",
+        "role": "Partner"
+      },
+      {
+        "name": "Guillermo Rauch",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Loop",
+      "Mercury",
+      "DoorDash",
+      "7AI",
+      "Vercel"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "phone",
+        "value": "415-960-3000"
+      },
+      {
+        "type": "phone",
+        "value": "650-687-5600"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://www.crv.com",
+    "extracted_at": "2026-05-19T11:18:49.112084Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Hannah Bravo: [hannah@threads.net, hannah.bravo@threads.net, hbravo@threads.net]",
+      "Immad Akhund: [immad@threads.net, immad.akhund@threads.net, iakhund@threads.net]",
+      "Tony Xu: [tony@threads.net, tony.xu@threads.net, txu@threads.net]",
+      "Lior Div: [lior@threads.net, lior.div@threads.net, ldiv@threads.net]",
+      "Guillermo Rauch: [guillermo@threads.net, guillermo.rauch@threads.net, grauch@threads.net]"
+    ]
+  },
+  {
+    "firm": "Evil Martians",
+    "website": "https://evilmartians.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Developer tools",
+      "AI",
+      "Cybersecurity"
+    ],
+    "domain_specializations": [
+      "AI-native development",
+      "LLM integrations",
+      "Agent orchestration",
+      "Agent observability",
+      "Agentic coding tools",
+      "AI Harnesses"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "bolt.new",
+      "Tines",
+      "Wallarm",
+      "Daylight Security"
+    ],
+    "geography": [
+      "San Francisco",
+      "New York",
+      "Porto",
+      "Osaka"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "surrender@evilmartians.com"
+      },
+      {
+        "type": "website",
+        "value": "https://evilmartians.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 11,
+    "source_url": "https://evilmartians.com",
+    "extracted_at": "2026-05-19T11:17:47.588054Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "FourBridge Partners",
+    "website": "https://fourbridgepartners.com/",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Ted Clark",
+        "role": "View Profile"
+      },
+      {
+        "name": "Jon Terbell",
+        "role": "View Profile"
+      },
+      {
+        "name": "Christopher Gilman",
+        "role": "View Profile"
+      }
+    ],
+    "portfolio_companies": [
+      "Amplify Partners",
+      "Ampersand Capital Partners",
+      "Audacious Ventures",
+      "Battery Ventures",
+      "CoFound",
+      "CoinFund",
+      "Fika Ventures",
+      "Humba Ventures",
+      "LGVP Partners",
+      "Luminate Capital",
+      "Mucker Capital"
+    ],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@fourbridgepartners.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 10,
+    "source_url": "https://fourbridgepartners.com",
+    "extracted_at": "2026-05-19T11:20:01.631608Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Ted Clark: [ted@fourbridgepartners.com, ted.clark@fourbridgepartners.com, tclark@fourbridgepartners.com]",
+      "Jon Terbell: [jon@fourbridgepartners.com, jon.terbell@fourbridgepartners.com, jterbell@fourbridgepartners.com]",
+      "Christopher Gilman: [christopher@fourbridgepartners.com, christopher.gilman@fourbridgepartners.com, cgilman@fourbridgepartners.com]"
+    ]
+  },
+  {
+    "firm": "Devtool Angels",
+    "website": "https://www.devtoolangels.com/",
+    "thesis": "",
+    "focus_sectors": [
+      "developer tools"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "$32k",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.devtoolangels.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/nutlope"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 8,
+    "source_url": "https://www.devtoolangels.com",
+    "extracted_at": "2026-05-19T11:18:13.422218Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Seedtable",
+    "website": "https://www.seedtable.com/intel",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Google",
+      "Grover",
+      "Bolt",
+      "Adyen",
+      "Intercom",
+      "Revolut"
+    ],
+    "geography": [],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 3,
+      "completeness_percent": 33,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 7,
+    "source_url": "https://www.seedtable.com",
+    "extracted_at": "2026-05-19T11:18:01.158999Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  }
+]

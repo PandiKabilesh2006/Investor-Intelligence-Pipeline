@@ -23,6 +23,11 @@ export function DashboardClient({ metrics, recentInvestors, allInvestors, pipeli
   const [mounted, setMounted] = useState(false);
   const [selectedInvestorId, setSelectedInvestorId] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const lastSyncTime = (
+    pipeline.latest_run?.ended_at ||
+    pipeline.latest_run?.started_at ||
+    pipeline.pipeline_log.last_modified
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -141,10 +146,15 @@ export function DashboardClient({ metrics, recentInvestors, allInvestors, pipeli
           <div>
             <p className="text-[10px] font-bold uppercase text-muted-foreground">Last Sync Time</p>
             <p className="text-sm font-bold text-foreground leading-5">
-              {pipeline.pipeline_log.last_modified 
-                ? formatDate(pipeline.pipeline_log.last_modified) 
+              {lastSyncTime
+                ? formatDate(lastSyncTime) 
                 : "N/A"}
             </p>
+            {pipeline.latest_run?.status && (
+              <p className="text-[10px] font-semibold uppercase text-muted-foreground">
+                {pipeline.latest_run.status}
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -281,8 +291,8 @@ export function DashboardClient({ metrics, recentInvestors, allInvestors, pipeli
             <div>
               <p className="text-xs text-muted-foreground">Last activity recorded on</p>
               <p className="text-lg font-bold text-foreground mt-1">
-                {pipeline.pipeline_log.last_modified 
-                  ? formatDate(pipeline.pipeline_log.last_modified) 
+                {lastSyncTime
+                  ? formatDate(lastSyncTime) 
                   : "No recent activity log"}
               </p>
               <div className="mt-4 rounded-xl bg-muted p-4 border border-border flex-1 max-h-[160px] overflow-y-auto">

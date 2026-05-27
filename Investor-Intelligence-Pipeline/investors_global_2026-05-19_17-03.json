@@ -1,0 +1,438 @@
+[
+  {
+    "firm": "S3 Ventures",
+    "website": "https://www.s3vc.com",
+    "thesis": "We are committed to empowering visionary entrepreneurs with the patient capital and true resources required to build extraordinary, high-impact companies.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "$500K-$15M+",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "submit at [about us page]",
+    "partners": [
+      {
+        "name": "Denis Harrington",
+        "role": "CEO & Co-Founder"
+      },
+      {
+        "name": "Walter Rogers",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Mike Sanders",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Marty Kagan",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Patti Soch",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Erez Dror",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Doug Neumann",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Hersh Tapadia",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Ryan Walsh",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Dave Guillo",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Yash Sabharwal",
+        "role": "CEO & Founder"
+      },
+      {
+        "name": "Richard Lebovitz",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Damola Ogundipe",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Rose Punkunus",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Adam Berman",
+        "role": "President & Co-Founder"
+      },
+      {
+        "name": "Leo Resig",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Scott Wolfe Jr.",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Stephen Bohanon",
+        "role": "CSSO & Co-Founder"
+      },
+      {
+        "name": "Kim Rodriguez",
+        "role": "Co-Founder"
+      }
+    ],
+    "portfolio_companies": [
+      "Airbnb",
+      "Stripe",
+      "GitLab",
+      "Braincheck",
+      "Plural Acq by SAI360",
+      "UpEquity",
+      "Saranas",
+      "Spectrawave",
+      "Stellar",
+      "Storediq",
+      "Sudozi",
+      "Suite Studios",
+      "Sumatra",
+      "Sunthetics",
+      "Tango",
+      "Tensorstax",
+      "TVA Medical",
+      "Vahaticor",
+      "Versa",
+      "Videate",
+      "Vuv Analytics",
+      "ZSuite Tech"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@firm.com"
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.s3vc.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://www.s3vc.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://www.s3vc.com",
+    "extracted_at": "2026-05-19T11:32:50.488241Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Denis Harrington: [denis@s3vc.com, denis.harrington@s3vc.com, dharrington@s3vc.com]",
+      "Walter Rogers: [walter@s3vc.com, walter.rogers@s3vc.com, wrogers@s3vc.com]",
+      "Mike Sanders: [mike@s3vc.com, mike.sanders@s3vc.com, msanders@s3vc.com]",
+      "Marty Kagan: [marty@s3vc.com, marty.kagan@s3vc.com, mkagan@s3vc.com]",
+      "Patti Soch: [patti@s3vc.com, patti.soch@s3vc.com, psoch@s3vc.com]",
+      "Erez Dror: [erez@s3vc.com, erez.dror@s3vc.com, edror@s3vc.com]",
+      "Doug Neumann: [doug@s3vc.com, doug.neumann@s3vc.com, dneumann@s3vc.com]",
+      "Hersh Tapadia: [hersh@s3vc.com, hersh.tapadia@s3vc.com, htapadia@s3vc.com]",
+      "Ryan Walsh: [ryan@s3vc.com, ryan.walsh@s3vc.com, rwalsh@s3vc.com]",
+      "Dave Guillo: [dave@s3vc.com, dave.guillo@s3vc.com, dguillo@s3vc.com]",
+      "Yash Sabharwal: [yash@s3vc.com, yash.sabharwal@s3vc.com, ysabharwal@s3vc.com]",
+      "Richard Lebovitz: [richard@s3vc.com, richard.lebovitz@s3vc.com, rlebovitz@s3vc.com]",
+      "Damola Ogundipe: [damola@s3vc.com, damola.ogundipe@s3vc.com, dogundipe@s3vc.com]",
+      "Rose Punkunus: [rose@s3vc.com, rose.punkunus@s3vc.com, rpunkunus@s3vc.com]",
+      "Adam Berman: [adam@s3vc.com, adam.berman@s3vc.com, aberman@s3vc.com]",
+      "Leo Resig: [leo@s3vc.com, leo.resig@s3vc.com, lresig@s3vc.com]",
+      "Scott Wolfe Jr.: [scott@s3vc.com, scott.jr@s3vc.com, sjr@s3vc.com]",
+      "Stephen Bohanon: [stephen@s3vc.com, stephen.bohanon@s3vc.com, sbohanon@s3vc.com]",
+      "Kim Rodriguez: [kim@s3vc.com, kim.rodriguez@s3vc.com, krodriguez@s3vc.com]"
+    ]
+  },
+  {
+    "firm": "The Founders Group",
+    "website": "https://thefounders.group",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "submit at [Discord](https://discord.gg/FxyMZMb7Sh) or [Founder portal](https://thefounders.group/my)",
+    "partners": [
+      {
+        "name": "Ben Wiggins",
+        "role": "Investor"
+      },
+      {
+        "name": "Blake Burns",
+        "role": "Investor"
+      },
+      {
+        "name": "Saviour U",
+        "role": "Investor"
+      },
+      {
+        "name": "Colin Morris",
+        "role": "Investor"
+      },
+      {
+        "name": "Anushrot Mohanty",
+        "role": "Investor"
+      },
+      {
+        "name": "Adam Rhinehart",
+        "role": "Investor"
+      },
+      {
+        "name": "Fabio C",
+        "role": "Investor"
+      },
+      {
+        "name": "Sir Adam Meek III",
+        "role": "Investor"
+      },
+      {
+        "name": "Kevin Wu",
+        "role": "Investor"
+      },
+      {
+        "name": "Caleb Gipson",
+        "role": "Investor"
+      }
+    ],
+    "portfolio_companies": [
+      "Fixxr",
+      "Frameworks",
+      "Elam Global",
+      "NicklPay",
+      "Sparkyl",
+      "HydraNova Labs",
+      "Midwest Aquatic Suppliers"
+    ],
+    "geography": [
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/thefoundersgroup"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://thefounders.group/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://thefounders.group"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://thefounders.group",
+    "extracted_at": "2026-05-19T11:32:16.925706Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Ben Wiggins: [ben@thefounders.group, ben.wiggins@thefounders.group, bwiggins@thefounders.group]",
+      "Blake Burns: [blake@thefounders.group, blake.burns@thefounders.group, bburns@thefounders.group]",
+      "Saviour U: [saviour@thefounders.group, saviour.u@thefounders.group, su@thefounders.group]",
+      "Colin Morris: [colin@thefounders.group, colin.morris@thefounders.group, cmorris@thefounders.group]",
+      "Anushrot Mohanty: [anushrot@thefounders.group, anushrot.mohanty@thefounders.group, amohanty@thefounders.group]",
+      "Adam Rhinehart: [adam@thefounders.group, adam.rhinehart@thefounders.group, arhinehart@thefounders.group]",
+      "Fabio C: [fabio@thefounders.group, fabio.c@thefounders.group, fc@thefounders.group]",
+      "Sir Adam Meek III: [sir@thefounders.group, sir.iii@thefounders.group, siii@thefounders.group]",
+      "Kevin Wu: [kevin@thefounders.group, kevin.wu@thefounders.group, kwu@thefounders.group]",
+      "Caleb Gipson: [caleb@thefounders.group, caleb.gipson@thefounders.group, cgipson@thefounders.group]"
+    ]
+  },
+  {
+    "firm": "Venture Guides",
+    "website": "https://www.ventureguides.com",
+    "thesis": "Our laser-focused sector experience ensures we are positioned to understand each start-up's strategic market opportunity and its micro-trends.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Benjamin Nye",
+        "role": "Partner"
+      },
+      {
+        "name": "Anton Simunovic",
+        "role": "Partner"
+      },
+      {
+        "name": "Ava Simunovic",
+        "role": "Partner"
+      },
+      {
+        "name": "Bear Brofft",
+        "role": "Partner"
+      },
+      {
+        "name": "Ben Holzman",
+        "role": "Partner"
+      },
+      {
+        "name": "Chibuikem Uche",
+        "role": "Partner"
+      },
+      {
+        "name": "Daniel Bransom",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Dynatrace",
+      "Turbonomic",
+      "Rapid7",
+      "Archer",
+      "SolarWinds",
+      "Sysdig",
+      "Docusign",
+      "Vibeiq",
+      "Elastio"
+    ],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/benjaminnye"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/anton-simunovic-0543876"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/ava-simunovic-23a584227"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/bear-brofft"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/benholzman"
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/in/chibuikem-uche-482156187"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 11,
+    "source_url": "https://www.ventureguides.com",
+    "extracted_at": "2026-05-19T11:33:49.268523Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Benjamin Nye: [benjamin@ventureguides.com, benjamin.nye@ventureguides.com, bnye@ventureguides.com]",
+      "Anton Simunovic: [anton@ventureguides.com, anton.simunovic@ventureguides.com, asimunovic@ventureguides.com]",
+      "Ava Simunovic: [ava@ventureguides.com, ava.simunovic@ventureguides.com, asimunovic@ventureguides.com]",
+      "Bear Brofft: [bear@ventureguides.com, bear.brofft@ventureguides.com, bbrofft@ventureguides.com]",
+      "Ben Holzman: [ben@ventureguides.com, ben.holzman@ventureguides.com, bholzman@ventureguides.com]",
+      "Chibuikem Uche: [chibuikem@ventureguides.com, chibuikem.uche@ventureguides.com, cuche@ventureguides.com]",
+      "Daniel Bransom: [daniel@ventureguides.com, daniel.bransom@ventureguides.com, dbransom@ventureguides.com]"
+    ]
+  },
+  {
+    "firm": "CVC",
+    "website": "https://www.cvc.com",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Ontic",
+      "Breitling",
+      "Six Nations Rugby",
+      "EcoVadis",
+      "A Bathing Ape"
+    ],
+    "geography": [
+      "Europe",
+      "Americas",
+      "Asia"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 5,
+    "source_url": "https://www.cvc.com",
+    "extracted_at": "2026-05-19T11:33:19.226861Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  }
+]

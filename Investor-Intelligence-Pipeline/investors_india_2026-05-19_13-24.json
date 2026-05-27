@@ -1,0 +1,567 @@
+[
+  {
+    "firm": "Khosla Ventures",
+    "website": "https://www.khoslaventures.com/",
+    "thesis": "We invest in bold, early, impactful ventures that have the potential to change entire industries.",
+    "focus_sectors": [
+      "AI",
+      "SaaS",
+      "Fintech",
+      "Enterprise",
+      "Frontier",
+      "Sustainability",
+      "Digital Health",
+      "MedTech & Diagnostics"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps",
+      "Deep Learning"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "$500K-$2M",
+    "fund_number": "Seed Fund",
+    "fund_size": "$150M",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@khoslaventures.com",
+    "partners": [
+      {
+        "name": "Vinod Khosla",
+        "role": "Managing Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "OpenAI",
+      "Sword Health",
+      "GitLab",
+      "Affirm",
+      "Impossible Foods",
+      "Guardant Health",
+      "AliveCor",
+      "Block",
+      "Stripe",
+      "DoorDash",
+      "Ultima Genomics",
+      "Fortera",
+      "Waabi",
+      "OpenAI",
+      "Commonwealth Fusion Systems (CFS)"
+    ],
+    "geography": [
+      "US",
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@khoslaventures.com"
+      }
+    ],
+    "confidence_score": 19,
+    "source_url": "https://khoslaventures.com",
+    "extracted_at": "2026-05-19T07:51:16.442186Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Sequoia Capital",
+    "website": "https://sequoiacap.com/",
+    "thesis": "",
+    "focus_sectors": [
+      "AI",
+      "SaaS"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Growth",
+      "IPO",
+      "Acquired"
+    ],
+    "check_size": "$500K-$2M",
+    "fund_number": "Fund III",
+    "fund_size": "$150M",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@sequoiacap.com",
+    "partners": [
+      {
+        "name": "Michael Moritz",
+        "role": "Partner"
+      },
+      {
+        "name": "Pat Grady",
+        "role": "Partner"
+      },
+      {
+        "name": "Sonya Huang",
+        "role": "Partner"
+      },
+      {
+        "name": "Josephine Chen",
+        "role": "Partner"
+      },
+      {
+        "name": "Alfred Lin",
+        "role": "Partner"
+      },
+      {
+        "name": "Bryan Schreier",
+        "role": "Partner"
+      },
+      {
+        "name": "George Robson",
+        "role": "Partner"
+      },
+      {
+        "name": "James Flynn",
+        "role": "Partner"
+      },
+      {
+        "name": "Lauren Reeder",
+        "role": "Partner"
+      },
+      {
+        "name": "Luciana Lixandru",
+        "role": "Partner"
+      },
+      {
+        "name": "Carl Eschenbach",
+        "role": "Partner"
+      },
+      {
+        "name": "Roelof Botha",
+        "role": "Partner"
+      },
+      {
+        "name": "Bill Coughran",
+        "role": "Partner"
+      },
+      {
+        "name": "Ravi Gupta",
+        "role": "Partner"
+      },
+      {
+        "name": "Bogomil Balkansky",
+        "role": "Partner"
+      },
+      {
+        "name": "David Cahn",
+        "role": "Partner"
+      },
+      {
+        "name": "Andrew Reed",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "24/7.ai",
+      "100 Thieves",
+      "Abby Care",
+      "Agency",
+      "Airbnb",
+      "Airtime",
+      "Airtop",
+      "Alkira",
+      "Alpha & Omega Semiconductor",
+      "AMP Robotics",
+      "Amplitude",
+      "Anrok",
+      "Anterior",
+      "Anthropic",
+      "Apex",
+      "Apollo",
+      "Apple",
+      "Arcwise",
+      "Armis",
+      "ARQ",
+      "Aspora",
+      "Astrocade",
+      "Attentive",
+      "Auctor"
+    ],
+    "geography": [
+      "US",
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@sequoiacap.com"
+      }
+    ],
+    "confidence_score": 18,
+    "source_url": "https://sequoiacap.com",
+    "extracted_at": "2026-05-19T07:53:22.305901Z",
+    "pages_scraped": 2
+  },
+  {
+    "firm": "Evil Martians",
+    "website": "https://www.evilmartians.com/",
+    "thesis": "Product development consultancy for devtools is a collaboration between your in-house technical team and external experts who support you in complex tasks.",
+    "focus_sectors": [
+      "Developer Tools",
+      "AI",
+      "Cybersecurity"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps",
+      "Agent Orchestration",
+      "Agent Observability",
+      "Agentic Coding"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "$500K-$2M",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email surrender@evilmartians.com",
+    "partners": [
+      {
+        "name": "Name1",
+        "role": "Role1"
+      },
+      {
+        "name": "Name2",
+        "role": "Role2"
+      }
+    ],
+    "portfolio_companies": [
+      "bolt.new",
+      "Tines",
+      "Wallarm",
+      "Daylight Security"
+    ],
+    "geography": [
+      "San Francisco",
+      "New York",
+      "Porto",
+      "Osaka"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "surrender@evilmartians.com"
+      }
+    ],
+    "confidence_score": 17,
+    "source_url": "https://evilmartians.com",
+    "extracted_at": "2026-05-19T07:49:54.518910Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "BVP",
+    "website": "https://www.bvp.com",
+    "thesis": "We partner with entrepreneurs from their early days through every stage of growth.",
+    "focus_sectors": [
+      "AI",
+      "ML",
+      "Fintech",
+      "Vertical software",
+      "Developer",
+      "Deep tech"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps",
+      "Biology-native data infrastructure",
+      "Healthcare AI Adoption"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "$500K-$2M",
+    "fund_number": "Fund III",
+    "fund_size": "$150M",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@bvp.com",
+    "partners": [
+      {
+        "name": "Byron Deeter",
+        "role": "Managing Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Waymo",
+      "Ramp",
+      "EliseAI",
+      "Fal.ai",
+      "LinkedIn"
+    ],
+    "geography": [
+      "US",
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@bvp.com"
+      }
+    ],
+    "confidence_score": 16,
+    "source_url": "https://www.bvp.com",
+    "extracted_at": "2026-05-19T07:50:03.579167Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Elevation Capital",
+    "website": "https://www.elevationcapital.com/",
+    "thesis": "Invests in cutting-edge technologies and innovative companies across various sectors including consumer tech, fintech & financial services, enterprise AI, healthcare, and consumer brands.",
+    "focus_sectors": [
+      "Consumer Tech",
+      "Fintech & Financial Services",
+      "Enterprise AI",
+      "Healthcare",
+      "Consumer Brands"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@elevationcapital.com or use typeform link",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US",
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@elevationcapital.com"
+      },
+      {
+        "type": "website",
+        "value": "https://www.elevationcapital.com/contacts"
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://elevationcapital.com",
+    "extracted_at": "2026-05-19T07:50:41.064042Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Y Combinator",
+    "website": "https://www.ycombinator.com/",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "$500K",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@ycombinator.com",
+    "partners": [
+      {
+        "name": "Garry Tan",
+        "role": "Partner"
+      },
+      {
+        "name": "Harj Taggar",
+        "role": "Partner"
+      },
+      {
+        "name": "Jared Friedman",
+        "role": "Partner"
+      },
+      {
+        "name": "Aaron Epstein",
+        "role": "Partner"
+      },
+      {
+        "name": "Diana Hu",
+        "role": "Partner"
+      },
+      {
+        "name": "Gustaf Alstromer",
+        "role": "Partner"
+      },
+      {
+        "name": "Nicolas Dessaigne",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Airbnb",
+      "OpenAI",
+      "Scale AI",
+      "Faire"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@ycombinator.com"
+      }
+    ],
+    "confidence_score": 14,
+    "source_url": "https://www.ycombinator.com",
+    "extracted_at": "2026-05-19T07:53:39.614678Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "CRV",
+    "website": "https://www.threads.net/@crvvc1970",
+    "thesis": "No project is too early or too ambitious. We aim to be your first term sheet. We lead rounds; we don’t wait for others to show social proof.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@crv.com",
+    "partners": [
+      {
+        "name": "Hannah Bravo",
+        "role": "Partner"
+      },
+      {
+        "name": "Immad Akhund",
+        "role": "Partner"
+      },
+      {
+        "name": "Tony Xu",
+        "role": "Partner"
+      },
+      {
+        "name": "Lior Div",
+        "role": "Partner"
+      },
+      {
+        "name": "Guillermo Rauch",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Loop",
+      "Mercury",
+      "DoorDash",
+      "7AI",
+      "Vercel"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "Twitter",
+        "value": "https://twitter.com/CRV"
+      },
+      {
+        "type": "LinkedIn",
+        "value": "https://www.linkedin.com/company/crvvc/"
+      },
+      {
+        "type": "Facebook",
+        "value": "https://www.facebook.com/CRVVC"
+      },
+      {
+        "type": "Threads",
+        "value": "https://www.threads.net/@crvvc1970"
+      },
+      {
+        "type": "Instagram",
+        "value": "https://www.instagram.com/crvvc1970/"
+      },
+      {
+        "type": "YouTube",
+        "value": "https://www.youtube.com/channel/UCRibw5FGtD3nnkIq787Znhw"
+      }
+    ],
+    "confidence_score": 12,
+    "source_url": "https://www.crv.com",
+    "extracted_at": "2026-05-19T07:54:24.377886Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "Impact Investing Institute",
+    "website": "https://www.impactinvest.org.uk/",
+    "thesis": "Investments made with the intention to generate positive, measurable social and environmental impact alongside a financial return.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "UK"
+    ],
+    "contact_links": [
+      {
+        "type": "",
+        "value": ""
+      }
+    ],
+    "confidence_score": 11,
+    "source_url": "https://www.impactinvest.org.uk",
+    "extracted_at": "2026-05-19T07:50:57.965142Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Devtool Angels",
+    "website": "https://www.devtoolangels.com/",
+    "thesis": "",
+    "focus_sectors": [
+      "developer tools"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "$32k",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "DM me at https://twitter.com/nutlope",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "Twitter",
+        "value": "https://twitter.com/nutlope"
+      }
+    ],
+    "confidence_score": 10,
+    "source_url": "https://www.devtoolangels.com",
+    "extracted_at": "2026-05-19T07:50:46.326334Z",
+    "pages_scraped": 1
+  }
+]

@@ -1,0 +1,530 @@
+[
+  {
+    "firm": "Sierra Ventures",
+    "website": "https://www.sierraventures.com/",
+    "thesis": "Investing in AI and enterprise software companies",
+    "focus_sectors": [
+      "AI",
+      "Enterprise Software"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Mark Fernandes",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Tim Guleri",
+        "role": "Managing Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Smallest AI",
+      "Friendli AI",
+      "Reflection AI",
+      "Phenom",
+      "Rocket",
+      "Q-Ctrl",
+      "EUDIA",
+      "Pantomath",
+      "Reify Health",
+      "Revalia Bio",
+      "Expert Intelligence",
+      "Regulus"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.sierraventures.com/"
+      }
+    ],
+    "confidence_score": 16,
+    "source_url": "https://www.sierraventures.com",
+    "extracted_at": "2026-05-19T07:15:32.038217Z",
+    "pages_scraped": 2
+  },
+  {
+    "firm": "Antler",
+    "website": "https://www.antler.co/",
+    "thesis": "We specialise in early-stage investments across a global network of AI companies.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@antler.co or use typeform link",
+    "partners": [
+      {
+        "name": "Magnus Grimeland",
+        "role": "Founder and CEO"
+      },
+      {
+        "name": "Talha Basit",
+        "role": ""
+      },
+      {
+        "name": "Dakotah Rice",
+        "role": ""
+      },
+      {
+        "name": "Peter Spradling",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US",
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@antler.co"
+      },
+      {
+        "type": "website",
+        "value": "https://www.antler.co/ai"
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://www.antler.co",
+    "extracted_at": "2026-05-19T07:16:18.660455Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com/",
+    "thesis": "We invest in transformative technology companies that are changing the way we live and work, with a focus on enterprise AI.",
+    "focus_sectors": [
+      "Enterprise AI"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@menlovc.com or use typeform link",
+    "partners": [
+      {
+        "name": "Not specified",
+        "role": "Investor"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": "hello@menlovc.com"
+      },
+      {
+        "type": "Website",
+        "value": "https://menlovc.com/anthology-fund/"
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T07:16:46.263006Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "General Catalyst",
+    "website": "https://www.generalcatalyst.com/",
+    "thesis": "We empower companies to take a more enduring growth path through uncommon collaboration and global ambition.",
+    "focus_sectors": [
+      "AI",
+      "Venture Capital"
+    ],
+    "domain_specializations": [
+      "Applied AI",
+      "Financial Services Innovation"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "use typeform link",
+    "partners": [
+      {
+        "name": "Dario Amodei",
+        "role": "Founder"
+      },
+      {
+        "name": "Paul Kwan",
+        "role": "Investor"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@generalcatalyst.com"
+      },
+      {
+        "type": "website",
+        "value": "https://www.generalcatalyst.com/contact-us"
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://www.generalcatalyst.com",
+    "extracted_at": "2026-05-19T07:19:34.578416Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "BVP (Battery Ventures Partners)",
+    "website": "",
+    "thesis": "We partner with entrepreneurs from their early days through every stage of growth, supporting them in building a company that lasts.",
+    "focus_sectors": [
+      "AI",
+      "ML",
+      "Fintech",
+      "Vertical software",
+      "Developer",
+      "Deep tech"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@firm.com",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "[Email (required)]"
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://www.bvp.com",
+    "extracted_at": "2026-05-19T07:16:06.744850Z",
+    "pages_scraped": 2
+  },
+  {
+    "firm": "Lightspeed Venture Partners",
+    "website": "",
+    "thesis": "We invest in companies that are bold and have big ideas, with a focus on innovation and transformation.",
+    "focus_sectors": [
+      "AI",
+      "Retail"
+    ],
+    "domain_specializations": [
+      "AI Safety & Research",
+      "Fintech",
+      "Retail Technology"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B",
+      "Series C",
+      "Series D",
+      "Series E",
+      "Series F"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@firm.com or use typeform link",
+    "partners": [
+      {
+        "name": "Ari Cohen",
+        "role": "Co-Founder & CRO"
+      },
+      {
+        "name": "Max Rhoades",
+        "role": "Partner"
+      },
+      {
+        "name": "Jessica Alba",
+        "role": "Co-Founder & CEO The Honest Company"
+      },
+      {
+        "name": "Shlomo Kramer",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@lightspeedvp.com"
+      },
+      {
+        "type": "website",
+        "value": "https://www.lightspeedvp.com/"
+      },
+      {
+        "type": "",
+        "value": ""
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://lsvp.com",
+    "extracted_at": "2026-05-19T07:17:01.340811Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "Look AI Ventures",
+    "website": "",
+    "thesis": "We invest in globally disruptive early-stage AI startups.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "use typeform link",
+    "partners": [
+      {
+        "name": "Martin Dostal",
+        "role": ""
+      },
+      {
+        "name": "Veronika Argust",
+        "role": ""
+      },
+      {
+        "name": "Eva Slonkova",
+        "role": ""
+      },
+      {
+        "name": "Andrej Inozemtseva",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://lookai.vc/"
+      },
+      {
+        "type": "email",
+        "value": "hello@lookai.vc"
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://lookai.vc",
+    "extracted_at": "2026-05-19T07:19:22.957921Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "Activate",
+    "website": "",
+    "thesis": "We believe AI in India will be built by technical crack teams. Activate is a new age venture firm purpose-built for such founders, engaging with them well before incorporation and investing $500k–$3M at inception.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "$500k-$3M",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "warm intro preferred",
+    "partners": [
+      {
+        "name": "Aakrit",
+        "role": ""
+      },
+      {
+        "name": "Pratyush",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [],
+    "confidence_score": 12,
+    "source_url": "https://www.activatevc.ai",
+    "extracted_at": "2026-05-19T07:15:47.475311Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "Blume Ventures",
+    "website": "",
+    "thesis": "Investing in transformational companies led by revolutionary founders who solve hard problems that impact lives and society.",
+    "focus_sectors": [
+      "Healthcare",
+      "Finance",
+      "Technology"
+    ],
+    "domain_specializations": [
+      "AI",
+      "SaaS",
+      "Insurance Advisor Platforms",
+      "Credit Access"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "use typeform link",
+    "partners": [
+      {
+        "name": "Akash Gupta",
+        "role": "co-founder and CEO of GreyOrange"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [],
+    "confidence_score": 12,
+    "source_url": "https://blume.vc",
+    "extracted_at": "2026-05-19T07:15:56.401603Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "Peak XV",
+    "website": "",
+    "thesis": "We believe outlier founders and ideas shape the future of humanity.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Growth"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "email hello@peakxv.com",
+    "partners": [
+      {
+        "name": "Shailendra Singh",
+        "role": "Managing Director"
+      },
+      {
+        "name": "Jaime Bott",
+        "role": "US Talent Partner"
+      },
+      {
+        "name": "Cchatardeep Dua",
+        "role": "Head of Portfolio Finance"
+      },
+      {
+        "name": "Di Kun Goh",
+        "role": "Head, Capital Formation"
+      },
+      {
+        "name": "Kartik Jain",
+        "role": "Director, Finance"
+      },
+      {
+        "name": "Jaspriya Kaur",
+        "role": "Director, Portfolio Finance"
+      },
+      {
+        "name": "Sandeep Kher",
+        "role": "Operating Partner"
+      },
+      {
+        "name": "Saipriya Sarangan",
+        "role": "Chief Operating Officer"
+      },
+      {
+        "name": "Chirish Merritt",
+        "role": "Operating Partner"
+      },
+      {
+        "name": "Bharat Singh",
+        "role": "Operating Partner"
+      },
+      {
+        "name": "Beam Thanyakarn",
+        "role": "VP, Capital Formation"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "hello@peakxv.com"
+      }
+    ],
+    "confidence_score": 11,
+    "source_url": "https://www.peakxv.com",
+    "extracted_at": "2026-05-19T07:16:33.917456Z",
+    "pages_scraped": 2
+  }
+]

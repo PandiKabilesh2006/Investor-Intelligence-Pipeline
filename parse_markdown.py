@@ -47,6 +47,47 @@ markdown_files = [
     if file.endswith(".md")
 ]
 
+run_started_ts = os.getenv("PIPELINE_RUN_STARTED_TS")
+
+markdown_files = [
+
+    file
+
+    for file in markdown_files
+
+    if (
+        (
+            not run_started_ts
+            or
+            os.path.getmtime(
+                os.path.join(RAW_DATA_FOLDER, file)
+            )
+            >=
+            float(run_started_ts)
+        )
+        and
+        (
+        not os.path.exists(
+            os.path.join(
+                PARSED_DATA_FOLDER,
+                file.replace(".md", ".json")
+            )
+        )
+        or
+        os.path.getmtime(
+            os.path.join(RAW_DATA_FOLDER, file)
+        )
+        >
+        os.path.getmtime(
+            os.path.join(
+                PARSED_DATA_FOLDER,
+                file.replace(".md", ".json")
+            )
+        )
+        )
+    )
+]
+
 
 print(
 

@@ -1,0 +1,683 @@
+[
+  {
+    "firm": "IAN Group",
+    "website": "https://iangroup.vc",
+    "thesis": "Invest and breed innovative startups solving real-world problems, driven by technology, targeting a large market led by founders focused on execution and excellence.",
+    "focus_sectors": [
+      "Technology"
+    ],
+    "domain_specializations": [
+      "Industrial Mobility",
+      "Space Transportation"
+    ],
+    "investment_stage": [
+      "Early-stage",
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "₹50 lakhs to ₹50 crores",
+    "fund_number": "Alpha Fund",
+    "fund_size": "$100M",
+    "active_status": "actively investing",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Smriti",
+        "role": "Partner"
+      },
+      {
+        "name": "Sanat",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Uniphore",
+      "Chakr",
+      "Wow Momos",
+      "Spinny",
+      "Pandorum",
+      "Nayam",
+      "Dhruva",
+      "Webengage",
+      "Wooden",
+      "Skylark",
+      "Manastu-Space-Technologies",
+      "Phool",
+      "Dhruvaspace",
+      "Transcell Biosciences",
+      "Fluxgen",
+      "Wowmomo",
+      "Chakar",
+      "Noccarc",
+      "Zypp",
+      "Propelled",
+      "SportVot",
+      "RoshAi",
+      "InterCosmos",
+      "The Sweet Change",
+      "BigEndian Semiconductors"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "smriti@iangroup.vc"
+      },
+      {
+        "type": "email",
+        "value": "sanat@iangroup.vc"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 18,
+    "source_url": "https://iangroup.vc",
+    "extracted_at": "2026-05-20T07:50:09.329813Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Smriti: [smriti@iangroup.vc]",
+      "Sanat: [sanat@iangroup.vc]"
+    ]
+  },
+  {
+    "firm": "Founder Institute",
+    "website": "https://fi.co",
+    "thesis": "",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "AI-native company builder"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Info Session",
+    "partners": [
+      {
+        "name": "Christina Marie Reddick",
+        "role": ""
+      },
+      {
+        "name": "Preeti Tikekar",
+        "role": ""
+      },
+      {
+        "name": "Chris Foltz",
+        "role": ""
+      },
+      {
+        "name": "Anthony Rose",
+        "role": ""
+      },
+      {
+        "name": "Jonathan Greechan",
+        "role": ""
+      },
+      {
+        "name": "Lubna Forzley",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Airbnb",
+      "Stripe",
+      "GitLab",
+      "Oddbox",
+      "Udemy"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Asia",
+      "San Francisco"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/the-founder-institute"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://fi.co/infosession"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/founding"
+      },
+      {
+        "type": "website",
+        "value": "https://fi.co"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://fi.co",
+    "extracted_at": "2026-05-20T07:47:40.499528Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Christina Marie Reddick: [christina@fi.co, christina.reddick@fi.co, creddick@fi.co]",
+      "Preeti Tikekar: [preeti@fi.co, preeti.tikekar@fi.co, ptikekar@fi.co]",
+      "Chris Foltz: [chris@fi.co, chris.foltz@fi.co, cfoltz@fi.co]",
+      "Anthony Rose: [anthony@fi.co, anthony.rose@fi.co, arose@fi.co]",
+      "Jonathan Greechan: [jonathan@fi.co, jonathan.greechan@fi.co, jgreechan@fi.co]",
+      "Lubna Forzley: [lubna@fi.co, lubna.forzley@fi.co, lforzley@fi.co]"
+    ]
+  },
+  {
+    "firm": "The Chennai Angels",
+    "website": "https://thechennaiangels.com",
+    "thesis": "",
+    "focus_sectors": [
+      "CleanTech & Sustainability",
+      "Media, Entertainment & Gaming",
+      "Industrial Automation",
+      "SaaS & Industrial Automation",
+      "Crowdfunding Services"
+    ],
+    "domain_specializations": [
+      "Agri Produce Supply Chain",
+      "IoT solutions for assessing the quality of fresh"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Pre-Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Prescreening & Investor Presentation",
+    "partners": [],
+    "portfolio_companies": [
+      "Kreedo",
+      "The Indus Valley",
+      "Hitwicket",
+      "STAGE",
+      "Paperflite",
+      "goSTOPS",
+      "Chai Kings",
+      "Hoopr",
+      "Famyo",
+      "Quro",
+      "Grest",
+      "Esandhai",
+      "Qzense Labs"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "The Chennai Angels Tracy"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://thechennaiangels.com/"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://thechennaiangels.com/funding/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 13,
+    "source_url": "https://thechennaiangels.com",
+    "extracted_at": "2026-05-20T07:43:56.583370Z",
+    "pages_scraped": 3,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Aurum Equity Partners LLP",
+    "website": "https://www.aurumequity.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Technology",
+      "Internet",
+      "Digital",
+      "Entertainment",
+      "Supply Chains",
+      "Logistics",
+      "Consumer",
+      "Industry",
+      "Health",
+      "Bank",
+      "Retail Real Estate",
+      "Education",
+      "Infrastructure"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "share your CV at careers@aurumequity.com",
+    "partners": [
+      {
+        "name": "Sanjay Bansal",
+        "role": "Founder & Managing Partner"
+      },
+      {
+        "name": "Vikram Bihani",
+        "role": "Senior Partner"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India",
+      "Mumbai",
+      "Chennai"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "careers@aurumequity.com"
+      },
+      {
+        "type": "phone",
+        "value": "+91-124-4424488"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://www.aurumequity.com",
+    "extracted_at": "2026-05-20T07:46:01.390466Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Sanjay Bansal: [sanjay@aurumequity.com, sanjay.bansal@aurumequity.com, sbansal@aurumequity.com]",
+      "Vikram Bihani: [vikram@aurumequity.com, vikram.bihani@aurumequity.com, vbihani@aurumequity.com]"
+    ]
+  },
+  {
+    "firm": "MudhalVC",
+    "website": "https://mudhalvc.com",
+    "thesis": "Coach First, Capital Second. Patient Capital until the Founder Wins.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Pre-Seed",
+      "Seed"
+    ],
+    "check_size": "$30K-$100K",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "submit at MudhalVC",
+    "partners": [
+      {
+        "name": "Aravind Suresh",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Suresh Sambandam",
+        "role": "General Partner"
+      },
+      {
+        "name": "Arun Karthik",
+        "role": "Head | Investments & Strategy"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Tamilnadu"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.mudhalvc.com/contact"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://mudhalvc.com",
+    "extracted_at": "2026-05-20T07:47:02.850563Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Aravind Suresh: [aravind@mudhalvc.com, aravind.suresh@mudhalvc.com, asuresh@mudhalvc.com]",
+      "Suresh Sambandam: [suresh@mudhalvc.com, suresh.sambandam@mudhalvc.com, ssambandam@mudhalvc.com]",
+      "Arun Karthik: [arun@mudhalvc.com, arun.karthik@mudhalvc.com, akarthik@mudhalvc.com]"
+    ]
+  },
+  {
+    "firm": "Campus Angels Network Private Limited",
+    "website": "https://www.thecampusangels.com",
+    "thesis": "",
+    "focus_sectors": [
+      "deep-tech",
+      "early-stage ventures"
+    ],
+    "domain_specializations": [
+      "innovative startups",
+      "deep technology"
+    ],
+    "investment_stage": [
+      "early-stage"
+    ],
+    "check_size": "up to ₹200 lakh",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "KC Gopalakrishnan",
+        "role": "Founder MD & CEO"
+      },
+      {
+        "name": "Co-Founder & CIO",
+        "role": "Co-Founder & CIO"
+      },
+      {
+        "name": "Co-Founder & CBO",
+        "role": "Co-Founder & CBO"
+      },
+      {
+        "name": "Founder Director",
+        "role": "Founder Director"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@thecampusangels.com"
+      },
+      {
+        "type": "website",
+        "value": "https://www.thecampusangels.com/#contact"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://www.thecampusangels.com",
+    "extracted_at": "2026-05-20T07:48:11.963779Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "KC Gopalakrishnan: [kc@thecampusangels.com, kc.gopalakrishnan@thecampusangels.com, kgopalakrishnan@thecampusangels.com]",
+      "Co-Founder & CIO: [cofounder@thecampusangels.com, cofounder.cio@thecampusangels.com, ccio@thecampusangels.com]",
+      "Co-Founder & CBO: [cofounder@thecampusangels.com, cofounder.cbo@thecampusangels.com, ccbo@thecampusangels.com]",
+      "Founder Director: [founder@thecampusangels.com, founder.director@thecampusangels.com, fdirector@thecampusangels.com]"
+    ]
+  },
+  {
+    "firm": "1Mby1M",
+    "website": "https://www.sramanamitra.com",
+    "thesis": "Invest in startups that can go from zero to $100 million in revenue in 5 to 7 years.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "register to Pitch and sell your business idea",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@1Mby1M.com"
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://1m1m.sramanamitra.com/free-public-roundtables/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 10,
+    "source_url": "https://www.sramanamitra.com",
+    "extracted_at": "2026-05-20T07:44:03.520335Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "TVS Capital Funds",
+    "website": "https://www.tvscapital.in",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Gopal Srinivasan",
+        "role": "Founder"
+      }
+    ],
+    "portfolio_companies": [
+      "InsuranceDekho",
+      "Go Digit General Insurance"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 9,
+    "source_url": "https://www.tvscapital.in",
+    "extracted_at": "2026-05-20T07:42:50.713682Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Gopal Srinivasan: [gopal@tvscapital.in, gopal.srinivasan@tvscapital.in, gsrinivasan@tvscapital.in]"
+    ]
+  },
+  {
+    "firm": "IKP Knowledge Park",
+    "website": "https://ikpknowledgepark.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Life Sciences",
+      "Biotechnology",
+      "Health Tech",
+      "Agri-Tech",
+      "Engineering"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [
+      "India",
+      "Hyderabad",
+      "Bangalore"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://ikpknowledgepark.com/contact-us/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 9,
+    "source_url": "https://ikpknowledgepark.com",
+    "extracted_at": "2026-05-20T07:47:09.472649Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "TANFUND",
+    "website": "https://www.tanfund.in",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Rizel Automotive",
+      "Beez"
+    ],
+    "geography": [
+      "Tamil Nadu"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 7,
+    "source_url": "https://www.tanfund.in",
+    "extracted_at": "2026-05-20T07:44:30.789112Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Prosus Ventures",
+    "website": "https://www.prosus.com",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [
+      "AI"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [
+      "Europe"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 4,
+      "completeness_percent": 44,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 6,
+    "source_url": "https://www.prosus.com",
+    "extracted_at": "2026-05-20T07:45:21.836259Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  }
+]

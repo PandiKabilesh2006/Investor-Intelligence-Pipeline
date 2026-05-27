@@ -1,0 +1,557 @@
+[
+  {
+    "firm": "pi Ventures",
+    "website": "https://www.piventures.in",
+    "thesis": "We back visionary founders leveraging cutting-edge technology to solve global problems.",
+    "focus_sectors": [
+      "AI",
+      "Deep Tech"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps",
+      "Robotics",
+      "Quantum Computing",
+      "Life Sciences",
+      "Spacetech"
+    ],
+    "investment_stage": [
+      "Early-stage"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Manish Singhal",
+        "role": "Founder"
+      }
+    ],
+    "portfolio_companies": [
+      "Agnikul",
+      "Pixis",
+      "Ottonomy",
+      "Locus",
+      "Quanfluence",
+      "Zero Cow Factory",
+      "Wysa",
+      "Niramai"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": "info@piventures.in"
+      },
+      {
+        "type": "Website",
+        "value": "https://www.piventures.in"
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 15,
+    "source_url": "https://www.piventures.in",
+    "extracted_at": "2026-05-19T06:41:17.287198Z"
+  },
+  {
+    "firm": "Qualcomm Ventures",
+    "website": "https://www.qualcommventures.com",
+    "thesis": "We invest in early to growth stage companies to accelerate the ecosystem",
+    "focus_sectors": [
+      "AI",
+      "IoT",
+      "Automotive",
+      "Consumer",
+      "Enterprise & Data Center"
+    ],
+    "domain_specializations": [
+      "Robotics",
+      "Sensors",
+      "Edge Computing",
+      "Security"
+    ],
+    "investment_stage": [
+      "Early",
+      "Growth"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "George Netscher",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Zoom",
+      "SentinelOne",
+      "Hugging Face",
+      "Ring",
+      "Xiaomi",
+      "Cloudflare",
+      "99",
+      "MapmyIndia",
+      "Airspace"
+    ],
+    "geography": [
+      "US",
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "Website",
+        "value": "https://www.qualcommventures.com"
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 15,
+    "source_url": "https://www.qualcommventures.com",
+    "extracted_at": "2026-05-19T06:41:31.481307Z"
+  },
+  {
+    "firm": "AI Capital",
+    "website": "https://www.ai.vc",
+    "thesis": "We invest in AI-enabled business software companies that facilitate efficiencies and foster resilience in the supply and delivery of critical goods and services.",
+    "focus_sectors": [
+      "AI",
+      "SaaS"
+    ],
+    "domain_specializations": [
+      "Applied Artificial Intelligence",
+      "Enterprise Software"
+    ],
+    "investment_stage": [
+      "Early Growth-Stage"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Agorai",
+      "Caladrius Ventures",
+      "DataFi",
+      "Link3D",
+      "Luminoso"
+    ],
+    "geography": [
+      "US",
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.ai.vc"
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 15,
+    "source_url": "https://www.ai.vc",
+    "extracted_at": "2026-05-19T06:41:43.231732Z"
+  },
+  {
+    "firm": "Yali VC",
+    "website": "https://yali.vc",
+    "thesis": "Backing founders building world-class technology companies across six deep tech sectors",
+    "focus_sectors": [
+      "Artificial Intelligence",
+      "Aerospace and Surveillance",
+      "Life Sciences",
+      "Robotics",
+      "Fabless Semiconductor",
+      "Smart Manufacturing"
+    ],
+    "domain_specializations": [
+      "AI",
+      "Robotics",
+      "Genomics",
+      "Semiconductor"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Ganapathy 'Gani' Subramaniam",
+        "role": ""
+      },
+      {
+        "name": "Mathew Cyriac",
+        "role": ""
+      },
+      {
+        "name": "Lip-Bu Tan",
+        "role": ""
+      },
+      {
+        "name": "Karthikeyan 'Karthik' Madathil",
+        "role": ""
+      },
+      {
+        "name": "Sandipan Mondal",
+        "role": ""
+      },
+      {
+        "name": "Kaushik Ram",
+        "role": ""
+      },
+      {
+        "name": "Sunil S Patil",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Perceptyne Robotics",
+      "4baseCare",
+      "C2i",
+      "LatentForce",
+      "PointAI",
+      "Deeplase"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://yali.vc/contact/"
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 15,
+    "source_url": "https://yali.vc",
+    "extracted_at": "2026-05-19T06:42:21.165734Z"
+  },
+  {
+    "firm": "Speciale Invest",
+    "website": "https://www.specialeinvest.com",
+    "thesis": "We enable visionary founders building the next frontiers of humanity, focusing on deep tech innovations across DeepTech Hardware and Software.",
+    "focus_sectors": [
+      "AI",
+      "DeepTech Hardware",
+      "DeepTech Software"
+    ],
+    "domain_specializations": [
+      "AI Led Software",
+      "Physical AI"
+    ],
+    "investment_stage": [
+      "Pre-seed",
+      "Seed"
+    ],
+    "check_size": "~$1M",
+    "partners": [
+      {
+        "name": "Vishesh",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Arjun",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Dhanush",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "CynLr",
+      "Airboxr",
+      "Wingman",
+      "Qnu Labs",
+      "Agnikul"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.specialeinvest.com"
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 15,
+    "source_url": "https://www.specialeinvest.com",
+    "extracted_at": "2026-05-19T06:42:32.864251Z"
+  },
+  {
+    "firm": "Khosla Ventures",
+    "website": "https://www.khoslaventures.com",
+    "thesis": "Investing in bold, early, impactful ventures, particularly in AI and deep tech",
+    "focus_sectors": [
+      "AI",
+      "Deep Tech",
+      "Cleantech"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps",
+      "DevSecOps"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Vinod Khosla",
+        "role": "Founder"
+      }
+    ],
+    "portfolio_companies": [
+      "OpenAI",
+      "Sword Health",
+      "GitLab",
+      "Affirm",
+      "Impossible Foods",
+      "Guardant Health",
+      "Alivecor",
+      "Block",
+      "Stripe",
+      "DoorDash",
+      "Ultima Genomics",
+      "Fortera",
+      "Waabi",
+      "Commonwealth Fusion Systems"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.khoslaventures.com"
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 15,
+    "source_url": "https://khoslaventures.com",
+    "extracted_at": "2026-05-19T06:42:43.801879Z"
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com",
+    "thesis": "Investing in transformative technology companies, with a focus on AI and its applications",
+    "focus_sectors": [
+      "AI",
+      "SaaS"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Chime"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "",
+        "value": ""
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 14,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T06:41:49.223696Z"
+  },
+  {
+    "firm": "Look AI Ventures",
+    "website": "https://lookai.vc",
+    "thesis": "We invest in globally disruptive early-stage AI startups",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "AI-driven solutions"
+    ],
+    "investment_stage": [
+      "Early-stage"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Martin Dostal",
+        "role": "Partner & Chief Science Officer"
+      },
+      {
+        "name": "Veronika Argust",
+        "role": "Partner"
+      },
+      {
+        "name": "Eva Slonkova",
+        "role": "Partner"
+      },
+      {
+        "name": "Kate Inozemtseva",
+        "role": "Partner"
+      },
+      {
+        "name": "Andrej",
+        "role": "Investment Analyst"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Europe",
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "Website",
+        "value": "https://lookai.vc"
+      },
+      {
+        "type": "AISI Website",
+        "value": "https://suincubator.ai"
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 13,
+    "source_url": "https://lookai.vc",
+    "extracted_at": "2026-05-19T06:41:26.503552Z"
+  },
+  {
+    "firm": "Elevation Capital",
+    "website": "https://www.elevationcapital.com",
+    "thesis": "Invests in various sectors including consumer tech, fintech, healthcare, and enterprise AI",
+    "focus_sectors": [
+      "Consumer Tech",
+      "Fintech & Financial Services",
+      "Healthcare",
+      "Enterprise AI",
+      "Frontier Tech",
+      "Consumer Brands"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Paytm",
+      "Mosaic Wellness"
+    ],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "",
+        "value": ""
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 12,
+    "source_url": "https://elevationcapital.com",
+    "extracted_at": "2026-05-19T06:41:37.645805Z"
+  },
+  {
+    "firm": "Z47",
+    "website": "https://z47.com",
+    "thesis": "Investing in Global AI, Founders First, with a focus on India",
+    "focus_sectors": [
+      "FinTech",
+      "FinServices",
+      "Enterprise SaaS",
+      "AI",
+      "Consumer Brands",
+      "Consumer Tech",
+      "Frontier Tech",
+      "B2B Commerce",
+      "Manufacturing"
+    ],
+    "domain_specializations": [
+      "AI",
+      "SaaS"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series B"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Sharan Urubail",
+        "role": ""
+      },
+      {
+        "name": "Ankush Mittal",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Captain Fresh",
+      "DailyHunt",
+      "Mosaic Wellness",
+      "Razorpay",
+      "Ola Electric",
+      "WizCommerce",
+      "MoEngage",
+      "Rocketlane",
+      "Woorzwork",
+      "Sevenloop"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "namaste@z47.com"
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 12,
+    "source_url": "https://z47.com",
+    "extracted_at": "2026-05-19T06:42:08.879706Z"
+  },
+  {
+    "firm": "Private Equity List",
+    "website": "https://privateequitylist.com",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://privateequitylist.com"
+      }
+    ],
+    "_parser": "Groq",
+    "confidence_score": 8,
+    "source_url": "https://privateequitylist.com",
+    "extracted_at": "2026-05-19T06:41:57.971772Z"
+  }
+]

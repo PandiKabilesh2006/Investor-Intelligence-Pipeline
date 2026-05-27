@@ -1,0 +1,3 @@
+@echo off
+call "C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
+"C:\Program Files\Git\bin\bash.exe" -lc "cd /c/Users/crade/Desktop/investor\ intelligence/Investor-Intelligence-Pipeline/clone/Investor-Intelligence-Pipeline-main/pgvector-install && export PATH='/c/Program Files/PostgreSQL/18/bin:/c/msys64/ucrt64/bin':$PATH && export PG_CONFIG='/c/Program Files/PostgreSQL/18/bin/pg_config.exe' && pg_config --version && /c/msys64/ucrt64/bin/mingw32-make PG_CFLAGS='-IC:/msys64/ucrt64/include' LDFLAGS='-LC:/msys64/ucrt64/lib' && /c/msys64/ucrt64/bin/mingw32-make install"

@@ -5,6 +5,7 @@ import json
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
@@ -25,7 +26,18 @@ ADMIN_API_KEY = os.getenv("ADMIN_API_KEY", "")
 
 _cors_origins = os.getenv(
     "CORS_ORIGINS",
-    "http://localhost:5173,http://127.0.0.1:5173"
+    ",".join(
+        [
+            "http://localhost:3000",
+            "http://127.0.0.1:3000",
+            "http://localhost:3001",
+            "http://127.0.0.1:3001",
+            "http://localhost:3002",
+            "http://127.0.0.1:3002",
+            "http://localhost:5173",
+            "http://127.0.0.1:5173",
+        ]
+    )
 )
 
 try:

@@ -1,0 +1,125 @@
+[
+  {
+    "firm": "AI Seed",
+    "website": "aiseedfund.com",
+    "thesis": "Investment and support for the next generation of artificial intelligence founders",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Early Stage"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Michael Axelgaard",
+        "role": "Founder and Managing Partner"
+      },
+      {
+        "name": "Jacques de Cock",
+        "role": "Operations and Managing Partner"
+      },
+      {
+        "name": "Steve Weis",
+        "role": "Technical Analysis and Managing Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Odin",
+      "Rahko",
+      "Observe",
+      "Facesoft",
+      "EYN",
+      "ai Build",
+      "limbic",
+      "hopsworks",
+      "Purple Dot",
+      "ntropy",
+      "flox",
+      "juno.bio",
+      "kiroku",
+      "Number 8",
+      "sparkbox"
+    ],
+    "geography": [
+      "Europe",
+      "Silicon Valley"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "aiseedfund.com"
+      }
+    ],
+    "confidence_score": 11,
+    "source_url": "https://aiseedfund.com",
+    "extracted_at": "2026-05-19T06:10:44.789077Z"
+  },
+  {
+    "firm": "Look AI Ventures",
+    "website": "",
+    "thesis": "invest in globally disruptive early-stage AI startups",
+    "focus_sectors": [],
+    "domain_specializations": [
+      "AI"
+    ],
+    "investment_stage": [
+      "early-stage"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      },
+      {
+        "name": "",
+        "role": ""
+      },
+      {
+        "name": "",
+        "role": ""
+      },
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Czech Republic",
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": ""
+      }
+    ],
+    "confidence_score": 9,
+    "source_url": "https://lookai.vc",
+    "extracted_at": "2026-05-19T06:11:15.337897Z"
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com/",
+    "thesis": "We invest in transformative technology companies that are changing the way we live and work, with a focus on enterprise AI.",
+    "focus_sectors": [],
+    "domain_specializations": [
+      "Enterprise AI"
+    ],
+    "investment_stage": [],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [],
+    "contact_links": [],
+    "confidence_score": 8,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T06:11:20.421241Z"
+  }
+]

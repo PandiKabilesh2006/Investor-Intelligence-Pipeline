@@ -359,6 +359,7 @@ print(
 )
 
 total_processed = 0
+queued_this_run = 0
 
 
 for query in queries:
@@ -533,6 +534,8 @@ for query in queries:
                 priority_score
             )
 
+            queued_this_run += 1
+
 
             pipeline_logger.info(
 
@@ -554,6 +557,21 @@ for query in queries:
 # =========================================
 # PROCESS PRIORITY QUEUE
 # =========================================
+
+if queued_this_run == 0:
+
+    pipeline_logger.warning(
+
+        "No URLs queued from search results; skipping crawl processing"
+    )
+
+    print(
+
+        "\nNo URLs queued from search results. "
+        "Skipping crawl processing.\n"
+    )
+
+    raise SystemExit(0)
 
 pipeline_logger.info(
 

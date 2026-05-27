@@ -1,0 +1,834 @@
+[
+  {
+    "firm": "Yali Capital",
+    "website": "https://yali.vc",
+    "thesis": "We are a deep-tech focused venture fund, investing across Semiconductors, Defence, Robotics, Artificial Intelligence, Smart Manufacturing, and Life Sciences.",
+    "focus_sectors": [
+      "Artificial Intelligence",
+      "Aerospace and Surveillance",
+      "Life Sciences",
+      "Robotics",
+      "Fabless Semiconductor",
+      "Smart Manufacturing"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Pre-Seed",
+      "Seed",
+      "Series A",
+      "Late-Stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "$104 million",
+    "active_status": "actively investing",
+    "pitch_process": "introductory conversation with one of our investment professionals",
+    "partners": [
+      {
+        "name": "Ganapathy 'Gani' Subramaniam",
+        "role": ""
+      },
+      {
+        "name": "Mathew Cyriac",
+        "role": ""
+      },
+      {
+        "name": "Lip-Bu Tan",
+        "role": ""
+      },
+      {
+        "name": "Karthikeyan 'Karthik' Madathil",
+        "role": ""
+      },
+      {
+        "name": "Sandipan Mondal",
+        "role": ""
+      },
+      {
+        "name": "Kaushik Ram",
+        "role": ""
+      },
+      {
+        "name": "Sunil S Patil",
+        "role": ""
+      },
+      {
+        "name": "Pranav Karnad",
+        "role": ""
+      },
+      {
+        "name": "Manjunath M P",
+        "role": ""
+      },
+      {
+        "name": "Ajay Soni",
+        "role": ""
+      },
+      {
+        "name": "Karthik Sunder",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Perceptyne Robotics",
+      "4baseCare",
+      "C2i",
+      "LatentForce",
+      "PointAI",
+      "Deeplase"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://yali.vc/contact/"
+      }
+    ],
+    "confidence_score": 18,
+    "source_url": "https://yali.vc",
+    "extracted_at": "2026-05-19T07:06:21.301349Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Owl Ventures",
+    "website": "https://www.owlvc.com",
+    "thesis": "Investing in AI driven learning and the future of education and work",
+    "focus_sectors": [
+      "EdTech",
+      "AI"
+    ],
+    "domain_specializations": [
+      "Education",
+      "Future of Work"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "Seven funds",
+    "fund_size": "$2.2B+",
+    "active_status": "Actively investing",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Brisk Teaching",
+      "Interplay Learning",
+      "Leap",
+      "Preply",
+      "Workera",
+      "Sizzle AI",
+      "Greenlight",
+      "ubiMaster",
+      "AnswersNow",
+      "Preply",
+      "Cloudforce"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "LinkedIn",
+        "value": "https://www.linkedin.com/company/owl-ventures-lp/"
+      }
+    ],
+    "confidence_score": 18,
+    "source_url": "https://www.owlvc.com",
+    "extracted_at": "2026-05-19T07:06:43.532448Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Qualcomm Ventures",
+    "website": "https://www.qualcommventures.com",
+    "thesis": "We invest in early to growth stage companies to accelerate the ecosystem",
+    "focus_sectors": [
+      "5G",
+      "AI",
+      "Automotive",
+      "Consumer",
+      "Enterprise & Data Center",
+      "IoT",
+      "XR/Metaverse"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Early",
+      "Growth"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "$150M",
+    "active_status": "actively investing",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Quinn Li",
+        "role": "Senior Vice President & Global Head of Qualcomm Ventures"
+      },
+      {
+        "name": "Rama Bethmangalkar",
+        "role": ""
+      },
+      {
+        "name": "Tushar Gupta",
+        "role": ""
+      },
+      {
+        "name": "Song Mao",
+        "role": ""
+      },
+      {
+        "name": "Boaz Peer",
+        "role": ""
+      },
+      {
+        "name": "Anirvan Chowdhury",
+        "role": ""
+      },
+      {
+        "name": "Michel Glezer",
+        "role": ""
+      },
+      {
+        "name": "Raz Mayshar",
+        "role": ""
+      },
+      {
+        "name": "Gaby Pan",
+        "role": "Ventures Manager"
+      },
+      {
+        "name": "Deepak Prasad",
+        "role": ""
+      },
+      {
+        "name": "Stephanie Shao Ni Ng",
+        "role": ""
+      },
+      {
+        "name": "Varsha Tagare",
+        "role": ""
+      },
+      {
+        "name": "Richard Tapalaga",
+        "role": ""
+      },
+      {
+        "name": "Albert Wang",
+        "role": ""
+      },
+      {
+        "name": "Hanyang Wang",
+        "role": ""
+      },
+      {
+        "name": "Nan Zhou",
+        "role": ""
+      },
+      {
+        "name": "Priyesh",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Airspace",
+      "Anthropic",
+      "AUGURY",
+      "Azion",
+      "Baicells",
+      "Celona",
+      "Hugging Face",
+      "Ring",
+      "SentinelOne",
+      "Zoom",
+      "Xiaomi",
+      "Cloudflare",
+      "99",
+      "MapmyIndia"
+    ],
+    "geography": [
+      "US",
+      "India",
+      "China",
+      "Europe",
+      "Israel",
+      "Latin America"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.qualcommventures.com"
+      }
+    ],
+    "confidence_score": 17,
+    "source_url": "https://www.qualcommventures.com",
+    "extracted_at": "2026-05-19T07:04:46.452199Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com",
+    "thesis": "We invest in transformative technology companies that are changing the way we live and work",
+    "focus_sectors": [
+      "AI",
+      "Healthcare",
+      "Consumer",
+      "Cybersecurity",
+      "Fintech",
+      "Infrastructure",
+      "Robotics + Hardware",
+      "SaaS",
+      "Supply Chain + Automation"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps"
+    ],
+    "investment_stage": [
+      "Early-stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "$100 million",
+    "active_status": "actively investing",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Matt Murphy",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Tim Tully",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Chime",
+      "Anthropic",
+      "Pinecone",
+      "Typeface",
+      "Astrix Security",
+      "Manifest OS",
+      "Nectar Social"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/menlo-ventures/"
+      }
+    ],
+    "confidence_score": 17,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T07:05:15.223614Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "pi Ventures",
+    "website": "https://www.piventures.in",
+    "thesis": "We invest in companies building disruptive technologies solving real-world problems, focusing on deep-tech innovations such as AI, machine learning, robotics, energy, life sciences, quantum computing, advanced materials, and sustainability.",
+    "focus_sectors": [
+      "AI",
+      "Machine Learning",
+      "Robotics",
+      "Energy",
+      "Life Sciences",
+      "Quantum Computing",
+      "Advanced Materials",
+      "Sustainability"
+    ],
+    "domain_specializations": [
+      "Deep Tech",
+      "Disruptive Innovations"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Submit pitch decks to info@piventures.in or contact through LinkedIn",
+    "partners": [
+      {
+        "name": "Manish Singhal",
+        "role": "Founder"
+      }
+    ],
+    "portfolio_companies": [
+      "Agnikul",
+      "Pixis",
+      "Ottonomy",
+      "Locus",
+      "Quanfluence",
+      "Zero Cow Factory",
+      "Wysa",
+      "Niramai"
+    ],
+    "geography": [
+      "India",
+      "International (with a 'Deep India Connect')"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": "info@piventures.in"
+      },
+      {
+        "type": "Website",
+        "value": "https://www.piventures.in"
+      }
+    ],
+    "confidence_score": 16,
+    "source_url": "https://www.piventures.in",
+    "extracted_at": "2026-05-19T07:03:43.311491Z",
+    "pages_scraped": 2
+  },
+  {
+    "firm": "Look AI Ventures",
+    "website": "https://lookai.vc",
+    "thesis": "We invest in globally disruptive early-stage AI startups",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps",
+      "Computer Vision",
+      "NLP"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Early-stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Martin Dostal",
+        "role": "Partner & Chief Science Officer"
+      },
+      {
+        "name": "Veronika Argust",
+        "role": ""
+      },
+      {
+        "name": "Eva Slonkova",
+        "role": ""
+      },
+      {
+        "name": "Kate Inozemtseva",
+        "role": "Investment Analyst"
+      },
+      {
+        "name": "Alexander Branyik",
+        "role": ""
+      },
+      {
+        "name": "Daniel Kunz",
+        "role": ""
+      },
+      {
+        "name": "Pavel Rosendorf",
+        "role": ""
+      },
+      {
+        "name": "Martina Jankovska",
+        "role": ""
+      },
+      {
+        "name": "Martin Havlik",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Angelo Burgarello",
+        "role": "Partner & Chief Investment Officer"
+      }
+    ],
+    "portfolio_companies": [
+      "Brickwise AI",
+      "Lucida AI",
+      "Embodied AI",
+      "Digicust",
+      "Stealth Mode Startup",
+      "Surveily",
+      "Inntelo AI",
+      "Cequence",
+      "Ochy",
+      "Ambr AI",
+      "SECJUR",
+      "Electric Sheep",
+      "Trackbar",
+      "Octotronic",
+      "Pandatron",
+      "Miros",
+      "Scase",
+      "MotionsCloud",
+      "Assetfloow",
+      "Subly",
+      "Openrefactory"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://lookai.vc"
+      },
+      {
+        "type": "email",
+        "value": ""
+      }
+    ],
+    "confidence_score": 16,
+    "source_url": "https://lookai.vc",
+    "extracted_at": "2026-05-19T07:04:00.362208Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "Elevation Capital",
+    "website": "https://www.elevationcapital.com",
+    "thesis": "Investing in audacious founders to reach PMF and go beyond",
+    "focus_sectors": [
+      "Consumer Tech",
+      "Fintech & Financial Services",
+      "Enterprise AI",
+      "Frontier Tech",
+      "Healthcare",
+      "Consumer Brands"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Paytm",
+      "Meesho",
+      "Spinny",
+      "Swiggy",
+      "Sharechat",
+      "Acko",
+      "PlaySimple",
+      "NoBroker",
+      "Urban Company",
+      "Firstcry"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "",
+        "value": ""
+      }
+    ],
+    "confidence_score": 16,
+    "source_url": "https://elevationcapital.com",
+    "extracted_at": "2026-05-19T07:04:32.819465Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "AI Capital",
+    "website": "https://www.ai.vc",
+    "thesis": "AI Capital invests in AI-enabled business software companies that facilitate efficiencies and foster resilience in the supply and delivery of critical goods and services.",
+    "focus_sectors": [
+      "AI",
+      "Software"
+    ],
+    "domain_specializations": [
+      "Applied Artificial Intelligence",
+      "Machine Learning",
+      "Natural Language Understanding"
+    ],
+    "investment_stage": [
+      "Early Growth"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Neville Teagarden",
+        "role": "CO-FOUNDER and GENERAL PARTNER"
+      },
+      {
+        "name": "Elizabeth Cook",
+        "role": "MANAGING PARTNER, NORTH AMERICA"
+      },
+      {
+        "name": "Andy Maus",
+        "role": ""
+      },
+      {
+        "name": "Scott Spangler",
+        "role": "MANAGING PARTNER | COO"
+      },
+      {
+        "name": "Josh Sutton",
+        "role": "CO-FOUNDER and ADVISORY PARTNER"
+      }
+    ],
+    "portfolio_companies": [
+      "Agorai",
+      "Caladrius Ventures",
+      "DataFi",
+      "Link3D",
+      "Luminoso",
+      "MIIT-Born Netra",
+      "Noetic Machines",
+      "Syndesis Health",
+      "Xeomics"
+    ],
+    "geography": [
+      "US",
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "LinkedIn",
+        "value": "https://www.linkedin.com/in/nteagarden/"
+      },
+      {
+        "type": "LinkedIn",
+        "value": "https://www.linkedin.com/in/cookelizabeth/"
+      },
+      {
+        "type": "LinkedIn",
+        "value": "https://www.linkedin.com/in/andrewmaus/"
+      },
+      {
+        "type": "LinkedIn",
+        "value": "https://www.linkedin.com/in/sspangler/"
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://www.ai.vc",
+    "extracted_at": "2026-05-19T07:04:15.571548Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Bessemer Venture Partners",
+    "website": "https://www.bvp.com",
+    "thesis": "We partner with entrepreneurs from their early days through every stage of growth, focusing on AI, cloud, cybersecurity, and deep tech.",
+    "focus_sectors": [
+      "AI",
+      "Cloud",
+      "Cybersecurity",
+      "Deep Tech"
+    ],
+    "domain_specializations": [
+      "Machine Learning",
+      "Data Infrastructure",
+      "Robotics",
+      "Physical AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Byron Deeter",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Waymo",
+      "Ramp",
+      "EliseAI",
+      "Fal.ai",
+      "LinkedIn"
+    ],
+    "geography": [
+      "US",
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": "hello@bvp.com"
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://www.bvp.com",
+    "extracted_at": "2026-05-19T07:05:38.495691Z",
+    "pages_scraped": 2
+  },
+  {
+    "firm": "PrivateEquityList",
+    "website": "https://privateequitylist.com",
+    "thesis": "Investing in various industries including edtech, gaming, e-commerce, cannabis, robotics, SaaS, fintech, blockchain, AI, and impact investing",
+    "focus_sectors": [
+      "Edtech",
+      "Gaming",
+      "E-commerce",
+      "Cannabis",
+      "Robotics",
+      "SaaS",
+      "Fintech",
+      "Blockchain",
+      "AI",
+      "Impact Investing"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "use the search function on the website",
+    "partners": [
+      {
+        "name": "Mark Gladney",
+        "role": "Founder"
+      },
+      {
+        "name": "Stephan Horvath",
+        "role": "Founder"
+      },
+      {
+        "name": "Aladar Tepelea",
+        "role": "Founder"
+      },
+      {
+        "name": "Max Korneev",
+        "role": "Founder and Managing Director"
+      },
+      {
+        "name": "Steven Thomas",
+        "role": "Investment Director"
+      },
+      {
+        "name": "Shintaro Hashimoto",
+        "role": "Investment Director"
+      },
+      {
+        "name": "Emil Zakirkov",
+        "role": "M&A and Strategic Advisory"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US",
+      "EU",
+      "MENA",
+      "APAC",
+      "Bangladesh",
+      "Philippines"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://privateequitylist.com"
+      },
+      {
+        "type": "login",
+        "value": "https://privateequitylist.com/login"
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://privateequitylist.com",
+    "extracted_at": "2026-05-19T07:05:57.476470Z",
+    "pages_scraped": 2
+  },
+  {
+    "firm": "Khosla Ventures",
+    "website": "https://www.khoslaventures.com/",
+    "thesis": "Investing in early, impactful ventures, with a focus on AI, sustainability, and frontier technologies",
+    "focus_sectors": [
+      "AI",
+      "Sustainability",
+      "Frontier Technologies"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps",
+      "Clean Energy"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Vinod Khosla",
+        "role": "Founder"
+      }
+    ],
+    "portfolio_companies": [
+      "OpenAI",
+      "Sword Health",
+      "GitLab",
+      "Affirm",
+      "Impossible Foods",
+      "Guardant Health",
+      "AliveCor",
+      "Block",
+      "Stripe",
+      "DoorDash",
+      "Ultima Genomics",
+      "Fortera",
+      "Waabi"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.khoslaventures.com/"
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://khoslaventures.com",
+    "extracted_at": "2026-05-19T07:07:06.670012Z",
+    "pages_scraped": 3
+  }
+]

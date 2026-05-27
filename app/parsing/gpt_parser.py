@@ -4,9 +4,12 @@ import re
 import ollama
 
 from groq import Groq
+from openai import OpenAI
 
 from app.config.settings import (
-    GROQ_API_KEY
+    GROQ_API_KEY,
+    OPENAI_API_KEY,
+    OPENAI_MODEL
 )
 
 from app.utils.groq_circuit import (
@@ -17,8 +20,13 @@ from app.utils.groq_circuit import (
 
 
 # =========================================
-# GROQ CLIENT
+# LLM CLIENTS
 # =========================================
+
+openai_client = OpenAI(
+
+    api_key=OPENAI_API_KEY
+) if OPENAI_API_KEY else None
 
 groq_client = Groq(
 
@@ -102,6 +110,113 @@ EMPTY_RESPONSE = {
 }
 
 
+INVESTOR_JSON_SCHEMA = {
+
+    "name": "investor_intelligence_record",
+
+    "strict": True,
+
+    "schema": {
+
+        "type": "object",
+
+        "additionalProperties": False,
+
+        "properties": {
+
+            "firm": {
+                "type": "string"
+            },
+
+            "website": {
+                "type": "string"
+            },
+
+            "partners": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "additionalProperties": False,
+                    "properties": {
+                        "name": {"type": "string"},
+                        "role": {"type": "string"},
+                        "title": {"type": "string"},
+                        "linkedin_url": {"type": "string"},
+                        "twitter_url": {"type": "string"},
+                        "source_url": {"type": "string"},
+                        "extraction_confidence": {"type": "number"}
+                    },
+                    "required": [
+                        "name",
+                        "role",
+                        "title",
+                        "linkedin_url",
+                        "twitter_url",
+                        "source_url",
+                        "extraction_confidence"
+                    ]
+                }
+            },
+
+            "focus_sectors": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+
+            "investment_stage": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+
+            "portfolio_companies": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "additionalProperties": False,
+                    "properties": {
+                        "company_name": {"type": "string"},
+                        "sector": {"type": "string"}
+                    },
+                    "required": [
+                        "company_name",
+                        "sector"
+                    ]
+                }
+            },
+
+            "geography": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+
+            "contact_links": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        },
+
+        "required": [
+            "firm",
+            "website",
+            "partners",
+            "focus_sectors",
+            "investment_stage",
+            "portfolio_companies",
+            "geography",
+            "contact_links"
+        ]
+    }
+}
+
+
 def empty_partner():
 
     return {
@@ -110,9 +225,15 @@ def empty_partner():
 
         "role": "",
 
+        "title": "",
+
         "linkedin_url": "",
 
-        "twitter_url": ""
+        "twitter_url": "",
+
+        "source_url": "",
+
+        "extraction_confidence": 0.0
     }
 
 
@@ -163,8 +284,11 @@ SCHEMA
     {{
       "name": "",
       "role": "",
+      "title": "",
       "linkedin_url": "",
-      "twitter_url": ""
+      "twitter_url": "",
+      "source_url": "",
+      "extraction_confidence": 0.0
     }}
   ],
   "focus_sectors": [],
@@ -287,8 +411,11 @@ investment team.
 Return each partner as an object with:
 - name
 - role
+- title
 - linkedin_url
 - twitter_url
+- source_url
+- extraction_confidence
 
 Possible roles:
 - Partner
@@ -297,6 +424,15 @@ Possible roles:
 - Venture Partner
 - Principal
 - Investment Director
+
+Use "title" for the exact page title when present.
+Use "role" for the normalized investment role.
+Use "source_url" for the profile/team page URL or page URL
+where the person was found.
+Use extraction_confidence from 0.0 to 1.0:
+- 0.95 when name, role/title, and source URL are explicit
+- 0.80 when name and role/title are explicit
+- 0.65 when only name and team-page context are explicit
 
 Do NOT include:
 - startup founders
@@ -456,6 +592,10 @@ def ensure_partner_list(value):
                 item.get("role", "")
             ).strip()
 
+            partner["title"] = str(
+                item.get("title", item.get("role", ""))
+            ).strip()
+
             partner["linkedin_url"] = str(
                 item.get("linkedin_url", "")
             ).strip()
@@ -463,6 +603,20 @@ def ensure_partner_list(value):
             partner["twitter_url"] = str(
                 item.get("twitter_url", "")
             ).strip()
+
+            partner["source_url"] = str(
+                item.get(
+                    "source_url",
+                    item.get("linkedin_url", "")
+                )
+            ).strip()
+
+            try:
+                partner["extraction_confidence"] = float(
+                    item.get("extraction_confidence", 0.0) or 0.0
+                )
+            except (TypeError, ValueError):
+                partner["extraction_confidence"] = 0.0
 
         else:
 
@@ -696,6 +850,41 @@ def normalize_output(parsed):
 def filter_partner_names(partners):
 
     filtered = []
+    blocked_terms = {
+        "about",
+        "accelerator",
+        "blog",
+        "capital",
+        "companies",
+        "contact",
+        "events",
+        "focus",
+        "fund",
+        "funding",
+        "home",
+        "investment",
+        "investments",
+        "investor",
+        "investors",
+        "news",
+        "partners",
+        "portfolio",
+        "press",
+        "privacy",
+        "sectors",
+        "stage",
+        "startups",
+        "team",
+        "terms",
+        "thesis",
+        "ventures",
+    }
+
+    name_pattern = re.compile(
+
+        r"^[A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ'.-]+"
+        r"(?:\s+(?:[A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ'.-]+)){1,5}$"
+    )
 
 
     for partner in partners:
@@ -717,12 +906,16 @@ def filter_partner_names(partners):
             partner_record["name"] = partner_name
 
 
-        if not re.match(
+        if not name_pattern.match(partner_name):
 
-            r"^[A-Z][a-zA-Z'\\-]+(?:\\s[A-Z][a-zA-Z'\\-]+)+$",
+            continue
 
-            partner_name
-        ):
+        name_words = {
+            word.strip("'.-").lower()
+            for word in partner_name.split()
+        }
+
+        if name_words & blocked_terms:
 
             continue
 
@@ -1227,6 +1420,77 @@ def parse_with_ollama(prompt):
 
 
 # =========================================
+# OPENAI PARSER
+# =========================================
+
+def parse_with_openai(prompt):
+
+    if not openai_client:
+
+        raise RuntimeError(
+
+            "OPENAI_API_KEY is not configured"
+        )
+
+
+    response = openai_client.chat.completions.create(
+
+        model=OPENAI_MODEL,
+
+        temperature=0,
+
+        response_format={
+
+            "type": "json_schema",
+
+            "json_schema": INVESTOR_JSON_SCHEMA
+        },
+
+        messages=[
+
+            {
+                "role": "system",
+
+                "content": (
+                    "You extract investor intelligence and return only "
+                    "schema-valid JSON."
+                )
+            },
+
+            {
+                "role": "user",
+
+                "content": prompt
+            }
+        ]
+    )
+
+
+    message = response.choices[0].message
+
+    refusal = getattr(
+
+        message,
+
+        "refusal",
+
+        None
+    )
+
+    if refusal:
+
+        raise RuntimeError(
+
+            f"OpenAI refused structured extraction: {refusal}"
+        )
+
+
+    output = message.content
+
+    return extract_json(output)
+
+
+# =========================================
 # GROQ PARSER
 # =========================================
 
@@ -1333,13 +1597,7 @@ def _parse_with_groq_8b_then_ollama(prompt, markdown_content):
             return EMPTY_RESPONSE
 
 
-# =========================================
-# MAIN PARSER
-# =========================================
-
-def parse_investor(markdown_content):
-
-    prompt = build_prompt(markdown_content)
+def _parse_with_groq_70b_then_8b_then_ollama(prompt, markdown_content):
 
     if should_use_groq_70b():
 
@@ -1361,17 +1619,19 @@ def parse_investor(markdown_content):
 
             print(f"Groq 70B failed: {groq_70b_error}")
 
-            if not is_recoverable_groq_error(error_message):
+            if is_recoverable_groq_error(error_message):
 
-                return EMPTY_RESPONSE
+                record_groq_70b_rate_limit_failure()
 
-            record_groq_70b_rate_limit_failure()
+                wait_time = extract_retry_wait(error_message)
 
-            wait_time = extract_retry_wait(error_message)
+                print(f"Waiting {wait_time}s before Groq 8B fallback...")
 
-            print(f"Waiting {wait_time}s before fallback...")
+                time.sleep(wait_time)
 
-            time.sleep(wait_time)
+            else:
+
+                print("Groq 70B error is not recoverable; trying Groq 8B.")
 
     else:
 
@@ -1379,7 +1639,40 @@ def parse_investor(markdown_content):
             "Groq 70B skipped (rate-limit circuit open); using 8B directly."
         )
 
+
     return _parse_with_groq_8b_then_ollama(prompt, markdown_content)
+
+
+# =========================================
+# MAIN PARSER
+# =========================================
+
+def parse_investor(markdown_content):
+
+    prompt = build_prompt(markdown_content)
+
+    try:
+
+        parsed = parse_with_openai(prompt)
+
+        parsed = _postprocess_parsed(parsed, markdown_content)
+
+        print(f"Parsed using OpenAI {OPENAI_MODEL}")
+
+        return parsed
+
+    except Exception as openai_error:
+
+        print(f"OpenAI failed: {openai_error}")
+
+        print("Switching to Groq 70B...")
+
+    return _parse_with_groq_70b_then_8b_then_ollama(
+
+        prompt,
+
+        markdown_content
+    )
 # import json
 # import time
 # import ollama

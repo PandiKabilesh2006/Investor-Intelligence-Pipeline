@@ -1,19 +1,98 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getPipelineStatus, getPipelineQueueSummary, triggerPipelineRun, getActivePipelineJobs, PipelineStatus, QueueSummary } from "@/lib/api";
+import { clearPendingQueue, getPipelineStatus, getPipelineQueueSummary, triggerPipelineRun, getActivePipelineJobs, previewQueries, PipelineStatus, QueueSummary } from "@/lib/api";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn, fieldInputClassName, formatDate } from "@/lib/utils";
-import { Settings, Play, RefreshCw, Loader2, AlertCircle, CheckCircle2, Terminal, Search, Info } from "lucide-react";
+import { Play, RefreshCw, Loader2, AlertCircle, CheckCircle2, Terminal, Info, Wand2, MapPin, BriefcaseBusiness, Layers, Target, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+
+const SECTOR_OPTIONS = [
+  "Artificial Intelligence",
+  "B2B SaaS",
+  "Fintech",
+  "Healthcare",
+  "Climate Tech",
+  "Cybersecurity",
+  "Developer Tools",
+];
+
+const STAGE_OPTIONS = [
+  "Pre-Seed",
+  "Seed",
+  "Series A",
+  "Series B",
+  "Growth Stage",
+];
+
+const GEOGRAPHY_OPTIONS = [
+  "United States",
+  "India",
+  "Europe",
+  "Southeast Asia",
+  "Middle East",
+  "Global",
+];
+
+const BUSINESS_MODEL_OPTIONS = [
+  "B2B SaaS",
+  "Enterprise",
+  "Infrastructure",
+  "Workflow Automation",
+  "Vertical SaaS",
+  "Developer Tools",
+];
+
+const QUERY_HISTORY_STORAGE_KEY = "investor-pipeline-query-history";
+
+const splitManualQueries = (value: string) =>
+  value
+    .split("\n")
+    .map((query) => query.trim())
+    .filter(Boolean);
+
+const dedupeQueries = (queries: string[]) => {
+  const seen = new Set<string>();
+
+  return queries.filter((query) => {
+    const key = query.trim().toLowerCase();
+
+    if (!key || seen.has(key)) {
+      return false;
+    }
+
+    seen.add(key);
+    return true;
+  });
+};
 
 export default function PipelinePage() {
   const [status, setStatus] = useState<PipelineStatus | null>(null);
   const [queue, setQueue] = useState<QueueSummary | null>(null);
   const [activeJobs, setActiveJobs] = useState({ active: false, jobs: [] as { pid: number }[] });
   
-  const [searchQuery, setSearchQuery] = useState("");
-  const [triggering, setTriggering] = useState(false);
+  const [sector, setSector] = useState("Artificial Intelligence");
+  const [stage, setStage] = useState("Seed");
+  const [geography, setGeography] = useState("United States");
+  const [businessModel, setBusinessModel] = useState("B2B SaaS");
+  const [theme, setTheme] = useState("");
+  const [manualQueries, setManualQueries] = useState("");
+  const [generatedQueries, setGeneratedQueries] = useState<string[]>([]);
+  const [queryHistory, setQueryHistory] = useState<string[]>(() => {
+    if (typeof window === "undefined") {
+      return [];
+    }
+
+    try {
+      const saved = window.localStorage.getItem(QUERY_HISTORY_STORAGE_KEY);
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [generatingQueries, setGeneratingQueries] = useState(false);
+  const [runningQuery, setRunningQuery] = useState<string | null>(null);
+  const [clearingQueue, setClearingQueue] = useState(false);
   const [triggerMessage, setTriggerMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshInterval, setRefreshInterval] = useState<number>(5); // Refresh logs every 5 seconds
@@ -21,26 +100,38 @@ export default function PipelinePage() {
   const [logFilter, setLogFilter] = useState<"all" | "info" | "error" | "warning">("all");
 
   const loadData = async () => {
-    try {
-      const [statusRes, queueRes, jobsRes] = await Promise.all([
-        getPipelineStatus(),
-        getPipelineQueueSummary(),
-        getActivePipelineJobs()
-      ]);
-      setStatus(statusRes);
-      setQueue(queueRes);
-      setActiveJobs(jobsRes);
-    } catch (err) {
-      console.error("Failed to load pipeline stats:", err);
-    } finally {
-      setLoading(false);
+    const [statusRes, queueRes, jobsRes] = await Promise.allSettled([
+      getPipelineStatus(),
+      getPipelineQueueSummary(),
+      getActivePipelineJobs()
+    ]);
+
+    if (statusRes.status === "fulfilled") {
+      setStatus(statusRes.value);
     }
+
+    if (queueRes.status === "fulfilled") {
+      setQueue(queueRes.value);
+    }
+
+    if (jobsRes.status === "fulfilled") {
+      setActiveJobs(jobsRes.value);
+    }
+
+    setLoading(false);
   };
 
   // Initial load
   useEffect(() => {
     loadData();
   }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      QUERY_HISTORY_STORAGE_KEY,
+      JSON.stringify(queryHistory.slice(0, 30))
+    );
+  }, [queryHistory]);
 
   // Auto-refresh logs loop
   useEffect(() => {
@@ -52,28 +143,80 @@ export default function PipelinePage() {
     return () => clearInterval(interval);
   }, [autoRefresh, refreshInterval]);
 
-  const handleTrigger = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim().length < 2) return;
-    
-    setTriggering(true);
+  const handleGenerateQueries = async () => {
+    setGeneratingQueries(true);
     setTriggerMessage(null);
+
     try {
-      const res = await triggerPipelineRun(searchQuery.trim());
+      const result = await previewQueries({
+        sector,
+        stage,
+        geography,
+        business_model: businessModel,
+        theme,
+        manual_queries: splitManualQueries(manualQueries),
+        use_expansion: false,
+      });
+      const nextQueries = dedupeQueries(result.queries);
+
+      setGeneratedQueries(nextQueries);
+      setQueryHistory((current) => dedupeQueries([...nextQueries, ...current]).slice(0, 30));
       setTriggerMessage({
         type: "success",
-        text: `Pipeline ingestion job successfully triggered for query "${searchQuery}" (PID: ${res.pid})`
+        text: `Generated ${nextQueries.length} deduplicated quer${nextQueries.length === 1 ? "y" : "ies"}. Pick one and run it when ready.`
       });
-      setSearchQuery("");
-      // Reload stats immediately
-      loadData();
+    } catch (err: any) {
+      setTriggerMessage({
+        type: "error",
+        text: err.message || "Failed to generate discovery queries."
+      });
+    } finally {
+      setGeneratingQueries(false);
+    }
+  };
+
+  const handleRunQuery = async (query: string) => {
+    if (query.trim().length < 2) return;
+
+    setRunningQuery(query);
+    setTriggerMessage(null);
+
+    try {
+      const res = await triggerPipelineRun(query.trim());
+      setTriggerMessage({
+        type: "success",
+        text: `Pipeline ingestion job triggered for "${query}" (Run ID: ${res.pid}). Duplicate URLs will be skipped by the backend.`
+      });
+      setQueryHistory((current) => dedupeQueries([query, ...current]).slice(0, 30));
+      await loadData();
     } catch (err: any) {
       setTriggerMessage({
         type: "error",
         text: err.message || "Failed to trigger pipeline ingestion run."
       });
     } finally {
-      setTriggering(false);
+      setRunningQuery(null);
+    }
+  };
+
+  const handleClearPendingQueue = async () => {
+    setClearingQueue(true);
+    setTriggerMessage(null);
+
+    try {
+      const result = await clearPendingQueue();
+      setTriggerMessage({
+        type: "success",
+        text: `Marked ${result.updated} pending queue URL${result.updated === 1 ? "" : "s"} as skipped.`
+      });
+      await loadData();
+    } catch (err: any) {
+      setTriggerMessage({
+        type: "error",
+        text: err.message || "Failed to clear pending queue."
+      });
+    } finally {
+      setClearingQueue(false);
     }
   };
 
@@ -138,39 +281,170 @@ export default function PipelinePage() {
           </div>
           
           <p className="text-xs text-muted-foreground">
-            Launch a background scraping worker process to discover and parse new investors based on a target query. This executes the AI-enabled web pipeline.
+            Build focused investor search queries, preview them first, then run only the exact query you want. Duplicate URLs are skipped when the backend queues results.
           </p>
 
-          <form onSubmit={handleTrigger} className="flex gap-3">
-            <div className="relative flex-1">
-              <Search className="absolute top-3 left-3.5 h-4.5 w-4.5 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="e.g., Enterprise B2B SaaS VC firms in US"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                disabled={activeJobs.active || triggering}
-                className={cn(fieldInputClassName, "pl-11 pr-4 py-2.5 disabled:opacity-50")}
-              />
-            </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            <label className="space-y-1.5">
+              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+                <Target className="h-3.5 w-3.5" />
+                Sector
+              </span>
+              <select
+                value={sector}
+                onChange={(e) => setSector(e.target.value)}
+                className={cn(fieldInputClassName, "px-3 py-2.5")}
+              >
+                {SECTOR_OPTIONS.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+
+            <label className="space-y-1.5">
+              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+                <Layers className="h-3.5 w-3.5" />
+                Stage
+              </span>
+              <select
+                value={stage}
+                onChange={(e) => setStage(e.target.value)}
+                className={cn(fieldInputClassName, "px-3 py-2.5")}
+              >
+                {STAGE_OPTIONS.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+
+            <label className="space-y-1.5">
+              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+                <MapPin className="h-3.5 w-3.5" />
+                Geography
+              </span>
+              <select
+                value={geography}
+                onChange={(e) => setGeography(e.target.value)}
+                className={cn(fieldInputClassName, "px-3 py-2.5")}
+              >
+                {GEOGRAPHY_OPTIONS.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+
+            <label className="space-y-1.5">
+              <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+                <BriefcaseBusiness className="h-3.5 w-3.5" />
+                Business Type
+              </span>
+              <select
+                value={businessModel}
+                onChange={(e) => setBusinessModel(e.target.value)}
+                className={cn(fieldInputClassName, "px-3 py-2.5")}
+              >
+                {BUSINESS_MODEL_OPTIONS.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <label className="space-y-1.5 block">
+            <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+              Extra Theme or Notes
+            </span>
+            <input
+              type="text"
+              placeholder="e.g., agentic workflow automation, India-first SaaS, compliance tools"
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
+              className={cn(fieldInputClassName, "px-3 py-2.5")}
+            />
+          </label>
+
+          <label className="space-y-1.5 block">
+            <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+              Manual Queries
+            </span>
+            <textarea
+              rows={3}
+              placeholder={"Optional: one custom query per line\nExample: AI compliance seed investors in India"}
+              value={manualQueries}
+              onChange={(e) => setManualQueries(e.target.value)}
+              className={cn(fieldInputClassName, "px-3 py-2.5 resize-none")}
+            />
+          </label>
+
+          <div className="flex flex-wrap items-center gap-3">
             <button
-              type="submit"
-              disabled={activeJobs.active || triggering || searchQuery.trim().length < 2}
-              className="rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-violet-500 disabled:bg-violet-800/40 disabled:text-muted-foreground transition flex items-center gap-1.5 shrink-0"
+              type="button"
+              onClick={handleGenerateQueries}
+              disabled={generatingQueries}
+              className="rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-violet-500 disabled:bg-violet-800/40 disabled:text-muted-foreground transition flex items-center gap-1.5"
             >
-              {triggering ? (
+              {generatingQueries ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  Triggering
+                  Generating
                 </>
               ) : (
                 <>
-                  <Play className="h-4 w-4 fill-current" />
-                  Launch Scraper
+                  <Wand2 className="h-4 w-4" />
+                  Generate Queries
                 </>
               )}
             </button>
-          </form>
+            <p className="text-[10px] text-muted-foreground">
+              Running a query starts the real crawler, parser, and database insert flow.
+            </p>
+          </div>
+
+          {(generatedQueries.length > 0 || queryHistory.length > 0) && (
+            <div className="space-y-3 rounded-xl border border-border bg-muted/30 p-3">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs font-bold text-foreground">
+                  Query List
+                </p>
+                {generatedQueries.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setGeneratedQueries([])}
+                    className="flex items-center gap-1 rounded-lg px-2 py-1 text-[10px] font-semibold text-muted-foreground hover:bg-muted hover:text-foreground"
+                  >
+                    <X className="h-3 w-3" />
+                    Clear preview
+                  </button>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                {(generatedQueries.length > 0 ? generatedQueries : queryHistory).map((query) => (
+                  <div key={query} className="flex flex-col gap-2 rounded-lg border border-border bg-background/70 p-3 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="text-xs font-medium text-foreground">{query}</p>
+                    <button
+                      type="button"
+                      onClick={() => handleRunQuery(query)}
+                      disabled={activeJobs.active || runningQuery !== null}
+                      className="flex shrink-0 items-center justify-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2 text-xs font-bold text-white transition hover:bg-emerald-500 disabled:bg-emerald-800/30 disabled:text-muted-foreground"
+                    >
+                      {runningQuery === query ? (
+                        <>
+                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                          Starting
+                        </>
+                      ) : (
+                        <>
+                          <Play className="h-3.5 w-3.5 fill-current" />
+                          Run Query
+                        </>
+                      )}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {activeJobs.active && (
             <div className="rounded-xl border border-violet-500/20 bg-violet-500/5 p-4 flex items-center gap-3 text-xs text-violet-400">
@@ -197,6 +471,30 @@ export default function PipelinePage() {
               <span>{triggerMessage.text}</span>
             </div>
           )}
+
+          {status?.latest_run && (
+            <div className={`rounded-xl border p-4 text-xs ${
+              status.latest_run.status === "success"
+                ? "border-emerald-500/25 bg-emerald-500/10 text-emerald-500"
+                : status.latest_run.status === "failed"
+                  ? "border-red-500/25 bg-red-500/10 text-red-500"
+                  : "border-violet-500/25 bg-violet-500/10 text-violet-500"
+            }`}>
+              <div className="flex items-center justify-between gap-3">
+                <p className="font-bold uppercase tracking-wide">
+                  Latest run #{status.latest_run.id}: {status.latest_run.status}
+                </p>
+                <p className="text-[10px] text-muted-foreground">
+                  {formatDate(status.latest_run.ended_at || status.latest_run.started_at)}
+                </p>
+              </div>
+              {status.latest_run.error_message && (
+                <pre className="mt-3 max-h-28 overflow-y-auto whitespace-pre-wrap rounded-lg bg-background/70 p-3 font-mono text-[10px] text-red-500">
+                  {status.latest_run.error_message}
+                </pre>
+              )}
+            </div>
+          )}
         </Card>
 
         {/* Queue Statistics panel */}
@@ -213,6 +511,24 @@ export default function PipelinePage() {
                   <span className="text-muted-foreground font-medium">Pending Crawler Queue:</span>
                   <span className="text-foreground font-bold">{queue.queue.pending} URLs</span>
                 </div>
+                {queue.queue.pending > 0 && (
+                  <div className="space-y-2 rounded-lg border border-amber-500/20 bg-amber-500/5 p-2">
+                    <div className="space-y-1">
+                      {(queue.pending_urls || []).map((item) => (
+                        <p key={item.id} className="truncate text-[10px] text-muted-foreground" title={item.url}>
+                          {item.url}
+                        </p>
+                      ))}
+                    </div>
+                    <button
+                      onClick={handleClearPendingQueue}
+                      disabled={clearingQueue}
+                      className="w-full rounded-lg border border-amber-500/25 bg-amber-500/10 px-3 py-2 text-xs font-bold text-amber-600 transition hover:bg-amber-500/15 disabled:opacity-50 dark:text-amber-400"
+                    >
+                      {clearingQueue ? "Clearing pending queue..." : "Mark pending as skipped"}
+                    </button>
+                  </div>
+                )}
                 <div className="flex justify-between text-xs py-1 border-b border-border">
                   <span className="text-muted-foreground font-medium">Successfully Synced:</span>
                   <span className="text-emerald-400 font-bold">{queue.crawled_urls} URLs</span>

@@ -1,0 +1,1033 @@
+[
+  {
+    "firm": "Icon Ventures",
+    "website": "https://iconventures.com",
+    "thesis": "A prepared mind for investing in AI. Deep foundational knowledge of how venture capital works. Strong relationships within the venture capital ecosystem.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series B"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively investing",
+    "pitch_process": "warm intros only",
+    "partners": [
+      {
+        "name": "Joe Horowitz",
+        "role": "Managing General Partner"
+      },
+      {
+        "name": "Tom Mawhinney",
+        "role": "General Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Rockset",
+      "Eppo",
+      "Quizlet",
+      "Alation",
+      "Midi",
+      "Tilt"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/icon-ventures"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://iconventures.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/iconventures"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 17,
+    "source_url": "https://iconventures.com",
+    "extracted_at": "2026-05-20T07:00:29.576091Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Joe Horowitz: [joe@iconventures.com, joe.horowitz@iconventures.com, jhorowitz@iconventures.com]",
+      "Tom Mawhinney: [tom@iconventures.com, tom.mawhinney@iconventures.com, tmawhinney@iconventures.com]"
+    ]
+  },
+  {
+    "firm": "The General Partnership",
+    "website": "https://www.thegp.com",
+    "thesis": "We invest both capital and sweat. Our sweat equity model embeds tenured builders into your company for months (or years) at a time.",
+    "focus_sectors": [
+      "AI",
+      "ML"
+    ],
+    "domain_specializations": [
+      "AI native email security",
+      "AI automation platform for professional services",
+      "AI-first company redefining human-computer interaction"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "$1-$5 million",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively deploying",
+    "pitch_process": "submit at [website URL]",
+    "partners": [
+      {
+        "name": "Bret Reckard",
+        "role": "Talent"
+      },
+      {
+        "name": "Kris Kostelecky",
+        "role": "Engineering Leadership"
+      },
+      {
+        "name": "Ted Mao",
+        "role": "Engineering Leadership"
+      }
+    ],
+    "portfolio_companies": [
+      "Turbineone",
+      "Aegis AI",
+      "Bridger GP",
+      "Cassidy AI",
+      "Charlie Labs",
+      "Defakto Security",
+      "Falconer",
+      "Finix Payments",
+      "Glade AI",
+      "Inflection AI",
+      "Integral",
+      "Jazz Tools",
+      "Layer 9",
+      "Manasai",
+      "Meridian AI",
+      "Minerva",
+      "Momento",
+      "Morph AI",
+      "Multiplier Holdings",
+      "Olto",
+      "School AI",
+      "Stainless",
+      "Thatch AI"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.thegp.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 17,
+    "source_url": "https://www.thegp.com",
+    "extracted_at": "2026-05-20T07:04:13.380947Z",
+    "pages_scraped": 2,
+    "guessed_emails": [
+      "Bret Reckard: [bret@thegp.com, bret.reckard@thegp.com, breckard@thegp.com]",
+      "Kris Kostelecky: [kris@thegp.com, kris.kostelecky@thegp.com, kkostelecky@thegp.com]",
+      "Ted Mao: [ted@thegp.com, ted.mao@thegp.com, tmao@thegp.com]"
+    ]
+  },
+  {
+    "firm": "Brightspark",
+    "website": "https://brightspark.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Software",
+      "Climate",
+      "Health",
+      "AI",
+      "Transportation"
+    ],
+    "domain_specializations": [
+      "Carbon capture",
+      "Direct air capture",
+      "Ocean carbon capture",
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "Fund II",
+    "fund_size": "$67.5M",
+    "active_status": "",
+    "pitch_process": "Join our portfolio",
+    "partners": [
+      {
+        "name": "Mark Skapinker",
+        "role": "Partner"
+      },
+      {
+        "name": "Sophie",
+        "role": "Partner"
+      },
+      {
+        "name": "Éléonore",
+        "role": "Partner"
+      },
+      {
+        "name": "Andrew",
+        "role": "Partner"
+      },
+      {
+        "name": "Claire Fauquier",
+        "role": "Venture Partner"
+      },
+      {
+        "name": "Thomas",
+        "role": "Investment Associate"
+      },
+      {
+        "name": "Elena",
+        "role": "CFO and Partner"
+      },
+      {
+        "name": "Frédérik",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "FlyNect Air",
+      "Coral",
+      "Deep Sky",
+      "Potential Motors",
+      "Optable",
+      "Haveniaq",
+      "Data Sentinel",
+      "Wysdom AI"
+    ],
+    "geography": [
+      "Canada"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://brightspark.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://brightspark.com"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 17,
+    "source_url": "https://brightspark.com",
+    "extracted_at": "2026-05-20T07:05:36.528775Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Mark Skapinker: [mark@brightspark.com, mark.skapinker@brightspark.com, mskapinker@brightspark.com]",
+      "Sophie: [sophie@brightspark.com]",
+      "Éléonore: [éléonore@brightspark.com]",
+      "Andrew: [andrew@brightspark.com]",
+      "Claire Fauquier: [claire@brightspark.com, claire.fauquier@brightspark.com, cfauquier@brightspark.com]",
+      "Thomas: [thomas@brightspark.com]",
+      "Elena: [elena@brightspark.com]",
+      "Frédérik: [frédérik@brightspark.com]"
+    ]
+  },
+  {
+    "firm": "Beta Boom",
+    "website": "https://www.betaboom.com",
+    "thesis": "We invest in founders who defy the traditional Silicon Valley mold. True backing must go beyond capital—it means being in the trenches with you.",
+    "focus_sectors": [
+      "Enterprise Software",
+      "Supply Chain",
+      "Cybersecurity"
+    ],
+    "domain_specializations": [
+      "Low-code configurations",
+      "AI",
+      "Reusable tools"
+    ],
+    "investment_stage": [
+      "Pre-seed",
+      "Seed"
+    ],
+    "check_size": "$100K-$500K",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "actively deploying",
+    "pitch_process": "Apply for Investment at https://www.betaboom.com/apply",
+    "partners": [
+      {
+        "name": "Kimmy",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Sergio",
+        "role": "Co-Founder"
+      }
+    ],
+    "portfolio_companies": [
+      "Guidepad",
+      "Elm AI"
+    ],
+    "geography": [
+      "Salt Lake City, Utah"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.betaboom.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 16,
+    "source_url": "https://www.betaboom.com",
+    "extracted_at": "2026-05-20T07:02:01.481153Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Kimmy: [kimmy@betaboom.com]",
+      "Sergio: [sergio@betaboom.com]"
+    ]
+  },
+  {
+    "firm": "Frontier Growth",
+    "website": "https://frontiergrowth.com/",
+    "thesis": "We partner with domain experts who are transforming their industries with modern vertical SaaS solutions that customers love",
+    "focus_sectors": [
+      "Vertical SaaS"
+    ],
+    "domain_specializations": [
+      "Modern vertical SaaS solutions"
+    ],
+    "investment_stage": [
+      "Growth Equity"
+    ],
+    "check_size": "$5-30M",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "Our Approach",
+    "partners": [
+      {
+        "name": "Growth Equity Partner",
+        "role": "Growth Equity Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Neogov",
+      "Daxko",
+      "netdocuments",
+      "PetVisor",
+      "Jane",
+      "commonsku",
+      "MinuteMedia 2",
+      "SupplyPike",
+      "eprfireworks",
+      "albi"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://frontiergrowth.com/#main"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      },
+      {
+        "type": "website",
+        "value": "https://frontiergrowth.com/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 16,
+    "source_url": "https://frontiergrowth.com",
+    "extracted_at": "2026-05-20T07:02:33.737915Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Growth Equity Partner: [growth@frontiergrowth.com, growth.partner@frontiergrowth.com, gpartner@frontiergrowth.com]"
+    ]
+  },
+  {
+    "firm": "SaaS Ventures",
+    "website": "https://saasventurecapital.com",
+    "thesis": "We invest at the earliest stages because we believe the most consequential companies are built before the market knows they're needed.",
+    "focus_sectors": [
+      "Enterprise Software",
+      "AI Applications",
+      "Cybersecurity"
+    ],
+    "domain_specializations": [
+      "AI Infrastructure",
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Pre-Seed",
+      "Seed",
+      "Growth"
+    ],
+    "check_size": "",
+    "fund_number": "Fund 1 Unicorns",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "warm intros only",
+    "partners": [
+      {
+        "name": "Unknown Partner",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Artificial Intelligence",
+      "Enterprise Software",
+      "AI Infrastructure",
+      "AI Applications",
+      "Vertical Marketplace",
+      "Physical AI",
+      "TogetherAI",
+      "Personality AI",
+      "Enterprise AI",
+      "Copperhelm",
+      "Feedtrail",
+      "Klir",
+      "Elisity",
+      "Sevii",
+      "Elevate",
+      "Vizion",
+      "Apollo.io",
+      "xType",
+      "Pallet",
+      "FirmPilot",
+      "Mindsmith.ai",
+      "StepSecurity",
+      "Skyfire AI",
+      "Native Security",
+      "MagicSchool.ai",
+      "Abett"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Asia",
+      "San Francisco"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 16,
+    "source_url": "https://saasventurecapital.com",
+    "extracted_at": "2026-05-20T07:03:05.141559Z",
+    "pages_scraped": 2,
+    "guessed_emails": [
+      "Unknown Partner: [unknown@saasventurecapital.com, unknown.partner@saasventurecapital.com, upartner@saasventurecapital.com]"
+    ]
+  },
+  {
+    "firm": "Sapphire Ventures",
+    "website": "https://sapphireventures.com/",
+    "thesis": "Partnering with expansion-stage, enterprise software companies that we believe can become category leaders.",
+    "focus_sectors": [
+      "Enterprise AI"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "post–product-market fit"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Unknown Partner",
+        "role": "Unknown Role"
+      }
+    ],
+    "portfolio_companies": [
+      "Dremio",
+      "Bretton AI",
+      "Onebrief"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Asia",
+      "San Francisco"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "partners@sapphireventures.com"
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/company/sapphirevc"
+      },
+      {
+        "type": "twitter",
+        "value": "twitter.com/SapphireVC"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://sapphireventures.com/contact/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://sapphireventures.com",
+    "extracted_at": "2026-05-20T06:59:56.665415Z",
+    "pages_scraped": 1,
+    "guessed_emails": [
+      "Unknown Partner: [unknown@sapphireventures.com, unknown.partner@sapphireventures.com, upartner@sapphireventures.com]"
+    ]
+  },
+  {
+    "firm": "Venture Ontario",
+    "website": "https://www.ventureontario.ca/",
+    "thesis": "",
+    "focus_sectors": [
+      "life science",
+      "medtech",
+      "biotech"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "Fund IV",
+    "fund_size": "",
+    "active_status": "actively deploying",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Genesys Capital",
+        "role": "Fund Manager"
+      }
+    ],
+    "portfolio_companies": [
+      "ecobee",
+      "Energate",
+      "Genesys Capital",
+      "Lumira Ventures",
+      "Northleaf",
+      "SUVF",
+      "Vive",
+      "Woodland Biofuels"
+    ],
+    "geography": [
+      "Canada",
+      "North America"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/company/venture-ontario"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.ventureontario.ca/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "https://twitter.com/VentureOntario"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 7,
+      "completeness_percent": 77,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://www.ventureontario.ca",
+    "extracted_at": "2026-05-20T07:05:12.138120Z",
+    "pages_scraped": 2,
+    "guessed_emails": [
+      "Genesys Capital: [genesys@ventureontario.ca, genesys.capital@ventureontario.ca, gcapital@ventureontario.ca]"
+    ]
+  },
+  {
+    "firm": "Inovia Capital",
+    "website": "https://www.inovia.vc",
+    "thesis": "We focus on software companies and AI driven solutions driving positive impact on a global scale.",
+    "focus_sectors": [
+      "Software",
+      "AI"
+    ],
+    "domain_specializations": [
+      "Generative AI",
+      "Industrial AI"
+    ],
+    "investment_stage": [
+      "Discovery",
+      "Growth",
+      "Venture"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Chris",
+        "role": "General Partner"
+      }
+    ],
+    "portfolio_companies": [
+      "AppDirect",
+      "Cohere",
+      "Hopper",
+      "Wealthsimple",
+      "99ravens"
+    ],
+    "geography": [
+      "Canada",
+      "EU"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/company/inovia-capital"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.inovia.vc/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "twitter.com/inovia_vc"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://www.inovia.vc",
+    "extracted_at": "2026-05-20T07:06:09.265847Z",
+    "pages_scraped": 3,
+    "guessed_emails": [
+      "Chris: [chris@inovia.vc]"
+    ]
+  },
+  {
+    "firm": "Outlander VC",
+    "website": "https://outlander.vc",
+    "thesis": "We hunt for exceptional founders & fund their outlandish visions first. By focusing on founders first, we know how to identify and fund future unicorns",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "",
+    "fund_number": "Outlander Fund III Magellan",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "https://forms.monday.com/forms/487a99809890535bd8011569c19e32da?r=use1",
+    "partners": [],
+    "portfolio_companies": [
+      "Scale AI",
+      "SpaceX",
+      "Stripe",
+      "Surf Air",
+      "AngelList",
+      "Classpass",
+      "Clover",
+      "Gusto",
+      "IDme",
+      "Imbue",
+      "Twitter",
+      "Wish",
+      "Omaze",
+      "Klarna",
+      "Postmates",
+      "Andela",
+      "Lyft"
+    ],
+    "geography": [
+      "Seattle",
+      "Bay Area",
+      "Los Angeles",
+      "Denver",
+      "Austin",
+      "Miami",
+      "Chicago",
+      "Philadelphia",
+      "Atlanta",
+      "Washington, DC",
+      "New York",
+      "Boston"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 12,
+    "source_url": "https://outlander.vc",
+    "extracted_at": "2026-05-20T06:59:51.375060Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Vista Equity Partners",
+    "website": "https://www.vistaequitypartners.com",
+    "thesis": "",
+    "focus_sectors": [
+      "Software"
+    ],
+    "domain_specializations": [
+      "Enterprise Software",
+      "Artificial Intelligence"
+    ],
+    "investment_stage": [
+      "Private Equity"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Airbnb",
+      "Stripe",
+      "GitLab"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Asia"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/company/vistaequitypartners"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.vistaequitypartners.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "twitter.com/vistaequity"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 8,
+      "completeness_percent": 88,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 12,
+    "source_url": "https://www.vistaequitypartners.com",
+    "extracted_at": "2026-05-20T07:01:14.125284Z",
+    "pages_scraped": 2,
+    "guessed_emails": []
+  },
+  {
+    "firm": "First Round",
+    "website": "https://firstround.com",
+    "thesis": "We go to unreasonable lengths for unreasonable founders in their early years.",
+    "focus_sectors": [
+      "enterprise",
+      "AI",
+      "hardware",
+      "healthcare",
+      "fintech",
+      "consumer"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "seed"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "warm intros only",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 11,
+    "source_url": "https://www.firstround.com",
+    "extracted_at": "2026-05-20T07:04:36.513670Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "Fundrise",
+    "website": "https://fundrise.com",
+    "thesis": "",
+    "focus_sectors": [
+      "AI",
+      "FinTech",
+      "Modern Data Infrastructure"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "mid-to-late stage"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "RealAI"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 10,
+    "source_url": "https://fundrise.com",
+    "extracted_at": "2026-05-20T07:03:27.077208Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "CVCA",
+    "website": "https://www.cvca.ca",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [
+      "Canada"
+    ],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 3,
+      "completeness_percent": 33,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 6,
+    "source_url": "https://www.cvca.ca",
+    "extracted_at": "2026-05-20T07:06:47.603442Z",
+    "pages_scraped": 1,
+    "guessed_emails": []
+  },
+  {
+    "firm": "BDC Capital",
+    "website": "https://www.bdc.ca/en/bdc-capital",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [],
+    "geography": [],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 2,
+      "completeness_percent": 22,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 5,
+    "source_url": "https://www.bdc.ca",
+    "extracted_at": "2026-05-20T07:04:48.541959Z",
+    "pages_scraped": 2,
+    "guessed_emails": []
+  }
+]

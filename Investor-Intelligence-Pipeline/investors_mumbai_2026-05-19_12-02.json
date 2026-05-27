@@ -1,0 +1,387 @@
+[
+  {
+    "firm": "Ankur Capital",
+    "website": "https://www.ankurcapital.com/",
+    "thesis": "We back founders the way we'd want to be backed — with conviction, expertise, and skin in the game.",
+    "focus_sectors": [
+      "Life Sciences",
+      "Clean Energy",
+      "Advanced Materials",
+      "Machine Learning"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Praneeth Kumar",
+        "role": ""
+      },
+      {
+        "name": "Shobhit Jain",
+        "role": ""
+      },
+      {
+        "name": "Mrudhukar Batchu",
+        "role": ""
+      },
+      {
+        "name": "Kiran Naik",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "Captain Fresh",
+      "Crooin",
+      "BigHaat",
+      "String Bio",
+      "Ankur Capital",
+      "josh talk",
+      "OneKiraana",
+      "Pranos Fusion",
+      "CraftifAI",
+      "Offgrid",
+      "Turiyam AI"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.ankurcapital.com/"
+      },
+      {
+        "type": "email",
+        "value": ""
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://www.ankurcapital.com",
+    "extracted_at": "2026-05-19T06:31:44.059692Z"
+  },
+  {
+    "firm": "100x.vc",
+    "website": "https://www.100x.vc/",
+    "thesis": "We let you focus on growth and help founders get to the next round of funding and beyond.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Stanford Angels",
+        "role": ""
+      },
+      {
+        "name": "Inflexor Ventures",
+        "role": ""
+      },
+      {
+        "name": "Indian Angel Network",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": ""
+      },
+      {
+        "type": "LinkedIn",
+        "value": "https://www.linkedin.com/company/100x-vc/"
+      }
+    ],
+    "confidence_score": 11,
+    "source_url": "https://www.100x.vc",
+    "extracted_at": "2026-05-19T06:30:52.846445Z"
+  },
+  {
+    "firm": "Backingfoundersshapingtomorrow",
+    "website": "",
+    "thesis": "We back visionary founders leveraging cutting-edge technology to solve global problems.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Manish Singhal",
+        "role": "Co-founder & CEO, Agnikul Cosmos"
+      },
+      {
+        "name": "Jo Aggarwal",
+        "role": "Co-founder & CEO, Niramai"
+      },
+      {
+        "name": "Geetha Manjunath",
+        "role": "Founder & CEO, Niramai"
+      }
+    ],
+    "portfolio_companies": [
+      "Agnikul Cosmos",
+      "Wysa",
+      "Niramai"
+    ],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@piventures.in"
+      },
+      {
+        "type": "website",
+        "value": "https://www.piventures.in/"
+      }
+    ],
+    "confidence_score": 11,
+    "source_url": "https://www.piventures.in",
+    "extracted_at": "2026-05-19T06:31:18.513244Z"
+  },
+  {
+    "firm": "India Capital",
+    "website": "",
+    "thesis": "Invests in Indian public equities, focusing on overlooked markets and resilient businesses with exceptional economics.",
+    "focus_sectors": [],
+    "domain_specializations": [
+      "Public Equity"
+    ],
+    "investment_stage": [
+      "Pre-IPO",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Dan Tennenbaum",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Jon Thorn",
+        "role": "Director, ICF"
+      },
+      {
+        "name": "Uday Saripalli",
+        "role": "CFO and COO"
+      },
+      {
+        "name": "Piyush Goyal",
+        "role": "Managing Director"
+      },
+      {
+        "name": "Saket Yadav",
+        "role": "Managing Director"
+      },
+      {
+        "name": "Akshay Jain",
+        "role": "Associate"
+      },
+      {
+        "name": "Parang Trivedi",
+        "role": "Senior Analyst"
+      },
+      {
+        "name": "Tanisha Chandhok",
+        "role": "Analyst"
+      },
+      {
+        "name": "Harsh Vidhani",
+        "role": "Analyst"
+      },
+      {
+        "name": "Mahesh Ambokar",
+        "role": "Vice President, Technology"
+      },
+      {
+        "name": "Waheedali Shaikh",
+        "role": "Manager, Administration"
+      },
+      {
+        "name": "Radhika Surve",
+        "role": "Accounts Analyst"
+      },
+      {
+        "name": "Harry Hoffman",
+        "role": "Director, ICM"
+      },
+      {
+        "name": "Kapildeo Joory",
+        "role": "Director, ICF"
+      },
+      {
+        "name": "Christopher Brader",
+        "role": "Director, ICM"
+      },
+      {
+        "name": "Couldip Lala",
+        "role": "Director, ICF"
+      },
+      {
+        "name": "Sudesh Lala",
+        "role": "Director, ICM"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": ""
+      },
+      {
+        "type": "Phone",
+        "value": ""
+      }
+    ],
+    "confidence_score": 9,
+    "source_url": "https://indiacapital.com",
+    "extracted_at": "2026-05-19T06:32:06.676984Z"
+  },
+  {
+    "firm": "Seedfund",
+    "website": "",
+    "thesis": "Invests in early-stage technology and innovation companies, particularly those with unique ideas and potential for growth.",
+    "focus_sectors": [],
+    "domain_specializations": [
+      "Technology",
+      "Innovation"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "$50K-$2M",
+    "partners": [
+      {
+        "name": "Bharati Jacob",
+        "role": "Managing Partner"
+      },
+      {
+        "name": "Saumil Majmudar",
+        "role": "Co-founder"
+      },
+      {
+        "name": "Mukund Mudras",
+        "role": "Co-founder"
+      },
+      {
+        "name": "Amarinder Dhaliwal",
+        "role": "Co-founder"
+      },
+      {
+        "name": "Vivek Prabhakar",
+        "role": "Co-founder"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "Zeena@seedfund.in"
+      }
+    ],
+    "confidence_score": 9,
+    "source_url": "https://www.seedfund.in",
+    "extracted_at": "2026-05-19T06:32:17.221972Z"
+  },
+  {
+    "firm": "Creddinv",
+    "website": "",
+    "thesis": "Invest in curated revenue-booking startups for structured, lower-risk opportunities designed to balance your portfolio while compounding long-term wealth.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "investor@creddinv.in"
+      },
+      {
+        "type": "phone",
+        "value": "+91 0000000000"
+      },
+      {
+        "type": "website",
+        "value": "https://www.creddinv.in/contactus"
+      }
+    ],
+    "confidence_score": 9,
+    "source_url": "https://www.creddinv.in",
+    "extracted_at": "2026-05-19T06:32:31.502538Z"
+  },
+  {
+    "firm": "Unicorn India Ventures",
+    "website": "",
+    "thesis": "We partner with industrious and visionary entrepreneurs pioneering innovations across sectors.",
+    "focus_sectors": [],
+    "domain_specializations": [
+      "Mentor Capitalism",
+      "Capital Efficient Business Model"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "India"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@unicornivc.com"
+      },
+      {
+        "type": "phone",
+        "value": "+91 22 4036 5788"
+      }
+    ],
+    "confidence_score": 9,
+    "source_url": "https://www.unicornivc.com",
+    "extracted_at": "2026-05-19T06:32:44.544041Z"
+  }
+]

@@ -1,0 +1,337 @@
+[
+  {
+    "firm": "AI Seed",
+    "website": "https://aiseedfund.com/",
+    "thesis": "Investment and support for the next generation of artificial intelligence founders.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Michael Axelgaard",
+        "role": "Founder and Managing Partner"
+      },
+      {
+        "name": "Jacques de Cock",
+        "role": "Operations and Managing Partner"
+      },
+      {
+        "name": "Steve Weis",
+        "role": "Technical Analysis and Managing Partner"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": ""
+      },
+      {
+        "type": "Phone",
+        "value": ""
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://aiseedfund.com",
+    "extracted_at": "2026-05-19T06:23:51.828501Z"
+  },
+  {
+    "firm": "AI Capital",
+    "website": "https://www.ai.vc/",
+    "thesis": "We invest in AI-enabled business software companies that facilitate efficiencies and foster resilience in the supply and delivery of critical goods and services.",
+    "focus_sectors": [
+      "Enterprise Software"
+    ],
+    "domain_specializations": [
+      "Artificial Intelligence",
+      "Data Management",
+      "Software Engineering"
+    ],
+    "investment_stage": [
+      "Early Growth Stage",
+      "Enterprise"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Denver",
+      "Baltimore",
+      "Boston",
+      "Las Vegas",
+      "Vail"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.ai.vc/team"
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://www.ai.vc",
+    "extracted_at": "2026-05-19T06:24:14.642562Z"
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com/",
+    "thesis": "We invest in transformative technology companies that are changing the way we live and work, focusing on enterprise AI, generative AI, consumer AI, and LLMs.",
+    "focus_sectors": [
+      "Enterprise",
+      "Consumer"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Not Available",
+        "role": "Investor"
+      },
+      {
+        "name": "Not Available",
+        "role": "Investor"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": ""
+      },
+      {
+        "type": "Phone",
+        "value": ""
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T06:24:21.240006Z"
+  },
+  {
+    "firm": "Alumni Ventures",
+    "website": "https://www.av.vc/",
+    "thesis": "We partner with lead VCs to provide access to top venture deals for accredited investors who appreciate technology, entrepreneurship, and innovation.",
+    "focus_sectors": [
+      "AI",
+      "Fintech"
+    ],
+    "domain_specializations": [
+      "Venture Capital Partnerships",
+      "Technology Investments"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Mike Collins",
+        "role": "CEO"
+      },
+      {
+        "name": "Eric Ries",
+        "role": "Alumni Ventures CEO"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US",
+      "Japan"
+    ],
+    "contact_links": [],
+    "confidence_score": 12,
+    "source_url": "https://av.vc",
+    "extracted_at": "2026-05-19T06:24:06.502509Z"
+  },
+  {
+    "firm": "LDV Capital",
+    "website": "https://www.ldv.co/",
+    "thesis": "Invests in deep technical teams building visual technology businesses that leverage computer vision, machine learning, and artificial intelligence.",
+    "focus_sectors": [],
+    "domain_specializations": [
+      "Computer Vision",
+      "Machine Learning",
+      "Artificial Intelligence"
+    ],
+    "investment_stage": [
+      "Pre-seed",
+      "Seed"
+    ],
+    "check_size": "$500K - $1.5M",
+    "partners": [
+      {
+        "name": "Albert Wenger",
+        "role": "Managing Partner at Union Square Ventures"
+      },
+      {
+        "name": "Natalie Diggins",
+        "role": "Founder, Advisor & Investor"
+      }
+    ],
+    "portfolio_companies": [
+      "Synthesia",
+      "Ezra",
+      "Clarifai"
+    ],
+    "geography": [],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@ldv.co"
+      },
+      {
+        "type": "phone",
+        "value": "+1-646-537-8200"
+      }
+    ],
+    "confidence_score": 12,
+    "source_url": "https://www.ldv.co",
+    "extracted_at": "2026-05-19T06:24:58.665828Z"
+  },
+  {
+    "firm": "AICapital",
+    "website": "https://aicapital.ai/",
+    "thesis": "We invest in Seed to Series B, deep Artificial Intelligence/Machine Learning (AI/ML) technology-based companies applying deep expertise in the algorithmic sciences to develop breakthrough products and solve real business problems.",
+    "focus_sectors": [],
+    "domain_specializations": [
+      "Deep Learning",
+      "LLMs",
+      "Gradient Boosting",
+      "Support Vector Machines",
+      "Random Forests",
+      "Hierarchical Clustering",
+      "Reinforcement Learning"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Series B"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US",
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "aicapital.ai/contact-us"
+      },
+      {
+        "type": "website",
+        "value": "https://aicapital.ai/contact-us"
+      }
+    ],
+    "confidence_score": 11,
+    "source_url": "http://www.aicapital.ai",
+    "extracted_at": "2026-05-19T06:24:49.951483Z"
+  },
+  {
+    "firm": "AI Fund",
+    "website": "",
+    "thesis": "We collaborate with entrepreneurs, venture funds, and corporate partners to create great companies that move humanity forward.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Andrew Ng",
+        "role": "Founder"
+      }
+    ],
+    "portfolio_companies": [
+      "IrisGo",
+      "Profitmind",
+      "Workera",
+      "Workhelix",
+      "Factored"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [],
+    "confidence_score": 10,
+    "source_url": "https://aifund.ai",
+    "extracted_at": "2026-05-19T06:24:28.286319Z"
+  },
+  {
+    "firm": "Hack VC",
+    "website": "",
+    "thesis": "We partner on- and off-chain at the earliest stages with hackers building the future of the Internet.",
+    "focus_sectors": [],
+    "domain_specializations": [
+      "Web3",
+      "AI",
+      "Crypto"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Harrison Dahme",
+        "role": "CTO and Partner"
+      },
+      {
+        "name": "Alex Botte",
+        "role": "Partner"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": "info@hack.vc"
+      },
+      {
+        "type": "website",
+        "value": "https://www.hack.vc/"
+      }
+    ],
+    "confidence_score": 9,
+    "source_url": "https://blog.hack.vc",
+    "extracted_at": "2026-05-19T06:25:06.123637Z"
+  }
+]

@@ -1,0 +1,195 @@
+[
+  {
+    "firm": "Alumni Ventures",
+    "website": "https://www.av.vc/",
+    "thesis": "We partner with lead VCs to provide access to top venture deals for accredited investors who appreciate technology, entrepreneurship, and innovation.",
+    "focus_sectors": [
+      "AI",
+      "Fintech",
+      "Blockchain"
+    ],
+    "domain_specializations": [
+      "Venture Capital",
+      "Technology Investments"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Mike Collins",
+        "role": "CEO"
+      },
+      {
+        "name": "Eric Ries",
+        "role": "Alumni Ventures CEO"
+      }
+    ],
+    "portfolio_companies": [
+      "Axiom Space",
+      "Bluesky",
+      "Circle",
+      "Cohere",
+      "Frore Systems",
+      "Groq",
+      "Impulse Space",
+      "Lambda",
+      "Oura",
+      "RapidSOS",
+      "Rigetti",
+      "Sleeper"
+    ],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.av.vc/"
+      },
+      {
+        "type": "email",
+        "value": ""
+      }
+    ],
+    "confidence_score": 15,
+    "source_url": "https://av.vc",
+    "extracted_at": "2026-05-19T06:17:09.374228Z"
+  },
+  {
+    "firm": "AI Seed",
+    "website": "https://aiseedfund.com/",
+    "thesis": "Investment and support for the next generation of artificial intelligence founders.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Michael Axelgaard",
+        "role": "Founder and Managing Partner"
+      },
+      {
+        "name": "Jacques de Cock",
+        "role": "Operations and Managing Partner"
+      },
+      {
+        "name": "Steve Weis",
+        "role": "Technical Analysis and Managing Partner"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": ""
+      },
+      {
+        "type": "Phone",
+        "value": ""
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://aiseedfund.com",
+    "extracted_at": "2026-05-19T06:16:52.168439Z"
+  },
+  {
+    "firm": "AI Capital",
+    "website": "https://www.ai.vc/",
+    "thesis": "We invest in AI-enabled business software companies that facilitate efficiencies and foster resilience in the supply and delivery of critical goods and services.",
+    "focus_sectors": [
+      "Enterprise Software",
+      "Data"
+    ],
+    "domain_specializations": [
+      "AI",
+      "SaaS",
+      "Data Engineering"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://www.ai.vc",
+    "extracted_at": "2026-05-19T06:16:59.705286Z"
+  },
+  {
+    "firm": "Look AI Ventures",
+    "website": "",
+    "thesis": "We invest in globally disruptive early-stage AI startups.",
+    "focus_sectors": [
+      "AI"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Martin Dostal",
+        "role": ""
+      },
+      {
+        "name": "Veronika Argust",
+        "role": ""
+      },
+      {
+        "name": "Eva Slonkova",
+        "role": ""
+      },
+      {
+        "name": "Andrej Inozemtseva",
+        "role": "Investment An"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Europe"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://lookai.vc/"
+      }
+    ],
+    "confidence_score": 11,
+    "source_url": "https://lookai.vc",
+    "extracted_at": "2026-05-19T06:17:16.579962Z"
+  }
+]

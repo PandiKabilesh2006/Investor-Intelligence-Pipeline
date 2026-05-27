@@ -1,0 +1,217 @@
+[
+  {
+    "firm": "Grove VC",
+    "website": "https://www.grovevc.com/",
+    "thesis": "We are early partners to exceptional founders who are building tomorrow, today.",
+    "focus_sectors": [
+      "Enterprise AI",
+      "Deeptech",
+      "AI Infra",
+      "Healthtech"
+    ],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Pre-seed",
+      "Seed"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Daniel Steinfeld",
+        "role": "General Partner"
+      },
+      {
+        "name": "Ofer Majestic",
+        "role": "General Partner"
+      },
+      {
+        "name": "Dave Onelayer",
+        "role": "General Partner"
+      },
+      {
+        "name": "Shai Vocai",
+        "role": "General Partner"
+      },
+      {
+        "name": "Elad Nerublade",
+        "role": "General Partner"
+      },
+      {
+        "name": "Eran Portai",
+        "role": "General Partner"
+      },
+      {
+        "name": "Hesham Teramount",
+        "role": "General Partner"
+      },
+      {
+        "name": "Tal Wiliot",
+        "role": "General Partner"
+      },
+      {
+        "name": "Ramon Avi",
+        "role": "General Partner"
+      },
+      {
+        "name": "Oded QS",
+        "role": "General Partner"
+      },
+      {
+        "name": "Ravit Scala",
+        "role": "General Partner"
+      },
+      {
+        "name": "Ronit Navina",
+        "role": "General Partner"
+      },
+      {
+        "name": "Mor Opmed",
+        "role": "General Partner"
+      },
+      {
+        "name": "Gal Formx",
+        "role": "General Partner"
+      },
+      {
+        "name": "Adi Calmingo",
+        "role": "General Partner"
+      },
+      {
+        "name": "Liran Muvan AI",
+        "role": "General Partner"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "Israel"
+    ],
+    "contact_links": [
+      {
+        "type": "website",
+        "value": "https://www.grovevc.com/contact/"
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://www.grovevc.com",
+    "extracted_at": "2026-05-19T06:19:31.222948Z"
+  },
+  {
+    "firm": "Menlo Ventures",
+    "website": "https://menlovc.com/",
+    "thesis": "We invest in transformative technology companies that are changing the way we live and work, with a focus on enterprise AI, generative AI, consumer AI, and LLMs.",
+    "focus_sectors": [
+      "Enterprise",
+      "Consumer"
+    ],
+    "domain_specializations": [
+      "LLMs",
+      "MLOps"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "Not Available",
+        "role": "Investor"
+      },
+      {
+        "name": "Not Available",
+        "role": "Investor"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "Email",
+        "value": "info@menlovc.com"
+      },
+      {
+        "type": "Phone",
+        "value": "+1-650-289-3740"
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://menlovc.com",
+    "extracted_at": "2026-05-19T06:19:37.913900Z"
+  },
+  {
+    "firm": "AI Capital",
+    "website": "https://www.ai.vc/",
+    "thesis": "We invest in AI-enabled business software companies that facilitate efficiencies and foster resilience in the supply and delivery of critical goods and services.",
+    "focus_sectors": [
+      "Enterprise Software",
+      "Data"
+    ],
+    "domain_specializations": [
+      "AI",
+      "SaaS",
+      "Data Engineering"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A",
+      "Post-IPO"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      }
+    ],
+    "confidence_score": 13,
+    "source_url": "https://www.ai.vc",
+    "extracted_at": "2026-05-19T06:19:43.904733Z"
+  },
+  {
+    "firm": "Outlander VC",
+    "website": "",
+    "thesis": "We hunt for exceptional founders and fund their outlandish visions first.",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [
+      "Seed"
+    ],
+    "check_size": "",
+    "partners": [
+      {
+        "name": "",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "US"
+    ],
+    "contact_links": [
+      {
+        "type": "",
+        "value": ""
+      }
+    ],
+    "confidence_score": 9,
+    "source_url": "https://outlander.vc",
+    "extracted_at": "2026-05-19T06:19:09.511278Z"
+  }
+]

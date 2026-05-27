@@ -1,0 +1,390 @@
+[
+  {
+    "firm": "Octopus Ventures",
+    "website": "https://octopusventures.com",
+    "thesis": "We back founders who are changing the world for the better. We invest where we can make the greatest positive impact, getting behind businesses that put people, community and the environment first.",
+    "focus_sectors": [
+      "B2B Software",
+      "Bio",
+      "Climate",
+      "Consumer",
+      "Deep Tech",
+      "Fintech",
+      "Health"
+    ],
+    "domain_specializations": [
+      "Large Language Models",
+      "Voice AI"
+    ],
+    "investment_stage": [
+      "Pre-seed",
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "warm intros only",
+    "partners": [
+      {
+        "name": "Ben Medland",
+        "role": ""
+      },
+      {
+        "name": "Emma Falconer",
+        "role": "People + Talent partner"
+      }
+    ],
+    "portfolio_companies": [
+      "Airbnb",
+      "Stripe",
+      "GitLab",
+      "ManyPets",
+      "Depop",
+      "Elvie",
+      "Pelago",
+      "Legl",
+      "Perci Health"
+    ],
+    "geography": [
+      "US",
+      "Europe",
+      "Asia",
+      "San Francisco"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "linkedin.com/company/octopusventures"
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.octopusventures.com/contact"
+      },
+      {
+        "type": "twitter",
+        "value": "twitter.com/octopusvc"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 16,
+    "source_url": "https://octopusventures.com",
+    "extracted_at": "2026-05-19T08:54:21.645543Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "FinTech Collective",
+    "website": "https://fintech.io",
+    "thesis": "We partner with founders with vision and persistence – founders with a desire to reshape markets.",
+    "focus_sectors": [
+      "Fintech"
+    ],
+    "domain_specializations": [
+      "Financial Intelligence",
+      "AI",
+      "Machine Learning"
+    ],
+    "investment_stage": [
+      "Seed",
+      "Series A"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Brooks Gibbins",
+        "role": ""
+      },
+      {
+        "name": "Gareth, NYC",
+        "role": ""
+      },
+      {
+        "name": "Sean Lippel",
+        "role": ""
+      },
+      {
+        "name": "Carlos Alonso Torras",
+        "role": ""
+      },
+      {
+        "name": "Toby Trieber",
+        "role": ""
+      },
+      {
+        "name": "Sarah Parsons Wolter",
+        "role": ""
+      },
+      {
+        "name": "Cristobal de Atucha",
+        "role": ""
+      },
+      {
+        "name": "Samantha Wulfson",
+        "role": ""
+      },
+      {
+        "name": "Andreas Ioannou",
+        "role": ""
+      },
+      {
+        "name": "Louden Richason",
+        "role": ""
+      },
+      {
+        "name": "Kate Wang",
+        "role": ""
+      },
+      {
+        "name": "Chris King",
+        "role": ""
+      },
+      {
+        "name": "Faisal Kawar",
+        "role": ""
+      },
+      {
+        "name": "Zein Dayekh",
+        "role": ""
+      }
+    ],
+    "portfolio_companies": [
+      "MoneyLion",
+      "Vestwell",
+      "Simetrik",
+      "Daisy",
+      "Mondu",
+      "Finster AI",
+      "Zefir",
+      "AgentSmyth"
+    ],
+    "geography": [
+      "Global"
+    ],
+    "contact_links": [
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/brooksgibbins"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/nycgareth/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/seanlippel/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/carlos-alonso-torras-2ab95270/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/tobytriebel/?originalSubdomain=uk"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/sarah-parsons-wolter/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/cristobal-de-atucha-0a1a8111a/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/samantha-wulfson/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/andreasioannou/?originalSubdomain=uk"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/loudenrichason/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/kate-wang-054977127/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/chris-king1/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/faisalkawar/"
+      },
+      {
+        "type": "linkedin",
+        "value": "https://www.linkedin.com/in/zein-dayekh-1589a796/"
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 9,
+      "completeness_percent": 100,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 15,
+    "source_url": "https://fintech.io",
+    "extracted_at": "2026-05-19T08:52:52.446111Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "Fintech Ventures",
+    "website": "https://www.fintechv.com",
+    "thesis": "Hyperfocused support for early-stage fintech founders",
+    "focus_sectors": [
+      "Fintech"
+    ],
+    "domain_specializations": [
+      "Banking/Capital Markets"
+    ],
+    "investment_stage": [
+      "Pre-Seed",
+      "Seed"
+    ],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "Pull Logic",
+      "PAXAFE",
+      "battleface"
+    ],
+    "geography": [],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 6,
+      "completeness_percent": 66,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 11,
+    "source_url": "https://www.fintechv.com",
+    "extracted_at": "2026-05-19T08:52:37.625122Z",
+    "pages_scraped": 1
+  },
+  {
+    "firm": "Flourish Ventures",
+    "website": "https://flourishventures.com",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [],
+    "portfolio_companies": [
+      "ShopUp",
+      "MoradaUno",
+      "SalarySe",
+      "Minu",
+      "Dinie",
+      "Indifi",
+      "Consumer Reports",
+      "Tesouro",
+      "QueueBuster",
+      "Unit"
+    ],
+    "geography": [],
+    "contact_links": [],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 3,
+      "completeness_percent": 33,
+      "has_firm": true,
+      "has_contact": false
+    },
+    "confidence_score": 7,
+    "source_url": "https://flourishventures.com",
+    "extracted_at": "2026-05-19T08:55:00.813562Z",
+    "pages_scraped": 3
+  },
+  {
+    "firm": "IFC",
+    "website": "https://www.ifc.org",
+    "thesis": "",
+    "focus_sectors": [],
+    "domain_specializations": [],
+    "investment_stage": [],
+    "check_size": "",
+    "fund_number": "",
+    "fund_size": "",
+    "active_status": "",
+    "pitch_process": "",
+    "partners": [
+      {
+        "name": "Makhtar Diop",
+        "role": "General Manager, IFC"
+      },
+      {
+        "name": "Aliko Dangote",
+        "role": "Africa's leading industrialist"
+      }
+    ],
+    "portfolio_companies": [],
+    "geography": [
+      "more than 100 countries"
+    ],
+    "contact_links": [
+      {
+        "type": "email",
+        "value": ""
+      },
+      {
+        "type": "phone",
+        "value": ""
+      },
+      {
+        "type": "linkedin",
+        "value": ""
+      },
+      {
+        "type": "contact_form",
+        "value": "https://www.ifc.org/contact"
+      },
+      {
+        "type": "twitter",
+        "value": ""
+      }
+    ],
+    "_data_quality": {
+      "total_fields": 9,
+      "populated_fields": 5,
+      "completeness_percent": 55,
+      "has_firm": true,
+      "has_contact": true
+    },
+    "confidence_score": 6,
+    "source_url": "https://www.ifc.org",
+    "extracted_at": "2026-05-19T08:53:29.461439Z",
+    "pages_scraped": 3
+  }
+]

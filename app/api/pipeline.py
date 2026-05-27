@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -30,6 +31,8 @@ router = APIRouter(prefix="/api", tags=["pipeline"])
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 PIPELINE_LOG = PROJECT_ROOT / "pipeline.log"
+VENV_PYTHON = PROJECT_ROOT / ".venv" / "Scripts" / "python.exe"
+PYTHON_EXECUTABLE = str(VENV_PYTHON) if VENV_PYTHON.exists() else sys.executable
 
 
 def _now():
@@ -48,10 +51,16 @@ def _dedupe_queries(queries):
     return sorted(set(cleaned))
 
 
-def _run_command(args):
+def _run_command(args, env=None):
+    command_env = os.environ.copy()
+
+    if env:
+        command_env.update(env)
+
     completed = subprocess.run(
         args,
         cwd=PROJECT_ROOT,
+        env=command_env,
         capture_output=True,
         text=True,
     )
@@ -85,13 +94,14 @@ def execute_pipeline_run(run_id):
         run.started_at = _now()
         run.error_message = None
         db.commit()
+        run_started_timestamp = str(run.started_at.timestamp())
 
         commands_run = []
 
         if queries:
             for query in queries:
                 command = [
-                    sys.executable,
+                    PYTHON_EXECUTABLE,
                     "run_pipeline.py",
                     query,
                 ]
@@ -99,7 +109,7 @@ def execute_pipeline_run(run_id):
                 commands_run.append(command)
         else:
             command = [
-                sys.executable,
+                PYTHON_EXECUTABLE,
                 "run_pipeline.py",
             ]
             _run_command(command)
@@ -107,18 +117,24 @@ def execute_pipeline_run(run_id):
 
         if run_parse:
             command = [
-                sys.executable,
+                PYTHON_EXECUTABLE,
                 "parse_markdown.py",
             ]
-            _run_command(command)
+            _run_command(
+                command,
+                env={"PIPELINE_RUN_STARTED_TS": run_started_timestamp},
+            )
             commands_run.append(command)
 
         if run_insert:
             command = [
-                sys.executable,
+                PYTHON_EXECUTABLE,
                 "insert_into_db.py",
             ]
-            _run_command(command)
+            _run_command(
+                command,
+                env={"PIPELINE_RUN_STARTED_TS": run_started_timestamp},
+            )
             commands_run.append(command)
 
         run.status = "success"
@@ -153,6 +169,7 @@ def preview_queries(request: QueryPreviewRequest):
         sector=request.sector,
         stage=request.stage,
         geography=request.geography,
+        business_model=request.business_model,
         theme=request.theme,
     )
 
@@ -176,6 +193,7 @@ def preview_queries(request: QueryPreviewRequest):
                         sector=expanded,
                         stage=request.stage,
                         geography=request.geography,
+                        business_model=request.business_model,
                     )
                 )
                 queries.append(expanded)

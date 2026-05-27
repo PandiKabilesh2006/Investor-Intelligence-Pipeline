@@ -110,6 +110,13 @@ def normalize_partner_records(value):
 
         if isinstance(item, dict):
 
+            try:
+                extraction_confidence = float(
+                    item.get("extraction_confidence", 0.0) or 0.0
+                )
+            except (TypeError, ValueError):
+                extraction_confidence = 0.0
+
             partner = {
 
                 "name": str(
@@ -120,13 +127,26 @@ def normalize_partner_records(value):
                     item.get("role", "")
                 ).strip(),
 
+                "title": str(
+                    item.get("title", item.get("role", ""))
+                ).strip(),
+
                 "linkedin_url": str(
                     item.get("linkedin_url", "")
                 ).strip(),
 
                 "twitter_url": str(
                     item.get("twitter_url", "")
-                ).strip()
+                ).strip(),
+
+                "source_url": str(
+                    item.get(
+                        "source_url",
+                        item.get("linkedin_url", "")
+                    )
+                ).strip(),
+
+                "extraction_confidence": extraction_confidence
             }
 
         else:
@@ -137,9 +157,15 @@ def normalize_partner_records(value):
 
                 "role": "",
 
+                "title": "",
+
                 "linkedin_url": "",
 
-                "twitter_url": ""
+                "twitter_url": "",
+
+                "source_url": "",
+
+                "extraction_confidence": 0.0
             }
 
         if partner["name"]:
@@ -707,14 +733,26 @@ def insert_investor_data(data, conn=None):
 
                     role,
 
+                    title,
+
                     linkedin_url,
 
-                    twitter_url
+                    twitter_url,
+
+                    source_url,
+
+                    extraction_confidence,
+
+                    scraped_at
 
                 )
 
                 VALUES (
 
+                    %s,
+                    %s,
+                    %s,
+                    %s,
                     %s,
                     %s,
                     %s,
@@ -731,9 +769,17 @@ def insert_investor_data(data, conn=None):
 
                     partner["role"],
 
+                    partner["title"],
+
                     partner["linkedin_url"],
 
-                    partner["twitter_url"]
+                    partner["twitter_url"],
+
+                    partner["source_url"],
+
+                    partner["extraction_confidence"],
+
+                    datetime.now(timezone.utc)
                 )
             )
 
@@ -826,6 +872,50 @@ def insert_investor_data(data, conn=None):
 def main():
 
     # =========================================
+    # PARSED JSON FOLDER
+    # =========================================
+
+    PARSED_FOLDER = "parsed_json"
+
+
+    # =========================================
+    # LOAD JSON FILES
+    # =========================================
+
+    json_files = [
+
+        file
+
+        for file in os.listdir(PARSED_FOLDER)
+
+        if (
+            file.endswith(".json")
+            and
+            (
+                not os.getenv("PIPELINE_RUN_STARTED_TS")
+                or
+                os.path.getmtime(
+                    os.path.join(PARSED_FOLDER, file)
+                )
+                >=
+                float(os.getenv("PIPELINE_RUN_STARTED_TS"))
+            )
+        )
+    ]
+
+
+    print(
+
+        f"\nFound {len(json_files)} parsed files\n"
+    )
+
+    if not json_files:
+
+        print("No parsed files to insert. Skipping database connection.\n")
+
+        return
+
+    # =========================================
     # DATABASE CONNECTION
     # =========================================
 
@@ -844,33 +934,6 @@ def main():
 
 
     register_vector(conn)
-
-
-    # =========================================
-    # PARSED JSON FOLDER
-    # =========================================
-
-    PARSED_FOLDER = "parsed_json"
-
-
-    # =========================================
-    # LOAD JSON FILES
-    # =========================================
-
-    json_files = [
-
-        file
-
-        for file in os.listdir(PARSED_FOLDER)
-
-        if file.endswith(".json")
-    ]
-
-
-    print(
-
-        f"\nFound {len(json_files)} parsed files\n"
-    )
 
 
     # =========================================

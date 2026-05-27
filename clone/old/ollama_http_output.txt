@@ -1,0 +1,19 @@
+HTTP Script started...
+Sending HTTP POST to http://127.0.0.1:11434/api/chat...
+Ollama HTTP responded in 4.75 seconds:
+{
+  "model": "qwen2.5:3b",
+  "created_at": "2026-05-21T08:08:47.927855Z",
+  "message": {
+    "role": "assistant",
+    "content": "Hello"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 4714200000,
+  "load_duration": 171890200,
+  "prompt_eval_count": 36,
+  "prompt_eval_duration": 30049400,
+  "eval_count": 2,
+  "eval_duration": 18737800
+}

@@ -206,3 +206,37 @@ pytest
 
 The current tests focus on safe normalization of legacy and structured partner
 and portfolio records.
+
+## Moving Data Into A Shared Database
+
+Use JSON export/import when merging local databases into a shared Supabase or
+hosted Postgres database. Do not copy raw table rows by `id`, because different
+local databases can reuse the same ids for different investors.
+
+Export from a local database:
+
+```bash
+python export_investors_json.py exports/my_investors.json
+```
+
+Then point `.env` to the shared database and import:
+
+```bash
+python import_investors_json.py exports/my_investors.json
+```
+
+The import uses the existing investor upsert logic in `insert_into_db.py`.
+Investor records are matched by case-insensitive firm name. Existing rows are
+updated, and new firms are inserted. Partners and portfolio companies are
+deduplicated within each imported record.
+
+Recommended collaboration flow:
+
+```text
+Person A local DB -> export JSON
+Person B local DB -> export JSON
+Shared Supabase DB -> import both JSON files
+```
+
+If the same firm uses different names, for example `BVP` and `Bessemer Venture
+Partners`, review those manually after import.
