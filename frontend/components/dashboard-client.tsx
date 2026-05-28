@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
 import { Activity, Building2, Users, FileText, CheckCircle2, AlertTriangle, Play, Loader2, Calendar } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Investor, Metrics, PipelineStatus, QueueSummary } from "@/lib/api";
+import { DashboardDistributions, Investor, Metrics, PipelineStatus, QueueSummary, getDashboardDistributions } from "@/lib/api";
 import { formatDate } from "@/lib/utils";
 import { InvestorDetailModal } from "./investor-detail-modal";
 import { ClientIcon } from "@/components/ui/client-icon";
@@ -12,17 +12,18 @@ import { ClientIcon } from "@/components/ui/client-icon";
 interface DashboardClientProps {
   metrics: Metrics;
   recentInvestors: Investor[];
-  allInvestors: Investor[];
+  distributions: DashboardDistributions;
   pipeline: PipelineStatus;
   queueSummary: QueueSummary;
 }
 
 const COLORS = ["#8b5cf6", "#3b82f6", "#10b981", "#f59e0b", "#ec4899", "#06b6d4"];
 
-export function DashboardClient({ metrics, recentInvestors, allInvestors, pipeline, queueSummary }: DashboardClientProps) {
+export function DashboardClient({ metrics, recentInvestors, distributions, pipeline, queueSummary }: DashboardClientProps) {
   const [mounted, setMounted] = useState(false);
   const [selectedInvestorId, setSelectedInvestorId] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [chartDistributions, setChartDistributions] = useState(distributions);
   const lastSyncTime = (
     pipeline.latest_run?.ended_at ||
     pipeline.latest_run?.started_at ||
@@ -33,37 +34,31 @@ export function DashboardClient({ metrics, recentInvestors, allInvestors, pipeli
     setMounted(true);
   }, []);
 
-  // Compute sector distribution from all available investors
-  const sectorData = (() => {
-    const counts: Record<string, number> = {};
-    allInvestors.forEach((inv) => {
-      (inv.focus_sectors || []).forEach((sector) => {
-        if (!sector) return;
-        const normalized = sector.trim();
-        counts[normalized] = (counts[normalized] || 0) + 1;
-      });
-    });
-    return Object.entries(counts)
-      .map(([name, value]) => ({ name, value }))
-      .sort((a, b) => b.value - a.value)
-      .slice(0, 6);
-  })();
+  useEffect(() => {
+    let cancelled = false;
 
-  // Compute stage distribution from all available investors
-  const stageData = (() => {
-    const counts: Record<string, number> = {};
-    allInvestors.forEach((inv) => {
-      (inv.investment_stage || []).forEach((stage) => {
-        if (!stage) return;
-        const normalized = stage.trim();
-        counts[normalized] = (counts[normalized] || 0) + 1;
-      });
-    });
-    return Object.entries(counts)
-      .map(([name, value]) => ({ name, value }))
-      .sort((a, b) => b.value - a.value)
-      .slice(0, 5);
-  })();
+    const refreshDistributions = async () => {
+      try {
+        const nextDistributions = await getDashboardDistributions();
+        if (!cancelled) {
+          setChartDistributions(nextDistributions);
+        }
+      } catch {
+        // Keep the last known chart values if the API is temporarily unavailable.
+      }
+    };
+
+    const interval = window.setInterval(refreshDistributions, 30000);
+    refreshDistributions();
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(interval);
+    };
+  }, []);
+
+  const sectorData = chartDistributions.sectors || [];
+  const stageData = chartDistributions.stages || [];
 
   const stats = [
     { label: "Total Investors", value: metrics.investors, icon: Building2, color: "text-violet-600" },
@@ -165,8 +160,8 @@ export function DashboardClient({ metrics, recentInvestors, allInvestors, pipeli
           {/* Sectors Bar Chart */}
           <Card className="glass-card border-border p-6">
             <CardHeader className="p-0 pb-4">
-              <h3 className="text-base font-bold text-foreground">Top Focus Sectors</h3>
-              <p className="text-xs text-muted-foreground">Most active sectors mapped to VCs in the pipeline</p>
+              <h3 className="text-base font-bold text-foreground">Investors by Focus Sector</h3>
+              <p className="text-xs text-muted-foreground">Primary category split across {metrics.investors} investor records</p>
             </CardHeader>
             <div className="h-[280px] w-full">
               {sectorData.length > 0 ? (
@@ -190,32 +185,25 @@ export function DashboardClient({ metrics, recentInvestors, allInvestors, pipeli
             </div>
           </Card>
 
-          {/* Investment Stages Donut Chart */}
+          {/* Investment Stages Bar Chart */}
           <Card className="glass-card border-border p-6">
             <CardHeader className="p-0 pb-4">
-              <h3 className="text-base font-bold text-foreground">Target Investment Stages</h3>
-              <p className="text-xs text-muted-foreground">Distribution of funding stages supported by in-db investors</p>
+              <h3 className="text-base font-bold text-foreground">Investors by Target Stage</h3>
+              <p className="text-xs text-muted-foreground">Primary stage split across {metrics.investors} investor records</p>
             </CardHeader>
             <div className="h-[280px] w-full">
               {stageData.length > 0 ? (
                 <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={stageData}
-                      cx="50%"
-                      cy="45%"
-                      innerRadius={60}
-                      outerRadius={85}
-                      paddingAngle={4}
-                      dataKey="value"
-                    >
+                  <BarChart data={stageData} layout="vertical" margin={{ left: 15, right: 10, top: 10, bottom: 5 }}>
+                    <XAxis type="number" stroke="#64748b" fontSize={10} axisLine={false} tickLine={false} />
+                    <YAxis dataKey="name" type="category" stroke="#64748b" fontSize={10} width={100} axisLine={false} tickLine={false} />
+                    <Tooltip {...chartTooltipStyle} />
+                    <Bar dataKey="value" fill="#3b82f6" radius={[0, 4, 4, 0]} barSize={16}>
                       {stageData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[(index + 1) % COLORS.length]} />
                       ))}
-                    </Pie>
-                    <Tooltip {...chartTooltipStyle} />
-                    <Legend verticalAlign="bottom" height={36} iconType="circle" iconSize={8} wrapperStyle={{ fontSize: "11px", color: "#64748b" }} />
-                  </PieChart>
+                    </Bar>
+                  </BarChart>
                 </ResponsiveContainer>
               ) : (
                 <div className="flex h-full items-center justify-center text-sm text-muted-foreground">

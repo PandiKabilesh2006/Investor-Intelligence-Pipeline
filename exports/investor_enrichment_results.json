@@ -1,0 +1,266 @@
+{
+  "summary": {
+    "backlog_source": "exports\\investor_enrichment_backlog.json",
+    "processed": 20,
+    "updated": 20,
+    "no_content": 0,
+    "firm_validation_failed": 0,
+    "generated_at": "2026-05-28T05:32:27.478968+00:00"
+  },
+  "results": [
+    {
+      "investor_id": 195,
+      "firm": "The CrowdSpace",
+      "status": "updated",
+      "source_urls": [
+        "https://thecrowdspace.com/team",
+        "https://thecrowdspace.com/people",
+        "https://thecrowdspace.com/partners",
+        "https://thecrowdspace.com/leadership"
+      ],
+      "parsed_firm": "The Crowd Space",
+      "updated_at": "2026-05-28T05:26:13.934953+00:00"
+    },
+    {
+      "investor_id": 268,
+      "firm": "2B Angels",
+      "status": "updated",
+      "source_urls": [
+        "https://www.swfinstitute.org/team",
+        "https://www.swfinstitute.org/people",
+        "https://www.swfinstitute.org/partners",
+        "https://www.swfinstitute.org/leadership"
+      ],
+      "parsed_firm": "",
+      "updated_at": "2026-05-28T05:26:33.394484+00:00"
+    },
+    {
+      "investor_id": 48,
+      "firm": "British Business Bank",
+      "status": "updated",
+      "source_urls": [
+        "https://www.british-business-bank.co.uk/team",
+        "https://www.british-business-bank.co.uk/people",
+        "https://www.british-business-bank.co.uk/partners",
+        "https://www.british-business-bank.co.uk/leadership"
+      ],
+      "parsed_firm": "British Business Bank",
+      "updated_at": "2026-05-28T05:27:03.252761+00:00"
+    },
+    {
+      "investor_id": 304,
+      "firm": "CB Insights",
+      "status": "updated",
+      "source_urls": [
+        "https://www.cbinsights.com/team",
+        "https://www.cbinsights.com/people",
+        "https://www.cbinsights.com/partners",
+        "https://www.cbinsights.com/leadership"
+      ],
+      "parsed_firm": "CB Insights",
+      "updated_at": "2026-05-28T05:27:39.342547+00:00"
+    },
+    {
+      "investor_id": 307,
+      "firm": "Develocity",
+      "status": "updated",
+      "source_urls": [
+        "https://develocity.io/team",
+        "https://develocity.io/people",
+        "https://develocity.io/partners",
+        "https://develocity.io/leadership"
+      ],
+      "parsed_firm": "Develocity",
+      "updated_at": "2026-05-28T05:28:14.011039+00:00"
+    },
+    {
+      "investor_id": 76,
+      "firm": "Falcon LLC",
+      "status": "updated",
+      "source_urls": [
+        "https://www.falconllc.com/team",
+        "https://www.falconllc.com/people",
+        "https://www.falconllc.com/partners",
+        "https://www.falconllc.com/leadership"
+      ],
+      "parsed_firm": "Falcon LLC",
+      "updated_at": "2026-05-28T05:28:24.438919+00:00"
+    },
+    {
+      "investor_id": 243,
+      "firm": "Goldman Sachs",
+      "status": "updated",
+      "source_urls": [
+        "https://www.goldmansachs.com/team",
+        "https://www.goldmansachs.com/people",
+        "https://www.goldmansachs.com/partners",
+        "https://www.goldmansachs.com/leadership"
+      ],
+      "parsed_firm": "Goldman Sachs",
+      "updated_at": "2026-05-28T05:29:05.255790+00:00"
+    },
+    {
+      "investor_id": 250,
+      "firm": "InvestorAi Investment Management Services Private Ltd",
+      "status": "updated",
+      "source_urls": [
+        "https://www.investorai.in/team",
+        "https://www.investorai.in/people",
+        "https://www.investorai.in/partners",
+        "https://www.investorai.in/leadership"
+      ],
+      "parsed_firm": "InvestorAi Investment Management Services Private Ltd",
+      "updated_at": "2026-05-28T05:29:23.860866+00:00"
+    },
+    {
+      "investor_id": 123,
+      "firm": "KPI Sense",
+      "status": "updated",
+      "source_urls": [
+        "https://kpisense.com/team",
+        "https://kpisense.com/people",
+        "https://kpisense.com/partners",
+        "https://kpisense.com/leadership"
+      ],
+      "parsed_firm": "KPI Sense",
+      "updated_at": "2026-05-28T05:29:39.361411+00:00"
+    },
+    {
+      "investor_id": 337,
+      "firm": "Preqin",
+      "status": "updated",
+      "source_urls": [
+        "https://preqin.com/team",
+        "https://preqin.com/people",
+        "https://preqin.com/partners",
+        "https://preqin.com/leadership"
+      ],
+      "parsed_firm": "Preqin",
+      "updated_at": "2026-05-28T05:29:49.025231+00:00"
+    },
+    {
+      "investor_id": 168,
+      "firm": "SaaS Founding",
+      "status": "updated",
+      "source_urls": [
+        "https://payproglobal.com/team",
+        "https://payproglobal.com/people",
+        "https://payproglobal.com/partners",
+        "https://payproglobal.com/leadership"
+      ],
+      "parsed_firm": "",
+      "updated_at": "2026-05-28T05:30:05.740582+00:00"
+    },
+    {
+      "investor_id": 187,
+      "firm": "SOSV",
+      "status": "updated",
+      "source_urls": [
+        "https://shizune.co/team",
+        "https://shizune.co/people",
+        "https://shizune.co/partners",
+        "https://shizune.co/leadership"
+      ],
+      "parsed_firm": "",
+      "updated_at": "2026-05-28T05:30:11.455131+00:00"
+    },
+    {
+      "investor_id": 197,
+      "firm": "Thl",
+      "status": "updated",
+      "source_urls": [
+        "https://thl.com/team",
+        "https://thl.com/people",
+        "https://thl.com/partners",
+        "https://thl.com/leadership"
+      ],
+      "parsed_firm": "THL",
+      "updated_at": "2026-05-28T05:30:25.543100+00:00"
+    },
+    {
+      "investor_id": 212,
+      "firm": "Vidrio",
+      "status": "updated",
+      "source_urls": [
+        "https://www.vidrio.com/team",
+        "https://www.vidrio.com/people",
+        "https://www.vidrio.com/partners",
+        "https://www.vidrio.com/leadership"
+      ],
+      "parsed_firm": "Vidrio Financial",
+      "updated_at": "2026-05-28T05:30:39.323589+00:00"
+    },
+    {
+      "investor_id": 215,
+      "firm": "Visible Ventures",
+      "status": "updated",
+      "source_urls": [
+        "https://visible.vc/portfolio",
+        "https://visible.vc/companies",
+        "https://visible.vc/investments",
+        "https://visible.vc/portfolio-companies"
+      ],
+      "parsed_firm": "Visible.vc",
+      "updated_at": "2026-05-28T05:30:56.478482+00:00"
+    },
+    {
+      "investor_id": 226,
+      "firm": "Zuora",
+      "status": "updated",
+      "source_urls": [
+        "https://www.zuora.com/partners",
+        "https://www.zuora.com/our-team",
+        "https://www.zuora.com/investment-thesis"
+      ],
+      "parsed_firm": "Zuora",
+      "updated_at": "2026-05-28T05:31:25.032489+00:00"
+    },
+    {
+      "investor_id": 91,
+      "firm": "Golden Angels Investors",
+      "status": "updated",
+      "source_urls": [
+        "https://goldenangelsinvestors.com/team",
+        "https://goldenangelsinvestors.com/people",
+        "https://goldenangelsinvestors.com/partners",
+        "https://goldenangelsinvestors.com/leadership"
+      ],
+      "parsed_firm": "Golden Angels Investors",
+      "updated_at": "2026-05-28T05:31:42.811577+00:00"
+    },
+    {
+      "investor_id": 4,
+      "firm": "2ndF",
+      "status": "updated",
+      "source_urls": [
+        "https://www.2ndf.org/team"
+      ],
+      "parsed_firm": "2ndF",
+      "updated_at": "2026-05-28T05:31:55.285133+00:00"
+    },
+    {
+      "investor_id": 356,
+      "firm": "Aavishkaar Capital",
+      "status": "updated",
+      "source_urls": [
+        "https://theaiworld.org/team",
+        "https://theaiworld.org/people",
+        "https://theaiworld.org/partners",
+        "https://theaiworld.org/leadership"
+      ],
+      "parsed_firm": "",
+      "updated_at": "2026-05-28T05:32:00.728894+00:00"
+    },
+    {
+      "investor_id": 27,
+      "firm": "Antler Singapore",
+      "status": "updated",
+      "source_urls": [
+        "https://antler.co/team",
+        "https://antler.co/about"
+      ],
+      "parsed_firm": "Antler",
+      "updated_at": "2026-05-28T05:32:27.441526+00:00"
+    }
+  ]
+}

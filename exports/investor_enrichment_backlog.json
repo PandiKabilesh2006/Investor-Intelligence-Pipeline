@@ -1,0 +1,5846 @@
+{
+  "summary": {
+    "audit_source": "exports\\investor_coverage_audit.json",
+    "selected_records": 69,
+    "skipped_suspicious_records": 4,
+    "min_score_threshold": 5,
+    "missing_field_breakdown": {
+      "focus_sectors": 15,
+      "investment_stage": 37,
+      "geography": 19,
+      "partners": 68,
+      "portfolio_companies": 62,
+      "contact_links": 19,
+      "website": 2
+    }
+  },
+  "backlog": [
+    {
+      "investor_id": 195,
+      "firm": "The CrowdSpace",
+      "score": 2,
+      "status": "thin",
+      "website": "https://thecrowdspace.com",
+      "source_url": "https://thecrowdspace.com/team",
+      "domain": "thecrowdspace.com",
+      "missing_fields": [
+        "focus_sectors",
+        "investment_stage",
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "The CrowdSpace team",
+        "The CrowdSpace partners",
+        "The CrowdSpace leadership",
+        "The CrowdSpace portfolio",
+        "The CrowdSpace portfolio companies",
+        "The CrowdSpace investments",
+        "The CrowdSpace investment thesis",
+        "The CrowdSpace focus sectors",
+        "The CrowdSpace investment stage",
+        "The CrowdSpace about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://thecrowdspace.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://thecrowdspace.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://thecrowdspace.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://thecrowdspace.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://thecrowdspace.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://thecrowdspace.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thecrowdspace.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thecrowdspace.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thecrowdspace.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thecrowdspace.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thecrowdspace.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thecrowdspace.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thecrowdspace.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thecrowdspace.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thecrowdspace.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 268,
+      "firm": "2B Angels",
+      "score": 3,
+      "status": "thin",
+      "website": "https://www.swfinstitute.org/profile/5e39a600fcbe7e8ca7273583",
+      "source_url": "https://swfinstitute.org/profiles/venture-capital-firm/middle-east",
+      "domain": "www.swfinstitute.org",
+      "missing_fields": [
+        "focus_sectors",
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "2B Angels team in Middle East",
+        "2B Angels partners in Middle East",
+        "2B Angels leadership in Middle East",
+        "2B Angels portfolio in Middle East",
+        "2B Angels portfolio companies in Middle East",
+        "2B Angels investments in Middle East",
+        "2B Angels investment thesis",
+        "2B Angels focus sectors",
+        "2B Angels investment stage",
+        "2B Angels about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.swfinstitute.org/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.swfinstitute.org/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.swfinstitute.org/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.swfinstitute.org/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.swfinstitute.org/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.swfinstitute.org/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.swfinstitute.org/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.swfinstitute.org/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.swfinstitute.org/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.swfinstitute.org/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.swfinstitute.org/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.swfinstitute.org/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.swfinstitute.org/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.swfinstitute.org/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.swfinstitute.org/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 48,
+      "firm": "British Business Bank",
+      "score": 3,
+      "status": "thin",
+      "website": "https://www.british-business-bank.co.uk",
+      "source_url": "https://www.british-business-bank.co.uk/team",
+      "domain": "www.british-business-bank.co.uk",
+      "missing_fields": [
+        "focus_sectors",
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "British Business Bank team in Europe",
+        "British Business Bank partners in Europe",
+        "British Business Bank leadership in Europe",
+        "British Business Bank portfolio in Europe",
+        "British Business Bank portfolio companies in Europe",
+        "British Business Bank investments in Europe",
+        "British Business Bank investment thesis",
+        "British Business Bank focus sectors",
+        "British Business Bank investment stage",
+        "British Business Bank about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.british-business-bank.co.uk/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.british-business-bank.co.uk/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.british-business-bank.co.uk/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.british-business-bank.co.uk/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.british-business-bank.co.uk/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.british-business-bank.co.uk/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.british-business-bank.co.uk/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.british-business-bank.co.uk/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.british-business-bank.co.uk/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.british-business-bank.co.uk/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.british-business-bank.co.uk/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.british-business-bank.co.uk/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.british-business-bank.co.uk/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.british-business-bank.co.uk/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.british-business-bank.co.uk/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 304,
+      "firm": "CB Insights",
+      "score": 3,
+      "status": "thin",
+      "website": "https://www.cbinsights.com",
+      "source_url": "https://cbinsights.com/research/voice-ai-consolidation-acquisitions",
+      "domain": "www.cbinsights.com",
+      "missing_fields": [
+        "investment_stage",
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "CB Insights team",
+        "CB Insights partners",
+        "CB Insights leadership",
+        "CB Insights portfolio",
+        "CB Insights portfolio companies",
+        "CB Insights investments",
+        "CB Insights investment thesis",
+        "CB Insights focus sectors",
+        "CB Insights investment stage",
+        "CB Insights about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.cbinsights.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.cbinsights.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.cbinsights.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.cbinsights.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.cbinsights.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.cbinsights.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.cbinsights.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.cbinsights.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.cbinsights.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.cbinsights.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.cbinsights.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.cbinsights.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.cbinsights.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.cbinsights.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.cbinsights.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 307,
+      "firm": "Develocity",
+      "score": 3,
+      "status": "thin",
+      "website": "https://develocity.io",
+      "source_url": "https://develocity.io/empowering-innovation-the-surge-of-vc-funding-in-developer-tool-startups-scaleups-and-unicorns",
+      "domain": "develocity.io",
+      "missing_fields": [
+        "focus_sectors",
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Develocity team in United States",
+        "Develocity partners in United States",
+        "Develocity leadership in United States",
+        "Develocity portfolio in United States",
+        "Develocity portfolio companies in United States",
+        "Develocity investments in United States",
+        "Develocity investment thesis",
+        "Develocity focus sectors",
+        "Develocity investment stage",
+        "Develocity about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://develocity.io/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://develocity.io/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://develocity.io/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://develocity.io/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://develocity.io/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://develocity.io/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://develocity.io/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://develocity.io/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://develocity.io/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://develocity.io/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://develocity.io/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://develocity.io/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://develocity.io/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://develocity.io/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://develocity.io/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 76,
+      "firm": "Falcon LLC",
+      "score": 3,
+      "status": "thin",
+      "website": "https://www.falconllc.com",
+      "source_url": "https://www.falconllc.com/team",
+      "domain": "www.falconllc.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Falcon LLC team in Global",
+        "Falcon LLC partners in Global",
+        "Falcon LLC leadership in Global",
+        "Falcon LLC portfolio in Global",
+        "Falcon LLC portfolio companies in Global",
+        "Falcon LLC investments in Global",
+        "Falcon LLC investment thesis",
+        "Falcon LLC focus sectors",
+        "Falcon LLC investment stage",
+        "Falcon LLC about",
+        "Falcon LLC contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.falconllc.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.falconllc.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.falconllc.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.falconllc.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.falconllc.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.falconllc.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.falconllc.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.falconllc.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.falconllc.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.falconllc.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.falconllc.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.falconllc.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.falconllc.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.falconllc.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.falconllc.com/investment-thesis"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.falconllc.com/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.falconllc.com/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 243,
+      "firm": "Goldman Sachs",
+      "score": 3,
+      "status": "thin",
+      "website": "https://www.goldmansachs.com",
+      "source_url": "https://goldmansachs.com/insights/articles/which-software-companies-will-benefit-from-ai",
+      "domain": "www.goldmansachs.com",
+      "missing_fields": [
+        "investment_stage",
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Goldman Sachs team",
+        "Goldman Sachs partners",
+        "Goldman Sachs leadership",
+        "Goldman Sachs portfolio",
+        "Goldman Sachs portfolio companies",
+        "Goldman Sachs investments",
+        "Goldman Sachs investment thesis",
+        "Goldman Sachs focus sectors",
+        "Goldman Sachs investment stage",
+        "Goldman Sachs about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.goldmansachs.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.goldmansachs.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.goldmansachs.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.goldmansachs.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.goldmansachs.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.goldmansachs.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.goldmansachs.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.goldmansachs.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.goldmansachs.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.goldmansachs.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.goldmansachs.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.goldmansachs.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.goldmansachs.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.goldmansachs.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.goldmansachs.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 250,
+      "firm": "InvestorAi Investment Management Services Private Ltd",
+      "score": 3,
+      "status": "thin",
+      "website": "https://www.investorai.in",
+      "source_url": "https://investorai.in",
+      "domain": "www.investorai.in",
+      "missing_fields": [
+        "focus_sectors",
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "InvestorAi Investment Management Services Private Ltd team in India",
+        "InvestorAi Investment Management Services Private Ltd partners in India",
+        "InvestorAi Investment Management Services Private Ltd leadership in India",
+        "InvestorAi Investment Management Services Private Ltd portfolio in India",
+        "InvestorAi Investment Management Services Private Ltd portfolio companies in India",
+        "InvestorAi Investment Management Services Private Ltd investments in India",
+        "InvestorAi Investment Management Services Private Ltd investment thesis",
+        "InvestorAi Investment Management Services Private Ltd focus sectors",
+        "InvestorAi Investment Management Services Private Ltd investment stage",
+        "InvestorAi Investment Management Services Private Ltd about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.investorai.in/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.investorai.in/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.investorai.in/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.investorai.in/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.investorai.in/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.investorai.in/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.investorai.in/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.investorai.in/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.investorai.in/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.investorai.in/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.investorai.in/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.investorai.in/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.investorai.in/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.investorai.in/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.investorai.in/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 123,
+      "firm": "KPI Sense",
+      "score": 3,
+      "status": "thin",
+      "website": "https://kpisense.com",
+      "source_url": "https://kpisense.com/team",
+      "domain": "kpisense.com",
+      "missing_fields": [
+        "investment_stage",
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "KPI Sense team",
+        "KPI Sense partners",
+        "KPI Sense leadership",
+        "KPI Sense portfolio",
+        "KPI Sense portfolio companies",
+        "KPI Sense investments",
+        "KPI Sense investment thesis",
+        "KPI Sense focus sectors",
+        "KPI Sense investment stage",
+        "KPI Sense about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://kpisense.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://kpisense.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://kpisense.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://kpisense.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://kpisense.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://kpisense.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://kpisense.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://kpisense.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://kpisense.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://kpisense.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://kpisense.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://kpisense.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://kpisense.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://kpisense.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://kpisense.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 337,
+      "firm": "Preqin",
+      "score": 3,
+      "status": "thin",
+      "website": "https://preqin.com",
+      "source_url": "https://preqin.com/data/profile/asset/voice-ai-inc-/553010",
+      "domain": "preqin.com",
+      "missing_fields": [
+        "investment_stage",
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Preqin team",
+        "Preqin partners",
+        "Preqin leadership",
+        "Preqin portfolio",
+        "Preqin portfolio companies",
+        "Preqin investments",
+        "Preqin investment thesis",
+        "Preqin focus sectors",
+        "Preqin investment stage",
+        "Preqin about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://preqin.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://preqin.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://preqin.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://preqin.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://preqin.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://preqin.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://preqin.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://preqin.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://preqin.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://preqin.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://preqin.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://preqin.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://preqin.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://preqin.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://preqin.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 168,
+      "firm": "SaaS Founding",
+      "score": 3,
+      "status": "thin",
+      "website": "https://payproglobal.com/",
+      "source_url": "https://payproglobal.com/team",
+      "domain": "payproglobal.com",
+      "missing_fields": [
+        "investment_stage",
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "SaaS Founding team",
+        "SaaS Founding partners",
+        "SaaS Founding leadership",
+        "SaaS Founding portfolio",
+        "SaaS Founding portfolio companies",
+        "SaaS Founding investments",
+        "SaaS Founding investment thesis",
+        "SaaS Founding focus sectors",
+        "SaaS Founding investment stage",
+        "SaaS Founding about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://payproglobal.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://payproglobal.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://payproglobal.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://payproglobal.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://payproglobal.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://payproglobal.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://payproglobal.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://payproglobal.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://payproglobal.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://payproglobal.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://payproglobal.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://payproglobal.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://payproglobal.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://payproglobal.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://payproglobal.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 187,
+      "firm": "SOSV",
+      "score": 3,
+      "status": "thin",
+      "website": "https://shizune.co",
+      "source_url": "https://shizune.co/team",
+      "domain": "shizune.co",
+      "missing_fields": [
+        "geography",
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "SOSV team",
+        "SOSV partners",
+        "SOSV leadership",
+        "SOSV portfolio",
+        "SOSV portfolio companies",
+        "SOSV investments",
+        "SOSV investment thesis",
+        "SOSV focus sectors",
+        "SOSV investment stage",
+        "SOSV about",
+        "SOSV contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://shizune.co/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://shizune.co/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://shizune.co/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://shizune.co/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://shizune.co/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://shizune.co/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://shizune.co/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://shizune.co/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://shizune.co/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://shizune.co/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://shizune.co/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://shizune.co/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://shizune.co/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://shizune.co/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://shizune.co/investment-thesis"
+        },
+        {
+          "type": "contact",
+          "url": "https://shizune.co/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://shizune.co/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 197,
+      "firm": "Thl",
+      "score": 3,
+      "status": "thin",
+      "website": "https://thl.com/companies",
+      "source_url": "https://thl.com/automation",
+      "domain": "thl.com",
+      "missing_fields": [
+        "focus_sectors",
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Thl team in United States",
+        "Thl partners in United States",
+        "Thl leadership in United States",
+        "Thl portfolio in United States",
+        "Thl portfolio companies in United States",
+        "Thl investments in United States",
+        "Thl investment thesis",
+        "Thl focus sectors",
+        "Thl investment stage",
+        "Thl about",
+        "Thl contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://thl.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://thl.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://thl.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://thl.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://thl.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://thl.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thl.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thl.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thl.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thl.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thl.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thl.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thl.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thl.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thl.com/investment-thesis"
+        },
+        {
+          "type": "contact",
+          "url": "https://thl.com/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://thl.com/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 212,
+      "firm": "Vidrio",
+      "score": 3,
+      "status": "thin",
+      "website": "https://www.vidrio.com",
+      "source_url": "https://www.vidrio.com/team",
+      "domain": "www.vidrio.com",
+      "missing_fields": [
+        "investment_stage",
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Vidrio team",
+        "Vidrio partners",
+        "Vidrio leadership",
+        "Vidrio portfolio",
+        "Vidrio portfolio companies",
+        "Vidrio investments",
+        "Vidrio investment thesis",
+        "Vidrio focus sectors",
+        "Vidrio investment stage",
+        "Vidrio about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.vidrio.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.vidrio.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.vidrio.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.vidrio.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.vidrio.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.vidrio.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.vidrio.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.vidrio.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.vidrio.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.vidrio.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.vidrio.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.vidrio.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.vidrio.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.vidrio.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.vidrio.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 215,
+      "firm": "Visible Ventures",
+      "score": 4,
+      "status": "usable",
+      "website": "https://visible.vc/",
+      "source_url": "https://visible.vc/portfolio",
+      "domain": "visible.vc",
+      "missing_fields": [
+        "focus_sectors",
+        "investment_stage",
+        "portfolio_companies"
+      ],
+      "partner_count": 1,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Visible Ventures portfolio in United States",
+        "Visible Ventures portfolio companies in United States",
+        "Visible Ventures investments in United States",
+        "Visible Ventures investment thesis",
+        "Visible Ventures focus sectors",
+        "Visible Ventures investment stage",
+        "Visible Ventures about"
+      ],
+      "page_targets": [
+        {
+          "type": "portfolio",
+          "url": "https://visible.vc/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://visible.vc/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://visible.vc/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://visible.vc/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://visible.vc/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://visible.vc/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://visible.vc/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://visible.vc/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://visible.vc/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 226,
+      "firm": "Zuora",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.zuora.com",
+      "source_url": "https://www.zuora.com/team",
+      "domain": "www.zuora.com",
+      "missing_fields": [
+        "investment_stage",
+        "geography",
+        "partners"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 4,
+      "queries": [
+        "Zuora team",
+        "Zuora partners",
+        "Zuora leadership",
+        "Zuora investment thesis",
+        "Zuora focus sectors",
+        "Zuora investment stage",
+        "Zuora about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.zuora.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.zuora.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.zuora.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.zuora.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.zuora.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.zuora.com/our-team"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.zuora.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.zuora.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.zuora.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.zuora.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.zuora.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 91,
+      "firm": "Golden Angels Investors",
+      "score": 4,
+      "status": "usable",
+      "website": "https://goldenangelsinvestors.com",
+      "source_url": "https://goldenangelsinvestors.com/team",
+      "domain": "goldenangelsinvestors.com",
+      "missing_fields": [
+        "focus_sectors",
+        "geography",
+        "partners"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 3,
+      "queries": [
+        "Golden Angels Investors team",
+        "Golden Angels Investors partners",
+        "Golden Angels Investors leadership",
+        "Golden Angels Investors investment thesis",
+        "Golden Angels Investors focus sectors",
+        "Golden Angels Investors investment stage",
+        "Golden Angels Investors about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://goldenangelsinvestors.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://goldenangelsinvestors.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://goldenangelsinvestors.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://goldenangelsinvestors.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://goldenangelsinvestors.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://goldenangelsinvestors.com/our-team"
+        },
+        {
+          "type": "metadata",
+          "url": "https://goldenangelsinvestors.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://goldenangelsinvestors.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://goldenangelsinvestors.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://goldenangelsinvestors.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://goldenangelsinvestors.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 356,
+      "firm": "Aavishkaar Capital",
+      "score": 4,
+      "status": "usable",
+      "website": "",
+      "source_url": "https://theaiworld.org/news/gnaniai-raises-7m-series-b-led-by-aavishkaar-capital",
+      "domain": "theaiworld.org",
+      "missing_fields": [
+        "website",
+        "partners",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 1,
+      "queries": [
+        "Aavishkaar Capital team in India",
+        "Aavishkaar Capital partners in India",
+        "Aavishkaar Capital leadership in India",
+        "Aavishkaar Capital contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/our-team"
+        },
+        {
+          "type": "contact",
+          "url": "https://theaiworld.org/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://theaiworld.org/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 112,
+      "firm": "Iconiq Capital",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.crunchbase.com/organization/iconiq-capital",
+      "source_url": "",
+      "domain": "www.crunchbase.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 1,
+      "queries": [
+        "Iconiq Capital team in Global",
+        "Iconiq Capital partners in Global",
+        "Iconiq Capital leadership in Global",
+        "Iconiq Capital investment thesis",
+        "Iconiq Capital focus sectors",
+        "Iconiq Capital investment stage",
+        "Iconiq Capital about",
+        "Iconiq Capital contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.crunchbase.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.crunchbase.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.crunchbase.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.crunchbase.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.crunchbase.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.crunchbase.com/our-team"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.crunchbase.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.crunchbase.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.crunchbase.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.crunchbase.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.crunchbase.com/investment-thesis"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.crunchbase.com/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.crunchbase.com/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 154,
+      "firm": "PitchKitchen",
+      "score": 4,
+      "status": "usable",
+      "website": "https://pitchkitchen.com",
+      "source_url": "https://pitchkitchen.com/best-marketing-pe-backed-portfolio-companies",
+      "domain": "pitchkitchen.com",
+      "missing_fields": [
+        "investment_stage",
+        "geography",
+        "partners"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 1,
+      "queries": [
+        "PitchKitchen team",
+        "PitchKitchen partners",
+        "PitchKitchen leadership",
+        "PitchKitchen investment thesis",
+        "PitchKitchen focus sectors",
+        "PitchKitchen investment stage",
+        "PitchKitchen about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://pitchkitchen.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://pitchkitchen.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://pitchkitchen.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://pitchkitchen.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://pitchkitchen.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://pitchkitchen.com/our-team"
+        },
+        {
+          "type": "metadata",
+          "url": "https://pitchkitchen.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://pitchkitchen.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://pitchkitchen.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://pitchkitchen.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://pitchkitchen.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 167,
+      "firm": "Rockwood Equity",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.rockwoodequity.com",
+      "source_url": "",
+      "domain": "www.rockwoodequity.com",
+      "missing_fields": [
+        "focus_sectors",
+        "investment_stage",
+        "partners"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 1,
+      "queries": [
+        "Rockwood Equity team in Global",
+        "Rockwood Equity partners in Global",
+        "Rockwood Equity leadership in Global",
+        "Rockwood Equity investment thesis",
+        "Rockwood Equity focus sectors",
+        "Rockwood Equity investment stage",
+        "Rockwood Equity about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.rockwoodequity.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.rockwoodequity.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.rockwoodequity.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.rockwoodequity.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.rockwoodequity.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.rockwoodequity.com/our-team"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.rockwoodequity.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.rockwoodequity.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.rockwoodequity.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.rockwoodequity.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.rockwoodequity.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 257,
+      "firm": "Thoma Bravo",
+      "score": 4,
+      "status": "usable",
+      "website": "",
+      "source_url": "https://mikesonders.com/largest-saas-companies",
+      "domain": "mikesonders.com",
+      "missing_fields": [
+        "website",
+        "partners",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 1,
+      "queries": [
+        "Thoma Bravo team in United States",
+        "Thoma Bravo partners in United States",
+        "Thoma Bravo leadership in United States",
+        "Thoma Bravo contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://mikesonders.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://mikesonders.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://mikesonders.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://mikesonders.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://mikesonders.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://mikesonders.com/our-team"
+        },
+        {
+          "type": "contact",
+          "url": "https://mikesonders.com/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://mikesonders.com/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 1,
+      "firm": "10K Ventures",
+      "score": 4,
+      "status": "usable",
+      "website": "https://saasvclist.com/vcs/10k-ventures-10kventuresco/",
+      "source_url": "",
+      "domain": "saasvclist.com",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "10K Ventures team in Europe",
+        "10K Ventures partners in Europe",
+        "10K Ventures leadership in Europe",
+        "10K Ventures portfolio in Europe",
+        "10K Ventures portfolio companies in Europe",
+        "10K Ventures investments in Europe",
+        "10K Ventures contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://saasvclist.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://saasvclist.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://saasvclist.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://saasvclist.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://saasvclist.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://saasvclist.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://saasvclist.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://saasvclist.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://saasvclist.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://saasvclist.com/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://saasvclist.com/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://saasvclist.com/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 3,
+      "firm": "25Shares",
+      "score": 4,
+      "status": "usable",
+      "website": "['Email', 'Facebook', 'Twitter', 'LinkedIn']",
+      "source_url": "",
+      "domain": "",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "25Shares team in Global",
+        "25Shares partners in Global",
+        "25Shares leadership in Global",
+        "25Shares portfolio in Global",
+        "25Shares portfolio companies in Global",
+        "25Shares investments in Global",
+        "25Shares contact"
+      ],
+      "page_targets": []
+    },
+    {
+      "investor_id": 281,
+      "firm": "AI Superior",
+      "score": 4,
+      "status": "usable",
+      "website": "https://aisuperior.com/",
+      "source_url": "https://aisuperior.com/ai-saas-companies",
+      "domain": "aisuperior.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "AI Superior team in Global",
+        "AI Superior partners in Global",
+        "AI Superior leadership in Global",
+        "AI Superior portfolio in Global",
+        "AI Superior portfolio companies in Global",
+        "AI Superior investments in Global",
+        "AI Superior investment thesis",
+        "AI Superior focus sectors",
+        "AI Superior investment stage",
+        "AI Superior about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://aisuperior.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://aisuperior.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://aisuperior.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://aisuperior.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://aisuperior.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://aisuperior.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://aisuperior.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://aisuperior.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://aisuperior.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://aisuperior.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://aisuperior.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://aisuperior.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://aisuperior.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://aisuperior.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://aisuperior.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 282,
+      "firm": "Allvue Systems",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.allvuesystems.com",
+      "source_url": "https://allvuesystems.com",
+      "domain": "www.allvuesystems.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Allvue Systems team in Global",
+        "Allvue Systems partners in Global",
+        "Allvue Systems leadership in Global",
+        "Allvue Systems portfolio in Global",
+        "Allvue Systems portfolio companies in Global",
+        "Allvue Systems investments in Global",
+        "Allvue Systems investment thesis",
+        "Allvue Systems focus sectors",
+        "Allvue Systems investment stage",
+        "Allvue Systems about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.allvuesystems.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.allvuesystems.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.allvuesystems.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.allvuesystems.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.allvuesystems.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.allvuesystems.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.allvuesystems.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.allvuesystems.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.allvuesystems.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.allvuesystems.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.allvuesystems.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.allvuesystems.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.allvuesystems.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.allvuesystems.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.allvuesystems.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 295,
+      "firm": "Angel Match",
+      "score": 4,
+      "status": "usable",
+      "website": "https://angelmatch.io",
+      "source_url": "https://angelmatch.io/investors/by-market/developer-tools",
+      "domain": "angelmatch.io",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Angel Match team in India",
+        "Angel Match partners in India",
+        "Angel Match leadership in India",
+        "Angel Match portfolio in India",
+        "Angel Match portfolio companies in India",
+        "Angel Match investments in India",
+        "Angel Match investment thesis",
+        "Angel Match focus sectors",
+        "Angel Match investment stage",
+        "Angel Match about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://angelmatch.io/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://angelmatch.io/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://angelmatch.io/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://angelmatch.io/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://angelmatch.io/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://angelmatch.io/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://angelmatch.io/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://angelmatch.io/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://angelmatch.io/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://angelmatch.io/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://angelmatch.io/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://angelmatch.io/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://angelmatch.io/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://angelmatch.io/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://angelmatch.io/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 30,
+      "firm": "Automate Show",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.automateshow.com/",
+      "source_url": "https://automateshow.com/blog/what-to-consider-when-investing-in-automation-a-guide-for-decision-makers",
+      "domain": "www.automateshow.com",
+      "missing_fields": [
+        "focus_sectors",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Automate Show team in Global",
+        "Automate Show partners in Global",
+        "Automate Show leadership in Global",
+        "Automate Show portfolio in Global",
+        "Automate Show portfolio companies in Global",
+        "Automate Show investments in Global",
+        "Automate Show investment thesis",
+        "Automate Show focus sectors",
+        "Automate Show investment stage",
+        "Automate Show about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.automateshow.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.automateshow.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.automateshow.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.automateshow.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.automateshow.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.automateshow.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.automateshow.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.automateshow.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.automateshow.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.automateshow.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.automateshow.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.automateshow.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.automateshow.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.automateshow.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.automateshow.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 37,
+      "firm": "Banyan Ventures – Sam Awrabi",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.playground.vc/",
+      "source_url": "https://banyan-vc.com/insights/top-ai-pre-seed-investors",
+      "domain": "www.playground.vc",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Banyan Ventures – Sam Awrabi team in Global",
+        "Banyan Ventures – Sam Awrabi partners in Global",
+        "Banyan Ventures – Sam Awrabi leadership in Global",
+        "Banyan Ventures – Sam Awrabi portfolio in Global",
+        "Banyan Ventures – Sam Awrabi portfolio companies in Global",
+        "Banyan Ventures – Sam Awrabi investments in Global",
+        "Banyan Ventures – Sam Awrabi contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.playground.vc/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.playground.vc/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.playground.vc/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.playground.vc/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.playground.vc/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.playground.vc/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.playground.vc/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.playground.vc/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.playground.vc/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.playground.vc/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.playground.vc/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.playground.vc/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 299,
+      "firm": "Benchmark IT",
+      "score": 4,
+      "status": "usable",
+      "website": "https://bmarkits.com",
+      "source_url": "https://benchmarkit.ai/metrics-that-measure-up-podcasts/micro-private-equity---new-path-to-b2b-saas-liquidity-%2B-growth",
+      "domain": "bmarkits.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Benchmark IT team in United States",
+        "Benchmark IT partners in United States",
+        "Benchmark IT leadership in United States",
+        "Benchmark IT portfolio in United States",
+        "Benchmark IT portfolio companies in United States",
+        "Benchmark IT investments in United States",
+        "Benchmark IT investment thesis",
+        "Benchmark IT focus sectors",
+        "Benchmark IT investment stage",
+        "Benchmark IT about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://bmarkits.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://bmarkits.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://bmarkits.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://bmarkits.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://bmarkits.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://bmarkits.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://bmarkits.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://bmarkits.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://bmarkits.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://bmarkits.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://bmarkits.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://bmarkits.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://bmarkits.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://bmarkits.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://bmarkits.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 303,
+      "firm": "Cathay Capital",
+      "score": 4,
+      "status": "usable",
+      "website": "https://cathaycapital.com",
+      "source_url": "https://cathaycapital.com/cathay-innovation-closes-1b-vertical-ai-fund-to-power-europes-industry-transformation",
+      "domain": "cathaycapital.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Cathay Capital team in Global",
+        "Cathay Capital partners in Global",
+        "Cathay Capital leadership in Global",
+        "Cathay Capital portfolio in Global",
+        "Cathay Capital portfolio companies in Global",
+        "Cathay Capital investments in Global",
+        "Cathay Capital investment thesis",
+        "Cathay Capital focus sectors",
+        "Cathay Capital investment stage",
+        "Cathay Capital about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://cathaycapital.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://cathaycapital.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://cathaycapital.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://cathaycapital.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://cathaycapital.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://cathaycapital.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://cathaycapital.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://cathaycapital.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://cathaycapital.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://cathaycapital.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://cathaycapital.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://cathaycapital.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://cathaycapital.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://cathaycapital.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://cathaycapital.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 56,
+      "firm": "Crescendo Live",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.crescendo.ai",
+      "source_url": "https://www.crescendo.ai/team",
+      "domain": "www.crescendo.ai",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Crescendo Live team in United States",
+        "Crescendo Live partners in United States",
+        "Crescendo Live leadership in United States",
+        "Crescendo Live portfolio in United States",
+        "Crescendo Live portfolio companies in United States",
+        "Crescendo Live investments in United States",
+        "Crescendo Live investment thesis",
+        "Crescendo Live focus sectors",
+        "Crescendo Live investment stage",
+        "Crescendo Live about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.crescendo.ai/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.crescendo.ai/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.crescendo.ai/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.crescendo.ai/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.crescendo.ai/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.crescendo.ai/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.crescendo.ai/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.crescendo.ai/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.crescendo.ai/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.crescendo.ai/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.crescendo.ai/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.crescendo.ai/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.crescendo.ai/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.crescendo.ai/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.crescendo.ai/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 258,
+      "firm": "Crunchbase",
+      "score": 4,
+      "status": "usable",
+      "website": "https://news.crunchbase.com",
+      "source_url": "https://news.crunchbase.com/venture/voice-ai-startups-global-investment",
+      "domain": "news.crunchbase.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Crunchbase team in United States",
+        "Crunchbase partners in United States",
+        "Crunchbase leadership in United States",
+        "Crunchbase portfolio in United States",
+        "Crunchbase portfolio companies in United States",
+        "Crunchbase investments in United States",
+        "Crunchbase investment thesis",
+        "Crunchbase focus sectors",
+        "Crunchbase investment stage",
+        "Crunchbase about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://news.crunchbase.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://news.crunchbase.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://news.crunchbase.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://news.crunchbase.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://news.crunchbase.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://news.crunchbase.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://news.crunchbase.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://news.crunchbase.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://news.crunchbase.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://news.crunchbase.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://news.crunchbase.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://news.crunchbase.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://news.crunchbase.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://news.crunchbase.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://news.crunchbase.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 274,
+      "firm": "D2 Fund",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.d2.fund/",
+      "source_url": "https://visible.vc/blog/top-b2b-investors",
+      "domain": "www.d2.fund",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "D2 Fund team in India",
+        "D2 Fund partners in India",
+        "D2 Fund leadership in India",
+        "D2 Fund portfolio in India",
+        "D2 Fund portfolio companies in India",
+        "D2 Fund investments in India",
+        "D2 Fund contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.d2.fund/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.d2.fund/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.d2.fund/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.d2.fund/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.d2.fund/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.d2.fund/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.d2.fund/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.d2.fund/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.d2.fund/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.d2.fund/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.d2.fund/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.d2.fund/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 62,
+      "firm": "Destination CRM",
+      "score": 4,
+      "status": "usable",
+      "website": "https://destinationcrm.com",
+      "source_url": "https://destinationcrm.com/Articles/Columns-Departments/The-Tipping-Point/Voice-AI-Is-Fueling-Serious-Investment-Interest-170153.aspx",
+      "domain": "destinationcrm.com",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Destination CRM team in Global",
+        "Destination CRM partners in Global",
+        "Destination CRM leadership in Global",
+        "Destination CRM portfolio in Global",
+        "Destination CRM portfolio companies in Global",
+        "Destination CRM investments in Global",
+        "Destination CRM contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://destinationcrm.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://destinationcrm.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://destinationcrm.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://destinationcrm.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://destinationcrm.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://destinationcrm.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://destinationcrm.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://destinationcrm.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://destinationcrm.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://destinationcrm.com/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://destinationcrm.com/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://destinationcrm.com/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 68,
+      "firm": "EisnerAmper",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.eisneramper.com/",
+      "source_url": "",
+      "domain": "www.eisneramper.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "EisnerAmper team in Global",
+        "EisnerAmper partners in Global",
+        "EisnerAmper leadership in Global",
+        "EisnerAmper portfolio in Global",
+        "EisnerAmper portfolio companies in Global",
+        "EisnerAmper investments in Global",
+        "EisnerAmper investment thesis",
+        "EisnerAmper focus sectors",
+        "EisnerAmper investment stage",
+        "EisnerAmper about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.eisneramper.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.eisneramper.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.eisneramper.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.eisneramper.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.eisneramper.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.eisneramper.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.eisneramper.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.eisneramper.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.eisneramper.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.eisneramper.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.eisneramper.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.eisneramper.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.eisneramper.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.eisneramper.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.eisneramper.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 238,
+      "firm": "EQT Group",
+      "score": 4,
+      "status": "usable",
+      "website": "https://eqtgroup.com",
+      "source_url": "https://eqtgroup.com/en/thinq/Education/what-are-the-different-stages-of-private-equity",
+      "domain": "eqtgroup.com",
+      "missing_fields": [
+        "focus_sectors",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "EQT Group team in India",
+        "EQT Group partners in India",
+        "EQT Group leadership in India",
+        "EQT Group portfolio in India",
+        "EQT Group portfolio companies in India",
+        "EQT Group investments in India",
+        "EQT Group investment thesis",
+        "EQT Group focus sectors",
+        "EQT Group investment stage",
+        "EQT Group about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://eqtgroup.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://eqtgroup.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://eqtgroup.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://eqtgroup.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://eqtgroup.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://eqtgroup.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://eqtgroup.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://eqtgroup.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://eqtgroup.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://eqtgroup.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://eqtgroup.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://eqtgroup.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://eqtgroup.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://eqtgroup.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://eqtgroup.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 285,
+      "firm": "Gripped",
+      "score": 4,
+      "status": "usable",
+      "website": "https://gripped.io",
+      "source_url": "https://gripped.io/b2b-saas/top-saas-vc-firms-b2b",
+      "domain": "gripped.io",
+      "missing_fields": [
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Gripped team",
+        "Gripped partners",
+        "Gripped leadership",
+        "Gripped portfolio",
+        "Gripped portfolio companies",
+        "Gripped investments",
+        "Gripped investment thesis",
+        "Gripped focus sectors",
+        "Gripped investment stage",
+        "Gripped about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://gripped.io/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://gripped.io/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://gripped.io/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://gripped.io/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://gripped.io/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://gripped.io/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://gripped.io/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://gripped.io/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://gripped.io/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://gripped.io/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://gripped.io/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://gripped.io/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://gripped.io/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://gripped.io/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://gripped.io/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 93,
+      "firm": "Gritt.io",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.gritt.io/",
+      "source_url": "",
+      "domain": "www.gritt.io",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Gritt.io team in United States",
+        "Gritt.io partners in United States",
+        "Gritt.io leadership in United States",
+        "Gritt.io portfolio in United States",
+        "Gritt.io portfolio companies in United States",
+        "Gritt.io investments in United States",
+        "Gritt.io contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.gritt.io/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.gritt.io/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.gritt.io/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.gritt.io/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.gritt.io/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.gritt.io/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.gritt.io/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.gritt.io/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.gritt.io/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.gritt.io/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.gritt.io/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.gritt.io/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 247,
+      "firm": "Growth Turbine",
+      "score": 4,
+      "status": "usable",
+      "website": "https://growthturbine.com",
+      "source_url": "https://growthturbine.com/sectors/saas-b2b-software-investor-acquisition",
+      "domain": "growthturbine.com",
+      "missing_fields": [
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Growth Turbine team",
+        "Growth Turbine partners",
+        "Growth Turbine leadership",
+        "Growth Turbine portfolio",
+        "Growth Turbine portfolio companies",
+        "Growth Turbine investments",
+        "Growth Turbine investment thesis",
+        "Growth Turbine focus sectors",
+        "Growth Turbine investment stage",
+        "Growth Turbine about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://growthturbine.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://growthturbine.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://growthturbine.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://growthturbine.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://growthturbine.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://growthturbine.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://growthturbine.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://growthturbine.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://growthturbine.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://growthturbine.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://growthturbine.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://growthturbine.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://growthturbine.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://growthturbine.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://growthturbine.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 100,
+      "firm": "Groww",
+      "score": 4,
+      "status": "usable",
+      "website": "https://groww.in",
+      "source_url": "https://groww.in/blog/best-artificial-intelligence-stocks-in-india",
+      "domain": "groww.in",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Groww team in India",
+        "Groww partners in India",
+        "Groww leadership in India",
+        "Groww portfolio in India",
+        "Groww portfolio companies in India",
+        "Groww investments in India",
+        "Groww investment thesis",
+        "Groww focus sectors",
+        "Groww investment stage",
+        "Groww about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://groww.in/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://groww.in/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://groww.in/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://groww.in/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://groww.in/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://groww.in/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://groww.in/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://groww.in/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://groww.in/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://groww.in/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://groww.in/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://groww.in/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://groww.in/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://groww.in/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://groww.in/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 288,
+      "firm": "Indian Healthcare Angels (IHA)",
+      "score": 4,
+      "status": "usable",
+      "website": "https://iha.vc",
+      "source_url": "https://iha.vc",
+      "domain": "iha.vc",
+      "missing_fields": [
+        "focus_sectors",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Indian Healthcare Angels (IHA) team in India",
+        "Indian Healthcare Angels (IHA) partners in India",
+        "Indian Healthcare Angels (IHA) leadership in India",
+        "Indian Healthcare Angels (IHA) portfolio in India",
+        "Indian Healthcare Angels (IHA) portfolio companies in India",
+        "Indian Healthcare Angels (IHA) investments in India",
+        "Indian Healthcare Angels (IHA) investment thesis",
+        "Indian Healthcare Angels (IHA) focus sectors",
+        "Indian Healthcare Angels (IHA) investment stage",
+        "Indian Healthcare Angels (IHA) about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://iha.vc/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://iha.vc/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://iha.vc/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://iha.vc/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://iha.vc/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://iha.vc/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://iha.vc/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://iha.vc/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://iha.vc/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://iha.vc/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://iha.vc/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://iha.vc/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://iha.vc/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://iha.vc/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://iha.vc/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 117,
+      "firm": "Invest Europe",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.investeurope.eu",
+      "source_url": "https://investeurope.eu/about-us/invest-europe-governance/artificial-intelligence-taskforce",
+      "domain": "www.investeurope.eu",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Invest Europe team in Europe",
+        "Invest Europe partners in Europe",
+        "Invest Europe leadership in Europe",
+        "Invest Europe portfolio in Europe",
+        "Invest Europe portfolio companies in Europe",
+        "Invest Europe investments in Europe",
+        "Invest Europe investment thesis",
+        "Invest Europe focus sectors",
+        "Invest Europe investment stage",
+        "Invest Europe about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.investeurope.eu/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.investeurope.eu/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.investeurope.eu/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.investeurope.eu/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.investeurope.eu/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.investeurope.eu/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.investeurope.eu/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.investeurope.eu/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.investeurope.eu/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.investeurope.eu/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.investeurope.eu/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.investeurope.eu/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.investeurope.eu/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.investeurope.eu/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.investeurope.eu/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 251,
+      "firm": "Jahani and Associates",
+      "score": 4,
+      "status": "usable",
+      "website": "https://jahaniandassociates.com",
+      "source_url": "https://jahaniandassociates.com/middle-eastern-investors-and-usa-startups",
+      "domain": "jahaniandassociates.com",
+      "missing_fields": [
+        "focus_sectors",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Jahani and Associates team in United States",
+        "Jahani and Associates partners in United States",
+        "Jahani and Associates leadership in United States",
+        "Jahani and Associates portfolio in United States",
+        "Jahani and Associates portfolio companies in United States",
+        "Jahani and Associates investments in United States",
+        "Jahani and Associates investment thesis",
+        "Jahani and Associates focus sectors",
+        "Jahani and Associates investment stage",
+        "Jahani and Associates about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://jahaniandassociates.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://jahaniandassociates.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://jahaniandassociates.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://jahaniandassociates.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://jahaniandassociates.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://jahaniandassociates.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://jahaniandassociates.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://jahaniandassociates.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://jahaniandassociates.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://jahaniandassociates.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://jahaniandassociates.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://jahaniandassociates.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://jahaniandassociates.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://jahaniandassociates.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://jahaniandassociates.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 252,
+      "firm": "Janus Henderson Investors",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.janushenderson.com",
+      "source_url": "https://janushenderson.com/en-ch/advisor/article/how-ai-disruption-is-reshaping-the-software-sector-landscape",
+      "domain": "www.janushenderson.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Janus Henderson Investors team in Global",
+        "Janus Henderson Investors partners in Global",
+        "Janus Henderson Investors leadership in Global",
+        "Janus Henderson Investors portfolio in Global",
+        "Janus Henderson Investors portfolio companies in Global",
+        "Janus Henderson Investors investments in Global",
+        "Janus Henderson Investors investment thesis",
+        "Janus Henderson Investors focus sectors",
+        "Janus Henderson Investors investment stage",
+        "Janus Henderson Investors about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.janushenderson.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.janushenderson.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.janushenderson.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.janushenderson.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.janushenderson.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.janushenderson.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.janushenderson.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.janushenderson.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.janushenderson.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.janushenderson.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.janushenderson.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.janushenderson.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.janushenderson.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.janushenderson.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.janushenderson.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 121,
+      "firm": "Josys",
+      "score": 4,
+      "status": "usable",
+      "website": "https://josys.com/",
+      "source_url": "https://josys.com/article/saas-management-platforms",
+      "domain": "josys.com",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Josys team in Global",
+        "Josys partners in Global",
+        "Josys leadership in Global",
+        "Josys portfolio in Global",
+        "Josys portfolio companies in Global",
+        "Josys investments in Global",
+        "Josys contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://josys.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://josys.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://josys.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://josys.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://josys.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://josys.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://josys.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://josys.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://josys.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://josys.com/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://josys.com/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://josys.com/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 290,
+      "firm": "LeadSquared",
+      "score": 4,
+      "status": "usable",
+      "website": "https://leadsquared.com",
+      "source_url": "https://leadsquared.com/industries/healthcare/healthtech-startups-in-india",
+      "domain": "leadsquared.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "LeadSquared team in India",
+        "LeadSquared partners in India",
+        "LeadSquared leadership in India",
+        "LeadSquared portfolio in India",
+        "LeadSquared portfolio companies in India",
+        "LeadSquared investments in India",
+        "LeadSquared investment thesis",
+        "LeadSquared focus sectors",
+        "LeadSquared investment stage",
+        "LeadSquared about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://leadsquared.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://leadsquared.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://leadsquared.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://leadsquared.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://leadsquared.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://leadsquared.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://leadsquared.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://leadsquared.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://leadsquared.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://leadsquared.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://leadsquared.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://leadsquared.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://leadsquared.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://leadsquared.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://leadsquared.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 255,
+      "firm": "MC Capital Partners",
+      "score": 4,
+      "status": "usable",
+      "website": "https://mccapitalpartners.net",
+      "source_url": "https://mccapitalpartners.net/spotler-an-everblue-co-investment-portfolio-company-5",
+      "domain": "mccapitalpartners.net",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "MC Capital Partners team in Europe",
+        "MC Capital Partners partners in Europe",
+        "MC Capital Partners leadership in Europe",
+        "MC Capital Partners portfolio in Europe",
+        "MC Capital Partners portfolio companies in Europe",
+        "MC Capital Partners investments in Europe",
+        "MC Capital Partners investment thesis",
+        "MC Capital Partners focus sectors",
+        "MC Capital Partners investment stage",
+        "MC Capital Partners about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://mccapitalpartners.net/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://mccapitalpartners.net/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://mccapitalpartners.net/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://mccapitalpartners.net/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://mccapitalpartners.net/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://mccapitalpartners.net/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://mccapitalpartners.net/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://mccapitalpartners.net/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://mccapitalpartners.net/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://mccapitalpartners.net/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://mccapitalpartners.net/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://mccapitalpartners.net/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://mccapitalpartners.net/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://mccapitalpartners.net/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://mccapitalpartners.net/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 140,
+      "firm": "NEXEA Venture Capital",
+      "score": 4,
+      "status": "usable",
+      "website": "https://nexea.com/",
+      "source_url": "",
+      "domain": "nexea.com",
+      "missing_fields": [
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "NEXEA Venture Capital team",
+        "NEXEA Venture Capital partners",
+        "NEXEA Venture Capital leadership",
+        "NEXEA Venture Capital portfolio",
+        "NEXEA Venture Capital portfolio companies",
+        "NEXEA Venture Capital investments",
+        "NEXEA Venture Capital investment thesis",
+        "NEXEA Venture Capital focus sectors",
+        "NEXEA Venture Capital investment stage",
+        "NEXEA Venture Capital about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://nexea.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://nexea.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://nexea.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://nexea.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://nexea.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://nexea.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://nexea.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://nexea.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://nexea.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://nexea.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://nexea.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://nexea.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://nexea.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://nexea.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://nexea.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 336,
+      "firm": "Pitch Deck Creators",
+      "score": 4,
+      "status": "usable",
+      "website": "https://pitchdeckcreators.com",
+      "source_url": "https://pitchdeckcreators.com/blog-posts/vc-firms-in-europe",
+      "domain": "pitchdeckcreators.com",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Pitch Deck Creators team in Europe",
+        "Pitch Deck Creators partners in Europe",
+        "Pitch Deck Creators leadership in Europe",
+        "Pitch Deck Creators portfolio in Europe",
+        "Pitch Deck Creators portfolio companies in Europe",
+        "Pitch Deck Creators investments in Europe",
+        "Pitch Deck Creators contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://pitchdeckcreators.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://pitchdeckcreators.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://pitchdeckcreators.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://pitchdeckcreators.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://pitchdeckcreators.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://pitchdeckcreators.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://pitchdeckcreators.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://pitchdeckcreators.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://pitchdeckcreators.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://pitchdeckcreators.com/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://pitchdeckcreators.com/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://pitchdeckcreators.com/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 348,
+      "firm": "Practica Capital",
+      "score": 4,
+      "status": "usable",
+      "website": "https://shizune.co/investors/b2b-investors-europe#b2b-investors-europe-organization-practica-capital",
+      "source_url": "https://shizune.co/investors/b2b-investors-europe",
+      "domain": "shizune.co",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Practica Capital team in Europe",
+        "Practica Capital partners in Europe",
+        "Practica Capital leadership in Europe",
+        "Practica Capital portfolio in Europe",
+        "Practica Capital portfolio companies in Europe",
+        "Practica Capital investments in Europe",
+        "Practica Capital contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://shizune.co/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://shizune.co/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://shizune.co/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://shizune.co/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://shizune.co/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://shizune.co/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://shizune.co/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://shizune.co/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://shizune.co/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://shizune.co/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://shizune.co/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://shizune.co/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 156,
+      "firm": "Precursor Ventures",
+      "score": 4,
+      "status": "usable",
+      "website": "https://precursor.vc/",
+      "source_url": "",
+      "domain": "precursor.vc",
+      "missing_fields": [
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Precursor Ventures team",
+        "Precursor Ventures partners",
+        "Precursor Ventures leadership",
+        "Precursor Ventures portfolio",
+        "Precursor Ventures portfolio companies",
+        "Precursor Ventures investments",
+        "Precursor Ventures investment thesis",
+        "Precursor Ventures focus sectors",
+        "Precursor Ventures investment stage",
+        "Precursor Ventures about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://precursor.vc/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://precursor.vc/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://precursor.vc/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://precursor.vc/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://precursor.vc/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://precursor.vc/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://precursor.vc/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://precursor.vc/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://precursor.vc/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://precursor.vc/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://precursor.vc/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://precursor.vc/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://precursor.vc/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://precursor.vc/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://precursor.vc/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 340,
+      "firm": "Pulse 2.0",
+      "score": 4,
+      "status": "usable",
+      "website": "https://pulse2.com",
+      "source_url": "https://pulse2.com/elevenlabs-500-million-arr-reached-as-ai-voice-platform-adds-blackrock-nvidia-and-jamie-foxx-as-investors",
+      "domain": "pulse2.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Pulse 2.0 team in United States",
+        "Pulse 2.0 partners in United States",
+        "Pulse 2.0 leadership in United States",
+        "Pulse 2.0 portfolio in United States",
+        "Pulse 2.0 portfolio companies in United States",
+        "Pulse 2.0 investments in United States",
+        "Pulse 2.0 investment thesis",
+        "Pulse 2.0 focus sectors",
+        "Pulse 2.0 investment stage",
+        "Pulse 2.0 about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://pulse2.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://pulse2.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://pulse2.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://pulse2.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://pulse2.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://pulse2.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://pulse2.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://pulse2.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://pulse2.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://pulse2.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://pulse2.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://pulse2.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://pulse2.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://pulse2.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://pulse2.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 162,
+      "firm": "Resonate",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.resonatehq.com/",
+      "source_url": "https://resonatehq.com/blog/ai-in-b2b",
+      "domain": "www.resonatehq.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Resonate team in Global",
+        "Resonate partners in Global",
+        "Resonate leadership in Global",
+        "Resonate portfolio in Global",
+        "Resonate portfolio companies in Global",
+        "Resonate investments in Global",
+        "Resonate investment thesis",
+        "Resonate focus sectors",
+        "Resonate investment stage",
+        "Resonate about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.resonatehq.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.resonatehq.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.resonatehq.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.resonatehq.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.resonatehq.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.resonatehq.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.resonatehq.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.resonatehq.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.resonatehq.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.resonatehq.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.resonatehq.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.resonatehq.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.resonatehq.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.resonatehq.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.resonatehq.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 345,
+      "firm": "Saasholic",
+      "score": 4,
+      "status": "usable",
+      "website": "https://saasholic.com/",
+      "source_url": "https://saasholic.com/investors",
+      "domain": "saasholic.com",
+      "missing_fields": [
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Saasholic team",
+        "Saasholic partners",
+        "Saasholic leadership",
+        "Saasholic portfolio",
+        "Saasholic portfolio companies",
+        "Saasholic investments",
+        "Saasholic investment thesis",
+        "Saasholic focus sectors",
+        "Saasholic investment stage",
+        "Saasholic about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://saasholic.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://saasholic.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://saasholic.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://saasholic.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://saasholic.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://saasholic.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://saasholic.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://saasholic.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://saasholic.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://saasholic.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://saasholic.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://saasholic.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://saasholic.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://saasholic.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://saasholic.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 172,
+      "firm": "Schroders Investments",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.schroders.com/",
+      "source_url": "",
+      "domain": "www.schroders.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Schroders Investments team in Global",
+        "Schroders Investments partners in Global",
+        "Schroders Investments leadership in Global",
+        "Schroders Investments portfolio in Global",
+        "Schroders Investments portfolio companies in Global",
+        "Schroders Investments investments in Global",
+        "Schroders Investments investment thesis",
+        "Schroders Investments focus sectors",
+        "Schroders Investments investment stage",
+        "Schroders Investments about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.schroders.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.schroders.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.schroders.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.schroders.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.schroders.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.schroders.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.schroders.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.schroders.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.schroders.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.schroders.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.schroders.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.schroders.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.schroders.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.schroders.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.schroders.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 174,
+      "firm": "Scribd",
+      "score": 4,
+      "status": "usable",
+      "website": "https://scribd.com",
+      "source_url": "https://scribd.com/document/939189091/Why-Investors-Should-Pay-Attention-to-Vertical-AI",
+      "domain": "scribd.com",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Scribd team in United States",
+        "Scribd partners in United States",
+        "Scribd leadership in United States",
+        "Scribd portfolio in United States",
+        "Scribd portfolio companies in United States",
+        "Scribd investments in United States",
+        "Scribd contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://scribd.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://scribd.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://scribd.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://scribd.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://scribd.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://scribd.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://scribd.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://scribd.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://scribd.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://scribd.com/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://scribd.com/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://scribd.com/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 189,
+      "firm": "Startup Science",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.startupscience.io/",
+      "source_url": "",
+      "domain": "www.startupscience.io",
+      "missing_fields": [
+        "focus_sectors",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Startup Science team in Global",
+        "Startup Science partners in Global",
+        "Startup Science leadership in Global",
+        "Startup Science portfolio in Global",
+        "Startup Science portfolio companies in Global",
+        "Startup Science investments in Global",
+        "Startup Science investment thesis",
+        "Startup Science focus sectors",
+        "Startup Science investment stage",
+        "Startup Science about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.startupscience.io/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.startupscience.io/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.startupscience.io/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.startupscience.io/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.startupscience.io/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.startupscience.io/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.startupscience.io/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.startupscience.io/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.startupscience.io/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.startupscience.io/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.startupscience.io/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.startupscience.io/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.startupscience.io/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.startupscience.io/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.startupscience.io/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 190,
+      "firm": "State Street Alpha",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.statestreet.com/alpha",
+      "source_url": "",
+      "domain": "www.statestreet.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "State Street Alpha team in Global",
+        "State Street Alpha partners in Global",
+        "State Street Alpha leadership in Global",
+        "State Street Alpha portfolio in Global",
+        "State Street Alpha portfolio companies in Global",
+        "State Street Alpha investments in Global",
+        "State Street Alpha investment thesis",
+        "State Street Alpha focus sectors",
+        "State Street Alpha investment stage",
+        "State Street Alpha about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.statestreet.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.statestreet.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.statestreet.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.statestreet.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.statestreet.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.statestreet.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.statestreet.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.statestreet.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.statestreet.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.statestreet.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.statestreet.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.statestreet.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.statestreet.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.statestreet.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.statestreet.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 193,
+      "firm": "Team 4",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.team4.agency",
+      "source_url": "https://www.team4.agency/about",
+      "domain": "www.team4.agency",
+      "missing_fields": [
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Team 4 team",
+        "Team 4 partners",
+        "Team 4 leadership",
+        "Team 4 portfolio",
+        "Team 4 portfolio companies",
+        "Team 4 investments",
+        "Team 4 investment thesis",
+        "Team 4 focus sectors",
+        "Team 4 investment stage",
+        "Team 4 about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.team4.agency/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.team4.agency/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.team4.agency/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.team4.agency/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.team4.agency/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.team4.agency/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.team4.agency/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.team4.agency/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.team4.agency/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.team4.agency/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.team4.agency/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.team4.agency/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.team4.agency/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.team4.agency/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.team4.agency/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 357,
+      "firm": "The AI World Summit",
+      "score": 4,
+      "status": "usable",
+      "website": "https://theaiworld.org",
+      "source_url": "https://theaiworld.org/news/vobizai-raises-1m-seed-round-for-ai-voice-infrastructure",
+      "domain": "theaiworld.org",
+      "missing_fields": [
+        "focus_sectors",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "The AI World Summit team in India",
+        "The AI World Summit partners in India",
+        "The AI World Summit leadership in India",
+        "The AI World Summit portfolio in India",
+        "The AI World Summit portfolio companies in India",
+        "The AI World Summit investments in India",
+        "The AI World Summit investment thesis",
+        "The AI World Summit focus sectors",
+        "The AI World Summit investment stage",
+        "The AI World Summit about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://theaiworld.org/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://theaiworld.org/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://theaiworld.org/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://theaiworld.org/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://theaiworld.org/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://theaiworld.org/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://theaiworld.org/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://theaiworld.org/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://theaiworld.org/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://theaiworld.org/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 360,
+      "firm": "The SaaS News",
+      "score": 4,
+      "status": "usable",
+      "website": "https://thesaasnews.com/",
+      "source_url": "https://thesaasnews.com/news/simple-ai-lands-14-million-in-seed-round",
+      "domain": "thesaasnews.com",
+      "missing_fields": [
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "The SaaS News team",
+        "The SaaS News partners",
+        "The SaaS News leadership",
+        "The SaaS News portfolio",
+        "The SaaS News portfolio companies",
+        "The SaaS News investments",
+        "The SaaS News investment thesis",
+        "The SaaS News focus sectors",
+        "The SaaS News investment stage",
+        "The SaaS News about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://thesaasnews.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://thesaasnews.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://thesaasnews.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://thesaasnews.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://thesaasnews.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://thesaasnews.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thesaasnews.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thesaasnews.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thesaasnews.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://thesaasnews.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thesaasnews.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thesaasnews.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thesaasnews.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thesaasnews.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://thesaasnews.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 196,
+      "firm": "The VC Corner",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.thevccorner.com/",
+      "source_url": "https://www.thevccorner.com/team",
+      "domain": "www.thevccorner.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "The VC Corner team in Global",
+        "The VC Corner partners in Global",
+        "The VC Corner leadership in Global",
+        "The VC Corner portfolio in Global",
+        "The VC Corner portfolio companies in Global",
+        "The VC Corner investments in Global",
+        "The VC Corner investment thesis",
+        "The VC Corner focus sectors",
+        "The VC Corner investment stage",
+        "The VC Corner about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.thevccorner.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.thevccorner.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.thevccorner.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.thevccorner.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.thevccorner.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.thevccorner.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.thevccorner.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.thevccorner.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.thevccorner.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.thevccorner.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.thevccorner.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.thevccorner.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.thevccorner.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.thevccorner.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://www.thevccorner.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 271,
+      "firm": "Tickertape Ventures",
+      "score": 4,
+      "status": "usable",
+      "website": "https://tickertape.in",
+      "source_url": "https://tickertape.in/stocks/collections/ai-stocks",
+      "domain": "tickertape.in",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Tickertape Ventures team in India",
+        "Tickertape Ventures partners in India",
+        "Tickertape Ventures leadership in India",
+        "Tickertape Ventures portfolio in India",
+        "Tickertape Ventures portfolio companies in India",
+        "Tickertape Ventures investments in India",
+        "Tickertape Ventures investment thesis",
+        "Tickertape Ventures focus sectors",
+        "Tickertape Ventures investment stage",
+        "Tickertape Ventures about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://tickertape.in/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://tickertape.in/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://tickertape.in/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://tickertape.in/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://tickertape.in/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://tickertape.in/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://tickertape.in/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://tickertape.in/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://tickertape.in/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://tickertape.in/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://tickertape.in/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://tickertape.in/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://tickertape.in/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://tickertape.in/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://tickertape.in/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 200,
+      "firm": "Tribal VC",
+      "score": 4,
+      "status": "usable",
+      "website": "https://angel.co/tribal-vc/",
+      "source_url": "",
+      "domain": "angel.co",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Tribal VC team in Europe",
+        "Tribal VC partners in Europe",
+        "Tribal VC leadership in Europe",
+        "Tribal VC portfolio in Europe",
+        "Tribal VC portfolio companies in Europe",
+        "Tribal VC investments in Europe",
+        "Tribal VC contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://angel.co/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://angel.co/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://angel.co/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://angel.co/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://angel.co/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://angel.co/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://angel.co/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://angel.co/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://angel.co/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://angel.co/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://angel.co/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://angel.co/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 202,
+      "firm": "Udharaa Intelligence",
+      "score": 4,
+      "status": "usable",
+      "website": "https://udharaa.com",
+      "source_url": "https://udharaa.com/ai-investors-in-india",
+      "domain": "udharaa.com",
+      "missing_fields": [
+        "investment_stage",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Udharaa Intelligence team in India",
+        "Udharaa Intelligence partners in India",
+        "Udharaa Intelligence leadership in India",
+        "Udharaa Intelligence portfolio in India",
+        "Udharaa Intelligence portfolio companies in India",
+        "Udharaa Intelligence investments in India",
+        "Udharaa Intelligence investment thesis",
+        "Udharaa Intelligence focus sectors",
+        "Udharaa Intelligence investment stage",
+        "Udharaa Intelligence about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://udharaa.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://udharaa.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://udharaa.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://udharaa.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://udharaa.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://udharaa.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://udharaa.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://udharaa.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://udharaa.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://udharaa.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://udharaa.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://udharaa.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://udharaa.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://udharaa.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://udharaa.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 276,
+      "firm": "Waveup",
+      "score": 4,
+      "status": "usable",
+      "website": "https://waveup.com",
+      "source_url": "https://waveup.com/blog/top-investors-vc-firms-dubai",
+      "domain": "waveup.com",
+      "missing_fields": [
+        "geography",
+        "partners",
+        "portfolio_companies"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Waveup team",
+        "Waveup partners",
+        "Waveup leadership",
+        "Waveup portfolio",
+        "Waveup portfolio companies",
+        "Waveup investments",
+        "Waveup investment thesis",
+        "Waveup focus sectors",
+        "Waveup investment stage",
+        "Waveup about"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://waveup.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://waveup.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://waveup.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://waveup.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://waveup.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://waveup.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://waveup.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://waveup.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://waveup.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://waveup.com/portfolio-companies"
+        },
+        {
+          "type": "metadata",
+          "url": "https://waveup.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://waveup.com/thesis"
+        },
+        {
+          "type": "metadata",
+          "url": "https://waveup.com/focus"
+        },
+        {
+          "type": "metadata",
+          "url": "https://waveup.com/investment-strategy"
+        },
+        {
+          "type": "metadata",
+          "url": "https://waveup.com/investment-thesis"
+        }
+      ]
+    },
+    {
+      "investor_id": 278,
+      "firm": "WOWS Global",
+      "score": 4,
+      "status": "usable",
+      "website": "https://wowsglobal.com",
+      "source_url": "https://wowsglobal.com/resources/blogs-insights/a-guide-to-southeast-asias-most-active-vcs",
+      "domain": "wowsglobal.com",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "WOWS Global team in United States",
+        "WOWS Global partners in United States",
+        "WOWS Global leadership in United States",
+        "WOWS Global portfolio in United States",
+        "WOWS Global portfolio companies in United States",
+        "WOWS Global investments in United States",
+        "WOWS Global contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://wowsglobal.com/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://wowsglobal.com/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://wowsglobal.com/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://wowsglobal.com/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://wowsglobal.com/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://wowsglobal.com/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://wowsglobal.com/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://wowsglobal.com/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://wowsglobal.com/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://wowsglobal.com/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://wowsglobal.com/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://wowsglobal.com/get-in-touch"
+        }
+      ]
+    },
+    {
+      "investor_id": 225,
+      "firm": "Zive",
+      "score": 4,
+      "status": "usable",
+      "website": "https://www.zive.ai/",
+      "source_url": "",
+      "domain": "www.zive.ai",
+      "missing_fields": [
+        "partners",
+        "portfolio_companies",
+        "contact_links"
+      ],
+      "partner_count": 0,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Zive team in Global",
+        "Zive partners in Global",
+        "Zive leadership in Global",
+        "Zive portfolio in Global",
+        "Zive portfolio companies in Global",
+        "Zive investments in Global",
+        "Zive contact"
+      ],
+      "page_targets": [
+        {
+          "type": "partners",
+          "url": "https://www.zive.ai/team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.zive.ai/people"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.zive.ai/partners"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.zive.ai/leadership"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.zive.ai/investment-team"
+        },
+        {
+          "type": "partners",
+          "url": "https://www.zive.ai/our-team"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.zive.ai/portfolio"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.zive.ai/companies"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.zive.ai/investments"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://www.zive.ai/portfolio-companies"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.zive.ai/contact"
+        },
+        {
+          "type": "contact",
+          "url": "https://www.zive.ai/get-in-touch"
+        }
+      ]
+    }
+  ]
+}

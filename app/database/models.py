@@ -386,6 +386,43 @@ class PipelineRun(Base):
     error_message = Column(Text)
 
 
+# =========================================
+# REVIEW QUEUE MODEL
+# =========================================
+
+class ReviewQueue(Base):
+
+    __tablename__ = "review_queue"
+
+    id = Column(Integer, primary_key=True)
+
+    url = Column(Text)
+
+    firm_name = Column(String)
+
+    source_text = Column(Text)
+
+    extracted_payload = Column(JSONB)
+
+    ai_decision = Column(String)
+
+    ai_confidence = Column(Float)
+
+    ai_reason = Column(Text)
+
+    status = Column(String, default="pending", nullable=False)
+
+    human_label = Column(String)
+
+    human_reason = Column(Text)
+
+    reviewer_notes = Column(Text)
+
+    created_at = Column(TIMESTAMP, server_default=func.now())
+
+    reviewed_at = Column(TIMESTAMP)
+
+
 # from sqlalchemy import (
 #     Column,
 #     Integer,

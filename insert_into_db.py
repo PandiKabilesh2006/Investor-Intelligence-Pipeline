@@ -20,6 +20,13 @@ from app.config.settings import (
     DB_PORT,
     DB_USER,
 )
+from app.utils.normalization import (
+    merge_clean_lists,
+    normalize_firm_key,
+    normalize_geography,
+    normalize_sector,
+    normalize_stage,
+)
 
 
 # =========================================
@@ -240,6 +247,35 @@ def normalize_portfolio_company_records(value):
     )
 
 
+def merge_record_lists(incoming, existing):
+    return merge_clean_lists(
+        existing or [],
+        incoming or []
+    )
+
+
+def _merge_partner(existing, incoming):
+    return {
+        "name": incoming.get("name") or existing.get("name") or "",
+        "role": incoming.get("role") or existing.get("role") or "",
+        "title": incoming.get("title") or existing.get("title") or incoming.get("role") or existing.get("role") or "",
+        "linkedin_url": incoming.get("linkedin_url") or existing.get("linkedin_url") or "",
+        "twitter_url": incoming.get("twitter_url") or existing.get("twitter_url") or "",
+        "source_url": incoming.get("source_url") or existing.get("source_url") or "",
+        "extraction_confidence": max(
+            float(existing.get("extraction_confidence") or 0.0),
+            float(incoming.get("extraction_confidence") or 0.0),
+        ),
+    }
+
+
+def _merge_company(existing, incoming):
+    return {
+        "company_name": incoming.get("company_name") or existing.get("company_name") or "",
+        "sector": incoming.get("sector") or existing.get("sector") or "",
+    }
+
+
 def build_embedding_text(
 
     firm,
@@ -402,6 +438,7 @@ def insert_investor_data(data, conn=None):
                 []
             )
         )
+        focus_sectors = normalize_sector(focus_sectors)
 
 
         investment_stage = ensure_list(
@@ -413,6 +450,7 @@ def insert_investor_data(data, conn=None):
                 []
             )
         )
+        investment_stage = normalize_stage(investment_stage)
 
 
         geography = ensure_list(
@@ -424,6 +462,7 @@ def insert_investor_data(data, conn=None):
                 []
             )
         )
+        geography = normalize_geography(geography)
 
 
         contact_links = ensure_list(
@@ -435,6 +474,7 @@ def insert_investor_data(data, conn=None):
                 []
             )
         )
+        contact_links = merge_clean_lists(contact_links)
 
 
         partners = normalize_partner_records(
@@ -457,6 +497,26 @@ def insert_investor_data(data, conn=None):
                 []
             )
         )
+
+        has_investor_evidence = any(
+            [
+                focus_sectors,
+                investment_stage,
+                geography,
+                contact_links,
+                partners,
+                portfolio_companies,
+            ]
+        )
+
+        if not has_investor_evidence:
+
+            print(
+
+                f"Skipping {firm}: no structured investor evidence extracted"
+            )
+
+            return False
 
 
         # =====================================
@@ -513,10 +573,26 @@ def insert_investor_data(data, conn=None):
                 geography,
                 contact_links
             FROM investors
-            WHERE LOWER(firm) = LOWER(%s)
+            WHERE regexp_replace(
+                regexp_replace(
+                    LOWER(firm),
+                    '\\m(the|llc|llp|ltd|limited|inc|incorporated|corp|corporation)\\M',
+                    '',
+                    'g'
+                ),
+                '[^a-z0-9]',
+                '',
+                'g'
+            ) = %s
+               OR LOWER(firm) = LOWER(%s)
+               OR (website <> '' AND website = %s)
             """,
 
-            (firm,)
+            (
+                normalize_firm_key(firm),
+                firm,
+                website,
+            )
         )
 
 
@@ -535,13 +611,19 @@ def insert_investor_data(data, conn=None):
 
             source_url = source_url or existing[2] or ""
 
-            focus_sectors = focus_sectors or existing[3] or []
+            focus_sectors = normalize_sector(
+                merge_record_lists(focus_sectors, existing[3])
+            )
 
-            investment_stage = investment_stage or existing[4] or []
+            investment_stage = normalize_stage(
+                merge_record_lists(investment_stage, existing[4])
+            )
 
-            geography = geography or existing[5] or []
+            geography = normalize_geography(
+                merge_record_lists(geography, existing[5])
+            )
 
-            contact_links = contact_links or existing[6] or []
+            contact_links = merge_record_lists(contact_links, existing[6])
 
             embedding_text = build_embedding_text(
 
@@ -704,135 +786,165 @@ def insert_investor_data(data, conn=None):
 
 
         # =====================================
-        # INSERT PARTNERS
+        # UPSERT PARTNERS
         # =====================================
 
         if partners:
 
             cursor.execute(
-
                 """
-                DELETE FROM partners
+                SELECT
+                    id,
+                    name,
+                    role,
+                    title,
+                    linkedin_url,
+                    twitter_url,
+                    source_url,
+                    extraction_confidence
+                FROM partners
                 WHERE investor_id = %s
                 """,
-
                 (investor_id,)
             )
 
+            existing_partners = {
+                str(row[1]).strip().lower(): {
+                    "id": row[0],
+                    "name": row[1] or "",
+                    "role": row[2] or "",
+                    "title": row[3] or "",
+                    "linkedin_url": row[4] or "",
+                    "twitter_url": row[5] or "",
+                    "source_url": row[6] or "",
+                    "extraction_confidence": row[7] or 0.0,
+                }
+                for row in cursor.fetchall()
+                if str(row[1] or "").strip()
+            }
 
-        for partner in partners:
+            for partner in partners:
+                partner_key = partner["name"].strip().lower()
+                existing_partner = existing_partners.get(partner_key)
+                merged_partner = _merge_partner(existing_partner or {}, partner)
 
-            cursor.execute(
-
-                """
-                INSERT INTO partners (
-
-                    investor_id,
-
-                    name,
-
-                    role,
-
-                    title,
-
-                    linkedin_url,
-
-                    twitter_url,
-
-                    source_url,
-
-                    extraction_confidence,
-
-                    scraped_at
-
-                )
-
-                VALUES (
-
-                    %s,
-                    %s,
-                    %s,
-                    %s,
-                    %s,
-                    %s,
-                    %s,
-                    %s,
-                    %s
-                )
-                """,
-
-                (
-
-                    investor_id,
-
-                    partner["name"],
-
-                    partner["role"],
-
-                    partner["title"],
-
-                    partner["linkedin_url"],
-
-                    partner["twitter_url"],
-
-                    partner["source_url"],
-
-                    partner["extraction_confidence"],
-
-                    datetime.now(timezone.utc)
-                )
-            )
-
+                if existing_partner:
+                    cursor.execute(
+                        """
+                        UPDATE partners
+                        SET
+                            role = %s,
+                            title = %s,
+                            linkedin_url = %s,
+                            twitter_url = %s,
+                            source_url = %s,
+                            extraction_confidence = %s,
+                            scraped_at = %s,
+                            updated_at = %s
+                        WHERE id = %s
+                        """,
+                        (
+                            merged_partner["role"],
+                            merged_partner["title"],
+                            merged_partner["linkedin_url"],
+                            merged_partner["twitter_url"],
+                            merged_partner["source_url"],
+                            merged_partner["extraction_confidence"],
+                            datetime.now(timezone.utc),
+                            datetime.now(timezone.utc),
+                            existing_partner["id"],
+                        )
+                    )
+                else:
+                    cursor.execute(
+                        """
+                        INSERT INTO partners (
+                            investor_id,
+                            name,
+                            role,
+                            title,
+                            linkedin_url,
+                            twitter_url,
+                            source_url,
+                            extraction_confidence,
+                            scraped_at
+                        )
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        """,
+                        (
+                            investor_id,
+                            merged_partner["name"],
+                            merged_partner["role"],
+                            merged_partner["title"],
+                            merged_partner["linkedin_url"],
+                            merged_partner["twitter_url"],
+                            merged_partner["source_url"],
+                            merged_partner["extraction_confidence"],
+                            datetime.now(timezone.utc),
+                        )
+                    )
 
         # =====================================
-        # INSERT PORTFOLIO COMPANIES
+        # UPSERT PORTFOLIO COMPANIES
         # =====================================
 
         if portfolio_companies:
 
             cursor.execute(
-
                 """
-                DELETE FROM portfolio_companies
+                SELECT
+                    id,
+                    company_name,
+                    sector
+                FROM portfolio_companies
                 WHERE investor_id = %s
                 """,
-
                 (investor_id,)
             )
 
+            existing_companies = {
+                str(row[1]).strip().lower(): {
+                    "id": row[0],
+                    "company_name": row[1] or "",
+                    "sector": row[2] or "",
+                }
+                for row in cursor.fetchall()
+                if str(row[1] or "").strip()
+            }
 
-        for company in portfolio_companies:
+            for company in portfolio_companies:
+                company_key = company["company_name"].strip().lower()
+                existing_company = existing_companies.get(company_key)
+                merged_company = _merge_company(existing_company or {}, company)
 
-            cursor.execute(
-
-                """
-                INSERT INTO portfolio_companies (
-
-                    investor_id,
-
-                    company_name,
-
-                    sector
-
-                )
-
-                VALUES (
-
-                    %s,
-                    %s,
-                    %s
-                )
-                """,
-
-                (
-
-                    investor_id,
-
-                    company["company_name"],
-
-                    company["sector"]
-                )
-            )
+                if existing_company:
+                    cursor.execute(
+                        """
+                        UPDATE portfolio_companies
+                        SET sector = %s
+                        WHERE id = %s
+                        """,
+                        (
+                            merged_company["sector"],
+                            existing_company["id"],
+                        )
+                    )
+                else:
+                    cursor.execute(
+                        """
+                        INSERT INTO portfolio_companies (
+                            investor_id,
+                            company_name,
+                            sector
+                        )
+                        VALUES (%s, %s, %s)
+                        """,
+                        (
+                            investor_id,
+                            merged_company["company_name"],
+                            merged_company["sector"],
+                        )
+                    )
 
 
         if should_close_conn:

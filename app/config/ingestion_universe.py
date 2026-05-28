@@ -1,271 +1,86 @@
-# =========================================
-# INVESTOR INGESTION UNIVERSE
-# =========================================
-# Production-Grade Investor Discovery
-# Query Generation System
-#
-# Purpose:
-# Generate high-signal investor discovery
-# queries for continuous ecosystem ingestion.
-#
-# Design Goals:
-# - scalable
-# - maintainable
-# - ontology-driven
-# - low-noise
-# - production-ready
-#
-
-# CORE SECTORS
+from app.config.taxonomy import (
+    CORE_SECTORS,
+    INVESTMENT_STAGES,
+    INVESTMENT_THEMES,
+    INVESTOR_MARKETS,
+    INVESTOR_SEARCH_TERMS,
+)
 
 
-SECTORS = [
+SECTORS = CORE_SECTORS
+STAGES = INVESTMENT_STAGES
+GEOGRAPHIES = INVESTOR_MARKETS
+THEMES = INVESTMENT_THEMES
+INVESTOR_TERMS = INVESTOR_SEARCH_TERMS
 
-    "Artificial Intelligence",
-    "B2B",
-    "SaaS",
-    "Voice AI"
-]
-
-# INVESTMENT STAGES
-
-STAGES = [
-
-    "Pre-Seed",
-    "Seed",
-    "Series A",
-    "Series B",
-    "Growth Stage"
-]
-
-# GEOGRAPHIES
-
-GEOGRAPHIES = [
-
-    "United States",
-    "India",
-    "Europe",
-    "Southeast Asia",
-    "Middle East",
-    "Global"
-]
-
-# INVESTMENT THEMES
-
-THEMES = [
-    "AI infrastructure",
-    "Enterprise Software",
-    "Developer Tools",
-    "Workflow Automation",
-    "Vertical AI",
-    "Voice Agents",
-    "Machine Learning",
-    "Automation"
-]
-
-# HIGH-SIGNAL INVESTOR TERMS
-
-INVESTOR_TERMS = [
-    "venture capital firms",
-    "startup investors",
-    "VC funds",
-    "venture capital",
-    "angel investors",
-    "early-stage investors",
-    "seed investors",
-    "Series A investors",
-    "institutional investors",
-    "technology investors"
-]
-
-# QUERY CLEANER
 
 def clean_query(query: str) -> str:
-    """
-    Normalize search query formatting.
-    """
-    return " ".join(
-        query.split()
-    ).strip()
+    return " ".join(query.split()).strip()
 
-# QUERY STORAGE
-generated_queries = set()
 
-# ADD QUERY
-
-def add_query(query: str):
-    """
-    Add cleaned unique query.
-    """
-
+def _add_query(queries, query: str):
     query = clean_query(query)
     if len(query) > 10:
-        generated_queries.add(query)
+        queries.add(query)
 
-# SECTOR QUERIES
 
-def generate_sector_queries():
+def generate_sector_queries(queries):
     for sector in SECTORS:
         for term in INVESTOR_TERMS:
-            add_query(
-                f"{sector} {term}"
-            )
-# SECTOR + STAGE
+            _add_query(queries, f"{sector} {term}")
 
-def generate_stage_queries():
 
+def generate_stage_queries(queries):
     for sector in SECTORS:
-
         for stage in STAGES:
+            _add_query(queries, f"{sector} {stage} investors")
+            _add_query(queries, f"{sector} {stage} venture capital")
 
-            add_query(
 
-                f"{sector} {stage} investors"
-            )
-
-            add_query(
-
-                f"{sector} {stage} venture capital"
-            )
-
-# SECTOR + GEOGRAPHY
-
-def generate_geography_queries():
+def generate_geography_queries(queries):
     for sector in SECTORS:
         for geography in GEOGRAPHIES:
-            add_query(
-                f"{sector} investors in {geography}"
-            )
-            add_query(
-                f"{sector} venture capital firms in {geography}"
-            )
-            add_query(
-                f"{geography} {sector} startup investors"
-            )
+            _add_query(queries, f"{sector} investors in {geography}")
+            _add_query(queries, f"{sector} venture capital firms in {geography}")
+            _add_query(queries, f"{geography} {sector} startup investors")
 
-# THEME QUERIES
 
-def generate_theme_queries():
+def generate_theme_queries(queries):
     for theme in THEMES:
-        add_query(
-            f"{theme} investors"
-        )
-        add_query(
-            f"{theme} venture capital firms"
-        )
-        add_query(
-            f"{theme} startup investors"
-        )
-        add_query(
-            f"{theme} VC funds"
-        )
+        _add_query(queries, f"{theme} investors")
+        _add_query(queries, f"{theme} venture capital firms")
+        _add_query(queries, f"{theme} startup investors")
+        _add_query(queries, f"{theme} VC funds")
 
-# SPECIALIZED DISCOVERY
-def generate_specialized_queries():
+
+def generate_specialized_queries(queries):
     for sector in SECTORS:
-        add_query(
-            f"{sector} portfolio companies"
-        )
-        add_query(
-            f"{sector} investment thesis"
-        )
-        add_query(
+        _add_query(queries, f"{sector} portfolio companies")
+        _add_query(queries, f"{sector} investment thesis")
+        _add_query(queries, f"{sector} startup ecosystem investors")
+        _add_query(queries, f"{sector} startup funding firms")
+        _add_query(queries, f"{sector} startup accelerators")
+        _add_query(queries, f"{sector} startup investment platforms")
 
-            f"{sector} startup ecosystem investors"
-        )
-        add_query(
-            f"{sector} startup funding firms"
-        )
-        add_query(
 
-            f"{sector} startup accelerators"
-        )
-        add_query(
-
-            f"{sector} startup investment platforms"
-        )
-
-# CROSS-THEME DISCOVERY
-
-def generate_cross_theme_queries():
+def generate_cross_theme_queries(queries):
     for sector in SECTORS:
         for theme in THEMES:
-            add_query(
-                f"{theme} {sector} investors"
-            )
+            _add_query(queries, f"{theme} {sector} investors")
+            _add_query(queries, f"{theme} {sector} venture capital")
 
-            add_query(
-                f"{theme} {sector} venture capital"
-            )
-
-# MAIN QUERY GENERATOR
 
 def generate_ingestion_queries():
+    queries = set()
+    generate_sector_queries(queries)
+    generate_stage_queries(queries)
+    generate_geography_queries(queries)
+    generate_theme_queries(queries)
+    generate_specialized_queries(queries)
+    generate_cross_theme_queries(queries)
+    return sorted(queries)
 
-    """
-    Generate high-signal investor
-    discovery queries.
-    """
-
-    generate_sector_queries()
-
-    generate_stage_queries()
-
-    generate_geography_queries()
-
-    generate_theme_queries()
-
-    generate_specialized_queries()
-
-    generate_cross_theme_queries()
-
-
-    return sorted(
-
-        list(generated_queries)
-    )
-
-
-# =========================================
-# MAIN EXECUTION
-# =========================================
 
 if __name__ == "__main__":
-
-    queries = generate_ingestion_queries()
-
-
-    print("\n" + "=" * 80)
-
-    print("\nInvestor Intelligence Query Universe\n")
-
-    print(
-
-        f"Total Queries Generated: "
-        f"{len(queries)}\n"
-    )
-
-
-    # =====================================
-    # DISPLAY SAMPLE QUERIES
-    # =====================================
-
-    for index, query in enumerate(
-
-        queries[:100],
-
-        start=1
-    ):
-
-        print(
-
-            f"{index}. {query}"
-        )
-
-
-    print(
-
-        "\nQuery generation completed.\n"
-    )
-
-    print("=" * 80)
+    for index, query in enumerate(generate_ingestion_queries()[:100], start=1):
+        print(f"{index}. {query}")

@@ -169,7 +169,6 @@ def preview_queries(request: QueryPreviewRequest):
         sector=request.sector,
         stage=request.stage,
         geography=request.geography,
-        business_model=request.business_model,
         theme=request.theme,
     )
 
@@ -193,7 +192,6 @@ def preview_queries(request: QueryPreviewRequest):
                         sector=expanded,
                         stage=request.stage,
                         geography=request.geography,
-                        business_model=request.business_model,
                     )
                 )
                 queries.append(expanded)

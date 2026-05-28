@@ -33,6 +33,7 @@ from app.extraction.async_extract import (
 from app.relevance.relevance_classifier import (
     classify_investor_relevance
 )
+from app.review_feedback import enqueue_review_item
 
 from app.config.ingestion_universe import (
 
@@ -287,7 +288,22 @@ else:
 # GLOBAL QUERY DEDUPLICATION
 # =========================================
 
-queries = list(set(queries))
+seen_queries = set()
+deduped_queries = []
+
+for query in queries:
+
+    cleaned_query = str(query).strip()
+
+    query_key = cleaned_query.lower()
+
+    if cleaned_query and query_key not in seen_queries:
+
+        seen_queries.add(query_key)
+
+        deduped_queries.append(cleaned_query)
+
+queries = deduped_queries
 
 
 # =========================================
@@ -318,6 +334,14 @@ print(
 
 blocked_domains = [
 
+    "bloomberg.com",
+
+    "businessinsider.com",
+
+    "cnbc.com",
+
+    "economictimes.indiatimes.com",
+
     "linkedin.com",
 
     "youtube.com",
@@ -336,11 +360,120 @@ blocked_domains = [
 ]
 
 
+NOISY_CONTENT_DOMAINS = {
+    "bloomberg.com",
+    "businessinsider.com",
+    "cnbc.com",
+    "economictimes.indiatimes.com",
+    "forbes.com",
+    "fortune.com",
+    "medium.com",
+    "moneycontrol.com",
+    "nytimes.com",
+    "reuters.com",
+    "substack.com",
+    "wsj.com",
+}
+
+
+NOISY_CONTENT_PATH_PARTS = {
+    "blog",
+    "blogs",
+    "news",
+    "article",
+    "articles",
+    "press",
+    "press-release",
+    "press-releases",
+    "newsletter",
+    "insights",
+    "resources",
+    "content",
+    "events",
+}
+
+
 # =========================================
 # SESSION URL DEDUPLICATION
 # =========================================
 
 seen_urls = set()
+
+
+HIGH_SIGNAL_URL_PARTS = {
+    "about",
+    "team",
+    "people",
+    "partners",
+    "portfolio",
+    "companies",
+    "thesis",
+    "focus",
+    "investment",
+    "investments",
+    "contact",
+}
+
+
+def has_high_signal_path(url):
+
+    try:
+
+        path_parts = {
+            part
+            for part in re.split(
+                r"[^a-z0-9]+",
+                urlparse(url).path.lower()
+            )
+            if part
+        }
+
+        return bool(path_parts & HIGH_SIGNAL_URL_PARTS)
+
+    except Exception:
+
+        return False
+
+
+def should_skip_collection_url(url):
+
+    try:
+
+        parsed = urlparse(url)
+
+        hostname = (
+            parsed.hostname
+            or
+            ""
+        ).lower()
+
+        path_parts = {
+            part
+            for part in re.split(
+                r"[^a-z0-9-]+",
+                parsed.path.lower()
+            )
+            if part
+        }
+
+    except Exception:
+
+        return False
+
+    if any(
+        hostname == domain
+        or
+        hostname.endswith(f".{domain}")
+        for domain in NOISY_CONTENT_DOMAINS
+    ):
+
+        return True
+
+    if path_parts & NOISY_CONTENT_PATH_PARTS:
+
+        return True
+
+    return False
 
 
 # =========================================
@@ -360,6 +493,8 @@ print(
 
 total_processed = 0
 queued_this_run = 0
+queued_urls_this_run = []
+queue_mapping = {}
 
 
 for query in queries:
@@ -379,11 +514,13 @@ for query in queries:
 
     try:
 
+        max_pages = TEST_URL_LIMIT if TEST_MODE else 10
+
         search_results = search_investors(
 
             query=query,
 
-            max_pages=10
+            max_pages=max_pages
         )
 
         if "results" not in search_results:
@@ -449,6 +586,15 @@ for query in queries:
 
                 continue
 
+            if should_skip_collection_url(url):
+
+                pipeline_logger.info(
+
+                    f"Skipped noisy collection URL: {url}"
+                )
+
+                continue
+
             if already_crawled(url):
 
                 continue
@@ -491,7 +637,30 @@ for query in queries:
 
                 continue
 
-            if confidence < 0.75:
+            if confidence < 0.65:
+                enqueue_review_item(
+                    url=url,
+                    firm_name=title,
+                    source_text=snippet,
+                    extracted_payload={
+                        "firm": title,
+                        "website": url,
+                        "source_url": url,
+                        "partners": [],
+                        "focus_sectors": [],
+                        "investment_stage": [],
+                        "portfolio_companies": [],
+                        "geography": [],
+                        "contact_links": [],
+                    },
+                    ai_decision=classification.get("relevance_tier", "low"),
+                    ai_confidence=confidence,
+                    ai_reason=classification.get("reason", ""),
+                )
+
+                pipeline_logger.info(
+                    f"Sent low-confidence URL to review queue: {url}"
+                )
 
                 continue
 
@@ -523,18 +692,32 @@ for query in queries:
                 priority_score += 1
 
 
+            if has_high_signal_path(url):
+
+                priority_score += 1
+
+
             # =====================================
             # ADD TO QUEUE
             # =====================================
 
-            add_to_crawl_queue(
+            queue_id, inserted = add_to_crawl_queue(
 
                 url,
 
                 priority_score
             )
 
+            if not inserted:
+
+                continue
+
             queued_this_run += 1
+            queued_urls_this_run.append(url)
+
+            if queue_id:
+
+                queue_mapping[url] = queue_id
 
 
             pipeline_logger.info(
@@ -579,26 +762,7 @@ pipeline_logger.info(
 )
 
 
-queued_urls = get_next_urls(
-
-    limit=MAX_TOTAL_URLS
-)
-
-
-candidate_urls = []
-
-queue_mapping = {}
-
-
-for queued in queued_urls:
-
-    queue_id = queued.id
-
-    url = queued.url
-
-    candidate_urls.append(url)
-
-    queue_mapping[url] = queue_id
+candidate_urls = queued_urls_this_run[:MAX_TOTAL_URLS]
 
 
 pipeline_logger.info(

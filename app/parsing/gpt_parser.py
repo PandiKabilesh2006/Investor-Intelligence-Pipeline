@@ -11,11 +11,17 @@ from app.config.settings import (
     OPENAI_API_KEY,
     OPENAI_MODEL
 )
+from app.config.taxonomy import CORE_SECTORS, INVESTMENT_STAGES
 
 from app.utils.groq_circuit import (
     is_recoverable_groq_error,
     record_groq_70b_rate_limit_failure,
     should_use_groq_70b,
+)
+from app.utils.normalization import (
+    normalize_geography,
+    normalize_sector,
+    normalize_stage,
 )
 
 
@@ -262,6 +268,8 @@ def build_prompt(markdown_content):
         markdown_content
     )
 
+    sector_options = "\n".join(f"- {sector}" for sector in CORE_SECTORS)
+    stage_options = "\n".join(f"- {stage}" for stage in INVESTMENT_STAGES)
 
     return f"""
 You are a venture capital intelligence
@@ -329,12 +337,38 @@ FIRM EXTRACTION RULES
 Extract ONLY the PRIMARY investment
 organization represented in the page.
 
+If the page is a blog post, article, essay, guide, podcast,
+newsletter, or content page published on an investment firm's own
+website, the "firm" must be the publishing investment organization,
+not the article headline, page title, author name, content series,
+or post slug.
+
+If the page is a blog post, article, listicle, directory, or guide
+published by a non-investor company, agency, media site, vendor,
+consultant, software product, or service provider, do NOT use the
+publisher as the investor firm. Return an empty firm unless the page
+contains a clear profile for one specific investment firm.
+
+Do not use long editorial titles as firm names. A valid firm name
+should be the organization brand that operates the fund, investment
+firm, accelerator, angel network, or venture studio.
+
 If multiple firms appear:
 - choose the main organization
 - ignore partner firms
 - ignore portfolio investors
 - ignore ecosystem mentions
 - ignore co-investors
+
+Reject public-sector non-fund entities as investor firms.
+Do NOT treat these as VC firms unless the page explicitly shows
+that they operate as an actual investment fund:
+- government portals
+- ministries
+- policy bodies
+- economic development agencies
+- investment promotion websites
+- trade/investment facilitation organizations
 
 Examples:
 - Correct:
@@ -352,21 +386,20 @@ FOCUS SECTOR TAXONOMY
 
 Allowed values:
 
-- Artificial Intelligence
-- Enterprise AI
-- B2B SaaS
-- Voice AI
+{sector_options}
 
-Map similar concepts semantically.
+Map similar concepts semantically, but keep B2B and SaaS separate.
+If a firm clearly invests in B2B SaaS, return both "B2B" and "SaaS".
 
 Examples:
 - conversational AI → Voice AI
 - speech AI → Voice AI
-- enterprise software → B2B SaaS
-- SaaS → B2B SaaS
+- enterprise software → B2B
+- SaaS → SaaS
+- B2B SaaS → B2B, SaaS
 - generative AI → Artificial Intelligence
 - AI infrastructure → Artificial Intelligence
-- workflow automation → B2B SaaS
+- workflow automation → B2B
 
 ----------------------------------------
 INVESTMENT STAGE TAXONOMY
@@ -374,11 +407,7 @@ INVESTMENT STAGE TAXONOMY
 
 Allowed values:
 
-- Pre-Seed
-- Seed
-- Series A
-- Series B
-- Growth Stage
+{stage_options}
 
 Examples:
 - early-stage → Seed
@@ -391,14 +420,23 @@ Infer conservatively.
 GEOGRAPHY TAXONOMY
 ----------------------------------------
 
-Allowed values:
+Return specific country names when the page explicitly
+states a country focus or office/investment market.
 
-- India
-- United States
+Return broader regions only when the page itself uses a
+broader region, for example:
 - Europe
 - Southeast Asia
 - Middle East
 - Global
+
+Use geography only for the firm's own office location,
+investment mandate, or explicitly stated investment regions.
+Do NOT infer geography from portfolio company locations alone.
+Do NOT infer geography from the search query.
+If the firm's geographic focus is unclear, return [].
+Use Global only when the page explicitly says global,
+worldwide, international, or multiple major regions.
 
 ----------------------------------------
 PARTNER EXTRACTION RULES
@@ -500,7 +538,7 @@ Examples:
   → Artificial Intelligence
 
 - enterprise workflow software investor
-  → B2B SaaS
+  → B2B
 
 - conversational voice platform investor
   → Voice AI
@@ -1027,152 +1065,16 @@ def filter_contact_links(links):
 
 def apply_taxonomy_normalization(parsed):
 
-    sector_mapping = {
-
-        "saas": "B2B SaaS",
-
-        "enterprise software": "B2B SaaS",
-
-        "b2b software": "B2B SaaS",
-
-        "b2b software and services": "B2B SaaS",
-
-        "voice agents": "Voice AI",
-
-        "speech ai": "Voice AI",
-
-        "conversational ai": "Voice AI",
-
-        "generative ai": "Artificial Intelligence",
-
-        "machine learning": "Artificial Intelligence",
-
-        "ai infrastructure": "Artificial Intelligence",
-
-        "workflow automation": "B2B SaaS"
-    }
-
-
-    normalized_sectors = []
-
-
-    for sector in parsed["focus_sectors"]:
-
-        sector_lower = sector.lower().strip()
-
-
-        if sector_lower in sector_mapping:
-
-            normalized_sectors.append(
-
-                sector_mapping[sector_lower]
-            )
-
-        else:
-
-            normalized_sectors.append(
-
-                sector
-            )
-
-
-    parsed["focus_sectors"] = list(
-
-        dict.fromkeys(normalized_sectors)
+    parsed["focus_sectors"] = normalize_sector(
+        parsed["focus_sectors"]
     )
 
-
-    stage_mapping = {
-
-        "pre seed": "Pre-Seed",
-
-        "early-stage": "Seed",
-
-        "early stage": "Seed",
-
-        "seed": "Seed",
-
-        "series a": "Series A",
-
-        "series b": "Series B",
-
-        "growth equity": "Growth Stage",
-
-        "growth": "Growth Stage",
-
-        "buyouts": "Growth Stage",
-
-        "expansion stage": "Growth Stage"
-    }
-
-
-    normalized_stages = []
-
-
-    for stage in parsed["investment_stage"]:
-
-        stage_lower = stage.lower().strip()
-
-
-        if stage_lower in stage_mapping:
-
-            normalized_stages.append(
-
-                stage_mapping[stage_lower]
-            )
-
-        else:
-
-            normalized_stages.append(
-
-                stage
-            )
-
-
-    parsed["investment_stage"] = list(
-
-        dict.fromkeys(normalized_stages)
+    parsed["investment_stage"] = normalize_stage(
+        parsed["investment_stage"]
     )
 
-
-    geography_mapping = {
-
-        "usa": "United States",
-
-        "us": "United States",
-
-        "uk": "Europe",
-
-        "middle east and north africa": "Middle East"
-    }
-
-
-    normalized_geography = []
-
-
-    for geo in parsed["geography"]:
-
-        geo_lower = geo.lower().strip()
-
-
-        if geo_lower in geography_mapping:
-
-            normalized_geography.append(
-
-                geography_mapping[geo_lower]
-            )
-
-        else:
-
-            normalized_geography.append(
-
-                geo
-            )
-
-
-    parsed["geography"] = list(
-
-        dict.fromkeys(normalized_geography)
+    parsed["geography"] = normalize_geography(
+        parsed["geography"]
     )
 
 
@@ -1247,10 +1149,19 @@ def recover_sparse_fields(
             "workflow automation" in content_lower
         ):
 
-            parsed["focus_sectors"].append(
+            if "enterprise software" in content_lower or "workflow automation" in content_lower:
 
-                "B2B SaaS"
-            )
+                parsed["focus_sectors"].append(
+
+                    "B2B"
+                )
+
+            if "saas" in content_lower:
+
+                parsed["focus_sectors"].append(
+
+                    "SaaS"
+                )
 
 
     # =====================================
@@ -1287,43 +1198,6 @@ def recover_sparse_fields(
             parsed["investment_stage"].append(
 
                 "Series A"
-            )
-
-
-    # =====================================
-    # GEOGRAPHY RECOVERY
-    # =====================================
-
-    if not parsed["geography"]:
-
-        if "india" in content_lower:
-
-            parsed["geography"].append(
-
-                "India"
-            )
-
-
-        if (
-
-            "united states" in content_lower
-
-            or
-
-            "usa" in content_lower
-        ):
-
-            parsed["geography"].append(
-
-                "United States"
-            )
-
-
-        if "europe" in content_lower:
-
-            parsed["geography"].append(
-
-                "Europe"
             )
 
 

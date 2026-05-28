@@ -15,6 +15,25 @@ export type Metrics = {
   generated_at: string;
 };
 
+export type ConfigOptions = {
+  sectors: string[];
+  stages: string[];
+  geographies: string[];
+  themes: string[];
+};
+
+export type ChartDatum = {
+  name: string;
+  value: number;
+};
+
+export type DashboardDistributions = {
+  sectors: ChartDatum[];
+  stages: ChartDatum[];
+  total_investors?: number;
+  generated_at: string;
+};
+
 export type Investor = {
   id: number;
   firm: string;
@@ -40,6 +59,32 @@ export type Partner = {
   extraction_confidence?: number | null;
   scraped_at?: string | null;
   updated_at?: string | null;
+};
+
+export type PortfolioCompanyListItem = {
+  id: number;
+  investor_id: number;
+  company_name: string;
+  sector?: string | null;
+  investor_firm?: string | null;
+  investor_website?: string | null;
+};
+
+export type ReviewQueueItem = {
+  id: number;
+  url?: string | null;
+  firm_name?: string | null;
+  source_text?: string | null;
+  extracted_payload: Record<string, any>;
+  ai_decision?: string | null;
+  ai_confidence?: number | null;
+  ai_reason?: string | null;
+  status: string;
+  human_label?: string | null;
+  human_reason?: string | null;
+  reviewer_notes?: string | null;
+  created_at?: string | null;
+  reviewed_at?: string | null;
 };
 
 export type PipelineStatus = {
@@ -107,7 +152,6 @@ export type QueryPreviewRequest = {
   sector?: string;
   stage?: string;
   geography?: string;
-  business_model?: string;
   theme?: string;
   manual_queries?: string[];
   use_expansion?: boolean;
@@ -128,6 +172,14 @@ async function request<T>(path: string): Promise<T> {
 
 export function getMetrics() {
   return request<Metrics>("/api/metrics");
+}
+
+export function getConfigOptions() {
+  return request<ConfigOptions>("/api/config/options");
+}
+
+export function getDashboardDistributions() {
+  return request<DashboardDistributions>("/api/dashboard/distributions");
 }
 
 export function getInvestors(params?: {
@@ -169,6 +221,99 @@ export function getPartners(params?: {
   return request<Paginated<Partner>>(
     `/api/partners${suffix ? `?${suffix}` : ""}`
   );
+}
+
+export function getPortfolioCompanies(params?: {
+  q?: string;
+  limit?: number;
+  offset?: number;
+}) {
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    if (value !== undefined && value !== "") {
+      searchParams.set(key, String(value));
+    }
+  });
+
+  const suffix = searchParams.toString();
+  return request<Paginated<PortfolioCompanyListItem>>(
+    `/api/portfolio-companies${suffix ? `?${suffix}` : ""}`
+  );
+}
+
+export function getReviewQueue(params?: {
+  status?: string;
+  limit?: number;
+  offset?: number;
+}) {
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    if (value !== undefined && value !== "") {
+      searchParams.set(key, String(value));
+    }
+  });
+
+  const suffix = searchParams.toString();
+  return request<Paginated<ReviewQueueItem>>(
+    `/api/review-queue${suffix ? `?${suffix}` : ""}`
+  );
+}
+
+export async function editReviewItem(id: number, payload: Partial<ReviewQueueItem>) {
+  const response = await fetch(`${getApiBaseUrl()}/api/review-queue/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(`API request failed: ${response.status}`);
+  }
+
+  return response.json() as Promise<ReviewQueueItem>;
+}
+
+export async function approveReviewItem(
+  id: number,
+  payload: {
+    extracted_payload?: Record<string, any>;
+    human_reason?: string;
+    reviewer_notes?: string;
+  }
+) {
+  const response = await fetch(`${getApiBaseUrl()}/api/review-queue/${id}/approve`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(`API request failed: ${response.status}`);
+  }
+
+  return response.json() as Promise<ReviewQueueItem>;
+}
+
+export async function rejectReviewItem(
+  id: number,
+  payload: {
+    human_reason?: string;
+    reviewer_notes?: string;
+  }
+) {
+  const response = await fetch(`${getApiBaseUrl()}/api/review-queue/${id}/reject`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(`API request failed: ${response.status}`);
+  }
+
+  return response.json() as Promise<ReviewQueueItem>;
 }
 
 export function getPipelineStatus() {

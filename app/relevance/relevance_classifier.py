@@ -3,6 +3,8 @@ import time
 import re
 import ollama
 
+from urllib.parse import urlparse
+
 from groq import Groq
 from openai import OpenAI
 
@@ -17,6 +19,7 @@ from app.utils.groq_circuit import (
     record_groq_70b_rate_limit_failure,
     should_use_groq_70b,
 )
+from app.review_feedback import format_review_examples_for_prompt
 
 
 # =========================================
@@ -95,6 +98,133 @@ FALLBACK_RESPONSE = {
 }
 
 
+POSITIVE_PATTERNS = {
+    "firm_site": [
+        "venture capital",
+        "vc firm",
+        "investment firm",
+        "seed fund",
+        "growth fund",
+        "early stage fund",
+        "we invest",
+        "our investments",
+    ],
+    "people": [
+        "team",
+        "people",
+        "partners",
+        "general partner",
+        "managing partner",
+        "investment team",
+    ],
+    "portfolio": [
+        "portfolio",
+        "companies",
+        "investments",
+        "backed by",
+        "our companies",
+    ],
+    "strategy": [
+        "thesis",
+        "focus",
+        "sectors",
+        "stage",
+        "seed",
+        "series a",
+        "b2b saas",
+        "artificial intelligence",
+        "enterprise ai",
+    ],
+    "directory": [
+        "investor list",
+        "vc list",
+        "top investors",
+        "venture capital firms",
+        "startup investors",
+        "funding database",
+    ],
+}
+
+
+NEGATIVE_PATTERNS = [
+    "blog post",
+    "blog archive",
+    "company blog",
+    "job opening",
+    "careers",
+    "daily news",
+    "editorial",
+    "newsletter",
+    "press release",
+    "sponsored content",
+    "coupon",
+    "casino",
+    "sports",
+    "celebrity",
+    "product pricing",
+    "customer support",
+    "terms of service",
+    "privacy policy",
+    "login",
+    "sign up",
+    "government of",
+    "ministry of",
+    "investment promotion agency",
+    "economic development agency",
+    "foreign direct investment",
+    "ease of doing business",
+    "policy think tank",
+    "investment opportunities",
+]
+
+
+NOISY_DOMAINS = [
+    "bloomberg.com",
+    "businessinsider.com",
+    "cnbc.com",
+    "economictimes.indiatimes.com",
+    "forbes.com",
+    "fortune.com",
+    "medium.com",
+    "moneycontrol.com",
+    "nytimes.com",
+    "reuters.com",
+    "substack.com",
+    "wsj.com",
+]
+
+
+NOISY_PATH_PARTS = {
+    "blog",
+    "blogs",
+    "news",
+    "article",
+    "articles",
+    "press",
+    "press-release",
+    "press-releases",
+    "newsletter",
+    "insights",
+    "resources",
+    "content",
+    "events",
+}
+
+
+HIGH_SIGNAL_PATH_PARTS = {
+    "about",
+    "team",
+    "people",
+    "partners",
+    "portfolio",
+    "companies",
+    "thesis",
+    "focus",
+    "investment",
+    "investments",
+}
+
+
 RELEVANCE_JSON_SCHEMA = {
 
     "name": "investor_relevance_classification",
@@ -158,39 +288,28 @@ def build_prompt(
 
     snippet
 ):
+    reviewed_examples = format_review_examples_for_prompt(
+        query_text=" ".join([query or "", title or "", url or "", snippet or ""]),
+        limit=5,
+    )
 
     return f"""
 You are an investor intelligence retrieval system.
 
-Your task is to determine whether
-a search result contains useful:
+Your task is to decide whether a search result is likely
+to produce structured investor data for this schema:
 
-- venture capital intelligence
-- startup funding intelligence
-- investor ecosystem intelligence
-- portfolio intelligence
-- startup investment intelligence
+- firm name
+- website
+- partners / investment team
+- focus sectors
+- investment stage
+- portfolio companies
+- geography / investment region
+- contact or social links
 
-The PRIMARY GOAL is:
-MAXIMUM INVESTOR DISCOVERY.
-
-IMPORTANT:
-
-A page DOES NOT need to be an
-official VC homepage to be valuable.
-
-Many useful investor intelligence sources are:
-- investor directories
-- curated investor lists
-- startup ecosystem databases
-- accelerator pages
-- VC portfolio pages
-- investment theses
-- funding reports
-- AI startup ecosystem pages
-- venture studio pages
-- angel investor platforms
-- startup funding platforms
+The PRIMARY GOAL is accurate investor discovery.
+Prefer sources that help extract one or more of those fields.
 
 ----------------------------------------
 HIGH VALUE SOURCES
@@ -198,29 +317,23 @@ HIGH VALUE SOURCES
 
 Strongly accept:
 
-- venture capital firms
-- investment funds
-- VC portfolio pages
-- investor directories
-- startup funding databases
-- curated VC lists
-- accelerator investor pages
-- AI investor ecosystem pages
-- SaaS investor lists
-- startup ecosystem intelligence
-- funding network pages
-- venture studios
-- angel investor networks
-- early-stage investment platforms
-- investment thesis pages
-- AI infrastructure investment pages
-- enterprise AI investment pages
+- official venture capital / investment firm websites
+- official about, team, people, partner, portfolio, thesis,
+  focus, companies, or contact pages
+- credible investor directories and curated investor lists
+- startup funding databases with investor profiles
+- venture studio or accelerator investor pages
+- investment thesis/focus pages that mention sectors,
+  stages, regions, or portfolio companies
+- recent funding articles only when they identify real
+  investors/firms and useful source links
 
 ----------------------------------------
-REJECT ONLY
+LOW VALUE OR REJECT
 ----------------------------------------
 
-Reject ONLY if the page is clearly unrelated:
+Reject or score low when the page cannot produce structured
+investor records:
 
 - ecommerce stores
 - celebrity news
@@ -229,18 +342,32 @@ Reject ONLY if the page is clearly unrelated:
 - generic spam
 - unrelated SaaS products
 - unrelated businesses
-- unrelated media/news
+- generic news pages that only mention one funding event
+  without investor profile details
+- media/news outlets and standalone blog posts, unless they
+  are clearly structured investor directories or official VC
+  firm pages with extractable team/portfolio/focus data
+- startup product pages that are not investor/fund pages
+- portfolio company pages unless they clearly list investors
+- government portals, ministries, policy bodies, public-sector
+  investment promotion agencies, and economic development sites
+  that promote a country/region rather than operate as a real
+  investment fund or VC firm
 - gambling/adult content
 - random irrelevant websites
 
-DO NOT over-filter.
+Do not accept a page only because it contains the word
+"startup" or "AI". It must be investor/funding/VC related.
 
-False positives are acceptable.
-False negatives are dangerous.
+----------------------------------------
+HUMAN REVIEW FEEDBACK
+----------------------------------------
 
-It is MUCH BETTER to keep
-potentially useful investor intelligence
-than accidentally reject valuable sources.
+Use these prior human-reviewed examples as project-specific
+guidance. Follow the pattern of human labels when the new result
+is similar.
+
+{reviewed_examples}
 
 ----------------------------------------
 USER QUERY
@@ -271,16 +398,16 @@ SCORING GUIDELINES
 ----------------------------------------
 
 0.90 - 1.00
-Extremely strong investor relevance
+Official firm page or direct team/portfolio/thesis page
 
 0.75 - 0.89
-Strong investor ecosystem relevance
+Credible directory/profile/list likely to identify investors
 
 0.60 - 0.74
-Potentially valuable investor intelligence
+Useful but partial investor data
 
 0.40 - 0.59
-Weak but maybe useful startup ecosystem content
+Weak, noisy, or indirect investor content
 
 Below 0.40
 Likely irrelevant
@@ -298,6 +425,87 @@ Return ONLY valid JSON:
   "reason": ""
 }}
 """
+
+
+def classify_with_heuristics(query, title, url, snippet):
+    text = " ".join(
+        [
+            query or "",
+            title or "",
+            url or "",
+            snippet or "",
+        ]
+    ).lower()
+
+    try:
+        parsed_url = urlparse(url)
+        hostname = (parsed_url.hostname or "").lower()
+        path_parts = {
+            part
+            for part in re.split(r"[^a-z0-9-]+", parsed_url.path.lower())
+            if part
+        }
+    except Exception:
+        hostname = ""
+        path_parts = set()
+
+    noisy_domain = any(
+        hostname == domain or hostname.endswith(f".{domain}")
+        for domain in NOISY_DOMAINS
+    )
+    noisy_path = bool(path_parts & NOISY_PATH_PARTS)
+    high_signal_path = bool(path_parts & HIGH_SIGNAL_PATH_PARTS)
+
+    if noisy_domain:
+        return {
+            "relevance_tier": "reject",
+            "is_relevant": False,
+            "confidence": 0.15,
+            "reason": "noisy_media_domain",
+        }
+
+    if noisy_path:
+        return {
+            "relevance_tier": "reject",
+            "is_relevant": False,
+            "confidence": 0.25,
+            "reason": "noisy_content_path",
+        }
+
+    if any(pattern in text for pattern in NEGATIVE_PATTERNS):
+        return {
+            "relevance_tier": "reject",
+            "is_relevant": False,
+            "confidence": 0.20,
+            "reason": "negative_keyword_match",
+        }
+
+    score = 0.0
+    matched_groups = []
+
+    for group, patterns in POSITIVE_PATTERNS.items():
+        if any(pattern in text for pattern in patterns):
+            matched_groups.append(group)
+            score += 0.18
+
+    if high_signal_path:
+        score += 0.15
+        matched_groups.append("high_signal_path")
+
+    if "investor" in text or "venture capital" in text or " vc " in f" {text} ":
+        score += 0.20
+
+    confidence = min(score, 0.92)
+    normalized = normalize_output(
+        {
+            "confidence": confidence,
+            "is_relevant": confidence >= 0.55,
+            "reason": "heuristic:" + ",".join(sorted(set(matched_groups))),
+        }
+    )
+    normalized["is_relevant"] = confidence >= 0.55
+
+    return normalized
 
 
 # =========================================
@@ -736,4 +944,19 @@ def classify_investor_relevance(
 
         print("Switching to Groq 70B...")
 
-    return _classify_with_groq_70b_then_8b_then_ollama(prompt)
+    parsed = _classify_with_groq_70b_then_8b_then_ollama(prompt)
+
+    if parsed.get("reason") == "classification_failed":
+
+        return classify_with_heuristics(
+
+            query,
+
+            title,
+
+            url,
+
+            snippet
+        )
+
+    return parsed

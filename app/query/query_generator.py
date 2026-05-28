@@ -1,4 +1,5 @@
 from app.config.ingestion_universe import generate_ingestion_queries
+from app.utils.normalization import map_to_search_geography
 
 
 def _clean(value):
@@ -34,7 +35,6 @@ def generate_queries(
     stage=None,
     geography=None,
     theme=None,
-    business_model=None,
 ):
     """
     Generate focused investor-discovery queries from explicit search intent.
@@ -42,13 +42,12 @@ def generate_queries(
 
     sector = _clean(sector)
     stage = _clean(stage)
-    geography = _clean(geography)
+    geography = map_to_search_geography(_clean(geography))
     theme = _clean(theme)
-    business_model = _clean(business_model)
 
     queries = []
-    subject_parts = [value for value in [business_model, sector] if value]
-    subject = " ".join(subject_parts) or sector or business_model or theme or "startup"
+    subject_parts = [value for value in [sector, theme] if value]
+    subject = " ".join(subject_parts) or sector or theme or "startup"
     stage_phrase = f" {stage}" if stage else ""
     geography_phrase = f" in {geography}" if geography else ""
 
@@ -59,16 +58,13 @@ def generate_queries(
             f"{subject}{stage_phrase} VC firms{geography_phrase}",
             f"{subject}{stage_phrase} startup investors{geography_phrase}",
             f"top {subject}{stage_phrase} investors{geography_phrase}",
+            f"{subject}{stage_phrase} investor directory{geography_phrase}",
+            f"{subject}{stage_phrase} VC firm portfolio{geography_phrase}",
+            f"{subject}{stage_phrase} venture capital team partners{geography_phrase}",
+            f"{subject}{stage_phrase} investment thesis focus sectors{geography_phrase}",
+            f"{subject}{stage_phrase} startup funding investors partners portfolio{geography_phrase}",
         ]
     )
-
-    if sector and business_model:
-        queries.extend(
-            [
-                f"{sector} {business_model} investors{geography_phrase}",
-                f"{business_model} {sector} venture capital{geography_phrase}",
-            ]
-        )
 
     if theme:
         queries.extend(
@@ -76,10 +72,11 @@ def generate_queries(
                 f"{theme} investors{geography_phrase}",
                 f"{theme} venture capital firms{geography_phrase}",
                 f"{subject} {theme} investors{geography_phrase}",
+                f"{subject} {theme} investor portfolio partners{geography_phrase}",
             ]
         )
 
-    filters = [value for value in [sector, stage, geography, theme, business_model] if value]
+    filters = [value for value in [sector, stage, geography, theme] if value]
     curated_matches = [
         query
         for query in generate_ingestion_queries()

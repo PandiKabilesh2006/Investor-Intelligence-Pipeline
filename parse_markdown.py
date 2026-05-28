@@ -8,10 +8,6 @@ from app.parsing.normalize import (
     normalize_sectors
 )
 
-from app.utils.deduplicate import (
-    is_duplicate_firm
-)
-
 from app.utils.failed_url_manager import add_failed_url
 
 from app.utils.groq_circuit import reset_groq_70b_circuit
@@ -294,24 +290,6 @@ for markdown_file in markdown_files:
 
 
         parsed_data["firm"] = firm_name
-
-
-        # =====================================
-        # INVESTOR DEDUPLICATION
-        # =====================================
-
-        if is_duplicate_firm(
-
-            firm_name
-        ):
-
-            print(
-
-                f"Duplicate investor skipped: "
-                f"{firm_name}"
-            )
-
-            continue
 
 
         # =====================================

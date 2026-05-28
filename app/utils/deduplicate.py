@@ -1,3 +1,6 @@
+from app.utils.normalization import normalize_firm_key
+
+
 seen_firms = set()
 
 
@@ -6,14 +9,7 @@ def is_duplicate_firm(firm_name):
     if not firm_name:
         return True
 
-    normalized = (
-        firm_name
-        .lower()
-        .replace("ventures", "")
-        .replace("capital", "")
-        .replace("partners", "")
-        .strip()
-    )
+    normalized = normalize_firm_key(firm_name)
 
     if normalized in seen_firms:
         return True

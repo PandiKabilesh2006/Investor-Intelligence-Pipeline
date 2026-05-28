@@ -19,13 +19,21 @@ from app.api.schemas import (
     InvestorListResponse,
 )
 from app.database.models import Investor
+from app.utils.normalization import (
+    clean_list_values,
+    expand_geography_filter,
+    expand_sector_filter,
+    normalize_geography,
+    normalize_sector,
+    normalize_stage,
+)
 
 
 router = APIRouter(prefix="/api/investors", tags=["investors"])
 
 
 def _clean_list(value):
-    return value or []
+    return clean_list_values(value or [])
 
 
 def _url_contains(url, domains):
@@ -75,9 +83,9 @@ def serialize_investor(investor):
         "firm": investor.firm,
         "website": investor.website,
         "source_url": investor.source_url,
-        "focus_sectors": _clean_list(investor.focus_sectors),
-        "investment_stage": _clean_list(investor.investment_stage),
-        "geography": _clean_list(investor.geography),
+        "focus_sectors": normalize_sector(investor.focus_sectors),
+        "investment_stage": normalize_stage(investor.investment_stage),
+        "geography": normalize_geography(investor.geography),
         "contact_links": _clean_list(investor.contact_links),
         "created_at": investor.created_at,
         "updated_at": investor.updated_at,
@@ -96,13 +104,29 @@ def apply_investor_filters(query, q=None, sector=None, stage=None, geography=Non
         )
 
     if sector:
-        query = query.filter(Investor.focus_sectors.any(sector))
+        query = query.filter(
+            or_(
+                *[
+                    Investor.focus_sectors.any(candidate)
+                    for candidate in expand_sector_filter(sector)
+                ]
+            )
+        )
 
     if stage:
         query = query.filter(Investor.investment_stage.any(stage))
 
-    if geography:
-        query = query.filter(Investor.geography.any(geography))
+    geography_candidates = expand_geography_filter(geography)
+
+    if geography_candidates:
+        query = query.filter(
+            or_(
+                *[
+                    Investor.geography.any(candidate)
+                    for candidate in geography_candidates
+                ]
+            )
+        )
 
     return query
 

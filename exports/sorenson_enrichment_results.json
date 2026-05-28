@@ -1,0 +1,25 @@
+{
+  "summary": {
+    "backlog_source": "C:\\Users\\crade\\Desktop\\investor intelligence\\Investor-Intelligence-Pipeline\\exports\\sorenson_backlog.json",
+    "processed": 1,
+    "updated": 1,
+    "no_content": 0,
+    "firm_validation_failed": 0,
+    "generated_at": "2026-05-27T11:55:39.799693+00:00"
+  },
+  "results": [
+    {
+      "investor_id": 349,
+      "firm": "Sorenson Capital",
+      "status": "updated",
+      "source_urls": [
+        "https://sorensoncapital.com/about",
+        "https://sorensoncapital.com/our-approach",
+        "https://sorensoncapital.com/portfolio",
+        "https://sorensoncapital.com/team"
+      ],
+      "parsed_firm": "Sorenson Capital Partners",
+      "updated_at": "2026-05-27T11:55:39.749110+00:00"
+    }
+  ]
+}

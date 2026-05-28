@@ -1,0 +1,47 @@
+{
+  "summary": {
+    "selected_records": 1
+  },
+  "backlog": [
+    {
+      "investor_id": 349,
+      "firm": "Sorenson Capital",
+      "score": 3,
+      "status": "thin",
+      "website": "https://sorensoncapital.com",
+      "source_url": "https://sorensoncapital.com",
+      "domain": "sorensoncapital.com",
+      "missing_fields": [
+        "focus_sectors",
+        "investment_stage",
+        "geography",
+        "portfolio_companies"
+      ],
+      "partner_count": 6,
+      "portfolio_company_count": 0,
+      "queries": [
+        "Sorenson Capital focus sectors",
+        "Sorenson Capital portfolio",
+        "Sorenson Capital team"
+      ],
+      "page_targets": [
+        {
+          "type": "metadata",
+          "url": "https://sorensoncapital.com/about"
+        },
+        {
+          "type": "metadata",
+          "url": "https://sorensoncapital.com/our-approach"
+        },
+        {
+          "type": "portfolio",
+          "url": "https://sorensoncapital.com/portfolio"
+        },
+        {
+          "type": "partners",
+          "url": "https://sorensoncapital.com/team"
+        }
+      ]
+    }
+  ]
+}

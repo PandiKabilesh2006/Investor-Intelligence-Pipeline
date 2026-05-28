@@ -1,6 +1,7 @@
 import requests
 
 from app.config.settings import TAVILY_API_KEY
+from app.config.taxonomy import SEARCH_EXCLUDED_DOMAINS
 
 
 TAVILY_URL = "https://api.tavily.com/search"
@@ -29,6 +30,14 @@ def search_investors(
             "search_depth": "advanced",
 
             "max_results": 10,
+
+            "include_answer": False,
+
+            "include_raw_content": False,
+
+            "include_domains": [],
+
+            "exclude_domains": SEARCH_EXCLUDED_DOMAINS,
 
             "page": page
         }

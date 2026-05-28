@@ -12,6 +12,7 @@ from app.database.models import (
     CrawledUrl,
     FailedUrl,
     PipelineRun,
+    ReviewQueue,
 )
 
 
@@ -192,6 +193,7 @@ def migrate():
     CrawlQueue.__table__.create(engine, checkfirst=True)
     FailedUrl.__table__.create(engine, checkfirst=True)
     PipelineRun.__table__.create(engine, checkfirst=True)
+    ReviewQueue.__table__.create(engine, checkfirst=True)
 
     print("Pipeline table migration complete.")
 

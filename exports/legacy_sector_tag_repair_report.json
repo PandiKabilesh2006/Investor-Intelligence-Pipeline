@@ -1,0 +1,273 @@
+{
+  "apply": false,
+  "scrape_missing": false,
+  "selected_records": 10,
+  "changed_records": 10,
+  "generated_at": "2026-05-28T05:58:31.397895+00:00",
+  "results": [
+    {
+      "investor_id": 221,
+      "firm": "Y Combinator",
+      "current_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B SaaS",
+        "Voice AI"
+      ],
+      "repaired_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B",
+        "SaaS",
+        "Voice AI"
+      ],
+      "changed": true,
+      "markdown_source": "local",
+      "evidence": {
+        "b2b_hits": [
+          "b2b",
+          "developer tools",
+          "enterprise",
+          "enterprise software",
+          "infrastructure software",
+          "productivity",
+          "workflow"
+        ],
+        "saas_hits": [
+          "saas"
+        ]
+      }
+    },
+    {
+      "investor_id": 272,
+      "firm": "Tracxn",
+      "current_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B SaaS",
+        "Voice AI"
+      ],
+      "repaired_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B",
+        "SaaS",
+        "Voice AI"
+      ],
+      "changed": true,
+      "markdown_source": "local",
+      "evidence": {
+        "b2b_hits": [
+          "b2b",
+          "enterprise"
+        ],
+        "saas_hits": [
+          "saas"
+        ]
+      }
+    },
+    {
+      "investor_id": 391,
+      "firm": "Techstars",
+      "current_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B SaaS"
+      ],
+      "repaired_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B",
+        "SaaS"
+      ],
+      "changed": true,
+      "markdown_source": "local",
+      "evidence": {
+        "b2b_hits": [
+          "b2b",
+          "enterprise",
+          "workflow"
+        ],
+        "saas_hits": [
+          "saas"
+        ]
+      }
+    },
+    {
+      "investor_id": 183,
+      "firm": "Slidebean",
+      "current_focus_sectors": [
+        "B2B SaaS",
+        "Artificial Intelligence"
+      ],
+      "repaired_focus_sectors": [
+        "B2B",
+        "SaaS",
+        "Artificial Intelligence"
+      ],
+      "changed": true,
+      "markdown_source": "local",
+      "evidence": {
+        "b2b_hits": [
+          "b2b",
+          "enterprise",
+          "enterprise software",
+          "productivity",
+          "workflow"
+        ],
+        "saas_hits": [
+          "saas"
+        ]
+      }
+    },
+    {
+      "investor_id": 142,
+      "firm": "NFX",
+      "current_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B SaaS"
+      ],
+      "repaired_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B",
+        "SaaS"
+      ],
+      "changed": true,
+      "markdown_source": "local",
+      "evidence": {
+        "b2b_hits": [
+          "developer tools",
+          "enterprise"
+        ],
+        "saas_hits": [
+          "saas"
+        ]
+      }
+    },
+    {
+      "investor_id": 187,
+      "firm": "SOSV",
+      "current_focus_sectors": [
+        "B2B SaaS",
+        "Artificial Intelligence"
+      ],
+      "repaired_focus_sectors": [
+        "B2B",
+        "SaaS",
+        "Artificial Intelligence"
+      ],
+      "changed": true,
+      "markdown_source": "local",
+      "evidence": {
+        "b2b_hits": [
+          "b2b",
+          "enterprise",
+          "enterprise software",
+          "productivity",
+          "workflow"
+        ],
+        "saas_hits": [
+          "saas",
+          "vertical saas"
+        ]
+      }
+    },
+    {
+      "investor_id": 265,
+      "firm": "Seedtable",
+      "current_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B SaaS"
+      ],
+      "repaired_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B",
+        "SaaS"
+      ],
+      "changed": true,
+      "markdown_source": "local",
+      "evidence": {
+        "b2b_hits": [
+          "b2b",
+          "developer tools",
+          "enterprise",
+          "enterprise software",
+          "workflow"
+        ],
+        "saas_hits": [
+          "saas",
+          "software as a service"
+        ]
+      }
+    },
+    {
+      "investor_id": 176,
+      "firm": "SeedBlink",
+      "current_focus_sectors": [
+        "B2B SaaS",
+        "Artificial Intelligence"
+      ],
+      "repaired_focus_sectors": [
+        "B2B",
+        "Artificial Intelligence"
+      ],
+      "changed": true,
+      "markdown_source": "local",
+      "evidence": {
+        "b2b_hits": [
+          "enterprise"
+        ],
+        "saas_hits": []
+      }
+    },
+    {
+      "investor_id": 148,
+      "firm": "OpenVC",
+      "current_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B SaaS"
+      ],
+      "repaired_focus_sectors": [
+        "Artificial Intelligence",
+        "B2B",
+        "SaaS"
+      ],
+      "changed": true,
+      "markdown_source": "local",
+      "evidence": {
+        "b2b_hits": [
+          "b2b",
+          "developer tools",
+          "enterprise",
+          "enterprise software",
+          "infrastructure software",
+          "productivity",
+          "vertical software",
+          "workflow"
+        ],
+        "saas_hits": [
+          "saas"
+        ]
+      }
+    },
+    {
+      "investor_id": 146,
+      "firm": "Octopus Ventures",
+      "current_focus_sectors": [
+        "B2B SaaS",
+        "Artificial Intelligence"
+      ],
+      "repaired_focus_sectors": [
+        "B2B",
+        "SaaS",
+        "Artificial Intelligence"
+      ],
+      "changed": true,
+      "markdown_source": "local",
+      "evidence": {
+        "b2b_hits": [
+          "b2b",
+          "enterprise",
+          "workflow"
+        ],
+        "saas_hits": [
+          "saas"
+        ]
+      }
+    }
+  ]
+}

@@ -1,47 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { semanticSearch, SearchResult } from "@/lib/api";
+import { ConfigOptions, getConfigOptions, semanticSearch, SearchResult } from "@/lib/api";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Search, SlidersHorizontal, Loader2, Sparkles, ShieldCheck, ChevronRight, Compass, Shield } from "lucide-react";
 import { InvestorDetailModal } from "@/components/investor-detail-modal";
 import { cn, fieldInputClassName } from "@/lib/utils";
-
-const SECTORS = [
-  "Artificial Intelligence",
-  "Enterprise AI",
-  "B2B SaaS",
-  "Voice AI",
-  "Fintech",
-  "Healthcare",
-  "Deeptech",
-  "Web3",
-  "Proptech"
-];
-
-const STAGES = [
-  "Pre-Seed",
-  "Seed",
-  "Series A",
-  "Series B",
-  "Growth Stage"
-];
-
-const GEOGRAPHIES = [
-  "India",
-  "United States",
-  "Europe",
-  "Southeast Asia",
-  "Middle East",
-  "Global"
-];
+import { GEOGRAPHY_OPTIONS } from "@/lib/filter-options";
 
 export default function SearchPage() {
   const [q, setQ] = useState("");
   const [sector, setSector] = useState("");
   const [stage, setStage] = useState("");
   const [geography, setGeography] = useState("");
+  const [configOptions, setConfigOptions] = useState<ConfigOptions>({
+    sectors: [],
+    stages: [],
+    geographies: [],
+    themes: [],
+  });
 
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
@@ -49,6 +27,19 @@ export default function SearchPage() {
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    getConfigOptions()
+      .then(setConfigOptions)
+      .catch(() => {
+        setConfigOptions({
+          sectors: [],
+          stages: [],
+          geographies: [],
+          themes: [],
+        });
+      });
+  }, []);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -145,7 +136,7 @@ export default function SearchPage() {
                 className={cn(fieldInputClassName, "px-3 py-2.5 text-xs")}
               >
                 <option value="">Any Sector focus</option>
-                {SECTORS.map((s) => (
+                {configOptions.sectors.map((s) => (
                   <option key={s} value={s}>{s}</option>
                 ))}
               </select>
@@ -157,22 +148,24 @@ export default function SearchPage() {
                 className={cn(fieldInputClassName, "px-3 py-2.5 text-xs")}
               >
                 <option value="">Any Funding Stage</option>
-                {STAGES.map((s) => (
+                {configOptions.stages.map((s) => (
                   <option key={s} value={s}>{s}</option>
                 ))}
               </select>
 
               {/* Geography */}
-              <select
+              <input
+                list="semantic-geography-options"
                 value={geography}
                 onChange={(e) => setGeography(e.target.value)}
+                placeholder="Any Geography"
                 className={cn(fieldInputClassName, "px-3 py-2.5 text-xs")}
-              >
-                <option value="">Any Geography</option>
-                {GEOGRAPHIES.map((g) => (
-                  <option key={g} value={g}>{g}</option>
+              />
+              <datalist id="semantic-geography-options">
+                {Array.from(new Set([...configOptions.geographies, ...GEOGRAPHY_OPTIONS])).map((g) => (
+                  <option key={g} value={g} />
                 ))}
-              </select>
+              </datalist>
             </div>
           </div>
         </form>

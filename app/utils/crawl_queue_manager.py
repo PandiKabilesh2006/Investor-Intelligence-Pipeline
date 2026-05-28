@@ -42,10 +42,10 @@ def add_to_crawl_queue(
 
         if existing:
 
-            return
+            return existing[0], False
 
 
-        session.execute(
+        inserted = session.execute(
 
             text(
 
@@ -72,6 +72,8 @@ def add_to_crawl_queue(
 
                     :status
                 )
+
+                RETURNING id
                 """
             ),
 
@@ -88,7 +90,11 @@ def add_to_crawl_queue(
         )
 
 
+        inserted_id = inserted.scalar()
+
         session.commit()
+
+        return inserted_id, True
 
 
     finally:

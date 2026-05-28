@@ -1,4 +1,5 @@
 from firecrawl import FirecrawlApp
+import requests
 
 from urllib.parse import urljoin
 from concurrent.futures import (
@@ -8,56 +9,63 @@ from concurrent.futures import (
 
 from app.config.settings import (
     FIRECRAWL_API_KEY,
+    FIRECRAWL_API_URL,
     FIRECRAWL_TIMEOUT_SECONDS
 )
+from app.config.taxonomy import FIRECRAWL_IMPORTANT_SUBPAGES
 
 from app.utils.failed_url_manager import (
     add_failed_url
 )
 
 
-# =========================================
-# FIRECRAWL CLIENT
-# =========================================
+firecrawl = None
 
-firecrawl = FirecrawlApp(
 
-    api_key=FIRECRAWL_API_KEY
-)
+def get_firecrawl_client():
+    global firecrawl
+
+    if firecrawl is None:
+        firecrawl = FirecrawlApp(
+            api_key=FIRECRAWL_API_KEY
+        )
+
+    return firecrawl
+
+
+def using_self_hosted_firecrawl():
+    return bool(FIRECRAWL_API_URL)
+
+
+def scrape_with_self_hosted_firecrawl(url):
+    response = requests.post(
+        f"{FIRECRAWL_API_URL}/v1/scrape",
+        json={
+            "url": url,
+            "formats": [
+                "markdown"
+            ],
+        },
+        timeout=FIRECRAWL_TIMEOUT_SECONDS,
+    )
+
+    response.raise_for_status()
+    payload = response.json()
+
+    if not payload.get("success", False):
+        raise Exception(
+            payload.get("error") or "Self-hosted Firecrawl scrape failed"
+        )
+
+    data = payload.get("data") or {}
+    return data.get("markdown", "")
 
 
 # =========================================
 # HIGH-SIGNAL SUBPAGES
 # =========================================
 
-IMPORTANT_SUBPAGES = [
-
-    "",
-
-    "/team",
-
-    "/our-team",
-
-    "/investment-team",
-
-    "/people",
-
-    "/partners",
-
-    "/team/partners",
-
-    "/investors",
-
-    "/about",
-
-    "/leadership",
-
-    "/portfolio",
-
-    "/companies",
-
-    "/contact"
-]
+IMPORTANT_SUBPAGES = FIRECRAWL_IMPORTANT_SUBPAGES
 
 
 # =========================================
@@ -102,14 +110,25 @@ def scrape_single_page(url):
 
         try:
 
-            future = executor.submit(
+            if using_self_hosted_firecrawl():
 
-                firecrawl.scrape,
+                future = executor.submit(
 
-                url=url,
+                    scrape_with_self_hosted_firecrawl,
 
-                formats=["markdown"]
-            )
+                    url
+                )
+
+            else:
+
+                future = executor.submit(
+
+                    get_firecrawl_client().scrape,
+
+                    url=url,
+
+                    formats=["markdown"]
+                )
 
             response = future.result(
 
@@ -131,7 +150,11 @@ def scrape_single_page(url):
             return None
 
 
-        if isinstance(response, dict):
+        if isinstance(response, str):
+
+            markdown = response
+
+        elif isinstance(response, dict):
 
             markdown = response.get("markdown", "")
 

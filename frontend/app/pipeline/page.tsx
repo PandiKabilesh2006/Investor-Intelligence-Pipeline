@@ -1,47 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { clearPendingQueue, getPipelineStatus, getPipelineQueueSummary, triggerPipelineRun, getActivePipelineJobs, previewQueries, PipelineStatus, QueueSummary } from "@/lib/api";
+import { clearPendingQueue, getPipelineStatus, getPipelineQueueSummary, triggerPipelineRun, getActivePipelineJobs, previewQueries, PipelineStatus, QueueSummary, ConfigOptions, getConfigOptions } from "@/lib/api";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn, fieldInputClassName, formatDate } from "@/lib/utils";
-import { Play, RefreshCw, Loader2, AlertCircle, CheckCircle2, Terminal, Info, Wand2, MapPin, BriefcaseBusiness, Layers, Target, X } from "lucide-react";
+import { Play, RefreshCw, Loader2, AlertCircle, CheckCircle2, Terminal, Info, Wand2, MapPin, Layers, Target, X, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-
-const SECTOR_OPTIONS = [
-  "Artificial Intelligence",
-  "B2B SaaS",
-  "Fintech",
-  "Healthcare",
-  "Climate Tech",
-  "Cybersecurity",
-  "Developer Tools",
-];
-
-const STAGE_OPTIONS = [
-  "Pre-Seed",
-  "Seed",
-  "Series A",
-  "Series B",
-  "Growth Stage",
-];
-
-const GEOGRAPHY_OPTIONS = [
-  "United States",
-  "India",
-  "Europe",
-  "Southeast Asia",
-  "Middle East",
-  "Global",
-];
-
-const BUSINESS_MODEL_OPTIONS = [
-  "B2B SaaS",
-  "Enterprise",
-  "Infrastructure",
-  "Workflow Automation",
-  "Vertical SaaS",
-  "Developer Tools",
-];
+import { GEOGRAPHY_OPTIONS } from "@/lib/filter-options";
 
 const QUERY_HISTORY_STORAGE_KEY = "investor-pipeline-query-history";
 
@@ -70,26 +35,21 @@ export default function PipelinePage() {
   const [status, setStatus] = useState<PipelineStatus | null>(null);
   const [queue, setQueue] = useState<QueueSummary | null>(null);
   const [activeJobs, setActiveJobs] = useState({ active: false, jobs: [] as { pid: number }[] });
+  const [hasMounted, setHasMounted] = useState(false);
+  const [configOptions, setConfigOptions] = useState<ConfigOptions>({
+    sectors: [],
+    stages: [],
+    geographies: [],
+    themes: [],
+  });
   
-  const [sector, setSector] = useState("Artificial Intelligence");
-  const [stage, setStage] = useState("Seed");
-  const [geography, setGeography] = useState("United States");
-  const [businessModel, setBusinessModel] = useState("B2B SaaS");
+  const [sector, setSector] = useState("");
+  const [stage, setStage] = useState("");
+  const [geography, setGeography] = useState("");
   const [theme, setTheme] = useState("");
   const [manualQueries, setManualQueries] = useState("");
   const [generatedQueries, setGeneratedQueries] = useState<string[]>([]);
-  const [queryHistory, setQueryHistory] = useState<string[]>(() => {
-    if (typeof window === "undefined") {
-      return [];
-    }
-
-    try {
-      const saved = window.localStorage.getItem(QUERY_HISTORY_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  const [queryHistory, setQueryHistory] = useState<string[]>([]);
   const [generatingQueries, setGeneratingQueries] = useState(false);
   const [runningQuery, setRunningQuery] = useState<string | null>(null);
   const [clearingQueue, setClearingQueue] = useState(false);
@@ -100,10 +60,11 @@ export default function PipelinePage() {
   const [logFilter, setLogFilter] = useState<"all" | "info" | "error" | "warning">("all");
 
   const loadData = async () => {
-    const [statusRes, queueRes, jobsRes] = await Promise.allSettled([
+    const [statusRes, queueRes, jobsRes, optionsRes] = await Promise.allSettled([
       getPipelineStatus(),
       getPipelineQueueSummary(),
-      getActivePipelineJobs()
+      getActivePipelineJobs(),
+      getConfigOptions()
     ]);
 
     if (statusRes.status === "fulfilled") {
@@ -118,20 +79,44 @@ export default function PipelinePage() {
       setActiveJobs(jobsRes.value);
     }
 
+    if (optionsRes.status === "fulfilled") {
+      setConfigOptions(optionsRes.value);
+      setSector((current) => current || optionsRes.value.sectors[0] || "");
+      setStage((current) => current || optionsRes.value.stages[0] || "");
+    }
+
     setLoading(false);
   };
 
   // Initial load
   useEffect(() => {
+    setHasMounted(true);
     loadData();
   }, []);
 
   useEffect(() => {
+    if (!hasMounted) {
+      return;
+    }
+
+    try {
+      const saved = window.localStorage.getItem(QUERY_HISTORY_STORAGE_KEY);
+      setQueryHistory(saved ? JSON.parse(saved) : []);
+    } catch {
+      setQueryHistory([]);
+    }
+  }, [hasMounted]);
+
+  useEffect(() => {
+    if (!hasMounted) {
+      return;
+    }
+
     window.localStorage.setItem(
       QUERY_HISTORY_STORAGE_KEY,
       JSON.stringify(queryHistory.slice(0, 30))
     );
-  }, [queryHistory]);
+  }, [hasMounted, queryHistory]);
 
   // Auto-refresh logs loop
   useEffect(() => {
@@ -152,7 +137,6 @@ export default function PipelinePage() {
         sector,
         stage,
         geography,
-        business_model: businessModel,
         theme,
         manual_queries: splitManualQueries(manualQueries),
         use_expansion: false,
@@ -295,7 +279,7 @@ export default function PipelinePage() {
                 onChange={(e) => setSector(e.target.value)}
                 className={cn(fieldInputClassName, "px-3 py-2.5")}
               >
-                {SECTOR_OPTIONS.map((option) => (
+                {configOptions.sectors.map((option) => (
                   <option key={option} value={option}>{option}</option>
                 ))}
               </select>
@@ -311,7 +295,7 @@ export default function PipelinePage() {
                 onChange={(e) => setStage(e.target.value)}
                 className={cn(fieldInputClassName, "px-3 py-2.5")}
               >
-                {STAGE_OPTIONS.map((option) => (
+                {configOptions.stages.map((option) => (
                   <option key={option} value={option}>{option}</option>
                 ))}
               </select>
@@ -322,46 +306,43 @@ export default function PipelinePage() {
                 <MapPin className="h-3.5 w-3.5" />
                 Geography
               </span>
-              <select
+              <input
+                list="pipeline-geography-options"
                 value={geography}
                 onChange={(e) => setGeography(e.target.value)}
+                placeholder="Select geography"
                 className={cn(fieldInputClassName, "px-3 py-2.5")}
-              >
-                {GEOGRAPHY_OPTIONS.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+              />
+              <datalist id="pipeline-geography-options">
+                {Array.from(new Set([...configOptions.geographies, ...GEOGRAPHY_OPTIONS])).map((option) => (
+                  <option key={option} value={option} />
                 ))}
-              </select>
+              </datalist>
+              <p className="text-[10px] text-muted-foreground">
+                Countries are grouped into practical investor markets when queries are generated.
+              </p>
             </label>
 
             <label className="space-y-1.5">
               <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
-                <BriefcaseBusiness className="h-3.5 w-3.5" />
-                Business Type
+                <Sparkles className="h-3.5 w-3.5" />
+                Investment Theme
               </span>
-              <select
-                value={businessModel}
-                onChange={(e) => setBusinessModel(e.target.value)}
+              <input
+                type="text"
+                list="pipeline-theme-options"
+                placeholder="e.g., infrastructure, workflow automation, compliance"
+                value={theme}
+                onChange={(e) => setTheme(e.target.value)}
                 className={cn(fieldInputClassName, "px-3 py-2.5")}
-              >
-                {BUSINESS_MODEL_OPTIONS.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+              />
+              <datalist id="pipeline-theme-options">
+                {configOptions.themes.map((option) => (
+                  <option key={option} value={option} />
                 ))}
-              </select>
+              </datalist>
             </label>
           </div>
-
-          <label className="space-y-1.5 block">
-            <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
-              Extra Theme or Notes
-            </span>
-            <input
-              type="text"
-              placeholder="e.g., agentic workflow automation, India-first SaaS, compliance tools"
-              value={theme}
-              onChange={(e) => setTheme(e.target.value)}
-              className={cn(fieldInputClassName, "px-3 py-2.5")}
-            />
-          </label>
 
           <label className="space-y-1.5 block">
             <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
@@ -400,7 +381,7 @@ export default function PipelinePage() {
             </p>
           </div>
 
-          {(generatedQueries.length > 0 || queryHistory.length > 0) && (
+          {(generatedQueries.length > 0 || (hasMounted && queryHistory.length > 0)) && (
             <div className="space-y-3 rounded-xl border border-border bg-muted/30 p-3">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-xs font-bold text-foreground">

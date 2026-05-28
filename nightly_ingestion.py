@@ -1,6 +1,8 @@
 import subprocess
 import time
 import sys
+import os
+from datetime import datetime, timezone
 
 from sqlalchemy import text
 
@@ -209,6 +211,8 @@ print(
     "\nStarting nightly investor ingestion...\n"
 )
 
+run_started_timestamp = str(datetime.now(timezone.utc).timestamp())
+
 
 # =========================================
 # DISCOVERY QUERY METRICS
@@ -375,7 +379,10 @@ try:
 
             "parse_markdown.py"
         ],
-
+        env={
+            **os.environ,
+            "PIPELINE_RUN_STARTED_TS": run_started_timestamp,
+        },
         check=True
     )
 
@@ -430,7 +437,10 @@ try:
 
             "insert_into_db.py"
         ],
-
+        env={
+            **os.environ,
+            "PIPELINE_RUN_STARTED_TS": run_started_timestamp,
+        },
         check=True
     )
 

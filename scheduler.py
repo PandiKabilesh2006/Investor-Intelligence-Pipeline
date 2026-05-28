@@ -1,7 +1,7 @@
 import os
 import time
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 import schedule
 import subprocess
@@ -19,6 +19,11 @@ from app.logging.logging_config import (
 
     error_logger
 )
+from app.config.settings import (
+    FAILED_URL_MAX_RETRIES,
+    FAILED_URL_RETRY_LIMIT,
+    RETRY_FAILED_URLS_ENABLED,
+)
 
 
 # =========================================
@@ -27,7 +32,10 @@ from app.logging.logging_config import (
 
 def retry_failed_urls():
 
-    failed_urls = get_failed_urls()
+    failed_urls = get_failed_urls(
+        max_retries=FAILED_URL_MAX_RETRIES,
+        limit=FAILED_URL_RETRY_LIMIT,
+    )
 
 
     pipeline_logger.info(
@@ -116,6 +124,7 @@ def run_nightly_pipeline():
 
 
     try:
+        run_started_timestamp = str(datetime.now(timezone.utc).timestamp())
 
         # =====================================
         # RUN DISCOVERY PIPELINE
@@ -148,7 +157,10 @@ def run_nightly_pipeline():
 
                 "parse_markdown.py"
             ],
-
+            env={
+                **os.environ,
+                "PIPELINE_RUN_STARTED_TS": run_started_timestamp,
+            },
             check=True
         )
 
@@ -166,7 +178,10 @@ def run_nightly_pipeline():
 
                 "insert_into_db.py"
             ],
-
+            env={
+                **os.environ,
+                "PIPELINE_RUN_STARTED_TS": run_started_timestamp,
+            },
             check=True
         )
 
@@ -181,7 +196,10 @@ def run_nightly_pipeline():
         # RETRY FAILED URLS
         # =====================================
 
-        retry_failed_urls()
+        if RETRY_FAILED_URLS_ENABLED:
+            retry_failed_urls()
+        else:
+            pipeline_logger.info("Failed URL retry skipped by configuration")
 
 
         pipeline_logger.info(

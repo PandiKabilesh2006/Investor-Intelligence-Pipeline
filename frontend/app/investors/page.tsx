@@ -1,47 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getInvestors, Investor } from "@/lib/api";
+import { ConfigOptions, getConfigOptions, getInvestors, Investor } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn, fieldInputClassName, formatDate } from "@/lib/utils";
 import { Search, SlidersHorizontal, ChevronLeft, ChevronRight, Loader2, Globe, ArrowUpDown } from "lucide-react";
 import { InvestorDetailModal } from "@/components/investor-detail-modal";
-
-const SECTORS = [
-  "Artificial Intelligence",
-  "Enterprise AI",
-  "B2B SaaS",
-  "Voice AI",
-  "Fintech",
-  "Healthcare",
-  "Deeptech",
-  "Web3",
-  "Proptech"
-];
-
-const STAGES = [
-  "Pre-Seed",
-  "Seed",
-  "Series A",
-  "Series B",
-  "Growth Stage"
-];
-
-const GEOGRAPHIES = [
-  "India",
-  "United States",
-  "Europe",
-  "Southeast Asia",
-  "Middle East",
-  "Global"
-];
+import { GEOGRAPHY_OPTIONS } from "@/lib/filter-options";
 
 export default function InvestorsPage() {
   const [q, setQ] = useState("");
   const [sector, setSector] = useState("");
   const [stage, setStage] = useState("");
   const [geography, setGeography] = useState("");
+  const [configOptions, setConfigOptions] = useState<ConfigOptions>({
+    sectors: [],
+    stages: [],
+    geographies: [],
+    themes: [],
+  });
   
   const [investors, setInvestors] = useState<Investor[]>([]);
   const [total, setTotal] = useState(0);
@@ -51,6 +29,19 @@ export default function InvestorsPage() {
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    getConfigOptions()
+      .then(setConfigOptions)
+      .catch(() => {
+        setConfigOptions({
+          sectors: [],
+          stages: [],
+          geographies: [],
+          themes: [],
+        });
+      });
+  }, []);
 
   // Fetch investors whenever filters change
   useEffect(() => {
@@ -120,7 +111,7 @@ export default function InvestorsPage() {
             className={cn(fieldInputClassName, "px-3 py-2.5")}
           >
             <option value="">All Sectors</option>
-            {SECTORS.map((s) => (
+            {configOptions.sectors.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
           </select>
@@ -132,22 +123,24 @@ export default function InvestorsPage() {
             className={cn(fieldInputClassName, "px-3 py-2.5")}
           >
             <option value="">All Stages</option>
-            {STAGES.map((s) => (
+            {configOptions.stages.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
           </select>
 
           {/* Geography Filter */}
-          <select
+          <input
+            list="investor-geography-options"
             value={geography}
             onChange={(e) => handleFilterChange(setGeography, e.target.value)}
+            placeholder="All Geographies"
             className={cn(fieldInputClassName, "px-3 py-2.5")}
-          >
-            <option value="">All Geographies</option>
-            {GEOGRAPHIES.map((g) => (
-              <option key={g} value={g}>{g}</option>
+          />
+          <datalist id="investor-geography-options">
+            {Array.from(new Set([...configOptions.geographies, ...GEOGRAPHY_OPTIONS])).map((g) => (
+              <option key={g} value={g} />
             ))}
-          </select>
+          </datalist>
         </div>
       </Card>
 

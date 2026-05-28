@@ -137,7 +137,6 @@ class QueryPreviewRequest(BaseModel):
     sector: str | None = None
     stage: str | None = None
     geography: str | None = None
-    business_model: str | None = None
     theme: str | None = None
     manual_queries: list[str] = Field(default_factory=list)
     use_expansion: bool = False

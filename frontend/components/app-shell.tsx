@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Activity, Building2, Search, Settings, Users, Menu, X, Brain, Sun, Moon } from "lucide-react";
+import { Activity, Building2, BriefcaseBusiness, Search, Settings, Users, Menu, X, Brain, Sun, Moon, ClipboardCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ClientIcon } from "@/components/ui/client-icon";
 
@@ -11,6 +11,8 @@ const navItems = [
   { href: "/", label: "Dashboard", icon: Activity },
   { href: "/investors", label: "Investors", icon: Building2 },
   { href: "/partners", label: "Partners", icon: Users },
+  { href: "/portfolio-companies", label: "Portfolio", icon: BriefcaseBusiness },
+  { href: "/review", label: "Review Queue", icon: ClipboardCheck },
   { href: "/search", label: "AI Search", icon: Search },
   { href: "/pipeline", label: "Pipeline Control", icon: Settings }
 ];

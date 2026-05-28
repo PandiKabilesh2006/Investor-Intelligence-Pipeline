@@ -14,11 +14,13 @@ export function formatDate(dateString?: string | null) {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) return dateString;
     return date.toLocaleDateString("en-US", {
+      timeZone: "Asia/Kolkata",
       month: "short",
       day: "numeric",
       year: "numeric",
       hour: "2-digit",
-      minute: "2-digit"
+      minute: "2-digit",
+      timeZoneName: "short"
     });
   } catch (e) {
     return dateString;
