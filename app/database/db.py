@@ -1,3 +1,4 @@
+import os
 from urllib.parse import quote_plus
 
 from sqlalchemy import create_engine
@@ -17,10 +18,15 @@ from app.config.settings import (
 # POSTGRESQL DATABASE URL
 # =========================================
 
-DATABASE_URL = (
-    f"postgresql+psycopg2://{quote_plus(DB_USER)}:{quote_plus(DB_PASSWORD)}"
-    f"@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-)
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if DATABASE_URL:
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+psycopg2://", 1)
+else:
+    DATABASE_URL = (
+        f"postgresql+psycopg2://{quote_plus(DB_USER)}:{quote_plus(DB_PASSWORD)}"
+        f"@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    )
 
 
 # =========================================
