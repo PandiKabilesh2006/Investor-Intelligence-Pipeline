@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getInvestor, InvestorDetail } from "@/lib/api";
-import { X, Globe, Link2, Linkedin, Twitter, Sparkles, Building, UserCheck, ShieldCheck } from "lucide-react";
+import { deleteInvestor, getInvestor, InvestorDetail, updateInvestor } from "@/lib/api";
+import { X, Globe, Link2, Linkedin, Twitter, Building, ShieldCheck, Pencil, Save, Trash2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +17,17 @@ export function InvestorDetailModal({ investorId, isOpen, onClose }: InvestorDet
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<InvestorDetail | null>(null);
   const [activeTab, setActiveTab] = useState<"overview" | "team" | "portfolio">("overview");
+  const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [draft, setDraft] = useState({
+    firm: "",
+    website: "",
+    source_url: "",
+    focus_sectors: "",
+    investment_stage: "",
+    geography: "",
+    contact_links: "",
+  });
 
   useEffect(() => {
     if (!isOpen || investorId === null) {
@@ -30,6 +41,15 @@ export function InvestorDetailModal({ investorId, isOpen, onClose }: InvestorDet
       try {
         const details = await getInvestor(investorId!);
         setData(details);
+        setDraft({
+          firm: details.firm || "",
+          website: details.website || "",
+          source_url: details.source_url || "",
+          focus_sectors: (details.focus_sectors || []).join(", "),
+          investment_stage: (details.investment_stage || []).join(", "),
+          geography: (details.geography || []).join(", "),
+          contact_links: (details.contact_links || []).join("\n"),
+        });
       } catch (err) {
         console.error(err);
         setError("Failed to load investor details.");
@@ -40,6 +60,60 @@ export function InvestorDetailModal({ investorId, isOpen, onClose }: InvestorDet
 
     fetchData();
   }, [investorId, isOpen]);
+
+  const splitValues = (value: string) =>
+    value
+      .split(/[\n,]+/)
+      .map((item) => item.trim())
+      .filter(Boolean);
+
+  const handleSave = async () => {
+    if (!investorId) return;
+
+    setSaving(true);
+    setError(null);
+
+    try {
+      const next = await updateInvestor(investorId, {
+        firm: draft.firm,
+        website: draft.website,
+        source_url: draft.source_url,
+        focus_sectors: splitValues(draft.focus_sectors),
+        investment_stage: splitValues(draft.investment_stage),
+        geography: splitValues(draft.geography),
+        contact_links: splitValues(draft.contact_links),
+      });
+      setData(next);
+      setEditing(false);
+    } catch (err: any) {
+      setError(err.message || "Failed to save investor.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!investorId || !data) return;
+
+    const reason = window.prompt(
+      `Delete ${data.firm}? Add a reason so the AI can learn from this cleanup.`,
+      "Not a valid investor record."
+    );
+
+    if (reason === null) return;
+
+    setSaving(true);
+    setError(null);
+
+    try {
+      await deleteInvestor(investorId, reason);
+      onClose();
+    } catch (err: any) {
+      setError(err.message || "Failed to delete investor.");
+    } finally {
+      setSaving(false);
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -59,12 +133,34 @@ export function InvestorDetailModal({ investorId, isOpen, onClose }: InvestorDet
             <Building className="h-5 w-5 text-violet-600" />
             <span className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Investor Profile</span>
           </div>
-          <button 
-            onClick={onClose}
-            className="rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground transition"
-          >
-            <X className="h-5 w-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            {data && (
+              <>
+                <button
+                  onClick={() => setEditing((current) => !current)}
+                  disabled={saving}
+                  className="rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground transition disabled:opacity-50"
+                  title="Edit investor"
+                >
+                  <Pencil className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={handleDelete}
+                  disabled={saving}
+                  className="rounded-full p-2 text-red-600 hover:bg-red-50 transition disabled:opacity-50"
+                  title="Delete investor"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </button>
+              </>
+            )}
+            <button
+              onClick={onClose}
+              className="rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground transition"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
         {/* Content */}
@@ -86,7 +182,62 @@ export function InvestorDetailModal({ investorId, isOpen, onClose }: InvestorDet
             <>
               {/* Profile Title & Website */}
               <div className="space-y-3">
-                <h2 className="text-2xl font-bold text-foreground tracking-tight">{data.firm}</h2>
+                {editing ? (
+                  <div className="space-y-3 rounded-xl border border-border bg-muted/30 p-4">
+                    <input
+                      value={draft.firm}
+                      onChange={(event) => setDraft((current) => ({ ...current, firm: event.target.value }))}
+                      className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold outline-none focus:border-violet-500"
+                      placeholder="Firm name"
+                    />
+                    <input
+                      value={draft.website}
+                      onChange={(event) => setDraft((current) => ({ ...current, website: event.target.value }))}
+                      className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs outline-none focus:border-violet-500"
+                      placeholder="Website"
+                    />
+                    <input
+                      value={draft.source_url}
+                      onChange={(event) => setDraft((current) => ({ ...current, source_url: event.target.value }))}
+                      className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs outline-none focus:border-violet-500"
+                      placeholder="Source URL"
+                    />
+                    <textarea
+                      value={draft.focus_sectors}
+                      onChange={(event) => setDraft((current) => ({ ...current, focus_sectors: event.target.value }))}
+                      className="min-h-16 w-full rounded-lg border border-border bg-background px-3 py-2 text-xs outline-none focus:border-violet-500"
+                      placeholder="Focus sectors, comma separated"
+                    />
+                    <textarea
+                      value={draft.investment_stage}
+                      onChange={(event) => setDraft((current) => ({ ...current, investment_stage: event.target.value }))}
+                      className="min-h-16 w-full rounded-lg border border-border bg-background px-3 py-2 text-xs outline-none focus:border-violet-500"
+                      placeholder="Investment stages, comma separated"
+                    />
+                    <textarea
+                      value={draft.geography}
+                      onChange={(event) => setDraft((current) => ({ ...current, geography: event.target.value }))}
+                      className="min-h-16 w-full rounded-lg border border-border bg-background px-3 py-2 text-xs outline-none focus:border-violet-500"
+                      placeholder="Geography, comma separated"
+                    />
+                    <textarea
+                      value={draft.contact_links}
+                      onChange={(event) => setDraft((current) => ({ ...current, contact_links: event.target.value }))}
+                      className="min-h-20 w-full rounded-lg border border-border bg-background px-3 py-2 text-xs outline-none focus:border-violet-500"
+                      placeholder="Contact links, one per line"
+                    />
+                    <button
+                      onClick={handleSave}
+                      disabled={saving}
+                      className="inline-flex items-center gap-2 rounded-lg bg-violet-600 px-4 py-2 text-xs font-bold text-white hover:bg-violet-500 disabled:opacity-50"
+                    >
+                      <Save className="h-3.5 w-3.5" />
+                      {saving ? "Saving..." : "Save Changes"}
+                    </button>
+                  </div>
+                ) : (
+                  <h2 className="text-2xl font-bold text-foreground tracking-tight">{data.firm}</h2>
+                )}
                 <div className="flex flex-wrap gap-3 text-sm">
                   {data.website && (
                     <a 

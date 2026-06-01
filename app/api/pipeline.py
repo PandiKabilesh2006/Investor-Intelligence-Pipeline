@@ -24,7 +24,7 @@ from app.api.schemas import (
 from app.database.db import SessionLocal
 from app.database.models import PipelineRun
 from app.query.query_expansion import expand_query_theme
-from app.query.query_generator import generate_queries
+from app.query.query_generator import expand_search_query_variants, generate_queries
 
 
 router = APIRouter(prefix="/api", tags=["pipeline"])
@@ -41,14 +41,17 @@ def _now():
 
 def _dedupe_queries(queries):
     cleaned = []
+    seen = set()
 
     for query in queries:
         query = str(query).strip()
+        key = query.lower()
 
-        if query:
+        if query and key not in seen:
+            seen.add(key)
             cleaned.append(query)
 
-    return sorted(set(cleaned))
+    return cleaned
 
 
 def _run_command(args, env=None):
@@ -173,7 +176,14 @@ def preview_queries(request: QueryPreviewRequest):
     )
 
     queries = list(generated)
-    queries.extend(request.manual_queries)
+
+    for manual_query in request.manual_queries:
+        expanded_manual = expand_search_query_variants(manual_query, limit=6)
+
+        if expanded_manual:
+            queries.extend(expanded_manual)
+        else:
+            queries.append(manual_query)
 
     if request.use_expansion:
         expansion_inputs = [

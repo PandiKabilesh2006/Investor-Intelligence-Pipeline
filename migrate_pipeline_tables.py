@@ -185,6 +185,23 @@ def migrate():
                 """
             )
         )
+        conn.execute(
+            text(
+                """
+                ALTER TABLE failed_urls
+                ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'pending'
+                """
+            )
+        )
+        conn.execute(
+            text(
+                """
+                UPDATE failed_urls
+                SET status = 'pending'
+                WHERE status IS NULL
+                """
+            )
+        )
 
         conn.commit()
 

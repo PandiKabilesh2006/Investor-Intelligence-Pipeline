@@ -1,0 +1,28 @@
+{
+  "summary": {
+    "backlog_source": "C:\\Users\\crade\\Desktop\\investor intelligence\\Investor-Intelligence-Pipeline\\exports\\investor_enrichment_backlog.json",
+    "processed": 1,
+    "skipped_pending_review": 29,
+    "skipped_missing_investor": 0,
+    "queued_review": 0,
+    "queued_no_content_review": 0,
+    "queued_validation_failed_review": 0,
+    "queued_not_investor_review": 1,
+    "queued_parse_failed_review": 0,
+    "generated_at": "2026-05-29T11:50:29.574716+00:00"
+  },
+  "results": [
+    {
+      "investor_id": 290,
+      "firm": "LeadSquared",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://leadsquared.com/team",
+        "https://leadsquared.com/people",
+        "https://leadsquared.com/partners",
+        "https://leadsquared.com/leadership"
+      ]
+    }
+  ]
+}

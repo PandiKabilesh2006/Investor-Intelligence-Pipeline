@@ -26,48 +26,52 @@ def _add_query(queries, query: str):
 
 def generate_sector_queries(queries):
     for sector in SECTORS:
-        for term in INVESTOR_TERMS:
-            _add_query(queries, f"{sector} {term}")
+        _add_query(queries, f"{sector} venture capital firm portfolio")
+        _add_query(queries, f"{sector} VC firm team portfolio")
+        _add_query(queries, f"{sector} venture fund partners portfolio")
+        _add_query(queries, f"{sector} VC fund investment thesis")
 
 
 def generate_stage_queries(queries):
     for sector in SECTORS:
         for stage in STAGES:
-            _add_query(queries, f"{sector} {stage} investors")
-            _add_query(queries, f"{sector} {stage} venture capital")
+            _add_query(queries, f"{sector} {stage} venture capital firm portfolio")
+            _add_query(queries, f"{sector} {stage} VC firm team portfolio")
+            _add_query(queries, f"{sector} {stage} venture fund partners")
 
 
 def generate_geography_queries(queries):
     for sector in SECTORS:
         for geography in GEOGRAPHIES:
-            _add_query(queries, f"{sector} investors in {geography}")
-            _add_query(queries, f"{sector} venture capital firms in {geography}")
-            _add_query(queries, f"{geography} {sector} startup investors")
+            if geography == "Global":
+                continue
+
+            _add_query(queries, f"{sector} venture capital firm portfolio in {geography}")
+            _add_query(queries, f"{sector} VC firm team portfolio in {geography}")
+            _add_query(queries, f"{geography} {sector} venture fund partners")
 
 
 def generate_theme_queries(queries):
     for theme in THEMES:
-        _add_query(queries, f"{theme} investors")
-        _add_query(queries, f"{theme} venture capital firms")
-        _add_query(queries, f"{theme} startup investors")
-        _add_query(queries, f"{theme} VC funds")
+        _add_query(queries, f"{theme} venture capital firm portfolio")
+        _add_query(queries, f"{theme} VC firm team portfolio")
+        _add_query(queries, f"{theme} venture fund partners portfolio")
+        _add_query(queries, f"{theme} VC fund investment thesis")
 
 
 def generate_specialized_queries(queries):
     for sector in SECTORS:
-        _add_query(queries, f"{sector} portfolio companies")
-        _add_query(queries, f"{sector} investment thesis")
-        _add_query(queries, f"{sector} startup ecosystem investors")
-        _add_query(queries, f"{sector} startup funding firms")
-        _add_query(queries, f"{sector} startup accelerators")
-        _add_query(queries, f"{sector} startup investment platforms")
+        _add_query(queries, f"{sector} venture fund portfolio companies")
+        _add_query(queries, f"{sector} VC fund focus sectors portfolio")
+        _add_query(queries, f"{sector} early stage fund investment thesis")
+        _add_query(queries, f"{sector} venture capital investment team")
 
 
 def generate_cross_theme_queries(queries):
     for sector in SECTORS:
         for theme in THEMES:
-            _add_query(queries, f"{theme} {sector} investors")
-            _add_query(queries, f"{theme} {sector} venture capital")
+            _add_query(queries, f"{theme} {sector} venture capital firm portfolio")
+            _add_query(queries, f"{theme} {sector} VC fund partners")
 
 
 def generate_ingestion_queries():

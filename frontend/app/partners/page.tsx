@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getPartners, Partner } from "@/lib/api";
+import { getPartners, Partner, repairPartnerLinks } from "@/lib/api";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn, fieldInputClassName, formatDate } from "@/lib/utils";
 import { Search, ChevronLeft, ChevronRight, Loader2, Linkedin, Twitter, Link2, ShieldCheck, HelpCircle } from "lucide-react";
@@ -12,6 +12,8 @@ export default function PartnersPage() {
   const [partners, setPartners] = useState<Partner[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [repairing, setRepairing] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const limit = 15;
 
@@ -46,6 +48,19 @@ export default function PartnersPage() {
     setPage(1);
   };
 
+  const handleRepairLinks = async () => {
+    setRepairing(true);
+    setMessage(null);
+    try {
+      const result = await repairPartnerLinks();
+      setMessage(`Repaired ${result.updated} partner profile link field(s).`);
+    } catch (error: any) {
+      setMessage(error.message || "Failed to repair partner links.");
+    } finally {
+      setRepairing(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -55,6 +70,8 @@ export default function PartnersPage() {
       </div>
 
       {/* Control bar */}
+      {message && <Card className="glass-card border-border p-4 text-sm text-muted-foreground">{message}</Card>}
+
       <Card className="glass-card border-border p-6 flex flex-col sm:flex-row items-center gap-4 justify-between">
         <div className="relative w-full max-w-md">
           <Search className="absolute top-3 left-3 h-4 w-4 text-muted-foreground" />
@@ -66,9 +83,13 @@ export default function PartnersPage() {
             className={cn(fieldInputClassName, "pl-10 pr-4 py-2.5")}
           />
         </div>
-        <p className="text-xs text-muted-foreground shrink-0">
-          Tip: Click on a partner's profile to view their venture firm
-        </p>
+        <button
+          onClick={handleRepairLinks}
+          disabled={repairing}
+          className="rounded-xl border border-border bg-card px-4 py-2 text-xs font-bold text-muted-foreground transition hover:text-foreground disabled:opacity-50"
+        >
+          {repairing ? "Repairing..." : "Repair Profile Links"}
+        </button>
       </Card>
 
       {/* Partners List */}

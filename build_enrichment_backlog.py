@@ -201,14 +201,26 @@ def _is_suspicious_record(record):
     return False
 
 
-def build_backlog(audit_path, output_path, min_score=5, limit=None):
+STATUS_PRIORITY = {
+    "critical": 0,
+    "thin": 1,
+    "usable": 2,
+    "strong": 3,
+}
+
+
+def build_backlog(audit_path, output_path, min_score=6, limit=None):
     audit = json.loads(audit_path.read_text(encoding="utf-8"))
     records = audit.get("records", [])
 
     all_candidates = [
         record
         for record in records
-        if record["score"] < min_score and record["missing_fields"]
+        if (
+            record["score"] < min_score
+            and record["status"] != "strong"
+            and record["missing_fields"]
+        )
     ]
 
     skipped_suspicious = [
@@ -225,6 +237,7 @@ def build_backlog(audit_path, output_path, min_score=5, limit=None):
 
     candidates.sort(
         key=lambda record: (
+            STATUS_PRIORITY.get(record["status"], 9),
             record["score"],
             -record["partner_count"],
             -record["portfolio_company_count"],
@@ -260,6 +273,10 @@ def build_backlog(audit_path, output_path, min_score=5, limit=None):
         "selected_records": len(backlog),
         "skipped_suspicious_records": len(skipped_suspicious),
         "min_score_threshold": min_score,
+        "status_order": ["critical", "thin", "usable"],
+        "status_breakdown": dict(
+            Counter(item["status"] for item in backlog)
+        ),
         "missing_field_breakdown": dict(
             Counter(
                 field
@@ -284,6 +301,7 @@ def build_backlog(audit_path, output_path, min_score=5, limit=None):
 
     print(f"Enrichment backlog exported to {output_path}")
     print(f"Selected records: {summary['selected_records']}")
+    print(f"Status breakdown: {summary['status_breakdown']}")
     print(f"Missing field breakdown: {summary['missing_field_breakdown']}")
 
 

@@ -95,6 +95,7 @@ class OperationsMetrics(BaseModel):
     total_crawled_urls: int
     total_failed_urls: int
     pending_failed_urls: int
+    blocked_failed_urls: int = 0
     queue_depth: int
     last_investor_update: datetime | None = None
     last_pipeline_run: dict[str, Any] | None = None

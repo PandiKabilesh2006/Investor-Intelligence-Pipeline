@@ -1,0 +1,196 @@
+{
+  "summary": {
+    "backlog_source": "C:\\Users\\crade\\Desktop\\investor intelligence\\Investor-Intelligence-Pipeline\\exports\\investor_enrichment_backlog.json",
+    "processed": 15,
+    "queued_review": 5,
+    "queued_no_content_review": 0,
+    "queued_validation_failed_review": 0,
+    "queued_not_investor_review": 10,
+    "generated_at": "2026-05-29T11:14:31.456622+00:00"
+  },
+  "results": [
+    {
+      "investor_id": 231,
+      "firm": "BVL Partners",
+      "status": "queued_review",
+      "review_item_id": 185,
+      "source_urls": [
+        "https://transportlogistic.de/en/trade-fair/data/partners/bvl",
+        "https://www.sandscapital.com/our-people",
+        "https://www.linkedin.com/company/partners-group"
+      ],
+      "parsed_firm": "Partners Group",
+      "queued_at": "2026-05-29T11:07:40.425536+00:00"
+    },
+    {
+      "investor_id": 1,
+      "firm": "10K Ventures",
+      "status": "queued_review",
+      "review_item_id": 186,
+      "source_urls": [
+        "https://saasvclist.com/team",
+        "https://saasvclist.com/people",
+        "https://saasvclist.com/partners",
+        "https://saasvclist.com/leadership"
+      ],
+      "parsed_firm": "",
+      "queued_at": "2026-05-29T11:08:20.329061+00:00"
+    },
+    {
+      "investor_id": 281,
+      "firm": "AI Superior",
+      "status": "queued_review",
+      "review_item_id": 187,
+      "source_urls": [
+        "https://aisuperior.com/team",
+        "https://aisuperior.com/people",
+        "https://aisuperior.com/partners",
+        "https://aisuperior.com/leadership"
+      ],
+      "parsed_firm": "AISuperior",
+      "queued_at": "2026-05-29T11:08:38.740224+00:00"
+    },
+    {
+      "investor_id": 282,
+      "firm": "Allvue Systems",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "Allvue Systems",
+      "source_urls": [
+        "https://www.allvuesystems.com/investment-team",
+        "https://www.allvuesystems.com/investment-strategy"
+      ]
+    },
+    {
+      "investor_id": 452,
+      "firm": "Angel Match",
+      "status": "queued_review",
+      "review_item_id": 217,
+      "source_urls": [
+        "https://angelspartners.com/how-to-find-angel-investors/singapore",
+        "https://getlatka.com/companies/angelmatch.io"
+      ],
+      "parsed_firm": "Angels Partners",
+      "queued_at": "2026-05-29T11:09:41.227183+00:00"
+    },
+    {
+      "investor_id": 396,
+      "firm": "Angels Partners",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "Angels Partners",
+      "source_urls": [
+        "https://angelspartners.com/team",
+        "https://angelspartners.com/people",
+        "https://angelspartners.com/partners",
+        "https://angelspartners.com/leadership"
+      ]
+    },
+    {
+      "investor_id": 30,
+      "firm": "Automate Show",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://www.automateshow.com/team",
+        "https://www.automateshow.com/people",
+        "https://www.automateshow.com/partners",
+        "https://www.automateshow.com/leadership"
+      ]
+    },
+    {
+      "investor_id": 376,
+      "firm": "Aventis Advisors",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "Aventis Advisors",
+      "source_urls": [
+        "https://aventis-advisors.com/team",
+        "https://aventis-advisors.com/people",
+        "https://aventis-advisors.com/partners",
+        "https://aventis-advisors.com/leadership"
+      ]
+    },
+    {
+      "investor_id": 37,
+      "firm": "Banyan Ventures – Sam Awrabi",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://www.playground.vc/team",
+        "https://www.playground.vc/people",
+        "https://www.playground.vc/portfolio"
+      ]
+    },
+    {
+      "investor_id": 299,
+      "firm": "Benchmark IT",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://teamofchoice.com",
+        "https://www.deloitte.com/us/en/insights/topics/talent/building-high-performing-teams.html",
+        "https://www.cdp.net/en/partners/benchmark-gensuite"
+      ]
+    },
+    {
+      "investor_id": 379,
+      "firm": "Booz Allen Hamilton",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "Booz Allen",
+      "source_urls": [
+        "https://boozallen.com/team",
+        "https://boozallen.com/partners",
+        "https://boozallen.com/leadership",
+        "https://boozallen.com/investment-team"
+      ]
+    },
+    {
+      "investor_id": 303,
+      "firm": "Cathay Capital",
+      "status": "queued_review",
+      "review_item_id": 230,
+      "source_urls": [
+        "https://cathaycapital.com/team",
+        "https://cathaycapital.com/people",
+        "https://cathaycapital.com/partners",
+        "https://cathaycapital.com/companies"
+      ],
+      "parsed_firm": "",
+      "queued_at": "2026-05-29T11:13:26.474992+00:00"
+    },
+    {
+      "investor_id": 54,
+      "firm": "Center for Security and Emerging Technology (CSET)",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "Center for Security and Emerging Technology (CSET)",
+      "source_urls": [
+        "https://cset.georgetown.edu/team",
+        "https://cset.georgetown.edu/people",
+        "https://cset.georgetown.edu/partners",
+        "https://cset.georgetown.edu/leadership"
+      ]
+    },
+    {
+      "investor_id": 55,
+      "firm": "Crescendo",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://crescendo.ai/team",
+        "https://crescendo.ai/people",
+        "https://crescendo.ai/partners",
+        "https://crescendo.ai/leadership"
+      ]
+    },
+    {
+      "investor_id": 56,
+      "firm": "Crescendo Live",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "Crescendo",
+      "source_urls": [
+        "https://www.crescendo.ai/team",
+        "https://www.crescendo.ai/people",
+        "https://www.crescendo.ai/partners",
+        "https://www.crescendo.ai/leadership"
+      ]
+    }
+  ]
+}

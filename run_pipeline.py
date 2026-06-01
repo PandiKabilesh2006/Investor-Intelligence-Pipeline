@@ -23,6 +23,7 @@ from app.search.tavily_search import (
 )
 
 from app.query.query_generator import (
+    expand_search_query_variants,
     generate_queries
 )
 
@@ -181,6 +182,62 @@ def already_crawled(url):
         session.close()
 
 
+def load_rejected_or_blocked_hosts():
+
+    session = SessionLocal()
+
+    try:
+
+        rows = session.execute(
+
+            text(
+
+                """
+                SELECT url
+                FROM failed_urls
+                WHERE status = 'blocked'
+
+                UNION
+
+                SELECT url
+                FROM review_queue
+                WHERE status = 'rejected'
+                  AND url IS NOT NULL
+                """
+            )
+        ).fetchall()
+
+        hosts = set()
+
+        for row in rows:
+
+            try:
+
+                host = (
+                    urlparse(row[0]).hostname
+                    or
+                    ""
+                ).lower()
+
+                if host.startswith("www."):
+
+                    host = host[4:]
+
+                if host:
+
+                    hosts.add(host)
+
+            except Exception:
+
+                continue
+
+        return hosts
+
+    finally:
+
+        session.close()
+
+
 # =========================================
 # SAVE CRAWL MEMORY
 # =========================================
@@ -277,7 +334,7 @@ queries = []
 
 if len(sys.argv) > 1:
 
-    queries = [sys.argv[1]]
+    queries = expand_search_query_variants(sys.argv[1])
 
 else:
 
@@ -375,6 +432,13 @@ NOISY_CONTENT_DOMAINS = {
     "wsj.com",
 }
 
+INVESTOR_DIRECTORY_DOMAINS = {
+    "openvc.app",
+    "signal.nfx.com",
+    "seedtable.com",
+    "shizune.co",
+}
+
 
 NOISY_CONTENT_PATH_PARTS = {
     "blog",
@@ -398,6 +462,9 @@ NOISY_CONTENT_PATH_PARTS = {
 # =========================================
 
 seen_urls = set()
+search_result_by_url = {}
+urls_by_hostname = {}
+dynamic_blocked_hosts = load_rejected_or_blocked_hosts()
 
 
 HIGH_SIGNAL_URL_PARTS = {
@@ -469,11 +536,127 @@ def should_skip_collection_url(url):
 
         return True
 
+    if any(
+        hostname == domain
+        or
+        hostname.endswith(f".{domain}")
+        for domain in INVESTOR_DIRECTORY_DOMAINS
+    ):
+
+        return False
+
     if path_parts & NOISY_CONTENT_PATH_PARTS:
 
         return True
 
     return False
+
+
+def hostname_for_url(url):
+    try:
+        return (urlparse(url).hostname or "").lower().replace("www.", "")
+    except Exception:
+        return ""
+
+
+def is_blocked_site(url):
+    host = hostname_for_url(url)
+
+    if not host:
+        return False
+
+    return any(
+        host == blocked_host
+        or host.endswith(f".{blocked_host}")
+        for blocked_host in dynamic_blocked_hosts
+    )
+
+
+def title_to_review_firm(title, url):
+    title = (title or "").strip()
+    words = re.findall(r"[A-Za-z0-9]+", title)
+
+    if not title or len(words) > 10:
+        return hostname_for_url(url)
+
+    return title
+
+
+def remember_search_result(url, title="", snippet="", query=""):
+    hostname = hostname_for_url(url)
+
+    if not hostname:
+        return
+
+    search_result_by_url[url] = {
+        "title": title or "",
+        "snippet": snippet or "",
+        "query": query or "",
+    }
+    urls_by_hostname.setdefault(hostname, [])
+
+    if url not in urls_by_hostname[hostname]:
+        urls_by_hostname[hostname].append(url)
+
+
+def ranked_alternate_urls(url):
+    hostname = hostname_for_url(url)
+    candidates = [
+        candidate
+        for candidate in urls_by_hostname.get(hostname, [])
+        if candidate != url and not already_crawled(candidate)
+        and not should_skip_collection_url(candidate)
+        and not is_blocked_site(candidate)
+        and not any(domain in candidate.lower() for domain in blocked_domains)
+    ]
+
+    return sorted(
+        candidates,
+        key=lambda candidate: (
+            0 if has_high_signal_path(candidate) else 1,
+            len(candidate),
+        ),
+    )[:3]
+
+
+def enqueue_snippet_review(url, reason="Extraction failed"):
+    metadata = search_result_by_url.get(url, {})
+    title = metadata.get("title", "")
+    snippet = metadata.get("snippet", "")
+
+    if not title and not snippet:
+        return
+
+    enqueue_review_item(
+        url=url,
+        firm_name=title_to_review_firm(title, url),
+        source_text=snippet,
+        extracted_payload={
+            "firm": "",
+            "website": url,
+            "source_url": url,
+            "partners": [],
+            "focus_sectors": [],
+            "investment_stage": [],
+            "portfolio_companies": [],
+            "geography": [],
+            "contact_links": [],
+            "_fallback_source": "tavily_snippet",
+            "_review_required": True,
+            "search_title": title,
+            "search_snippet": snippet,
+        },
+        ai_decision="snippet_fallback_needs_review",
+        ai_confidence=0.20,
+        ai_reason=(
+            f"{reason}. Firecrawl could not extract enough page content, "
+            "so only Tavily search title/snippet were queued. Edit before approval."
+        ),
+    )
+
+    pipeline_logger.info(
+        f"Queued Tavily snippet fallback for review: {url}"
+    )
 
 
 # =========================================
@@ -571,6 +754,13 @@ for query in queries:
 
                 continue
 
+            remember_search_result(
+                url,
+                title=title,
+                snippet=snippet,
+                query=query,
+            )
+
             url_lower = url.lower()
 
             blocked = False
@@ -583,6 +773,15 @@ for query in queries:
                     break
 
             if blocked:
+
+                continue
+
+            if is_blocked_site(url):
+
+                pipeline_logger.info(
+
+                    f"Skipped human-rejected blocked site: {url}"
+                )
 
                 continue
 
@@ -785,6 +984,69 @@ extraction_results = asyncio.run(
         candidate_urls
     )
 )
+
+
+fallback_results = []
+fallback_attempted_urls = set()
+
+for extraction_result in extraction_results:
+
+    failed_url = extraction_result.get("url")
+    markdown_content = extraction_result.get("markdown") or ""
+    success = extraction_result.get("success")
+
+    if success and len(markdown_content) >= 500:
+
+        continue
+
+    alternate_urls = [
+        alternate_url
+        for alternate_url in ranked_alternate_urls(failed_url)
+        if alternate_url not in fallback_attempted_urls
+    ]
+
+    if alternate_urls:
+
+        fallback_attempted_urls.update(alternate_urls)
+
+        pipeline_logger.info(
+            (
+                f"Trying alternate public URLs for {failed_url}: "
+                + ", ".join(alternate_urls)
+            )
+        )
+
+        alternate_results = asyncio.run(
+            extract_urls_async(
+                alternate_urls
+            )
+        )
+
+        usable_alternate = any(
+            alternate_result.get("success")
+            and len(alternate_result.get("markdown") or "") >= 500
+            for alternate_result in alternate_results
+        )
+
+        fallback_results.extend(alternate_results)
+
+        if not usable_alternate:
+
+            enqueue_snippet_review(
+                failed_url,
+                reason="Primary and alternate public URLs failed extraction",
+            )
+
+        continue
+
+    enqueue_snippet_review(
+        failed_url,
+        reason="Primary URL failed extraction",
+    )
+
+if fallback_results:
+
+    extraction_results.extend(fallback_results)
 
 
 # =========================================

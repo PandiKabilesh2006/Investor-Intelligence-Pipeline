@@ -3,6 +3,7 @@ from datetime import datetime
 from sqlalchemy import text
 
 from app.database.db import SessionLocal
+from app.config.extraction_policy import BLOCKED_URL_STATUS
 
 
 # =========================================
@@ -13,7 +14,9 @@ def add_failed_url(
 
     url,
 
-    error_message
+    error_message,
+
+    status="pending"
 ):
 
     session = SessionLocal()
@@ -30,7 +33,7 @@ def add_failed_url(
             text(
 
                 """
-                SELECT id, retry_count
+                SELECT id, retry_count, status
 
                 FROM failed_urls
 
@@ -53,6 +56,14 @@ def add_failed_url(
             failed_id = existing[0]
 
             retry_count = existing[1] + 1
+
+            existing_status = existing[2]
+
+            next_status = (
+                BLOCKED_URL_STATUS
+                if existing_status == BLOCKED_URL_STATUS or status == BLOCKED_URL_STATUS
+                else status
+            )
 
 
             session.execute(
@@ -84,7 +95,7 @@ def add_failed_url(
 
                     "last_attempt": datetime.utcnow(),
 
-                    "status": "pending",
+                    "status": next_status,
 
                     "failed_id": failed_id
                 }
@@ -141,7 +152,7 @@ def add_failed_url(
 
                     "last_attempt": datetime.utcnow(),
 
-                    "status": "pending"
+                    "status": status
                 }
             )
 
@@ -300,3 +311,11 @@ def mark_failed_url_resolved(
     finally:
 
         session.close()
+
+
+def mark_url_blocked(url, error_message):
+    add_failed_url(
+        url=url,
+        error_message=error_message,
+        status=BLOCKED_URL_STATUS,
+    )

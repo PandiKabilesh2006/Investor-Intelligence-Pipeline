@@ -1,0 +1,28 @@
+{
+  "summary": {
+    "backlog_source": "C:\\Users\\crade\\Desktop\\investor intelligence\\Investor-Intelligence-Pipeline\\exports\\investor_enrichment_backlog.json",
+    "processed": 1,
+    "skipped_pending_review": 24,
+    "skipped_missing_investor": 0,
+    "queued_review": 0,
+    "queued_no_content_review": 0,
+    "queued_validation_failed_review": 0,
+    "queued_not_investor_review": 1,
+    "queued_parse_failed_review": 0,
+    "generated_at": "2026-05-29T11:40:19.217996+00:00"
+  },
+  "results": [
+    {
+      "investor_id": 288,
+      "firm": "Indian Healthcare Angels (IHA)",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "IHA",
+      "source_urls": [
+        "https://iha.vc/team",
+        "https://iha.vc/people",
+        "https://iha.vc/partners",
+        "https://iha.vc/leadership"
+      ]
+    }
+  ]
+}

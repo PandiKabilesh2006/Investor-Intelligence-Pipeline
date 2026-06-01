@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { clearPendingQueue, getPipelineStatus, getPipelineQueueSummary, triggerPipelineRun, getActivePipelineJobs, previewQueries, PipelineStatus, QueueSummary, ConfigOptions, getConfigOptions } from "@/lib/api";
+import { clearPendingQueue, getPipelineStatus, getPipelineQueueSummary, triggerPipelineRun, getActivePipelineJobs, previewQueries, PipelineStatus, QueueSummary, ConfigOptions, getConfigOptions, manualUrlIngestion } from "@/lib/api";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn, fieldInputClassName, formatDate } from "@/lib/utils";
 import { Play, RefreshCw, Loader2, AlertCircle, CheckCircle2, Terminal, Info, Wand2, MapPin, Layers, Target, X, Sparkles } from "lucide-react";
@@ -49,6 +49,8 @@ export default function PipelinePage() {
   const [theme, setTheme] = useState("");
   const [manualQueries, setManualQueries] = useState("");
   const [generatedQueries, setGeneratedQueries] = useState<string[]>([]);
+  const [manualUrl, setManualUrl] = useState("");
+  const [ingestingUrl, setIngestingUrl] = useState(false);
   const [queryHistory, setQueryHistory] = useState<string[]>([]);
   const [generatingQueries, setGeneratingQueries] = useState(false);
   const [runningQuery, setRunningQuery] = useState<string | null>(null);
@@ -183,6 +185,30 @@ export default function PipelinePage() {
     }
   };
 
+  const handleManualUrlIngestion = async () => {
+    if (manualUrl.trim().length < 8) return;
+
+    setIngestingUrl(true);
+    setTriggerMessage(null);
+
+    try {
+      const item = await manualUrlIngestion(manualUrl.trim());
+      setTriggerMessage({
+        type: "success",
+        text: `URL extracted and sent to review queue as "${item.firm_name || "unknown firm"}". Review it before approving insert.`
+      });
+      setManualUrl("");
+      await loadData();
+    } catch (err: any) {
+      setTriggerMessage({
+        type: "error",
+        text: err.message || "Failed to ingest manual URL."
+      });
+    } finally {
+      setIngestingUrl(false);
+    }
+  };
+
   const handleClearPendingQueue = async () => {
     setClearingQueue(true);
     setTriggerMessage(null);
@@ -254,6 +280,32 @@ export default function PipelinePage() {
           </button>
         </div>
       </div>
+
+      <Card className="glass-card border-border p-6 space-y-4">
+        <div className="flex items-center gap-2 border-b border-border pb-3">
+          <Sparkles className="h-4.5 w-4.5 text-violet-400" />
+          <h3 className="text-sm font-bold text-foreground">Manual URL Ingestion</h3>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          Paste one investor/source URL. The backend extracts and parses it, then sends the result to the review queue before inserting.
+        </p>
+        <div className="flex flex-col gap-3 md:flex-row">
+          <input
+            value={manualUrl}
+            onChange={(event) => setManualUrl(event.target.value)}
+            placeholder="https://example.vc/team"
+            className={cn(fieldInputClassName, "px-3 py-2.5")}
+          />
+          <button
+            onClick={handleManualUrlIngestion}
+            disabled={ingestingUrl || manualUrl.trim().length < 8}
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-2.5 text-xs font-bold text-white transition hover:bg-violet-500 disabled:opacity-50"
+          >
+            {ingestingUrl ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Play className="h-3.5 w-3.5" />}
+            {ingestingUrl ? "Extracting..." : "Extract to Review"}
+          </button>
+        </div>
+      </Card>
 
       {/* Control room grid */}
       <div className="grid gap-6 lg:grid-cols-3">
@@ -517,6 +569,10 @@ export default function PipelinePage() {
                 <div className="flex justify-between text-xs py-1 border-b border-border">
                   <span className="text-muted-foreground font-medium">Failed Extraction Jobs:</span>
                   <span className="text-red-400 font-bold">{queue.queue.failed} URLs</span>
+                </div>
+                <div className="flex justify-between text-xs py-1 border-b border-border">
+                  <span className="text-muted-foreground font-medium">Blocked by Site Protection:</span>
+                  <span className="text-amber-500 font-bold">{queue.blocked_urls || 0} URLs</span>
                 </div>
                 <div className="flex justify-between text-xs py-1">
                   <span className="text-muted-foreground font-medium">Total Crawl Queue:</span>

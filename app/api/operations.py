@@ -62,6 +62,11 @@ def get_metrics(db: Session = Depends(get_db)):
             .filter(FailedUrl.status == "pending")
             .count()
         ),
+        "blocked_failed_urls": (
+            db.query(FailedUrl)
+            .filter(FailedUrl.status == "blocked")
+            .count()
+        ),
         "queue_depth": (
             db.query(CrawlQueue)
             .filter(CrawlQueue.status == "pending")

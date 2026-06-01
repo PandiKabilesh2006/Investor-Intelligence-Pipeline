@@ -42,15 +42,15 @@ INVESTMENT_THEMES = [
 
 INVESTOR_SEARCH_TERMS = [
     "venture capital firms",
-    "startup investors",
     "VC funds",
     "venture capital",
-    "angel investors",
     "early-stage investors",
     "seed investors",
     "Series A investors",
-    "institutional investors",
     "technology investors",
+    "venture fund portfolio",
+    "VC firm team portfolio",
+    "investment thesis venture fund",
 ]
 
 SECTOR_NORMALIZATION_MAP = {

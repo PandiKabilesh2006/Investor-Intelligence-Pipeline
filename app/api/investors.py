@@ -1,9 +1,11 @@
 import csv
 import io
+from datetime import datetime, timezone
 from urllib.parse import urlparse
 
 from fastapi import (
     APIRouter,
+    Body,
     Depends,
     HTTPException,
     Query,
@@ -18,7 +20,7 @@ from app.api.schemas import (
     InvestorListItem,
     InvestorListResponse,
 )
-from app.database.models import Investor
+from app.database.models import Investor, Partner, PortfolioCompany, ReviewQueue
 from app.utils.normalization import (
     clean_list_values,
     expand_geography_filter,
@@ -260,3 +262,105 @@ def get_investor(
     data["portfolio_companies"] = investor.portfolio_companies or []
 
     return data
+
+
+@router.patch("/{investor_id}", response_model=InvestorDetail)
+def update_investor(
+    investor_id: int,
+    payload: dict = Body(default={}),
+    db: Session = Depends(get_db),
+):
+    investor = (
+        db.query(Investor)
+        .options(
+            selectinload(Investor.partners),
+            selectinload(Investor.portfolio_companies),
+        )
+        .filter(Investor.id == investor_id)
+        .first()
+    )
+
+    if not investor:
+        raise HTTPException(status_code=404, detail="Investor not found")
+
+    if "firm" in payload:
+        firm = str(payload.get("firm") or "").strip()
+        if not firm:
+            raise HTTPException(status_code=422, detail="Firm name cannot be empty")
+        investor.firm = firm
+
+    for field in ["website", "source_url"]:
+        if field in payload:
+            setattr(investor, field, str(payload.get(field) or "").strip())
+
+    if "focus_sectors" in payload:
+        investor.focus_sectors = normalize_sector(payload.get("focus_sectors") or [])
+
+    if "investment_stage" in payload:
+        investor.investment_stage = normalize_stage(payload.get("investment_stage") or [])
+
+    if "geography" in payload:
+        investor.geography = normalize_geography(payload.get("geography") or [])
+
+    if "contact_links" in payload:
+        investor.contact_links = clean_list_values(payload.get("contact_links") or [])
+
+    investor.updated_at = datetime.now(timezone.utc)
+    db.commit()
+    db.refresh(investor)
+
+    data = serialize_investor(investor)
+    data["partners"] = [
+        serialize_partner(partner)
+        for partner in investor.partners or []
+    ]
+    data["portfolio_companies"] = investor.portfolio_companies or []
+    return data
+
+
+@router.delete("/{investor_id}")
+def delete_investor(
+    investor_id: int,
+    payload: dict = Body(default={}),
+    db: Session = Depends(get_db),
+):
+    investor = db.query(Investor).filter(Investor.id == investor_id).first()
+
+    if not investor:
+        raise HTTPException(status_code=404, detail="Investor not found")
+
+    reason = str(payload.get("reason") or "Deleted from investor profile").strip()
+
+    db.add(
+        ReviewQueue(
+            url=investor.source_url or investor.website,
+            firm_name=investor.firm,
+            source_text="Investor record manually deleted from the database.",
+            extracted_payload={
+                "firm": investor.firm,
+                "website": investor.website,
+                "source_url": investor.source_url,
+                "focus_sectors": investor.focus_sectors or [],
+                "investment_stage": investor.investment_stage or [],
+                "geography": investor.geography or [],
+                "contact_links": investor.contact_links or [],
+            },
+            ai_decision="manual_delete",
+            ai_confidence=0.0,
+            ai_reason=reason,
+            status="rejected",
+            human_label="rejected",
+            human_reason=reason,
+            reviewed_at=datetime.now(timezone.utc),
+        )
+    )
+
+    db.query(Partner).filter(Partner.investor_id == investor.id).delete()
+    db.query(PortfolioCompany).filter(PortfolioCompany.investor_id == investor.id).delete()
+    db.delete(investor)
+    db.commit()
+
+    return {
+        "deleted": True,
+        "id": investor_id,
+    }

@@ -10,6 +10,9 @@ import { Badge } from "@/components/ui/badge";
 
 export default function PortfolioCompaniesPage() {
   const [q, setQ] = useState("");
+  const [investor, setInvestor] = useState("");
+  const [sector, setSector] = useState("");
+  const [missingSector, setMissingSector] = useState(false);
   const [companies, setCompanies] = useState<PortfolioCompanyListItem[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -26,6 +29,9 @@ export default function PortfolioCompaniesPage() {
         const offset = (page - 1) * limit;
         const res = await getPortfolioCompanies({
           q,
+          investor,
+          sector,
+          missing_sector: missingSector,
           limit,
           offset,
         });
@@ -39,7 +45,7 @@ export default function PortfolioCompaniesPage() {
     }
 
     loadData();
-  }, [q, page]);
+  }, [q, investor, sector, missingSector, page]);
 
   const totalPages = Math.ceil(total / limit) || 1;
 
@@ -55,8 +61,9 @@ export default function PortfolioCompaniesPage() {
         <h2 className="mt-1 text-3xl font-extrabold text-foreground glow-accent">Portfolio Companies</h2>
       </div>
 
-      <Card className="glass-card border-border p-6 flex flex-col sm:flex-row items-center gap-4 justify-between">
-        <div className="relative w-full max-w-md">
+      <Card className="glass-card border-border p-6">
+        <div className="grid gap-3 md:grid-cols-4">
+        <div className="relative w-full">
           <Search className="absolute top-3 left-3 h-4 w-4 text-muted-foreground" />
           <input
             type="text"
@@ -66,9 +73,36 @@ export default function PortfolioCompaniesPage() {
             className={cn(fieldInputClassName, "pl-10 pr-4 py-2.5")}
           />
         </div>
-        <p className="text-xs text-muted-foreground shrink-0">
-          Browse portfolio companies and jump straight to the backing investor profile.
-        </p>
+        <input
+          value={investor}
+          onChange={(event) => {
+            setInvestor(event.target.value);
+            setPage(1);
+          }}
+          placeholder="Filter investor"
+          className={cn(fieldInputClassName, "px-3 py-2.5")}
+        />
+        <input
+          value={sector}
+          onChange={(event) => {
+            setSector(event.target.value);
+            setPage(1);
+          }}
+          placeholder="Filter sector"
+          className={cn(fieldInputClassName, "px-3 py-2.5")}
+        />
+        <label className="flex items-center gap-2 rounded-xl border border-border bg-muted/30 px-3 py-2.5 text-xs font-bold text-muted-foreground">
+          <input
+            type="checkbox"
+            checked={missingSector}
+            onChange={(event) => {
+              setMissingSector(event.target.checked);
+              setPage(1);
+            }}
+          />
+          Missing sector only
+        </label>
+        </div>
       </Card>
 
       <Card className="glass-card border-border overflow-hidden">

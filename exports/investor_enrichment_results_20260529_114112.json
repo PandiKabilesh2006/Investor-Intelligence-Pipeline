@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "backlog_source": "C:\\Users\\crade\\Desktop\\investor intelligence\\Investor-Intelligence-Pipeline\\exports\\investor_enrichment_backlog.json",
+    "processed": 1,
+    "skipped_pending_review": 26,
+    "skipped_missing_investor": 0,
+    "queued_review": 0,
+    "queued_no_content_review": 0,
+    "queued_validation_failed_review": 0,
+    "queued_not_investor_review": 1,
+    "queued_parse_failed_review": 0,
+    "generated_at": "2026-05-29T11:48:43.404339+00:00"
+  },
+  "results": [
+    {
+      "investor_id": 251,
+      "firm": "Jahani and Associates",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "Jahani and Associates (J&A)",
+      "source_urls": [
+        "https://jahaniandassociates.com/team",
+        "https://jahaniandassociates.com/companies",
+        "https://jahaniandassociates.com/investment-thesis"
+      ]
+    }
+  ]
+}

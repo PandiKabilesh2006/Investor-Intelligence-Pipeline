@@ -23,6 +23,7 @@ from app.utils.normalization import (
     normalize_sector,
     normalize_stage,
 )
+from app.utils.contact_link_extractor import extract_contact_links_from_markdown
 
 
 # =========================================
@@ -56,10 +57,60 @@ GROQ_FALLBACK_MODEL = "llama-3.1-8b-instant"
 
 
 # =========================================
-# MAX CONTENT LENGTH
+# EXTRACTION CONTEXT BUDGET
 # =========================================
 
-MAX_CONTENT_LENGTH = 4000
+MAX_CONTENT_LENGTH = 8000
+
+HIGH_SIGNAL_PAGE_TERMS = {
+    "about",
+    "team",
+    "people",
+    "partner",
+    "partners",
+    "leadership",
+    "investment-team",
+    "portfolio",
+    "companies",
+    "investments",
+    "contact",
+    "locations",
+}
+
+FIELD_SIGNAL_TERMS = [
+    "partner",
+    "managing partner",
+    "general partner",
+    "investment partner",
+    "principal",
+    "investment director",
+    "managing director",
+    "investment team",
+    "portfolio",
+    "portfolio companies",
+    "companies",
+    "investments",
+    "selected investments",
+    "backed",
+    "we invest",
+    "invests in",
+    "focus",
+    "sectors",
+    "thesis",
+    "stage",
+    "seed",
+    "series a",
+    "growth",
+    "global",
+    "worldwide",
+    "international",
+    "offices",
+    "locations",
+    "contact",
+    "linkedin",
+    "twitter",
+    "x.com",
+]
 
 
 # =========================================
@@ -254,19 +305,216 @@ def empty_portfolio_company():
 
 
 # =========================================
-# PROMPT BUILDER
+# TARGETED CONTEXT BUILDER
 # =========================================
 
-def build_prompt(markdown_content):
+def compact_whitespace(text):
 
-    markdown_content = re.sub(
+    return re.sub(
 
         r"\n{3,}",
 
         "\n\n",
 
-        markdown_content
+        (text or "").strip()
     )
+
+
+def split_extracted_pages(markdown_content):
+
+    markdown_content = compact_whitespace(markdown_content)
+    header_pattern = re.compile(
+        r"=+\nURL:\s*(?P<url>[^\n]+)\n=+\n",
+        re.IGNORECASE,
+    )
+    matches = list(header_pattern.finditer(markdown_content))
+
+    if not matches:
+
+        return [
+            {
+                "url": "",
+                "text": markdown_content,
+                "index": 0,
+            }
+        ]
+
+    sections = []
+
+    for index, match in enumerate(matches):
+
+        start = match.end()
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(markdown_content)
+
+        sections.append(
+            {
+                "url": match.group("url").strip(),
+                "text": markdown_content[start:end].strip(),
+                "index": index,
+            }
+        )
+
+    return sections
+
+
+def section_score(section):
+
+    url = section.get("url", "").lower()
+    text = section.get("text", "")
+    text_lower = text.lower()
+    score = 0
+
+    for term in HIGH_SIGNAL_PAGE_TERMS:
+
+        if term in url:
+
+            score += 6
+
+    for term in FIELD_SIGNAL_TERMS:
+
+        if term in text_lower:
+
+            score += 2
+
+    if section.get("index") == 0:
+
+        score += 3
+
+    return score
+
+
+def keyword_snippets(text, window=650, max_snippets=4):
+
+    text = text or ""
+    text_lower = text.lower()
+    ranges = []
+
+    for term in FIELD_SIGNAL_TERMS:
+
+        position = text_lower.find(term)
+
+        if position == -1:
+
+            continue
+
+        start = max(0, position - window)
+        end = min(len(text), position + len(term) + window)
+        ranges.append((start, end))
+
+    ranges.sort()
+    merged = []
+
+    for start, end in ranges:
+
+        if not merged or start > merged[-1][1] + 120:
+
+            merged.append([start, end])
+
+        else:
+
+            merged[-1][1] = max(merged[-1][1], end)
+
+    snippets = []
+
+    for start, end in merged[:max_snippets]:
+
+        snippet = text[start:end].strip()
+
+        if snippet:
+
+            snippets.append(snippet)
+
+    return snippets
+
+
+def build_extraction_context(markdown_content):
+
+    sections = split_extracted_pages(markdown_content)
+    ranked_sections = sorted(
+        sections,
+        key=lambda section: (
+            section_score(section),
+            -section.get("index", 0),
+        ),
+        reverse=True,
+    )
+    selected_blocks = []
+    used_urls = set()
+
+    # Always keep a compact homepage/first-page signal for firm identity.
+    if sections:
+
+        first_section = sections[0]
+        first_text = first_section.get("text", "")[:1200].strip()
+
+        if first_text:
+
+            selected_blocks.append(
+                (
+                    f"URL: {first_section.get('url', '')}\n"
+                    f"{first_text}"
+                )
+            )
+            used_urls.add(first_section.get("url", ""))
+
+    for section in ranked_sections:
+
+        if len("\n\n".join(selected_blocks)) >= MAX_CONTENT_LENGTH:
+
+            break
+
+        url = section.get("url", "")
+        text = section.get("text", "")
+
+        if not text:
+
+            continue
+
+        snippets = keyword_snippets(text)
+
+        if section_score(section) >= 6:
+
+            page_intro = text[:1400].strip()
+            snippets = [page_intro] + snippets if page_intro else snippets
+
+        snippets = [
+            snippet
+            for snippet in dict.fromkeys(snippets)
+            if snippet
+        ][:5]
+
+        if not snippets:
+
+            continue
+
+        block = (
+            f"URL: {url}\n"
+            + "\n\n--- relevant excerpt ---\n\n".join(snippets)
+        )
+
+        if url in used_urls and block in selected_blocks:
+
+            continue
+
+        selected_blocks.append(block)
+        used_urls.add(url)
+
+    context = "\n\n====================\n\n".join(selected_blocks)
+
+    if not context:
+
+        context = compact_whitespace(markdown_content)
+
+    return context[:MAX_CONTENT_LENGTH]
+
+
+# =========================================
+# PROMPT BUILDER
+# =========================================
+
+def build_prompt(markdown_content):
+
+    extraction_context = build_extraction_context(markdown_content)
 
     sector_options = "\n".join(f"- {sector}" for sector in CORE_SECTORS)
     stage_options = "\n".join(f"- {stage}" for stage in INVESTMENT_STAGES)
@@ -280,6 +528,11 @@ investor information from ONE SINGLE
 venture capital firm or investment entity.
 
 Return ONLY valid JSON.
+
+The input may contain multiple extracted pages separated by
+"URL:" headers. Use those headers as source evidence. Prioritize
+high-signal pages such as team, people, partners, leadership,
+investment-team, portfolio, companies, about, contact, and locations.
 
 ----------------------------------------
 SCHEMA
@@ -329,6 +582,10 @@ CRITICAL RULES
 - Prefer high-confidence retrieval
   over unnecessary empty outputs
 - Avoid unnecessary empty arrays
+- Before returning JSON, perform a final field-completeness pass:
+  look specifically for partners, portfolio companies, geography,
+  and contact links in the high-signal pages. Keep a field empty only
+  when no clear evidence is present.
 
 ----------------------------------------
 FIRM EXTRACTION RULES
@@ -436,7 +693,19 @@ Do NOT infer geography from portfolio company locations alone.
 Do NOT infer geography from the search query.
 If the firm's geographic focus is unclear, return [].
 Use Global only when the page explicitly says global,
-worldwide, international, or multiple major regions.
+worldwide, international, serves clients globally, or shows offices
+or operations across multiple major regions.
+
+Good geography evidence includes:
+- explicit phrases such as "global", "worldwide", "international"
+- office/location pages for the firm itself
+- stated market focus such as "investing across Europe"
+- contact/location sections for the firm
+
+Bad geography evidence:
+- locations of portfolio companies only
+- countries mentioned in news, disclaimers, legal footers, or examples
+- the search query
 
 ----------------------------------------
 PARTNER EXTRACTION RULES
@@ -462,6 +731,10 @@ Possible roles:
 - Venture Partner
 - Principal
 - Investment Director
+- Investment Partner
+- Managing Director
+- Investment Team
+- Founder / Co-Founder, only when clearly running the investment firm
 
 Use "title" for the exact page title when present.
 Use "role" for the normalized investment role.
@@ -479,6 +752,8 @@ Do NOT include:
 - external advisors
 - companies
 - organizations
+- generic corporate executives unless the page clearly identifies
+  them as part of the investment/fund/asset management team
 
 If unclear:
 return empty array.
@@ -494,12 +769,30 @@ Return each portfolio company as an object with:
 - company_name
 - sector
 
+Good portfolio evidence includes:
+- pages or sections titled portfolio, companies, investments,
+  portfolio companies, selected investments, backed companies,
+  case studies, or our companies
+- company cards/logos listed as investments
+- statements such as "we backed", "our portfolio", "invested in"
+
+If a company name appears under a portfolio/company card but sector
+is not available, include the company with an empty sector.
+
 Do NOT extract:
 - investors
 - sectors
 - people
 - technologies
 - article titles
+- clients, vendors, service lines, offices, business units, or
+  generic Goldman-style corporate divisions unless they are explicitly
+  portfolio investments
+
+If the source is a broad bank, advisory firm, consulting firm, news
+site, or government/public-sector site, extract portfolio companies
+only when the content explicitly identifies a venture/growth/private
+investment portfolio.
 
 ----------------------------------------
 CONTACT LINK EXTRACTION
@@ -558,7 +851,7 @@ Never hallucinate unsupported categories.
 WEBSITE CONTENT
 ----------------------------------------
 
-{markdown_content[:MAX_CONTENT_LENGTH]}
+{extraction_context}
 """
 
 
@@ -1201,6 +1494,43 @@ def recover_sparse_fields(
             )
 
 
+    # =====================================
+    # GEOGRAPHY RECOVERY
+    # =====================================
+
+    if not parsed["geography"]:
+
+        if (
+
+            "global investment" in content_lower
+
+            or
+
+            "global firm" in content_lower
+
+            or
+
+            "global presence" in content_lower
+
+            or
+
+            "globally" in content_lower
+
+            or
+
+            "worldwide" in content_lower
+
+            or
+
+            "international offices" in content_lower
+        ):
+
+            parsed["geography"].append(
+
+                "Global"
+            )
+
+
     return parsed
 
 
@@ -1416,6 +1746,22 @@ def _postprocess_parsed(parsed, markdown_content):
     parsed = apply_taxonomy_normalization(parsed)
 
     parsed = recover_sparse_fields(parsed, markdown_content)
+
+    extracted_contact_links = extract_contact_links_from_markdown(
+        markdown_content,
+        firm=parsed.get("firm", ""),
+        website=parsed.get("website", ""),
+        source_url=parsed.get("source_url", ""),
+    )
+
+    parsed["contact_links"] = filter_contact_links(
+        list(
+            dict.fromkeys(
+                (parsed.get("contact_links") or [])
+                + extracted_contact_links
+            )
+        )
+    )
 
     return parsed
 

@@ -1,0 +1,136 @@
+{
+  "summary": {
+    "backlog_source": "C:\\Users\\crade\\Desktop\\investor intelligence\\Investor-Intelligence-Pipeline\\exports\\investor_enrichment_backlog.json",
+    "processed": 10,
+    "skipped_pending_review": 11,
+    "skipped_missing_investor": 2,
+    "queued_review": 4,
+    "queued_no_content_review": 0,
+    "queued_validation_failed_review": 0,
+    "queued_not_investor_review": 6,
+    "generated_at": "2026-05-29T11:31:03.627226+00:00"
+  },
+  "results": [
+    {
+      "investor_id": 282,
+      "firm": "Allvue Systems",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "AllVue Systems",
+      "source_urls": [
+        "https://www.allvuesystems.com/investments"
+      ]
+    },
+    {
+      "investor_id": 452,
+      "firm": "Angel Match",
+      "status": "queued_review",
+      "review_item_id": 262,
+      "source_urls": [
+        "https://getlatka.com/companies/angelmatch.io",
+        "https://angelspartners.com/how-to-find-angel-investors/singapore"
+      ],
+      "parsed_firm": "Angels Partners",
+      "queued_at": "2026-05-29T11:26:13.073398+00:00"
+    },
+    {
+      "investor_id": 399,
+      "firm": "Cut Through Venture",
+      "status": "queued_review",
+      "review_item_id": 263,
+      "source_urls": [
+        "https://cutthrough.com/team",
+        "https://cutthrough.com/people",
+        "https://cutthrough.com/partners",
+        "https://cutthrough.com/leadership"
+      ],
+      "parsed_firm": "Cut Through",
+      "queued_at": "2026-05-29T11:26:43.182621+00:00"
+    },
+    {
+      "investor_id": 274,
+      "firm": "D2 Fund",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://www.d2.fund/team",
+        "https://www.d2.fund/portfolio"
+      ]
+    },
+    {
+      "investor_id": 61,
+      "firm": "DemandGen Report",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "DemandGen Report",
+      "source_urls": [
+        "https://www.demandgenreport.com/team",
+        "https://www.demandgenreport.com/people",
+        "https://www.demandgenreport.com/partners",
+        "https://www.demandgenreport.com/leadership"
+      ]
+    },
+    {
+      "investor_id": 400,
+      "firm": "Dream VC",
+      "status": "queued_review",
+      "review_item_id": 266,
+      "source_urls": [
+        "https://www.dream-vc.com/programs/africa-venture-primer",
+        "https://www.dream-vc.com",
+        "https://www.dream-vc.com/programs/launch-into-vc",
+        "https://www.dream-vc.com/programs/investor-accelerator"
+      ],
+      "parsed_firm": "Dream VC",
+      "queued_at": "2026-05-29T11:29:06.655343+00:00"
+    },
+    {
+      "investor_id": 68,
+      "firm": "EisnerAmper",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://www.eisneramper.com/team",
+        "https://www.eisneramper.com/people",
+        "https://www.eisneramper.com/partners",
+        "https://www.eisneramper.com/leadership"
+      ]
+    },
+    {
+      "investor_id": 238,
+      "firm": "EQT Group",
+      "status": "queued_review",
+      "review_item_id": 274,
+      "source_urls": [
+        "https://eqtgroup.com/portfolio",
+        "https://eqtgroup.com/companies",
+        "https://eqtgroup.com/investments",
+        "https://eqtgroup.com/thesis"
+      ],
+      "parsed_firm": "EQT Group",
+      "queued_at": "2026-05-29T11:30:08.524342+00:00"
+    },
+    {
+      "investor_id": 74,
+      "firm": "F6 Ventures",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "Shizune",
+      "source_urls": [
+        "https://shizune.co/team",
+        "https://shizune.co/people",
+        "https://shizune.co/partners",
+        "https://shizune.co/leadership"
+      ]
+    },
+    {
+      "investor_id": 239,
+      "firm": "Folk Ventures",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://www.folk.app/team",
+        "https://www.folk.app/people",
+        "https://www.folk.app/partners",
+        "https://www.folk.app/leadership"
+      ]
+    }
+  ]
+}

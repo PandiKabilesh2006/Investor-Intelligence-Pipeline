@@ -1,0 +1,29 @@
+{
+  "summary": {
+    "backlog_source": "C:\\Users\\crade\\Desktop\\investor intelligence\\Investor-Intelligence-Pipeline\\exports\\investor_enrichment_backlog.json",
+    "processed": 1,
+    "skipped_pending_review": 1,
+    "skipped_missing_investor": 1,
+    "queued_review": 1,
+    "queued_no_content_review": 0,
+    "queued_validation_failed_review": 0,
+    "queued_not_investor_review": 0,
+    "generated_at": "2026-05-29T11:21:54.903143+00:00"
+  },
+  "results": [
+    {
+      "investor_id": 281,
+      "firm": "AI Superior",
+      "status": "queued_review",
+      "review_item_id": 243,
+      "source_urls": [
+        "https://aisuperior.com/team",
+        "https://aisuperior.com/people",
+        "https://aisuperior.com/partners",
+        "https://aisuperior.com/leadership"
+      ],
+      "parsed_firm": "AISuperior",
+      "queued_at": "2026-05-29T11:21:54.877521+00:00"
+    }
+  ]
+}

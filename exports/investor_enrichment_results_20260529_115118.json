@@ -1,0 +1,139 @@
+{
+  "summary": {
+    "backlog_source": "C:\\Users\\crade\\Desktop\\investor intelligence\\Investor-Intelligence-Pipeline\\exports\\investor_enrichment_backlog.json",
+    "processed": 10,
+    "skipped_pending_review": 30,
+    "skipped_missing_investor": 0,
+    "queued_review": 4,
+    "queued_no_content_review": 0,
+    "queued_validation_failed_review": 0,
+    "queued_not_investor_review": 6,
+    "queued_parse_failed_review": 0,
+    "generated_at": "2026-05-29T11:56:48.232916+00:00"
+  },
+  "results": [
+    {
+      "investor_id": 385,
+      "firm": "Link Ventures",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://linkventures.com/team",
+        "https://linkventures.com/people",
+        "https://linkventures.com/partners",
+        "https://linkventures.com/leadership"
+      ]
+    },
+    {
+      "investor_id": 255,
+      "firm": "MC Capital Partners",
+      "status": "queued_review",
+      "review_item_id": 293,
+      "source_urls": [
+        "https://mccapitalpartners.net/team",
+        "https://mccapitalpartners.net/people",
+        "https://mccapitalpartners.net/partners",
+        "https://mccapitalpartners.net/leadership"
+      ],
+      "parsed_firm": "MC Capital Partners",
+      "queued_at": "2026-05-29T11:52:52.076622+00:00"
+    },
+    {
+      "investor_id": 137,
+      "firm": "Middle East Venture Capital",
+      "status": "queued_review",
+      "review_item_id": 294,
+      "source_urls": [
+        "https://mevp.com/team",
+        "https://mevp.com/people",
+        "https://mevp.com/partners",
+        "https://mevp.com/leadership"
+      ],
+      "parsed_firm": "",
+      "queued_at": "2026-05-29T11:53:21.404011+00:00"
+    },
+    {
+      "investor_id": 405,
+      "firm": "MOHAC Africa",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "MOHAC AFRICA",
+      "source_urls": [
+        "https://mohacafrica.org/team",
+        "https://mohacafrica.org/people",
+        "https://mohacafrica.org/partners",
+        "https://mohacafrica.org/leadership"
+      ]
+    },
+    {
+      "investor_id": 417,
+      "firm": "PIDC",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://www.pidcphila.com/team",
+        "https://www.pidcphila.com/people",
+        "https://www.pidcphila.com/partners",
+        "https://www.pidcphila.com/leadership"
+      ]
+    },
+    {
+      "investor_id": 340,
+      "firm": "Pulse 2.0",
+      "status": "queued_review",
+      "review_item_id": 297,
+      "source_urls": [
+        "https://pulse2.com/people",
+        "https://pulse2.com/partners",
+        "https://pulse2.com/leadership",
+        "https://pulse2.com/investment-team"
+      ],
+      "parsed_firm": "True Global Ventures",
+      "queued_at": "2026-05-29T11:54:45.839809+00:00"
+    },
+    {
+      "investor_id": 409,
+      "firm": "Random Forest VC",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "Random Forest VC",
+      "source_urls": [
+        "https://www.randomforestvc.com/team"
+      ]
+    },
+    {
+      "investor_id": 162,
+      "firm": "Resonate",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "Resonate HQ",
+      "source_urls": [
+        "https://www.resonatehq.com/team",
+        "https://www.resonatehq.com/people",
+        "https://www.resonatehq.com/partners",
+        "https://www.resonatehq.com/leadership"
+      ]
+    },
+    {
+      "investor_id": 345,
+      "firm": "Saasholic",
+      "status": "queued_review",
+      "review_item_id": 300,
+      "source_urls": [
+        "https://saasholic.com/team",
+        "https://saasholic.com/companies"
+      ],
+      "parsed_firm": "Saasholic",
+      "queued_at": "2026-05-29T11:56:25.774497+00:00"
+    },
+    {
+      "investor_id": 172,
+      "firm": "Schroders Investments",
+      "status": "queued_not_investor_review",
+      "parsed_firm": "",
+      "source_urls": [
+        "https://www.schroders.com/team",
+        "https://www.schroders.com/people",
+        "https://www.schroders.com/partners",
+        "https://www.schroders.com/leadership"
+      ]
+    }
+  ]
+}

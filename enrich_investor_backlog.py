@@ -7,12 +7,11 @@ from urllib.parse import urlparse
 from sqlalchemy.orm import selectinload
 
 from app.database.db import SessionLocal
-from app.database.models import Investor
+from app.database.models import Investor, ReviewQueue
 from app.extraction.firecrawl_extract import scrape_single_page
 from app.parsing.gpt_parser import parse_investor
 from app.search.tavily_search import search_investors
 from app.utils.normalization import normalize_firm_key
-from insert_into_db import insert_investor_data
 
 
 HIGH_SIGNAL_HINTS = (
@@ -27,6 +26,39 @@ HIGH_SIGNAL_HINTS = (
     "thesis",
     "focus",
     "contact",
+)
+
+INVESTOR_EVIDENCE_TERMS = (
+    "venture capital",
+    "vc firm",
+    "investment firm",
+    "investment fund",
+    "venture fund",
+    "growth equity",
+    "private equity",
+    "seed investor",
+    "series a investor",
+    "startup investor",
+    "invests in startups",
+    "invest in startups",
+    "backs founders",
+    "back founders",
+    "backed by",
+    "portfolio companies",
+    "our portfolio",
+    "selected investments",
+    "investment team",
+    "managing partner",
+    "general partner",
+)
+
+INVESTMENT_ROLE_TERMS = (
+    "partner",
+    "principal",
+    "investment",
+    "venture",
+    "managing director",
+    "general partner",
 )
 
 
@@ -86,7 +118,10 @@ def _extract_candidate_markdown(candidate_urls, max_successes=4):
     snippets = []
 
     for url in candidate_urls:
-        markdown = scrape_single_page(url)
+        try:
+            markdown = scrape_single_page(url)
+        except Exception:
+            continue
 
         if not markdown or len(markdown.strip()) < 200:
             continue
@@ -154,20 +189,190 @@ def _validated_payload(item, investor, parsed, source_urls):
     if not same_firm and not trusted_source:
         return None
 
-    payload = dict(parsed)
+    payload = _public_payload(parsed)
     payload["firm"] = investor.firm
     payload["website"] = payload.get("website") or investor.website or ""
     payload["source_url"] = payload.get("source_url") or investor.source_url or (source_urls[0] if source_urls else "")
+    payload["_target_investor_id"] = investor.id
+    payload["_target_source"] = "enrichment_backlog"
     return payload
+
+
+def _public_payload(parsed):
+    return {
+        "firm": parsed.get("firm", ""),
+        "website": parsed.get("website", ""),
+        "partners": parsed.get("partners", []) or [],
+        "geography": parsed.get("geography", []) or [],
+        "source_url": parsed.get("source_url", ""),
+        "contact_links": parsed.get("contact_links", []) or [],
+        "focus_sectors": parsed.get("focus_sectors", []) or [],
+        "investment_stage": parsed.get("investment_stage", []) or [],
+        "portfolio_companies": parsed.get("portfolio_companies", []) or [],
+    }
+
+
+def _simple_failure_payload(investor, reason, parsed_firm=""):
+    return {
+        "firm": investor.firm,
+        "website": investor.website or "",
+        "partners": [],
+        "geography": [],
+        "source_url": investor.source_url or investor.website or "",
+        "contact_links": [],
+        "focus_sectors": [],
+        "investment_stage": [],
+        "portfolio_companies": [],
+        "blocked": True,
+        "extraction_failed": True,
+        "reason": reason,
+        "parsed_firm": parsed_firm,
+        "_target_investor_id": investor.id,
+        "_target_source": "enrichment_backlog",
+    }
+
+
+def _has_investor_evidence(parsed, combined_markdown):
+    text = (combined_markdown or "").lower()
+
+    if parsed.get("investment_stage") or parsed.get("portfolio_companies"):
+        return True
+
+    for partner in parsed.get("partners", []) or []:
+        role_text = " ".join(
+            [
+                str(partner.get("role", "")),
+                str(partner.get("title", "")),
+            ]
+        ).lower()
+
+        if any(term in role_text for term in INVESTMENT_ROLE_TERMS):
+            return True
+
+    evidence_hits = sum(
+        1
+        for term in INVESTOR_EVIDENCE_TERMS
+        if term in text
+    )
+
+    if evidence_hits >= 2:
+        return True
+
+    if "investor relations" in text and evidence_hits < 2:
+        return False
+
+    return False
+
+
+def _queue_enrichment_review_item(
+    session,
+    investor,
+    item,
+    payload,
+    source_urls,
+    source_text,
+    ai_decision="enrichment_needs_review",
+    ai_confidence=0.65,
+    ai_reason="Enrichment result requires human approval before updating the investor database.",
+):
+    review_url = (
+        source_urls[0]
+        if source_urls
+        else investor.source_url
+        or investor.website
+        or ""
+    )
+
+    existing = (
+        session.query(ReviewQueue)
+        .filter(ReviewQueue.url == review_url)
+        .filter(ReviewQueue.status == "pending")
+        .order_by(ReviewQueue.created_at.desc().nullslast(), ReviewQueue.id.desc())
+        .first()
+    )
+
+    if existing:
+        existing.firm_name = investor.firm
+        existing.source_text = source_text[:4000]
+        existing.extracted_payload = payload
+        existing.ai_decision = ai_decision
+        existing.ai_confidence = ai_confidence
+        existing.ai_reason = ai_reason
+        return existing
+
+    review_item = ReviewQueue(
+        url=review_url,
+        firm_name=investor.firm,
+        source_text=source_text[:4000],
+        extracted_payload=payload,
+        ai_decision=ai_decision,
+        ai_confidence=ai_confidence,
+        ai_reason=ai_reason,
+        status="pending",
+    )
+    session.add(review_item)
+    return review_item
+
+
+def _pending_enrichment_investor_ids(session):
+    pending_ids = set()
+    pending_items = (
+        session.query(ReviewQueue.extracted_payload)
+        .filter(ReviewQueue.status == "pending")
+        .all()
+    )
+
+    for (payload,) in pending_items:
+        if not isinstance(payload, dict):
+            continue
+
+        if payload.get("_target_source") != "enrichment_backlog":
+            continue
+
+        investor_id = payload.get("_target_investor_id")
+        if investor_id is None:
+            continue
+
+        try:
+            pending_ids.add(int(investor_id))
+        except (TypeError, ValueError):
+            continue
+
+    return pending_ids
 
 
 def enrich_from_backlog(backlog_path, output_path, limit=10):
     backlog_data = json.loads(backlog_path.read_text(encoding="utf-8"))
-    backlog_items = backlog_data.get("backlog", [])[:limit]
+    all_backlog_items = backlog_data.get("backlog", [])
     session = SessionLocal()
     results = []
+    skipped_pending_review = 0
+    skipped_missing_investor = 0
 
     try:
+        pending_review_ids = _pending_enrichment_investor_ids(session)
+        existing_investor_ids = {
+            investor_id
+            for (investor_id,) in session.query(Investor.id).all()
+        }
+        backlog_items = []
+
+        for item in all_backlog_items:
+            investor_id = item.get("investor_id")
+
+            if investor_id not in existing_investor_ids:
+                skipped_missing_investor += 1
+                continue
+
+            if investor_id in pending_review_ids:
+                skipped_pending_review += 1
+                continue
+
+            backlog_items.append(item)
+
+            if len(backlog_items) >= limit:
+                break
+
         for item in backlog_items:
             investor = _load_investor(session, item["investor_id"])
 
@@ -200,11 +405,30 @@ def enrich_from_backlog(backlog_path, output_path, limit=10):
                 snippets = _extract_candidate_markdown(search_urls)
 
             if not snippets:
+                failure_payload = _simple_failure_payload(
+                    investor,
+                    "No usable content extracted during enrichment.",
+                )
+                _queue_enrichment_review_item(
+                    session=session,
+                    investor=investor,
+                    item=item,
+                    payload=failure_payload,
+                    source_urls=candidate_urls[:1] or search_urls[:1],
+                    source_text=json.dumps(failure_payload, indent=2),
+                    ai_decision="enrichment_no_content",
+                    ai_confidence=0.0,
+                    ai_reason=(
+                        "Enrichment touched this record but could not extract usable content. "
+                        "Reject it or provide a better source URL."
+                    ),
+                )
+                session.commit()
                 results.append(
                     {
                         "investor_id": investor.id,
                         "firm": investor.firm,
-                        "status": "no_content",
+                        "status": "queued_no_content_review",
                         "attempted_urls": candidate_urls[:8],
                         "search_urls": search_urls,
                     }
@@ -212,7 +436,75 @@ def enrich_from_backlog(backlog_path, output_path, limit=10):
                 continue
 
             combined_markdown = _combine_markdown(snippets)
-            parsed = parse_investor(combined_markdown)
+            try:
+                parsed = parse_investor(combined_markdown)
+            except Exception as exc:
+                failure_payload = _simple_failure_payload(
+                    investor,
+                    f"LLM parsing failed during enrichment: {exc}",
+                )
+                _queue_enrichment_review_item(
+                    session=session,
+                    investor=investor,
+                    item=item,
+                    payload=failure_payload,
+                    source_urls=[snippet["url"] for snippet in snippets],
+                    source_text=combined_markdown,
+                    ai_decision="enrichment_parse_failed",
+                    ai_confidence=0.0,
+                    ai_reason=(
+                        "Enrichment extracted content, but parsing failed. "
+                        "Reject it, retry later, or edit manually if the source is useful."
+                    ),
+                )
+                session.commit()
+                results.append(
+                    {
+                        "investor_id": investor.id,
+                        "firm": investor.firm,
+                        "status": "queued_parse_failed_review",
+                        "error": str(exc),
+                        "source_urls": [snippet["url"] for snippet in snippets],
+                    }
+                )
+                continue
+
+            if not _has_investor_evidence(parsed, combined_markdown):
+                failure_payload = _simple_failure_payload(
+                    investor,
+                    (
+                        "Enrichment content did not contain enough evidence that "
+                        "this record is an investment firm or fund."
+                    ),
+                    parsed_firm=parsed.get("firm", ""),
+                )
+                _queue_enrichment_review_item(
+                    session=session,
+                    investor=investor,
+                    item=item,
+                    payload=failure_payload,
+                    source_urls=[snippet["url"] for snippet in snippets],
+                    source_text=combined_markdown,
+                    ai_decision="enrichment_not_investor",
+                    ai_confidence=0.0,
+                    ai_reason=(
+                        "Enrichment touched this record, but the extracted pages look "
+                        "like a company/corporate website rather than an investor. "
+                        "Reject it unless you have better evidence."
+                    ),
+                )
+                session.commit()
+                results.append(
+                    {
+                        "investor_id": investor.id,
+                        "firm": investor.firm,
+                        "status": "queued_not_investor_review",
+                        "parsed_firm": parsed.get("firm", ""),
+                        "source_urls": [snippet["url"] for snippet in snippets],
+                    }
+                )
+                continue
+
             payload = _validated_payload(
                 item=item,
                 investor=investor,
@@ -221,27 +513,57 @@ def enrich_from_backlog(backlog_path, output_path, limit=10):
             )
 
             if not payload:
+                failure_payload = _simple_failure_payload(
+                    investor,
+                    "Parsed content did not validate as the expected investor firm.",
+                    parsed_firm=parsed.get("firm", ""),
+                )
+                _queue_enrichment_review_item(
+                    session=session,
+                    investor=investor,
+                    item=item,
+                    payload=failure_payload,
+                    source_urls=[snippet["url"] for snippet in snippets],
+                    source_text=combined_markdown,
+                    ai_decision="enrichment_validation_failed",
+                    ai_confidence=0.0,
+                    ai_reason=(
+                        "Enrichment touched this record, but parsed content did not "
+                        "validate as the expected investor firm. Reject it or edit manually."
+                    ),
+                )
+                session.commit()
                 results.append(
                     {
                         "investor_id": investor.id,
                         "firm": investor.firm,
-                        "status": "firm_validation_failed",
+                        "status": "queued_validation_failed_review",
                         "parsed_firm": parsed.get("firm", ""),
                         "source_urls": [snippet["url"] for snippet in snippets],
                     }
                 )
                 continue
 
-            insert_investor_data(payload)
+            review_item = _queue_enrichment_review_item(
+                session=session,
+                investor=investor,
+                item=item,
+                payload=payload,
+                source_urls=[snippet["url"] for snippet in snippets],
+                source_text=combined_markdown,
+            )
+            session.commit()
+            session.refresh(review_item)
 
             results.append(
                 {
                     "investor_id": investor.id,
                     "firm": investor.firm,
-                    "status": "updated",
+                    "status": "queued_review",
+                    "review_item_id": review_item.id,
                     "source_urls": [snippet["url"] for snippet in snippets],
                     "parsed_firm": parsed.get("firm", ""),
-                    "updated_at": datetime.now(timezone.utc).isoformat(),
+                    "queued_at": datetime.now(timezone.utc).isoformat(),
                 }
             )
     finally:
@@ -250,9 +572,13 @@ def enrich_from_backlog(backlog_path, output_path, limit=10):
     summary = {
         "backlog_source": str(backlog_path),
         "processed": len(results),
-        "updated": sum(1 for result in results if result["status"] == "updated"),
-        "no_content": sum(1 for result in results if result["status"] == "no_content"),
-        "firm_validation_failed": sum(1 for result in results if result["status"] == "firm_validation_failed"),
+        "skipped_pending_review": skipped_pending_review,
+        "skipped_missing_investor": skipped_missing_investor,
+        "queued_review": sum(1 for result in results if result["status"] == "queued_review"),
+        "queued_no_content_review": sum(1 for result in results if result["status"] == "queued_no_content_review"),
+        "queued_validation_failed_review": sum(1 for result in results if result["status"] == "queued_validation_failed_review"),
+        "queued_not_investor_review": sum(1 for result in results if result["status"] == "queued_not_investor_review"),
+        "queued_parse_failed_review": sum(1 for result in results if result["status"] == "queued_parse_failed_review"),
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
 
