@@ -31,15 +31,7 @@ from app.utils.normalization import (
     normalize_stage,
 )
 from app.review_feedback import enqueue_review_item, mark_reviewed
-from app.extraction.firecrawl_extract import (
-    extract_manual_review_url_with_reason,
-)
-from app.parsing.gpt_parser import parse_investor
 from app.utils.failed_url_manager import mark_url_blocked
-from audit_investor_coverage import audit_investor_coverage
-from build_enrichment_backlog import build_backlog
-from enrich_investor_backlog import enrich_from_backlog
-from insert_into_db import insert_investor_data
 
 
 router = APIRouter(prefix="/api", tags=["frontend-compat"])
@@ -299,6 +291,9 @@ def bulk_delete_quality_records(
 
 @router.post("/quality/rebuild-backlog")
 def rebuild_quality_backlog():
+    from audit_investor_coverage import audit_investor_coverage
+    from build_enrichment_backlog import build_backlog
+
     audit_path = PROJECT_ROOT / "exports" / "investor_coverage_audit.json"
     backlog_path = PROJECT_ROOT / "exports" / "investor_enrichment_backlog.json"
 
@@ -317,6 +312,8 @@ def get_enrichment_audit():
 
 @router.post("/enrichment/audit")
 def run_enrichment_audit():
+    from audit_investor_coverage import audit_investor_coverage
+
     audit_path = PROJECT_ROOT / "exports" / "investor_coverage_audit.json"
     audit_investor_coverage(audit_path)
     return _read_json_file(audit_path)
@@ -330,6 +327,9 @@ def get_enrichment_backlog():
 
 @router.post("/enrichment/backlog")
 def run_enrichment_backlog(payload: dict = Body(default={})):
+    from audit_investor_coverage import audit_investor_coverage
+    from build_enrichment_backlog import build_backlog
+
     audit_path = PROJECT_ROOT / "exports" / "investor_coverage_audit.json"
     backlog_path = PROJECT_ROOT / "exports" / "investor_enrichment_backlog.json"
 
@@ -1091,6 +1091,8 @@ def approve_review_item(
     payload: dict = Body(default={}),
     db: Session = Depends(get_db),
 ):
+    from insert_into_db import insert_investor_data
+
     item = db.query(ReviewQueue).filter(ReviewQueue.id == item_id).first()
 
     if not item:
@@ -1209,6 +1211,9 @@ def manual_url_ingestion(
     payload: dict = Body(default={}),
     db: Session = Depends(get_db),
 ):
+    from app.extraction.firecrawl_extract import extract_manual_review_url_with_reason
+    from app.parsing.gpt_parser import parse_investor
+
     url = str(payload.get("url") or "").strip()
     target_investor_id = payload.get("investor_id")
 
