@@ -1,6 +1,7 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import os
 
 from app.api.health import router as health_router
 from app.api.investors import router as investors_router
@@ -29,7 +30,13 @@ app.include_router(operations_router)
 app.include_router(search_router)
 app.include_router(pipeline_router)
 
-if os.getenv("ENABLE_COMPAT_ROUTES", "true").lower() in {"1", "true", "yes"}:
+COMPAT_ROUTES_ENABLED = os.getenv("ENABLE_COMPAT_ROUTES", "true").lower() in {
+    "1",
+    "true",
+    "yes",
+}
+
+if COMPAT_ROUTES_ENABLED:
     from app.api.compat import router as compat_router
 
     app.include_router(compat_router)
@@ -46,4 +53,19 @@ def home():
 def legacy_health():
     return {
         "status": "healthy"
+    }
+
+
+@app.get("/debug/routes")
+def debug_routes():
+    return {
+        "compat_routes_enabled": COMPAT_ROUTES_ENABLED,
+        "enable_compat_routes_env": os.getenv("ENABLE_COMPAT_ROUTES"),
+        "routes": sorted(
+            [
+                route.path
+                for route in app.routes
+                if hasattr(route, "path")
+            ]
+        ),
     }
