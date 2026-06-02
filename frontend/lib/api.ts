@@ -7,7 +7,7 @@ function getApiBaseUrl() {
     );
   }
 
-  return process.env.NEXT_PUBLIC_API_BASE_URL || "";
+  return "";
 }
 
 const ADMIN_API_KEY = process.env.NEXT_PUBLIC_ADMIN_API_KEY || "";
