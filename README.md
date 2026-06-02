@@ -1,242 +1,543 @@
 # Investor Intelligence Pipeline
 
-Lightweight automated investor research pipeline for discovering investor pages,
-extracting structured firm data, and keeping a Postgres-backed investor database
-up to date.
+An automated investor research platform for discovering investor websites, extracting structured firm data, storing it in Postgres/Supabase, and reviewing data quality from a web dashboard.
 
-The current implementation intentionally keeps the V1 workflow simple:
+The project is designed as a lightweight MVP: simple scheduled ingestion, searchable investor records, review workflows, enrichment tools, and operational visibility without heavy orchestration or multi-agent crawling.
+
+## Features
+
+- Investor discovery from generated or manual search queries
+- Tavily web search integration
+- Firecrawl-based page extraction, with self-hosted Firecrawl support
+- LLM structured parsing with OpenAI first, then Groq/Ollama fallbacks
+- Supabase/Postgres storage through SQLAlchemy models
+- Investor, partner, and portfolio company tables
+- Review Queue for human approval/rejection before updates
+- Data Quality dashboard for missing fields and coverage gaps
+- Enrichment backlog/audit tooling
+- Blocklist for rejected/noisy sites
+- Next.js frontend dashboard
+- FastAPI backend API
+- Local scheduler for recurring ingestion
+
+## Architecture
 
 ```text
+Next.js Frontend
+        |
+        v
+FastAPI Backend
+        |
+        v
+Supabase / Postgres
+
+Local ingestion worker:
+
 Query generation
-  -> Tavily search
-  -> Firecrawl page extraction
-  -> Groq/Ollama structured parsing
-  -> Postgres storage
-  -> daily scheduled refresh
+        |
+        v
+Tavily Search
+        |
+        v
+Firecrawl Extraction
+        |
+        v
+LLM Structured Parsing
+        |
+        v
+Review Queue / Database Insert
 ```
 
-OpenAI structured outputs are planned for the final stage once API rate limits
-are no longer a blocker. Tavily is the active search provider for V1.
+For development and demos, Firecrawl can run locally while the deployed frontend/backend read from the shared Supabase database.
 
-## What V1 Includes
+## Tech Stack
 
-- Manual query input through `run_pipeline.py "<query>"`
-- Generated investor discovery queries by sector, stage, geography, and theme
-- Tavily search with URL deduplication
-- High-signal page extraction with Firecrawl
-- Structured investor parsing with Groq and Ollama fallback
-- Postgres storage for investors, partners, portfolio companies, crawl history,
-  crawl queue, and failed URL retries
-- Daily scheduler process
-- Execution logs and failed URL tracking
-- Optional Streamlit dashboard for operational visibility and search
+### Backend
 
-## What V1 Does Not Try To Be
+- Python
+- FastAPI
+- SQLAlchemy
+- Postgres / Supabase
+- Tavily
+- Firecrawl
+- OpenAI / Groq / Ollama fallback parsing
+- APScheduler / lightweight scheduler scripts
 
-- A CRM
-- An outreach automation system
-- A relationship intelligence graph
-- A multi-agent research system
-- A recursive autonomous crawler
-- A required scoring or recommendation engine
+### Frontend
 
-Semantic search, pgvector, ranking scripts, and the dashboard are available as
-optional extras in this repository. They are not required for the core ingestion
-pipeline.
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Recharts
+- Lucide icons
 
-## Setup
+### Database
 
-Create a virtual environment and install dependencies:
+- Supabase Postgres
+- pgvector optional for semantic search
 
-```bash
-python -m venv venv
-venv\Scripts\activate
+## Repository Structure
+
+```text
+.
+├── app/
+│   ├── api/                  # FastAPI routers
+│   ├── config/               # Settings, taxonomy, query universe
+│   ├── database/             # SQLAlchemy DB/session/models
+│   ├── extraction/           # Firecrawl extraction helpers
+│   ├── parsing/              # LLM structured parsing
+│   ├── query/                # Query generation/expansion
+│   ├── relevance/            # Search result relevance classification
+│   ├── search/               # Tavily + semantic search
+│   └── utils/                # Deduplication, normalization, repair helpers
+├── frontend/                 # Next.js app
+├── raw_markdown/             # Extracted markdown output
+├── parsed_json/              # Parsed investor JSON output
+├── exports/                  # Audit/backlog/export files
+├── main.py                   # FastAPI entrypoint
+├── run_pipeline.py           # Search + extraction pipeline
+├── parse_markdown.py         # Parse markdown into structured JSON
+├── insert_into_db.py         # Upsert parsed JSON into DB
+├── scheduler.py              # Local recurring scheduler
+├── audit_investor_coverage.py
+├── build_enrichment_backlog.py
+└── enrich_investor_backlog.py
+```
+
+## Requirements
+
+- Python 3.11+
+- Node.js 18+
+- Postgres database or Supabase project
+- Tavily API key
+- OpenAI or Groq API key
+- Firecrawl Cloud key or local self-hosted Firecrawl
+
+## Backend Setup
+
+Create and activate a Python virtual environment:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-For tests:
+Create a `.env` file in the project root.
 
-```bash
-pip install -r requirements-dev.txt
-```
-
-Configure `.env`:
+Recommended Supabase connection style:
 
 ```env
-TAVILY_API_KEY=your_tavily_key
-FIRECRAWL_API_KEY=your_firecrawl_key
-GROQ_API_KEY=your_groq_key
+DATABASE_URL=postgresql://postgres.xxxxx:YOUR_PASSWORD@aws-xxx.pooler.supabase.com:5432/postgres
+```
 
+Alternative individual DB fields:
+
+```env
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=investor_intelligence
 DB_USER=postgres
 DB_PASSWORD=your_password
+```
 
+Required API/config values:
+
+```env
+TAVILY_API_KEY=your_tavily_key
+OPENAI_API_KEY=your_openai_key
+GROQ_API_KEY=your_groq_key
+ADMIN_API_KEY=change_this_for_admin_actions
+CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+```
+
+Firecrawl options:
+
+```env
+# Self-hosted local Firecrawl
+FIRECRAWL_API_URL=http://localhost:3002
+
+# Or Firecrawl Cloud
+FIRECRAWL_API_KEY=your_firecrawl_cloud_key
+```
+
+Pipeline limits:
+
+```env
 TEST_MODE=true
 TEST_QUERY_LIMIT=10
+TEST_URL_LIMIT=5
 MAX_TOTAL_URLS=500
 RECRAWL_AFTER_DAYS=30
 FIRECRAWL_TIMEOUT_SECONDS=45
-SCHEDULE_TIME=02:00
 ```
 
-Use `TEST_MODE=true` while validating the pipeline against a live database. Set
-`TEST_MODE=false` only after confirming the search, extraction, parsing, and
-upsert behavior on a small sample.
+Use `TEST_MODE=true` while validating against a live database.
 
 ## Database Setup
 
 Create tables:
 
-```bash
+```powershell
 python create_tables.py
 ```
 
-For an existing database, run the migration only after backing up or snapshotting
-the database:
+For an existing database, run migrations carefully:
 
-```bash
+```powershell
 python migrate_pipeline_tables.py
 ```
 
-The migration only adds missing columns/tables needed by the pipeline. It does
-not drop existing data.
+Before running migrations against a shared/production database, take a Supabase backup or snapshot.
+
+## Running The Backend Locally
+
+```powershell
+.\.venv\Scripts\activate
+uvicorn main:app --reload
+```
+
+Useful local URLs:
+
+```text
+http://127.0.0.1:8000/health
+http://127.0.0.1:8000/api/metrics
+http://127.0.0.1:8000/docs
+```
+
+## Frontend Setup
+
+```powershell
+cd frontend
+npm install
+```
+
+Create `frontend/.env.local`:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
+API_BASE_URL=http://127.0.0.1:8000
+NEXT_PUBLIC_ADMIN_API_KEY=your_admin_key_if_using_admin_buttons
+```
+
+Run the frontend:
+
+```powershell
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+## Running Firecrawl Locally
+
+Firecrawl is optional for viewing data, but required for extraction/manual ingestion/enrichment.
+
+```powershell
+cd C:\Users\crade\Desktop\firecrawl
+docker compose up --build
+```
+
+Test Firecrawl:
+
+```powershell
+curl.exe -X POST http://localhost:3002/v1/scrape -H "Content-Type: application/json" -d "{\"url\":\"https://example.com\",\"formats\":[\"markdown\"]}"
+```
+
+Expected response includes:
+
+```json
+"success": true
+```
+
+Then make sure the backend `.env` contains:
+
+```env
+FIRECRAWL_API_URL=http://localhost:3002
+```
 
 ## Running The Pipeline
 
-Run a single manual discovery query:
+Run a single query:
 
-```bash
-python run_pipeline.py "AI infrastructure seed investors"
+```powershell
+python run_pipeline.py "Voice AI Seed venture capital firm portfolio"
 python parse_markdown.py
 python insert_into_db.py
 ```
 
-Run the daily scheduler process:
+Run the local scheduler:
 
-```bash
+```powershell
 python scheduler.py
 ```
 
-The scheduler runs `run_pipeline.py`, `parse_markdown.py`, `insert_into_db.py`,
-and failed URL retries once per day at `SCHEDULE_TIME`.
+The local scheduler writes to whichever database your `.env` points to. If your `.env` uses Supabase, the deployed website will update after records are inserted.
 
-## Running The FastAPI Backend
+## Enrichment And Data Quality
 
-Start the API server:
+Audit current coverage:
 
-```bash
-uvicorn main:app --reload
+```powershell
+python audit_investor_coverage.py
 ```
 
-Open the API docs:
+Build enrichment backlog:
 
-```text
-http://127.0.0.1:8000/docs
+```powershell
+python build_enrichment_backlog.py
 ```
 
-Core frontend endpoints:
+Run enrichment batch:
+
+```powershell
+python enrich_investor_backlog.py exports/investor_enrichment_backlog.json exports/investor_enrichment_results.json 10
+```
+
+Enrichment results are queued for review instead of directly updating investor records.
+
+## Review Workflow
+
+The Review Queue is used to prevent bad records from being written automatically.
+
+Typical flow:
 
 ```text
-GET  /api/health
+Extraction/parsing result
+        |
+        v
+Review Queue
+        |
+        | approve
+        v
+Insert/update investor DB
+
+        |
+        | reject
+        v
+Block site / ignore noisy source
+```
+
+Rejected sites can be blocklisted so future searches do not keep surfacing the same low-quality sources.
+
+## API Overview
+
+Common endpoints:
+
+```text
+GET  /health
+GET  /api/metrics
+GET  /api/dashboard/distributions
 GET  /api/investors
 GET  /api/investors/{id}
-GET  /api/investors/export
-GET  /api/search/structured
-POST /api/search/semantic
-GET  /api/operations/metrics
-GET  /api/operations/crawl-queue
-GET  /api/operations/crawled-urls
-GET  /api/operations/failed-urls
+GET  /api/partners
+GET  /api/portfolio-companies
+GET  /api/quality/coverage
+GET  /api/review-queue
+GET  /api/blocklist
 POST /api/queries/preview
 POST /api/pipeline/runs
-GET  /api/pipeline/runs
-GET  /api/pipeline/runs/{id}
-GET  /api/pipeline/runs/{id}/logs
-POST /api/operations/failed-urls/{id}/retry
+POST /api/manual-ingestion/url
+POST /api/review-queue/{id}/approve
+POST /api/review-queue/{id}/reject
 ```
 
-Write endpoints require an admin header:
+Admin/protected actions use:
 
 ```text
-X-Admin-Key: your-admin-key
+x-admin-key: YOUR_ADMIN_API_KEY
 ```
 
-Set these in `.env` for the frontend/API bridge:
+For a public demo, avoid exposing destructive/admin workflows broadly. `NEXT_PUBLIC_ADMIN_API_KEY` is visible in the browser and should not be treated as production-grade security.
+
+## Deployment For Demo/Showcase
+
+Recommended simple deployment:
+
+```text
+Frontend: Vercel
+Backend: Render
+Database: Supabase
+Firecrawl: local development only
+```
+
+This means:
+
+- The deployed website can display/search existing Supabase data.
+- You can run ingestion locally with Firecrawl.
+- Local ingestion writes to Supabase.
+- The deployed website updates because it reads Supabase.
+- Deployed scraping/manual extraction may not work unless Firecrawl is hosted publicly.
+
+### Render Backend
+
+Render settings:
+
+```text
+Runtime: Python
+Build Command: pip install -r requirements.txt
+Start Command: python -m uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}
+```
+
+Render environment variables:
 
 ```env
-ADMIN_API_KEY=change-me
-CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+DATABASE_URL=your_supabase_connection_string
+TAVILY_API_KEY=your_tavily_key
+OPENAI_API_KEY=your_openai_key
+GROQ_API_KEY=your_groq_key
+ADMIN_API_KEY=your_admin_key
+CORS_ORIGINS=https://your-vercel-app.vercel.app
+ENABLE_COMPAT_ROUTES=true
 ```
 
-## Scheduling In Production
+For a read-only demo, omit `FIRECRAWL_API_URL` on Render.
 
-The built-in scheduler is intentionally lightweight. It must remain running. For
-production, prefer one of these wrappers:
+Test Render:
 
-- Windows Task Scheduler running `python scheduler.py` at startup
-- Linux cron running the three pipeline commands directly
-- Docker container with a restart policy
-- GitHub Actions or another hosted scheduled job
-
-Example Linux cron:
-
-```cron
-0 2 * * * cd /path/to/project && /path/to/venv/bin/python run_pipeline.py && /path/to/venv/bin/python parse_markdown.py && /path/to/venv/bin/python insert_into_db.py
+```text
+https://your-render-service.onrender.com/health
+https://your-render-service.onrender.com/api/metrics
 ```
 
-## Data Safety
+### Vercel Frontend
 
-Database updates are incremental. Existing investor rows are matched by firm
-name. When a new scrape returns sparse data, existing non-empty investor fields
-are preserved. Partner and portfolio child records are replaced only when new
-non-empty partner or portfolio data is available.
+Vercel settings:
 
-Before switching from test mode to production mode, run against a database
-backup or staging database first.
-
-## Tests
-
-Run lightweight tests:
-
-```bash
-pytest
+```text
+Root Directory: frontend
+Framework: Next.js
+Install Command: npm install
+Build Command: npm run build
+Output Directory: .next
 ```
 
-The current tests focus on safe normalization of legacy and structured partner
-and portfolio records.
+Vercel environment variables:
 
-## Moving Data Into A Shared Database
+```env
+API_BASE_URL=https://your-render-service.onrender.com
+NEXT_PUBLIC_API_BASE_URL=https://your-render-service.onrender.com
+NEXT_PUBLIC_ADMIN_API_KEY=your_admin_key_if_needed
+```
 
-Use JSON export/import when merging local databases into a shared Supabase or
-hosted Postgres database. Do not copy raw table rows by `id`, because different
-local databases can reuse the same ids for different investors.
+Important:
 
-Export from a local database:
+- `API_BASE_URL` must include `https://`
+- Do not add `/api` to the end
+- Redeploy Vercel after env var changes
+- Redeploy without build cache if values appear stale
 
-```bash
+Test Vercel API rewrite:
+
+```text
+https://your-vercel-app.vercel.app/api/metrics
+```
+
+If this returns real counts, client-side pages should load data correctly.
+
+## Data Collaboration
+
+For combining data from multiple local databases into one shared Supabase database, use JSON export/import instead of copying raw table IDs.
+
+Export:
+
+```powershell
 python export_investors_json.py exports/my_investors.json
 ```
 
-Then point `.env` to the shared database and import:
+Import into shared DB:
 
-```bash
+```powershell
 python import_investors_json.py exports/my_investors.json
 ```
 
-The import uses the existing investor upsert logic in `insert_into_db.py`.
-Investor records are matched by case-insensitive firm name. Existing rows are
-updated, and new firms are inserted. Partners and portfolio companies are
-deduplicated within each imported record.
+The import path uses upsert logic and dedupes by normalized firm identity where possible.
 
-Recommended collaboration flow:
+## Development Notes
 
-```text
-Person A local DB -> export JSON
-Person B local DB -> export JSON
-Shared Supabase DB -> import both JSON files
+- Do not commit `.env` files.
+- Keep `.env`, `frontend/.env.local`, Docker volumes, and generated caches out of Git.
+- Supabase data is remote and is not affected by deleting local Docker images/volumes.
+- Firecrawl local Docker state can be rebuilt if Docker is reset.
+- The deployed frontend/backend can be used for browsing data while ingestion runs locally.
+
+## Common Troubleshooting
+
+### Vercel shows zeros but Render has data
+
+Check:
+
+```env
+API_BASE_URL=https://your-render-service.onrender.com
+NEXT_PUBLIC_API_BASE_URL=https://your-render-service.onrender.com
 ```
 
-If the same firm uses different names, for example `BVP` and `Bessemer Venture
-Partners`, review those manually after import.
+Then redeploy Vercel with build cache disabled.
+
+### Render says no open ports detected
+
+Use:
+
+```bash
+python -m uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}
+```
+
+### Render runs out of memory
+
+Avoid loading extraction/parsing/enrichment modules at startup. For read-only demo deployments, keep Firecrawl disabled on Render and run ingestion locally.
+
+### Firecrawl local connection refused
+
+Start Firecrawl:
+
+```powershell
+cd C:\Users\crade\Desktop\firecrawl
+docker compose up --build
+```
+
+Then verify:
+
+```powershell
+curl.exe -X POST http://localhost:3002/v1/scrape -H "Content-Type: application/json" -d "{\"url\":\"https://example.com\",\"formats\":[\"markdown\"]}"
+```
+
+### API route works on Render but not Vercel
+
+Test Vercel rewrite:
+
+```text
+https://your-vercel-app.vercel.app/api/metrics
+```
+
+If that fails, Vercel env vars or `next.config.ts` rewrite configuration are wrong.
+
+## Current MVP Scope
+
+Included:
+
+- Investor discovery
+- Web search
+- Extraction
+- Structured parsing
+- Supabase/Postgres storage
+- Scheduled/local ingestion
+- Review queue
+- Data quality/enrichment tooling
+- Searchable frontend
+
+Not included:
+
+- CRM replacement
+- Outreach automation
+- Warm intro graph
+- Multi-agent orchestration
+- Relationship intelligence graph
+- Fully hosted Firecrawl in the demo setup
+
+## License
+
+This project is currently intended for internal/demo use. Add a license before distributing publicly.
