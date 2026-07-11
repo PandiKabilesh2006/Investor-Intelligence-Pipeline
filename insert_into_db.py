@@ -438,8 +438,114 @@ def insert_investor_data(data, conn=None):
         )
 
         if investor_id:
+            # 1. Fetch existing fields to merge
+            cursor.execute(
+                """
+                SELECT focus_sectors, investment_stage, geography, website, source_url
+                FROM investors
+                WHERE id = %s
+                """,
+                (investor_id,)
+            )
+            row = cursor.fetchone()
+            if row:
+                existing_sectors, existing_stages, existing_geographies, existing_website, existing_source_url = row
+                
+                # Merge lists, maintaining uniqueness and filtering out empty strings/None
+                focus_sectors = list(dict.fromkeys(
+                    [x for x in (existing_sectors or []) + focus_sectors if x]
+                ))
+                investment_stage = list(dict.fromkeys(
+                    [x for x in (existing_stages or []) + investment_stage if x]
+                ))
+                geography = list(dict.fromkeys(
+                    [x for x in (existing_geographies or []) + geography if x]
+                ))
+                
+                # Use best website & source_url
+                if not website and existing_website:
+                    website = existing_website
+                if not source_url and existing_source_url:
+                    source_url = existing_source_url
 
+            # 2. Fetch and merge partners
+            cursor.execute(
+                """
+                SELECT name, role, linkedin_url, twitter_url
+                FROM partners
+                WHERE investor_id = %s
+                """,
+                (investor_id,)
+            )
+            existing_partners_rows = cursor.fetchall()
+            existing_partners = {}
+            for name, role, linkedin_url, twitter_url in existing_partners_rows:
+                if name:
+                    existing_partners[name.lower().strip()] = {
+                        "name": name,
+                        "role": role or "",
+                        "linkedin_url": linkedin_url or "",
+                        "twitter_url": twitter_url or ""
+                    }
+            
+            for p in partners:
+                name_key = p["name"].lower().strip()
+                if name_key not in existing_partners:
+                    existing_partners[name_key] = p
+                else:
+                    ext_p = existing_partners[name_key]
+                    if not ext_p.get("role") and p.get("role"):
+                        ext_p["role"] = p["role"]
+                    if not ext_p.get("linkedin_url") and p.get("linkedin_url"):
+                        ext_p["linkedin_url"] = p["linkedin_url"]
+                    if not ext_p.get("twitter_url") and p.get("twitter_url"):
+                        ext_p["twitter_url"] = p["twitter_url"]
+            partners = list(existing_partners.values())
 
+            # 3. Fetch and merge portfolio companies
+            cursor.execute(
+                """
+                SELECT company_name, sector
+                FROM portfolio_companies
+                WHERE investor_id = %s
+                """,
+                (investor_id,)
+            )
+            existing_pc_rows = cursor.fetchall()
+            existing_pcs = {}
+            for company_name, sector in existing_pc_rows:
+                if company_name:
+                    existing_pcs[company_name.lower().strip()] = {
+                        "company_name": company_name,
+                        "sector": sector or ""
+                    }
+            
+            for c in portfolio_companies:
+                name_key = c["company_name"].lower().strip()
+                if name_key not in existing_pcs:
+                    existing_pcs[name_key] = c
+                else:
+                    ext_c = existing_pcs[name_key]
+                    if not ext_c.get("sector") and c.get("sector"):
+                        ext_c["sector"] = c["sector"]
+            portfolio_companies = list(existing_pcs.values())
+
+            # 4. Re-calculate embedding with fully merged text
+            pc_names = [c["company_name"] for c in portfolio_companies]
+            partner_names = [p["name"] for p in partners]
+            embedding_text = " ".join([
+                firm_name,
+                website or "",
+                " ".join(focus_sectors),
+                " ".join(investment_stage),
+                " ".join(geography),
+                " ".join(partner_names),
+                " ".join(pc_names)
+            ])
+            model = get_embedding_model()
+            embedding = model.encode(embedding_text).tolist()
+
+            # 5. Update database record
             cursor.execute(
                 """
                 UPDATE investors
@@ -467,7 +573,7 @@ def insert_investor_data(data, conn=None):
                 ),
             )
 
-            print(f"Updated investor: {firm_name}")
+            print(f"Updated investor with merged data: {firm_name}")
 
         else:
 

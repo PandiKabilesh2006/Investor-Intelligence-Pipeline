@@ -11,7 +11,9 @@ from app.config.settings import (
     GROQ_PRIMARY_MODEL,
     GROQ_FALLBACK_MODEL,
     OPENAI_API_KEY,
-    OPENAI_PRIMARY_MODEL
+    OPENAI_PRIMARY_MODEL,
+    OPENAI_PARSER_DELAY_SECONDS,
+    OPENAI_PARSER_MAX_RETRIES
 )
 from app.prompts.loader import load_prompt
 
@@ -318,34 +320,72 @@ def classify_with_ollama(prompt):
 # OPENAI CLASSIFIER
 # =========================================
 
+def is_recoverable_rate_limit(error_message):
+    lowered = error_message.lower()
+    return any(
+        marker in lowered
+        for marker in RECOVERABLE_GROQ_ERRORS
+    )
+
+
 def classify_with_openai(
     prompt,
     model_name
 ):
-    response = openai_client.chat.completions.create(
-        model=model_name,
-        temperature=0,
-        response_format={
-            "type": "json_object"
-        },
-        messages=[
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
-    )
+    last_error = None
+    max_retries = max(5, OPENAI_PARSER_MAX_RETRIES)
+    delay_sec = OPENAI_PARSER_DELAY_SECONDS
 
-    output = (
-        response
-        .choices[0]
-        .message
-        .content
-    )
+    for attempt in range(max_retries + 1):
+        try:
+            response = openai_client.chat.completions.create(
+                model=model_name,
+                temperature=0,
+                response_format={
+                    "type": "json_object"
+                },
+                messages=[
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ]
+            )
 
-    parsed = extract_json(output)
+            output = (
+                response
+                .choices[0]
+                .message
+                .content
+            )
 
-    return normalize_output(parsed)
+            parsed = extract_json(output)
+            
+            # Safe pacing sleep to prevent hitting rate limits
+            time.sleep(delay_sec)
+
+            return normalize_output(parsed)
+        except Exception as error:
+            last_error = error
+            error_message = str(error)
+
+            if attempt >= max_retries or not is_recoverable_rate_limit(error_message):
+                raise
+
+            # Implement exponential backoff for rate limits
+            base_wait = max(
+                extract_retry_wait(error_message),
+                delay_sec
+            )
+            wait = base_wait * (attempt + 1)
+            print(
+                f"OpenAI {model_name} rate-limited during relevance check; "
+                f"retrying in {wait:.1f}s "
+                f"(attempt {attempt + 1}/{max_retries})"
+            )
+            time.sleep(wait)
+
+    raise last_error
 
 
 # =========================================

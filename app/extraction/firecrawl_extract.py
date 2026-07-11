@@ -114,10 +114,12 @@ class HTMLToTextParser(HTMLParser):
 
 def scrape_fallback(url):
     try:
+        import urllib3
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         }
-        resp = requests.get(url, headers=headers, timeout=10)
+        resp = requests.get(url, headers=headers, timeout=10, verify=False)
         if resp.status_code == 200:
             parser = HTMLToTextParser()
             parser.feed(resp.text)
@@ -204,34 +206,96 @@ def extract_website(url):
     try:
 
         # =====================================
-        # GENERATE TARGET SUBPAGES
+        # 1. SCRAPE HOMEPAGE FIRST
         # =====================================
-
-        subpage_urls = generate_subpage_urls(
-
-            url
-        )
-
+        print(f"Scraping homepage: {url}")
+        homepage_markdown = scrape_single_page(url)
+        if not homepage_markdown:
+            raise Exception(f"Failed to scrape homepage for {url}")
 
         combined_markdown = []
-
+        combined_markdown.append(
+            f"\n\n"
+            f"====================\n"
+            f"URL: {url}\n"
+            f"====================\n\n"
+            f"{homepage_markdown}"
+        )
 
         # =====================================
-        # EXTRACT IMPORTANT PAGES
+        # 2. DYNAMICALLY DISCOVER LINKS
         # =====================================
+        discovered_urls = []
+        
+        # Parse links from markdown: [Link Text](Link URL)
+        # Using a regex that extracts markdown links
+        link_matches = re.findall(r'\[([^\]]+)\]\(([^)]+)\)', homepage_markdown)
+        
+        # Keywords indicating team, people, portfolio, or contact content
+        keywords = re.compile(
+            r'team|people|partner|about|leadership|portfolio|company|companies|contact|invest|crew|associate|staff|member|bio|who-we-are', 
+            re.IGNORECASE
+        )
+        
+        from urllib.parse import urlparse
+        parsed_base = urlparse(url)
+        base_domain = parsed_base.netloc.lower().replace("www.", "")
+        
+        for text, link_url in link_matches:
+            link_url = link_url.strip()
+            # Clean up potential query params or hashes in markdown link urls
+            link_url_clean = link_url.split("#")[0].split("?")[0].strip()
+            if not link_url_clean:
+                continue
+                
+            # If link matches our keywords either in URL path or in link text
+            if keywords.search(link_url_clean) or keywords.search(text):
+                full_url = urljoin(url, link_url_clean)
+                from app.validation.investor_validation import is_rejected_url
+                if is_rejected_url(full_url):
+                    continue
+                parsed_full = urlparse(full_url)
+                full_domain = parsed_full.netloc.lower().replace("www.", "")
+                
+                # Ensure the link belongs to the same base domain
+                if full_domain == base_domain:
+                    discovered_urls.append(full_url)
 
-        for subpage_url in subpage_urls:
+        # Deduplicate discovered URLs
+        discovered_urls = list(set(discovered_urls))
+        
+        # Always make sure we don't request the homepage again
+        if url in discovered_urls:
+            discovered_urls.remove(url)
+            
+        # Limit the number of discovered URLs to prevent runaway crawling (e.g. max 10 subpages)
+        discovered_urls = discovered_urls[:10]
+        
+        # If no dynamic subpages were found, fall back to a standard baseline set of guesses
+        # so that we still try standard paths if the homepage links aren't parsed
+        if not discovered_urls:
+            print("No dynamic subpages matched keywords. Falling back to standard baseline paths.")
+            baseline_paths = ["/team", "/about", "/portfolio", "/companies"]
+            for path in baseline_paths:
+                full_url = urljoin(url, path)
+                discovered_urls.append(full_url)
+                
+        print(f"Dynamically discovered {len(discovered_urls)} subpages to scrape: {discovered_urls}")
 
+        # =====================================
+        # 3. SCRAPE THE DISCOVERED PAGES
+        # =====================================
+        for subpage_url in discovered_urls:
+            # Skip homepage since we already crawled it
+            if subpage_url.rstrip("/") == url.rstrip("/"):
+                continue
+                
             markdown = scrape_single_page(
-
                 subpage_url
             )
 
-
             if markdown:
-
                 combined_markdown.append(
-
                     f"\n\n"
                     f"====================\n"
                     f"URL: {subpage_url}\n"
@@ -239,59 +303,32 @@ def extract_website(url):
                     f"{markdown}"
                 )
 
-
         # =====================================
         # VALIDATE EXTRACTION
         # =====================================
-
         if not combined_markdown:
-
             raise Exception(
-
-                "No markdown extracted "
-                "from any subpage"
+                "No markdown extracted from any page"
             )
-
 
         # =====================================
         # MERGE ALL CONTENT
         # =====================================
-
-        final_markdown = (
-
-            "\n\n".join(
-
-                combined_markdown
-            )
-        )
-
+        final_markdown = "\n\n".join(combined_markdown)
 
         print(
-
-            f"Combined extraction success: "
-            f"{url}"
+            f"Combined extraction success: {url}"
         )
-
 
         return final_markdown
 
-
     except Exception as extraction_error:
-
         print(
-
-            f"Website extraction failed: "
-            f"{url} | "
-            f"{extraction_error}"
+            f"Website extraction failed: {url} | {extraction_error}"
         )
-
-
         add_failed_url(
-
             url,
-
             extraction_error
         )
-
-
         return None
+

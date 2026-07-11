@@ -16,7 +16,8 @@ SCHEMA
       "name": "",
       "role": "",
       "linkedin_url": "",
-      "twitter_url": ""
+      "twitter_url": "",
+      "confidence": 0.95
     }
   ],
   "focus_sectors": [],
@@ -30,6 +31,7 @@ SCHEMA
   "geography": []
 }
 
+
 ----------------------------------------
 CRITICAL ANTI-HALLUCINATION RULES
 ----------------------------------------
@@ -37,6 +39,19 @@ CRITICAL ANTI-HALLUCINATION RULES
 - **No Hallucinated Team Members:** ONLY extract individuals explicitly listed as part of the venture firm's internal investment team. Do NOT guess or hallucinate people. If no team members are listed in the source text, return an empty list [] for "partners".
 - **No Hallucinated Roles:** ONLY extract roles/titles if they are explicitly mentioned in the text next to the person's name (e.g. "General Partner", "Associate", "Founder & Managing Partner"). Do NOT guess roles for people if the text does not mention them. If no role is mentioned, set "role" to "".
 - **Factual Portfolio Extraction:** Extract ONLY companies explicitly listed as part of the firm's portfolio. Do NOT invent companies or list co-investors/partners as portfolio companies. If a company's sector is not mentioned in the source text, set "sector" to "".
+
+----------------------------------------
+PARTNER CONFIDENCE SCORING
+----------------------------------------
+Set the "confidence" field for each partner based on how clearly they are identified:
+- 0.95: Person is explicitly listed on the firm's team/partners/leadership page with their full name and role (e.g. "Jane Smith, General Partner")
+- 0.85: Person is clearly named as a VC team member but role is not explicitly mentioned
+- 0.70: Person appears to be associated with the firm but their exact role or membership is ambiguous
+- 0.0: Do NOT include — person cannot be confidently attributed to the VC firm's internal team
+
+If in doubt, use 0.85. Never return a confidence below 0.70 — instead, omit the person entirely.
+
+
 
 ----------------------------------------
 FIRM EXTRACTION RULES

@@ -394,157 +394,78 @@ for query in queries:
             continue
 
         for result in results:
-
-            url = result.get(
-
-                "url",
-                ""
-            )
+            url = result.get("url", "")
+            if not url:
+                continue
 
             url = canonicalize_url(url)
-
-            title = result.get(
-
-                "title",
-                ""
-            )
-
-            snippet = result.get(
-
-                "content",
-                ""
-            )
-
-            if not url:
-
-                continue
+            title = result.get("title", "")
+            snippet = result.get("content", "")
 
             if is_rejected_url(url):
                 continue
 
-            if already_crawled(url):
+            # Extract base domain URL (homepage) for domain-level canonicalization
+            from urllib.parse import urlparse
+            parsed_url = urlparse(url)
+            base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
 
+            if already_crawled(base_url):
                 continue
 
-            if url in seen_urls:
-
+            if base_url in seen_urls:
                 continue
 
-            seen_urls.add(url)
+            seen_urls.add(base_url)
 
-            classification = (
-
-                classify_investor_relevance(
-
-                    query=query,
-
-                    title=title,
-
-                    url=url,
-
-                    snippet=snippet
-                )
+            classification = classify_investor_relevance(
+                query=query,
+                title=title,
+                url=url,
+                snippet=snippet
             )
 
-            is_relevant = classification.get(
+            is_relevant = classification.get("is_relevant", False)
+            confidence = classification.get("confidence", 0.0)
 
-                "is_relevant",
-
-                False
-            )
-
-            confidence = classification.get(
-
-                "confidence",
-
-                0.0
-            )
-
-            should_queue, queue_reason = should_queue_discovery_url(url, classification)
-
+            should_queue, queue_reason = should_queue_discovery_url(base_url, classification)
             if not should_queue:
-                pipeline_logger.info(f"Skipped URL ({queue_reason}): {url}")
+                pipeline_logger.info(f"Skipped URL ({queue_reason}): {base_url}")
                 continue
 
+            # Compute priority score based on the original subpage URL to check for team/portfolio keywords
             url_lower = url.lower()
-
-            # =====================================
-            # PRIORITY SCORING
-            # =====================================
-
             priority_score = confidence
 
             if is_investor_profile_url(url):
                 priority_score += 0.5
 
-            # URL path signals — team/partner pages
             if "portfolio" in url_lower:
-
                 priority_score += 2
-
-
             if "team" in url_lower:
-
                 priority_score += 2
-
-
             if "partner" in url_lower:
-
                 priority_score += 2
-
-
             if "people" in url_lower:
-
                 priority_score += 2
-
-
             if "leadership" in url_lower:
-
                 priority_score += 2
-
-
             if "about" in url_lower:
-
                 priority_score += 1.5
-
-
             if "investor" in url_lower:
-
                 priority_score += 1
-
-
-            # .vc TLD = almost certainly a VC firm's own site
             if ".vc" in url_lower:
                 priority_score += 1.5
 
-
-            # source_type boost from classifier
-            source_type = classification.get(
-                "source_type",
-                "investor_mention"
-            )
-
+            source_type = classification.get("source_type", "investor_mention")
             if source_type == "investor_profile":
-
                 priority_score += 1.0
 
-
-            # =====================================
-            # ADD TO QUEUE
-            # =====================================
-
-            add_to_crawl_queue(
-
-                url,
-
-                priority_score
-            )
-
+            # Queue only the base domain homepage URL
+            add_to_crawl_queue(base_url, priority_score)
 
             pipeline_logger.info(
-
-                f"Queued URL: "
-                f"{url} | "
+                f"Queued Domain (Homepage): {base_url} (discovered via {url}) | "
                 f"priority={priority_score:.2f} | "
                 f"source_type={source_type}"
             )
@@ -784,20 +705,4 @@ print(
 
     "Pipeline execution completed.\n"
 )
-# first_result = search_results["results"][0]
 
-# url = first_result["url"]
-
-# print(f"\nSearching URL: {url}\n")
-
-# website_data = extract_website(url)
-
-# markdown_content = website_data.markdown
-
-# parsed_data = parse_investor(markdown_content)
-
-# print(json.dumps(parsed_data, indent=4))
-# # with open("output.md", "w", encoding="utf-8") as file:
-# #     file.write(markdown_content)
-# # print(markdown_content)
-# print(search_results['results'][2])

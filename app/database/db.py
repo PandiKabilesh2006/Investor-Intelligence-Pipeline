@@ -10,12 +10,14 @@ from app.config.settings import (
     DB_PASSWORD
 )
 
+import urllib.parse
+
 # =========================================
 # POSTGRESQL DATABASE URL
 # =========================================
 
 DATABASE_URL = (
-    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    f"postgresql+psycopg2://{DB_USER}:{urllib.parse.quote_plus(DB_PASSWORD)}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
 
 
