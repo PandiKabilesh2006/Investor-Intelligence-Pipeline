@@ -6,6 +6,7 @@ from typing import Optional, List
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from sqlalchemy import func
 
@@ -62,6 +63,7 @@ def serialize_investor(investor, include_relations=False):
         "id": investor.id,
         "firm_name": investor.firm_name,
         "website": investor.website,
+        "source_url": investor.source_url,
         "focus_sectors": investor.focus_sectors or [],
         "investment_stage": investor.investment_stage or [],
         "geography": investor.geography or [],
@@ -590,4 +592,9 @@ def generate_queries_endpoint(req: QueryGenRequest):
         "queries": queries,
         "source": source
     }
+
+
+# Serve frontend static files if directory exists
+if os.path.exists("frontend/out"):
+    app.mount("/", StaticFiles(directory="frontend/out", html=True), name="static")
 

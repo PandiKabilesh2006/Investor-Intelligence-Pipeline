@@ -1,5 +1,5 @@
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
+  process.env.NEXT_PUBLIC_API_BASE_URL || "";
 
 export type Metrics = {
   investors: number;
@@ -12,6 +12,8 @@ export type Investor = {
   id: number;
   firm_name: string;
   website?: string | null;
+  source_url?: string | null;
+  contact_links?: string[];
   focus_sectors: string[];
   investment_stage: string[];
   geography: string[];
@@ -27,6 +29,7 @@ export type Partner = {
   investor_id: number;
   name: string;
   role?: string | null;
+  confidence?: number | null;
   linkedin_url?: string | null;
   twitter_url?: string | null;
   firm_name?: string | null;
