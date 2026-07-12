@@ -97,11 +97,7 @@ def serialize_investor(investor, include_relations=False):
 
     return payload
 
-@app.get("/")
-def home():
-    return {
-        "message": "Investor Intelligence Pipeline Running"
-    }
+# Serve home endpoint dynamically via static files fallback
 
 @app.get("/health")
 def health():
