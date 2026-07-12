@@ -105,6 +105,10 @@ def run_nightly_pipeline():
 # =========================================
 
 if __name__ == "__main__":
+    if os.getenv("ENABLE_SCHEDULER", "true").lower() == "false":
+        print("Scheduler is disabled via ENABLE_SCHEDULER environment variable. Exiting.")
+        sys.exit(0)
+
     scheduler = BlockingScheduler()
 
     # Read cron schedule from environment, default to 2:00 PM daily ("0 14 * * *")
