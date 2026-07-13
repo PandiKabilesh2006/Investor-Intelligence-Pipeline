@@ -2,6 +2,8 @@
 
 > An AI-powered investor discovery and intelligence platform that combines web scraping, NLP, vector embeddings, semantic search, and LLM-powered insights to help startups discover the right investors faster.
 
+**🌐 Live Deployment:** [investor-intelligence-pipeline-production.up.railway.app](https://investor-intelligence-pipeline-production.up.railway.app)
+
 ---
 
 # 🚀 Overview
